@@ -4,6 +4,7 @@ from collections import defaultdict
 from datetime import date, timedelta
 
 from wdf.calendar import AS_OF, iso_weeks
+from wdf.config import load_settings
 from wdf.ids import entity_id
 
 
@@ -18,6 +19,9 @@ def compute_derived(
     sources: dict[str, list[dict]],
     thresholds: dict[str, float],
 ) -> dict[str, list[dict]]:
+    settings = load_settings()
+    work_calendar = settings.work_calendar
+    action_policy = settings.action_policy
     weeks = iso_weeks()
     employee_by_id = {row["employee_id"]: row for row in sources["employees"]}
     leave_by_employee: dict[str, list[dict]] = defaultdict(list)
@@ -30,17 +34,29 @@ def compute_derived(
     availability_counter = 1
     for employee in sources["employees"]:
         fte = employee["fte"]
-        capacity = 40.0 * fte
+        capacity = work_calendar.weekly_hours * fte
         for week in weeks:
             start = date.fromisoformat(str(week["week_start"]))
             days = _week_days(start)
             leave_days = set()
             for leave in leave_by_employee[employee["employee_id"]]:
                 leave_start, leave_end = date.fromisoformat(leave["start_date"]), date.fromisoformat(leave["end_date"])
-                leave_days.update(day for day in days if leave_start <= day <= leave_end and day.weekday() < 5)
-            holiday_days = {day for day in days if day in holidays and day.weekday() < 5}
-            leave_hours = min(capacity, len(leave_days) * 8.0 * fte)
-            holiday_hours = min(max(0.0, capacity - leave_hours), len(holiday_days) * 8.0 * fte)
+                leave_days.update(
+                    day for day in days
+                    if leave_start <= day <= leave_end
+                    and day.weekday() < work_calendar.workdays_per_week
+                )
+            holiday_days = {
+                day for day in days
+                if day in holidays and day.weekday() < work_calendar.workdays_per_week
+            }
+            leave_hours = min(
+                capacity, len(leave_days) * work_calendar.workday_hours * fte
+            )
+            holiday_hours = min(
+                max(0.0, capacity - leave_hours),
+                len(holiday_days) * work_calendar.workday_hours * fte,
+            )
             row = {
                 "availability_id": entity_id("AVL", availability_counter),
                 "employee_id": employee["employee_id"],
@@ -107,7 +123,7 @@ def compute_derived(
                 hours += float(avail_by_key[(employee["employee_id"], week)]["available_hours"])
         supply_row = {
             "iso_week": week, "role_id": role_id, "skill_id": skill_id,
-            "supply_fte": round(hours / 40.0, 4),
+            "supply_fte": round(hours / work_calendar.weekly_hours, 4),
             "supporting_esk_ids": sorted(matched),
         }
         skill_supply_rows.append(supply_row)
@@ -151,7 +167,8 @@ def compute_derived(
                 ((employee, skill_row) for employee in sources["employees"]
                  if employee["role_id"] == role_id
                  for skill_row in employee_skills_by_employee[employee["employee_id"]]
-                 if skill_row["skill_id"] != skill_id and skill_row["proficiency"] >= 2),
+                 if skill_row["skill_id"] != skill_id
+                 and skill_row["proficiency"] >= action_policy.minimum_candidate_proficiency),
                 None,
             )
             if adjacent:
@@ -200,8 +217,19 @@ def compute_derived(
             "rule_id": rule_id,
             "owner_actor": actor,
             "status": status,
-            "lead_time_weeks": 8 if action_type == "Hire" else (2 if action_type == "Reverify" else 3),
-            "estimated_cost": round(gap_fte * (12000 if action_type == "Hire" else 1800), 2),
+            "lead_time_weeks": (
+                action_policy.hire_lead_time_weeks if action_type == "Hire"
+                else action_policy.reverification_lead_time_weeks if action_type == "Reverify"
+                else action_policy.training_lead_time_weeks
+            ),
+            "estimated_cost": round(
+                gap_fte * (
+                    action_policy.hire_cost_per_fte
+                    if action_type == "Hire"
+                    else action_policy.other_gap_action_cost_per_fte
+                ),
+                2,
+            ),
             "assumptions": assumptions,
         })
         action_counter += 1
@@ -230,7 +258,7 @@ def compute_derived(
                 "source_allocation_ids": source_allocations,
                 "owner_actor": "Manager",
                 "status": "Proposed",
-                "lead_time_weeks": 1,
+                "lead_time_weeks": action_policy.utilization_action_lead_time_weeks,
                 "estimated_cost": 0.0,
                 "assumptions": (
                     f"UTIL_OVER_AVAILABLE: utilization={utilization_rate:.4f} > "
@@ -258,7 +286,7 @@ def compute_derived(
                     "source_allocation_ids": source_allocations,
                     "owner_actor": "HR Partner",
                     "status": "Escalated" if estimated_cost > budget_cap else "Proposed",
-                    "lead_time_weeks": 1,
+                    "lead_time_weeks": action_policy.utilization_action_lead_time_weeks,
                     "estimated_cost": estimated_cost,
                     "assumptions": (
                         f"UTIL_CONTRACT_OVER_THRESHOLD: utilization={utilization_rate:.4f} > "

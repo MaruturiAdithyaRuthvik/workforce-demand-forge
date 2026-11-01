@@ -6,6 +6,7 @@ from datetime import date, timedelta
 import numpy as np
 
 from wdf.calendar import AS_OF, add_months
+from wdf.config import load_settings
 from wdf.ids import allocation_id, entity_id
 
 
@@ -38,8 +39,11 @@ def _append_event(
 
 
 def inject_anomalies(
-    data: dict[str, list[dict]], seed: int, rate: float = 0.02
+    data: dict[str, list[dict]], seed: int, rate: float | None = None
 ) -> tuple[dict[str, list[dict]], list[dict]]:
+    settings = load_settings()
+    anomaly_config = settings.anomaly_generation
+    rate = settings.anomaly_rate if rate is None else rate
     if not 0 < rate <= 1:
         raise ValueError("Anomaly rate must be greater than zero and at most one")
     sources = deepcopy(data)
@@ -88,13 +92,14 @@ def inject_anomalies(
     allocation_project_ids = set()
     for allocation in allocation_targets:
         previous_pct = allocation["allocation_pct"]
-        allocation["allocation_pct"] = 1.25
+        allocation["allocation_pct"] = anomaly_config.allocation_percentage
         allocation_project_ids.add(allocation["project_id"])
         truth.append({
             "record_id": allocation["allocation_id"], "entity": "Allocation",
             "issue_type": "ALLOC_EXCEEDS_AVAILABILITY", "issue_subtype": None,
             "injected_field": "allocation_pct", "original_value": previous_pct,
-            "injected_value": 1.25, "expected_detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
+            "injected_value": anomaly_config.allocation_percentage,
+            "expected_detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
             "expected_decision": "Reallocate", "affected_derived_ids": [],
         })
 
@@ -165,7 +170,7 @@ def inject_anomalies(
     dedicated = [
         row for row in sources["allocations"]
         if projects[row["project_id"]]["staffing_model"] == "Dedicated-Team"
-        and float(row["allocation_pct"]) <= 0.75
+        and float(row["allocation_pct"]) <= anomaly_config.dedicated_allocation_max_percentage
         and not any(
             other is not row and overlaps(row, other)
             for other in sources["allocations"]
@@ -184,7 +189,7 @@ def inject_anomalies(
             **primary,
             "allocation_id": allocation_id(_next_number(sources["allocations"], "allocation_id", "ALLOC")),
             "project_id": alternate_project["project_id"],
-            "allocation_pct": 0.1,
+            "allocation_pct": anomaly_config.overlap_anomaly_extra_percentage,
             "skill_basis_esk_id": None,
         }
         sources["allocations"].append(new_allocation)
@@ -201,11 +206,13 @@ def inject_anomalies(
 
     # Hard negative: a Shared-Pool overlap whose combined weekly percentage stays within 100%.
     hard_negative_employee = next(
-        row["employee_id"] for row in isolated_shared if float(row["allocation_pct"]) <= 0.75
+        row["employee_id"] for row in isolated_shared
+        if float(row["allocation_pct"]) <= anomaly_config.dedicated_allocation_max_percentage
     )
     hard_negative_base = next(
         row for row in isolated_shared
-        if row["employee_id"] == hard_negative_employee and float(row["allocation_pct"]) <= 0.75
+        if row["employee_id"] == hard_negative_employee
+        and float(row["allocation_pct"]) <= anomaly_config.dedicated_allocation_max_percentage
     )
     negative_allocation = {
         **hard_negative_base,
@@ -215,7 +222,10 @@ def inject_anomalies(
             if row["project_id"] != hard_negative_base["project_id"]
             and row["staffing_model"] == "Shared-Pool"
         ),
-        "allocation_pct": min(0.1, 1.0 - float(hard_negative_base["allocation_pct"])),
+        "allocation_pct": min(
+            anomaly_config.near_miss_shared_extra_percentage,
+            1.0 - float(hard_negative_base["allocation_pct"]),
+        ),
         "skill_basis_esk_id": None,
     }
     sources["allocations"].append(negative_allocation)
@@ -243,7 +253,9 @@ def inject_anomalies(
         "leave_type": "Annual", "status": "Approved",
     })
 
-    boundary_week = date.fromisocalendar(2026, 52, 1)
+    boundary_week = date.fromisocalendar(
+        2026, anomaly_config.boundary_allocation_week, 1
+    )
     part_timer = next(
         row for row in sources["employees"]
         if row["fte"] < 1 and not any(

@@ -162,7 +162,7 @@ Generated from the Pydantic table models in `wdf/models.py`; rerun `python scrip
 | availability_id | string | yes | — | none | primary key | AVL-000001 six-digit identifier. |
 | employee_id | string | yes | — | none | foreign key | references Employee. |
 | iso_week | string | yes | — | ISO week | employee and week | 2026 ISO week. |
-| capacity_hours | number | yes | — | hours per week | not unique | 40 times employee FTE. |
+| capacity_hours | number | yes | — | hours per week | not unique | configured weekly hours times employee FTE. |
 | leave_hours | number | yes | — | hours per week | not unique | derived from approved leave. |
 | holiday_hours | number | yes | — | hours per week | not unique | derived from fixed holidays. |
 | available_hours | number | yes | — | hours per week | not unique | capacity minus leave and holiday hours. |
@@ -187,7 +187,7 @@ Generated from the Pydantic table models in `wdf/models.py`; rerun `python scrip
 | iso_week | string | yes | — | ISO week | role and skill and week | 2026 ISO week. |
 | role_id | string | yes | — | none | foreign key | references Role. |
 | skill_id | string | yes | — | none | foreign key | references Skill. |
-| supply_fte | number | yes | — | FTE | not unique | sum of eligible available hours divided by 40. |
+| supply_fte | number | yes | — | FTE | not unique | sum of eligible available hours divided by configured weekly hours. |
 | supporting_esk_ids | array<string> | yes | — | none | not unique | EmployeeSkill IDs supporting supply. |
 
 ## `gap_analysis`

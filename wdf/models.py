@@ -142,7 +142,7 @@ class Availability(Row):
     availability_id: str = Field(description="units=none; uniqueness=primary key; validation=AVL-000001 six-digit identifier.")
     employee_id: str = Field(description="units=none; uniqueness=foreign key; validation=references Employee.")
     iso_week: str = Field(description="units=ISO week; uniqueness=employee and week; validation=2026 ISO week.")
-    capacity_hours: float = Field(ge=0, description="units=hours per week; uniqueness=not unique; validation=40 times employee FTE.")
+    capacity_hours: float = Field(ge=0, description="units=hours per week; uniqueness=not unique; validation=configured weekly hours times employee FTE.")
     leave_hours: float = Field(ge=0, description="units=hours per week; uniqueness=not unique; validation=derived from approved leave.")
     holiday_hours: float = Field(ge=0, description="units=hours per week; uniqueness=not unique; validation=derived from fixed holidays.")
     available_hours: float = Field(ge=0, description="units=hours per week; uniqueness=not unique; validation=capacity minus leave and holiday hours.")
@@ -163,7 +163,7 @@ class Supply(Row):
     iso_week: str = Field(description="units=ISO week; uniqueness=role and skill and week; validation=2026 ISO week.")
     role_id: str = Field(description="units=none; uniqueness=foreign key; validation=references Role.")
     skill_id: str = Field(description="units=none; uniqueness=foreign key; validation=references Skill.")
-    supply_fte: float = Field(ge=0, description="units=FTE; uniqueness=not unique; validation=sum of eligible available hours divided by 40.")
+    supply_fte: float = Field(ge=0, description="units=FTE; uniqueness=not unique; validation=sum of eligible available hours divided by configured weekly hours.")
     supporting_esk_ids: list[str] = Field(description="units=none; uniqueness=not unique; validation=EmployeeSkill IDs supporting supply.")
 
 

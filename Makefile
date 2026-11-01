@@ -13,7 +13,7 @@ validate:
 	uv run wdf validate --input output/starter
 
 test:
-	uv run pytest
+	uv run pytest --cov=wdf --cov-report=term-missing
 
 repro:
 	uv run wdf repro --scale starter --seed 20261022 --out output

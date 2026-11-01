@@ -5,6 +5,7 @@ from datetime import date, timedelta
 import numpy as np
 
 from wdf.calendar import AS_OF, add_months
+from wdf.config import load_settings
 from wdf.ids import entity_id, project_id
 
 
@@ -27,6 +28,7 @@ def rng_for(seed: int, stream: int) -> np.random.Generator:
 
 
 def generate_masters(seed: int, employees: int, skills: int, projects: int, roles: int) -> dict[str, list[dict]]:
+    generation = load_settings().master_generation
     role_rng, skill_rng, employee_rng, project_rng, bridge_rng, esk_rng = (
         rng_for(seed, index) for index in range(6)
     )
@@ -44,28 +46,43 @@ def generate_masters(seed: int, employees: int, skills: int, projects: int, role
             "skill_id": entity_id("SKL", index),
             "name": f"Synthetic Skill {index:04d}",
             "category": SKILL_CATEGORIES[(index - 1) % len(SKILL_CATEGORIES)],
-            "validity_months": int(skill_rng.choice([12, 18, 24, 36])),
+            "validity_months": int(skill_rng.choice(generation.skill_validity_months)),
         })
 
     role_skill_rows = []
     for role in role_rows:
         selected = bridge_rng.choice(
-            skills, size=min(skills, int(bridge_rng.integers(3, 8))), replace=False
+            skills,
+            size=min(
+                skills,
+                int(bridge_rng.integers(
+                    generation.role_skill_count_min, generation.role_skill_count_max + 1
+                )),
+            ),
+            replace=False,
         )
         for skill_index in sorted(int(value) for value in selected):
             role_skill_rows.append({
                 "role_skill_id": f"RS-{role['role_id']}-{skill_index + 1:06d}",
                 "role_id": role["role_id"],
                 "skill_id": entity_id("SKL", skill_index + 1),
-                "min_proficiency": int(bridge_rng.integers(2, 5)),
-                "importance": round(float(bridge_rng.uniform(0.5, 1.0)), 4),
+                "min_proficiency": int(bridge_rng.integers(
+                    generation.role_skill_min_proficiency,
+                    generation.role_skill_max_proficiency + 1,
+                )),
+                "importance": round(float(bridge_rng.uniform(
+                    generation.role_skill_importance_min,
+                    generation.role_skill_importance_max,
+                )), 4),
             })
 
     employee_rows = []
     for index in range(1, employees + 1):
-        hire_offset = int(employee_rng.integers(0, 365 * 8))
+        hire_offset = int(employee_rng.integers(0, generation.hire_lookback_days))
         hire_date = AS_OF - timedelta(days=hire_offset)
-        fte = float(employee_rng.choice([1.0, 0.8, 0.6, 0.5], p=[0.7, 0.12, 0.1, 0.08]))
+        fte = float(employee_rng.choice(
+            generation.fte_values, p=generation.fte_probabilities
+        ))
         employee_rows.append({
             "employee_id": entity_id("EMP", index),
             "role_id": role_rows[(index - 1) % roles]["role_id"],
@@ -77,29 +94,43 @@ def generate_masters(seed: int, employees: int, skills: int, projects: int, role
         })
 
     employee_skill_rows = []
-    skill_weights = np.power(np.arange(1, skills + 1, dtype=float), -0.9)
+    skill_weights = np.power(
+        np.arange(1, skills + 1, dtype=float), -generation.skill_popularity_exponent
+    )
     skill_weights /= skill_weights.sum()
     skill_probabilities = np.empty(skills, dtype=float)
     skill_probabilities[esk_rng.permutation(skills)] = skill_weights
     esk_index = 1
     for employee in employee_rows:
-        count = min(skills, max(2, int(esk_rng.zipf(1.7))))
+        count = min(
+            skills,
+            max(generation.employee_skill_count_min, int(esk_rng.zipf(
+                generation.employee_skill_zipf_shape
+            ))),
+        )
         selected = esk_rng.choice(skills, size=count, replace=False, p=skill_probabilities)
         for skill_index in sorted(int(value) for value in selected):
             skill = skill_rows[skill_index]
-            is_stale = bool(esk_rng.random() < 0.15)
+            is_stale = bool(esk_rng.random() < generation.stale_skill_rate)
             validity = int(skill["validity_months"])
             verified = (
-                add_months(AS_OF, -validity) - timedelta(days=int(esk_rng.integers(1, 91)))
+                add_months(AS_OF, -validity) - timedelta(days=int(esk_rng.integers(
+                    generation.stale_verification_min_days,
+                    generation.stale_verification_max_days + 1,
+                )))
                 if is_stale
-                else AS_OF - timedelta(days=int(esk_rng.integers(0, validity * 30 + 1)))
+                else AS_OF - timedelta(days=int(esk_rng.integers(
+                    0, validity * generation.current_verification_days_per_month + 1
+                )))
             )
             expiry = add_months(verified, validity)
             employee_skill_rows.append({
                 "employee_skill_id": entity_id("ESK", esk_index),
                 "employee_id": employee["employee_id"],
                 "skill_id": skill["skill_id"],
-                "proficiency": int(esk_rng.choice([1, 2, 3, 4, 5], p=[0.05, 0.30, 0.38, 0.20, 0.07])),
+                "proficiency": int(esk_rng.choice(
+                    generation.proficiency_values, p=generation.proficiency_probabilities
+                )),
                 "last_verified_date": verified.isoformat(),
                 "expiry_date": expiry.isoformat(),
                 "currency_flag": "Current" if expiry >= AS_OF else "Stale",
@@ -115,18 +146,31 @@ def generate_masters(seed: int, employees: int, skills: int, projects: int, role
             start, end = date(2026, 1, 5), date(2026, 12, 31)
             staffing_model = "Dedicated-Team"
         else:
-            start = date(2026, 1, 5) + timedelta(days=int(project_rng.integers(0, 320)))
-            duration_days = int(np.clip(project_rng.lognormal(mean=4.0, sigma=0.65), 35, 430))
+            start = date(2026, 1, 5) + timedelta(days=int(project_rng.integers(
+                0, generation.project_start_max_offset_days
+            )))
+            duration_days = int(np.clip(
+                project_rng.lognormal(
+                    mean=generation.project_duration_log_mean,
+                    sigma=generation.project_duration_log_sigma,
+                ),
+                generation.project_duration_min_days,
+                generation.project_duration_max_days,
+            ))
             end = start + timedelta(days=duration_days)
             staffing_model = str(project_rng.choice(
-                ["Shared-Pool", "Dedicated-Team"], p=[0.75, 0.25]
+                generation.project_staffing_models,
+                p=generation.project_staffing_probabilities,
             ))
         status = "Planned" if start > AS_OF else ("Completed" if end < AS_OF else "Active")
         project_rows.append({
             "project_id": project_id(index),
             "start_date": start.isoformat(),
             "end_date": end.isoformat(),
-            "priority": str(project_rng.choice(["Low", "Medium", "High", "Critical"], p=[0.15, 0.4, 0.35, 0.1])),
+            "priority": str(project_rng.choice(
+                generation.project_priorities,
+                p=generation.project_priority_probabilities,
+            )),
             "staffing_model": staffing_model,
             "status": status,
         })

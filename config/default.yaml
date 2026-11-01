@@ -12,14 +12,88 @@ thresholds:
   stale_rate_min: 0.12
   stale_rate_max: 0.18
   headcount_budget: 8
+work_calendar:
+  weekly_hours: 40
+  workday_hours: 8
+  workdays_per_week: 5
+holidays:
+  - "2026-01-01"
+  - "2026-05-25"
+  - "2026-07-03"
+  - "2026-09-07"
+  - "2026-11-26"
+  - "2026-12-25"
+master_generation:
+  hire_lookback_days: 2920
+  fte_values: [1.0, 0.8, 0.6, 0.5]
+  fte_probabilities: [0.7, 0.12, 0.1, 0.08]
+  skill_validity_months: [12, 18, 24, 36]
+  role_skill_count_min: 3
+  role_skill_count_max: 7
+  role_skill_min_proficiency: 2
+  role_skill_max_proficiency: 4
+  role_skill_importance_min: 0.5
+  role_skill_importance_max: 1.0
+  skill_popularity_exponent: 0.9
+  employee_skill_count_min: 2
+  employee_skill_zipf_shape: 1.7
+  stale_skill_rate: 0.15
+  stale_verification_min_days: 1
+  stale_verification_max_days: 90
+  current_verification_days_per_month: 30
+  proficiency_values: [1, 2, 3, 4, 5]
+  proficiency_probabilities: [0.05, 0.30, 0.38, 0.20, 0.07]
+  project_start_max_offset_days: 320
+  project_duration_log_mean: 4.0
+  project_duration_log_sigma: 0.65
+  project_duration_min_days: 35
+  project_duration_max_days: 430
+  project_staffing_models: ["Shared-Pool", "Dedicated-Team"]
+  project_staffing_probabilities: [0.75, 0.25]
+  project_priorities: ["Low", "Medium", "High", "Critical"]
+  project_priority_probabilities: [0.15, 0.4, 0.35, 0.1]
+training_generation:
+  employee_count_divisor: 20
+  minimum_records: 2
+  employee_index_multiplier: 7
+  skill_index_multiplier: 11
+  start_day_multiplier: 13
+  start_day_modulus: 320
+  minimum_target_proficiency: 2
+  maximum_target_proficiency: 5
+  minimum_cost: 100
+  maximum_cost: 2500
+  minimum_duration_days: 7
+  maximum_duration_days: 44
+anomaly_generation:
+  allocation_percentage: 1.25
+  dedicated_allocation_max_percentage: 0.75
+  near_miss_shared_extra_percentage: 0.1
+  overlap_anomaly_extra_percentage: 0.1
+  boundary_allocation_week: 52
+action_policy:
+  minimum_candidate_proficiency: 2
+  hire_lead_time_weeks: 8
+  training_lead_time_weeks: 3
+  reverification_lead_time_weeks: 2
+  utilization_action_lead_time_weeks: 1
+  hire_cost_per_fte: 12000
+  other_gap_action_cost_per_fte: 1800
 allocation_realism:
   minimum_allocations_per_employee: 1.5
   shared_overlap_employee_share: 0.2
+  minimum_duration_days: 21
+  maximum_duration_days: 100
+  allocation_percentages: [0.25, 0.5, 0.75]
+  shared_overlap_allocation_percentage: 0.5
 leave_realism:
   employee_share: 0.8
   full_week_records_per_employee: 2
   short_records_per_employee: 1
   month_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.2, 2.0, 1.7, 1.0, 1.0, 1.0, 2.0]
+  full_week_days: 5
+  short_leave_days: [1, 2, 3]
+  short_leave_attempts: 100
 demand_curves:
   zero_demand_probability: 0.22
   profile_weights:
@@ -28,6 +102,14 @@ demand_curves:
     ramp_down: 0.33
   ramp_start_factor: 0.35
   ramp_end_factor: 0.35
+  minimum_lines_per_week: 1
+  maximum_lines_per_week: 2
+  minimum_required_fte: 0.25
+  maximum_required_fte: 2.0
+  minimum_creation_lead_days: 1
+  maximum_creation_lead_days: 90
+  revision_count: 25
+  revision_multiplier: 1.1
 forecast:
   confidence:
     Planned: 0.45

@@ -15,7 +15,7 @@ The starter scale is 300 employees, 60 skills, and 30 projects. The full scale i
 ## Layout
 
 - `wdf/`: generator, validators, detectors, forecast, evaluation, and CLI.
-- `config/`: fixed calendar, thresholds, and scale settings.
+- `config/`: fixed calendar, generation distributions and rates, work hours, thresholds, and scale settings.
 - `tests/`: deterministic and behavioral checks.
 - `output/starter/`: committed starter sample output.
 
@@ -23,7 +23,7 @@ The starter scale is 300 employees, 60 skills, and 30 projects. The full scale i
 
 ## Verification
 
-Run `uv run pytest`, `uv run wdf validate --input output/starter`, and `uv run wdf repro --scale starter --seed 20261022 --out output/starter-repro`. `wdf repro` compares repeated canonical exports and verifies that changing the seed changes hashes. GNU Make targets are also provided, but Make is not installed in the audited Windows environment.
+Run `uv run pytest --cov=wdf --cov-report=term-missing`, `uv run wdf validate --input output/starter`, and `uv run wdf repro --scale starter --seed 20261022 --out output/starter-repro`. `wdf repro` compares repeated canonical exports and verifies that changing the seed changes hashes. GNU Make targets are also provided, but Make is not installed in the audited Windows environment.
 
 ## Verified starter run
 

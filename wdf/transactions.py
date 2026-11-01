@@ -12,11 +12,6 @@ from wdf.ids import allocation_id, demand_id, entity_id
 from wdf.masters import generate_masters, rng_for
 
 
-HOLIDAYS = [
-    "2026-01-01", "2026-05-25", "2026-07-03", "2026-09-07", "2026-11-26", "2026-12-25"
-]
-
-
 def _week_for(day: date) -> str:
     iso = day.isocalendar()
     return f"{iso.year}W{iso.week:02d}"
@@ -47,9 +42,10 @@ def generate_sources(
     projects: int,
     roles: int,
 ) -> dict[str, list[dict]]:
+    settings = load_settings()
     data = generate_masters(seed, employees, skills, projects, roles)
     demand_rng, leave_rng, alloc_rng, training_rng = (rng_for(seed, 10 + i) for i in range(4))
-    demand_config = load_settings().demand_curves
+    demand_config = settings.demand_curves
     profile_names = ("ramp_up", "steady", "ramp_down")
     if set(demand_config.profile_weights) != set(profile_names):
         raise ValueError(f"Demand curve weights must define exactly: {', '.join(profile_names)}")
@@ -95,7 +91,10 @@ def generate_sources(
                 "iso_week": week["iso_week"],
                 "week_start": week["week_start"],
             })
-            count = int(demand_rng.integers(1, 3))
+            count = int(demand_rng.integers(
+                demand_config.minimum_lines_per_week,
+                demand_config.maximum_lines_per_week + 1,
+            ))
             seen_keys: set[tuple[str, str]] = set()
             for _ in range(count):
                 for _attempt in range(10):
@@ -108,7 +107,13 @@ def generate_sources(
                 else:
                     continue
                 seen_keys.add((role["role_id"], skill))
-                created = max(date(2025, 1, 1), week_start - timedelta(days=int(demand_rng.integers(1, 91))))
+                created = max(
+                    date(2025, 1, 1),
+                    week_start - timedelta(days=int(demand_rng.integers(
+                        demand_config.minimum_creation_lead_days,
+                        demand_config.maximum_creation_lead_days + 1,
+                    ))),
+                )
                 progress = min(
                     1.0,
                     max(0.0, (week_start - start).days / max(1, (end - start).days)),
@@ -131,7 +136,10 @@ def generate_sources(
                     "role_id": role["role_id"],
                     "skill_id": skill,
                     "required_fte": round(
-                        float(demand_rng.uniform(0.25, 2.0)) * profile_factor, 4
+                        float(demand_rng.uniform(
+                            demand_config.minimum_required_fte,
+                            demand_config.maximum_required_fte,
+                        )) * profile_factor, 4
                     ),
                     "min_proficiency": int(bridge["min_proficiency"]) if bridge else 2,
                     "source": str(demand_rng.choice(["PlanTool", "ResourceRequest"])),
@@ -142,10 +150,17 @@ def generate_sources(
                 line_counter += 1
 
     # Append-only revisions: the original line remains present but is no longer approved.
-    for original in demand_lines[::max(1, len(demand_lines) // 25 or 1)][:25]:
+    revision_count = demand_config.revision_count
+    revision_targets = (
+        demand_lines[::max(1, len(demand_lines) // revision_count or 1)][:revision_count]
+        if revision_count else []
+    )
+    for original in revision_targets:
         revision = dict(original)
         revision["demand_line_id"] = entity_id("DEML", line_counter)
-        revision["required_fte"] = round(float(original["required_fte"]) * 1.1, 4)
+        revision["required_fte"] = round(
+            float(original["required_fte"]) * demand_config.revision_multiplier, 4
+        )
         header = next(row for row in demand_headers if row["demand_id"] == original["demand_id"])
         revision["created_on"] = max(original["created_on"], str(header["week_start"]))
         revision["supersedes_line_id"] = original["demand_line_id"]
@@ -204,7 +219,10 @@ def generate_sources(
                 "iso_week": plan["iso_week"],
                 "role_id": role_id,
                 "skill_id": skill_id,
-                "required_fte": round(float(demand_rng.uniform(0.25, 2.0)), 4),
+                "required_fte": round(float(demand_rng.uniform(
+                    demand_config.minimum_required_fte,
+                    demand_config.maximum_required_fte,
+                )), 4),
                 "min_proficiency": min_proficiency,
                 "source": "PlanTool",
                 "created_on": max(date(2025, 1, 1), week_start - timedelta(days=14)).isoformat(),
@@ -213,7 +231,7 @@ def generate_sources(
             })
             line_counter += 1
 
-    leave_config = load_settings().leave_realism
+    leave_config = settings.leave_realism
     eligible_count = min(
         employees, max(1, round(employees * leave_config.employee_share))
     )
@@ -223,7 +241,11 @@ def generate_sources(
     week_starts: dict[int, list[date]] = {month: [] for month in range(1, 13)}
     for week in weeks:
         week_start = date.fromisoformat(str(week["week_start"]))
-        if week_start.year == 2026 and week_start + timedelta(days=4) <= date(2026, 12, 31):
+        if (
+            week_start.year == 2026
+            and week_start + timedelta(days=settings.work_calendar.workdays_per_week - 1)
+            <= date(2026, 12, 31)
+        ):
             week_starts[week_start.month].append(week_start)
 
     month_weights = np.asarray(leave_config.month_weights, dtype=float)
@@ -265,13 +287,13 @@ def generate_sources(
             ]
             start_day = candidates[int(leave_rng.integers(0, len(candidates)))]
             used_weeks.add(start_day.isocalendar().week)
-            append_leave(employee, start_day, 5)
+            append_leave(employee, start_day, leave_config.full_week_days)
 
         for _ in range(leave_config.short_records_per_employee):
-            for _attempt in range(100):
+            for _attempt in range(leave_config.short_leave_attempts):
                 month = leave_month()
                 start_day = date(2026, month, int(leave_rng.integers(1, 29)))
-                length = int(leave_rng.choice([1, 2, 3]))
+                length = int(leave_rng.choice(leave_config.short_leave_days))
                 if not any(
                     start_day <= date.fromisoformat(row["end_date"])
                     and date.fromisoformat(row["start_date"]) <= start_day + timedelta(days=length - 1)
@@ -282,7 +304,7 @@ def generate_sources(
                 raise ValueError(f"Unable to place non-overlapping short leave for {employee['employee_id']}")
             append_leave(employee, start_day, length)
 
-    allocation_targets = load_settings().allocation_realism
+    allocation_targets = settings.allocation_realism
     allocations = []
     project_weights = alloc_rng.lognormal(mean=0.0, sigma=0.8, size=len(data["projects"]))
     project_probabilities = project_weights / project_weights.sum()
@@ -312,7 +334,7 @@ def generate_sources(
         assert first_window is not None and second_window is not None
         start = max(first_window[0], second_window[0])
         end = min(first_window[1], second_window[1])
-        if (end - start).days >= 20:
+        if (end - start).days >= allocation_targets.minimum_duration_days - 1:
             shared_pairs.append((first, second, start, end))
     if not shared_pairs:
         raise ValueError("No intersecting Shared-Pool project windows support legal overlaps")
@@ -360,10 +382,19 @@ def generate_sources(
         project_start, project_end = window
         span = (project_end - project_start).days
         start_day = project_start + timedelta(days=int(alloc_rng.integers(0, span + 1)))
-        duration = min(int(alloc_rng.integers(21, 101)), (project_end - start_day).days + 1)
-        if duration < 21:
-            start_day = max(project_start, project_end - timedelta(days=20))
-            duration = 21
+        duration = min(
+            int(alloc_rng.integers(
+                allocation_targets.minimum_duration_days,
+                allocation_targets.maximum_duration_days + 1,
+            )),
+            (project_end - start_day).days + 1,
+        )
+        if duration < allocation_targets.minimum_duration_days:
+            start_day = max(
+                project_start,
+                project_end - timedelta(days=allocation_targets.minimum_duration_days - 1),
+            )
+            duration = allocation_targets.minimum_duration_days
         return start_day, start_day + timedelta(days=duration - 1)
 
     for index, employee in enumerate(data["employees"]):
@@ -372,22 +403,32 @@ def generate_sources(
                 int(alloc_rng.integers(0, len(shared_pairs)))
             ]
             duration = min(
-                int(alloc_rng.integers(21, 101)), (intersection_end - intersection_start).days + 1
+                int(alloc_rng.integers(
+                    allocation_targets.minimum_duration_days,
+                    allocation_targets.maximum_duration_days + 1,
+                )),
+                (intersection_end - intersection_start).days + 1,
             )
             latest_start = intersection_end - timedelta(days=duration - 1)
             start_day = intersection_start + timedelta(
                 days=int(alloc_rng.integers(0, (latest_start - intersection_start).days + 1))
             )
             end_day = start_day + timedelta(days=duration - 1)
-            allocations.append(allocation_row(employee, first, start_day, end_day, 0.5))
-            allocations.append(allocation_row(employee, second, start_day, end_day, 0.5))
+            allocations.append(allocation_row(
+                employee, first, start_day, end_day,
+                allocation_targets.shared_overlap_allocation_percentage,
+            ))
+            allocations.append(allocation_row(
+                employee, second, start_day, end_day,
+                allocation_targets.shared_overlap_allocation_percentage,
+            ))
             continue
 
         project = project_by_id[data["projects"][project_assignments[index]]["project_id"]]
         start_day, end_day = random_window(project)
         allocations.append(allocation_row(
             employee, project, start_day, end_day,
-            float(alloc_rng.choice([0.25, 0.5, 0.75])),
+            float(alloc_rng.choice(allocation_targets.allocation_percentages)),
         ))
 
         if index not in sequential_indices:
@@ -404,11 +445,11 @@ def generate_sources(
                 window[1],
                 start_day - timedelta(days=start_day.weekday() + 1),
             )
-            if (before_end - window[0]).days >= 20:
+            if (before_end - window[0]).days >= allocation_targets.minimum_duration_days - 1:
                 candidates.append((alternate, window[0], before_end))
             end_week_monday = end_day - timedelta(days=end_day.weekday())
             after_start = max(window[0], end_week_monday + timedelta(days=7))
-            if (window[1] - after_start).days >= 20:
+            if (window[1] - after_start).days >= allocation_targets.minimum_duration_days - 1:
                 candidates.append((alternate, after_start, window[1]))
         if not candidates:
             raise ValueError(
@@ -417,14 +458,20 @@ def generate_sources(
         alternate, period_start, period_end = candidates[
             int(alloc_rng.integers(0, len(candidates)))
         ]
-        duration = min(int(alloc_rng.integers(21, 101)), (period_end - period_start).days + 1)
+        duration = min(
+            int(alloc_rng.integers(
+                allocation_targets.minimum_duration_days,
+                allocation_targets.maximum_duration_days + 1,
+            )),
+            (period_end - period_start).days + 1,
+        )
         latest_start = period_end - timedelta(days=duration - 1)
         sequential_start = period_start + timedelta(
             days=int(alloc_rng.integers(0, (latest_start - period_start).days + 1))
         )
         allocations.append(allocation_row(
             employee, alternate, sequential_start, sequential_start + timedelta(days=duration - 1),
-            float(alloc_rng.choice([0.25, 0.5, 0.75])),
+            float(alloc_rng.choice(allocation_targets.allocation_percentages)),
         ))
 
     if projects >= 4 and employees >= 8:
@@ -455,25 +502,50 @@ def generate_sources(
                 "role_id": employee["role_id"],
                 "start_date": start_day.isoformat(),
                 "end_date": (start_day + timedelta(days=6)).isoformat(),
-                "allocation_pct": 0.5,
+                "allocation_pct": allocation_targets.shared_overlap_allocation_percentage,
                 "skill_basis_esk_id": None,
                 "status": "Active",
             })
 
     training = []
-    for index in range(1, max(2, employees // 20) + 1):
-        employee = data["employees"][(index * 7 - 1) % employees]
-        skill = data["skills"][(index * 11 - 1) % skills]
-        start_day = date(2026, 1, 1) + timedelta(days=(index * 13) % 320)
+    training_config = settings.training_generation
+    for index in range(
+        1,
+        max(
+            training_config.minimum_records,
+            employees // training_config.employee_count_divisor,
+        ) + 1,
+    ):
+        employee = data["employees"][
+            (index * training_config.employee_index_multiplier - 1) % employees
+        ]
+        skill = data["skills"][
+            (index * training_config.skill_index_multiplier - 1) % skills
+        ]
+        start_day = date(2026, 1, 1) + timedelta(
+            days=(index * training_config.start_day_multiplier)
+            % training_config.start_day_modulus
+        )
         state = str(training_rng.choice(["Planned", "Enrolled", "Completed", "Failed", "Cancelled"]))
         training.append({
             "training_id": entity_id("TRN", index),
             "employee_id": employee["employee_id"],
             "skill_id": skill["skill_id"],
-            "target_proficiency": int(training_rng.integers(2, 6)),
-            "cost": round(float(training_rng.uniform(100, 2500)), 2),
+            "target_proficiency": int(training_rng.integers(
+                training_config.minimum_target_proficiency,
+                training_config.maximum_target_proficiency + 1,
+            )),
+            "cost": round(float(training_rng.uniform(
+                training_config.minimum_cost,
+                training_config.maximum_cost,
+            )), 2),
             "start_date": start_day.isoformat(),
-            "end_date": (start_day + timedelta(days=int(training_rng.integers(7, 45)))).isoformat(),
+            "end_date": (
+                start_day + timedelta(days=int(training_rng.integers(
+                    training_config.minimum_duration_days,
+                    training_config.maximum_duration_days + 1,
+                )))
+            ).isoformat(),
             "status": state,
         })
 
@@ -514,7 +586,10 @@ def generate_sources(
         "demand_plans": demand_headers,
         "demand_lines": demand_lines,
         "leave": leave_rows,
-        "holidays": [{"holiday_date": day, "name": f"Synthetic holiday {i + 1}"} for i, day in enumerate(HOLIDAYS)],
+        "holidays": [
+            {"holiday_date": day.isoformat(), "name": f"Synthetic holiday {i + 1}"}
+            for i, day in enumerate(settings.holidays)
+        ],
         "allocations": allocations,
         "training": training,
         "lifecycle_events": events,

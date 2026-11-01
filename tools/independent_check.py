@@ -206,14 +206,33 @@ def main(root):
     employee_by_id = {row["employee_id"]: row for row in data["employees"]}
     availability_by_key = {}
     weekly_capacity = {}
+    weekly_hour_values = {
+        round(
+            number(row, "capacity_hours")
+            / number(employee_by_id[row["employee_id"]], "fte"),
+            8,
+        )
+        for row in data["availability"]
+        if number(employee_by_id[row["employee_id"]], "fte") > 0
+    }
+    if len(weekly_hour_values) != 1:
+        fail("Employee capacity does not use a consistent weekly-hours setting")
+    weekly_hours = next(iter(weekly_hour_values))
     for row in data["availability"]:
         key = (row["employee_id"], row["iso_week"])
         availability_by_key[key] = row
+        expected_employee_capacity = (
+            number(employee_by_id[row["employee_id"]], "fte") * weekly_hours
+        )
+        if not close(number(row, "capacity_hours"), expected_employee_capacity):
+            fail("Employee capacity mismatch at " + row["availability_id"])
         expected = number(row, "capacity_hours") - number(row, "leave_hours") - number(row, "holiday_hours")
         if not close(number(row, "available_hours"), expected):
             fail("Available hours arithmetic mismatch at " + row["availability_id"])
         weekly_capacity[row["iso_week"]] = weekly_capacity.get(row["iso_week"], 0.0) + number(row, "capacity_hours")
-    expected_capacity = sum(number(employee, "fte") * 40 for employee in data["employees"])
+    expected_capacity = sum(
+        number(employee, "fte") * weekly_hours for employee in data["employees"]
+    )
     if len(weekly_capacity) != 53 or set(weekly_capacity) != {
         "2026W{:02d}".format(week) for week in range(1, 54)
     }:
@@ -284,7 +303,7 @@ def main(root):
         expected_supply = sum(
             number(availability_by_key[(skill["employee_id"], gap["iso_week"])], "available_hours")
             for skill in eligible
-        ) / 40
+        ) / weekly_hours
         demand = sum(number(row, "required_fte") for row in source_lines)
         if not close(number(gap, "demand_fte"), round(demand, 4)):
             fail("Gap demand recompute mismatch at " + gap["gap_id"])

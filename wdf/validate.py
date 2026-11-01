@@ -6,6 +6,7 @@ from datetime import date
 from typing import Any
 
 from wdf.calendar import AS_OF, add_months
+from wdf.config import load_settings
 
 ID_PATTERNS = {
     "roles": (r"ROLE-\d{4}", "role_id"),
@@ -67,6 +68,7 @@ def validate_data(
     derived: dict[str, list[dict]] | None = None,
     thresholds: dict[str, Any] | None = None,
 ) -> dict:
+    settings = load_settings()
     errors: list[str] = []
     warnings: list[str] = []
     checks: dict[str, Any] = {}
@@ -93,7 +95,10 @@ def validate_data(
         for (enum_table, field), values in ENUMS.items():
             if enum_table == table and any(row.get(field) not in values for row in rows):
                 errors.append(f"{table}.{field} contains an unsupported enum value")
-    if any(float(row["fte"]) not in {1.0, 0.8, 0.6, 0.5} for row in sources["employees"]):
+    if any(
+        float(row["fte"]) not in settings.master_generation.fte_values
+        for row in sources["employees"]
+    ):
         errors.append("employees.fte contains a value outside the supported FTE set")
     checks["primary_key_tables"] = len(primary_keys)
     checks["row_counts"] = {name: len(rows) for name, rows in sorted(tables.items())}
@@ -182,7 +187,10 @@ def validate_data(
             float(row["capacity_hours"]) - float(row["leave_hours"]) - float(row["holiday_hours"])
         )) > 0.0001:
             errors.append(f"availability arithmetic mismatch at {row['availability_id']}")
-    expected_capacity = sum(float(row["fte"]) * 40 for row in employees.values())
+    expected_capacity = sum(
+        float(row["fte"]) * settings.work_calendar.weekly_hours
+        for row in employees.values()
+    )
     if any(abs(value - expected_capacity) > 0.0001 for value in capacity_by_week.values()):
         errors.append("weekly capacity does not reconcile to employee FTE")
     checks["capacity_weeks_reconciled"] = len(capacity_by_week)
