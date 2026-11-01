@@ -387,3 +387,23 @@ The allocation and leave metrics are below the follow-up targets. The baseline h
 **Verdict:** Baseline captured before changes; deficiencies are the targets of items 1–8.
 
 **Fix commit:** N/A (measurement only).
+
+### Item 7 portability evidence
+
+**Commands:** isolated `uv run --python 3.11.15 --locked wdf generate --scale starter --seed 20261022`; repeat with `--python 3.14.7`; compare `manifest.json` file-to-SHA256 mappings; `uv sync --locked`; `uv lock --check`; `git check-attr text eol -- output/starter/allocations.csv output/starter/seed.sql output/starter/manifest.json`.
+
+**Key output:**
+
+```text
+Python versions: 3.11.15 3.14.7
+same artifact inventory: True count: 47
+identical manifest artifact hashes: True
+different artifact hashes: []
+same dependency versions: True
+manifest runtime field differs: True
+Checked 25 packages
+Resolved 25 packages
+csv/sql/json: text set; eol=lf
+```
+
+The one cross-version artifact mismatch before correction was `metrics.json`, caused only by floating-point accumulation deltas up to `8.3e-15`; rounding WAPE/bias to 8 decimals made all 47 manifest-declared artifact hashes identical. The manifest's top-level `python_version` remains intentionally runtime-specific; its file hash inventory is stable across the two tested versions. `Get-Command make` found no local Make executable, so the GitHub Actions workflow could not be executed locally; CI success is not claimed.

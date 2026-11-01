@@ -61,8 +61,11 @@ def _predictions(
 def _metrics(actual: list[float], predicted: list[float]) -> dict[str, float]:
     denominator = sum(actual)
     return {
-        "wape": sum(abs(a - p) for a, p in zip(actual, predicted)) / denominator if denominator else 0.0,
-        "bias": (sum(predicted) - denominator) / denominator if denominator else 0.0,
+        "wape": round(
+            sum(abs(a - p) for a, p in zip(actual, predicted)) / denominator, 8
+        ) if denominator else 0.0,
+        "bias": round((sum(predicted) - denominator) / denominator, 8)
+        if denominator else 0.0,
     }
 
 

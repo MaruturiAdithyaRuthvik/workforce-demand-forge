@@ -5,7 +5,7 @@ Deterministic synthetic workforce planning data, source validation, rule-based a
 ## Quickstart
 
 1. Install Python 3.11+.
-2. Run `uv sync --locked --extra dev` (or `python -m pip install -e ".[dev]"`).
+2. Run `uv sync --locked` (this installs the default development dependency group used by `make test`).
 3. Generate data: `uv run wdf generate --scale starter --seed 20261022 --out output/starter`.
 4. Validate: `uv run wdf validate --input output/starter`.
 5. Run `uv run wdf forecast --input output/starter`, `uv run wdf detect --input output/starter`, or `uv run wdf evaluate --input output/starter`.

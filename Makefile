@@ -1,7 +1,7 @@
 .PHONY: setup starter full validate test repro independent-check docs-check all clean
 
 setup:
-	uv sync --extra dev
+	uv sync --locked
 
 starter:
 	uv run wdf generate --scale starter --seed 20261022 --out output/starter
@@ -18,7 +18,7 @@ test:
 repro:
 	uv run wdf repro --scale starter --seed 20261022 --out output
 
-independent-check:
+independent-check: full
 	uv run python tools/independent_check.py output/full
 
 docs-check:

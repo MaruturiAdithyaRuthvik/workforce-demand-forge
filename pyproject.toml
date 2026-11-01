@@ -15,9 +15,6 @@ dependencies = [
   "typer==0.16.0",
 ]
 
-[project.optional-dependencies]
-dev = ["pytest==8.4.1", "ruff==0.12.3"]
-
 [project.scripts]
 wdf = "wdf.cli:app"
 
@@ -33,5 +30,7 @@ target-version = "py311"
 
 [dependency-groups]
 dev = [
+    "pytest==8.4.1",
+    "ruff==0.12.3",
     "setuptools==80.9.0",
 ]
