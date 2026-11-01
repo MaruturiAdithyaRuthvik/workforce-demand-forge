@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class Thresholds(BaseModel):
     low_gap_fte: float = Field(ge=0)
     medium_gap_fte: float = Field(ge=0)
-    high_utilization: float = Field(ge=0)
+    high_utilization: float = Field(ge=0, le=1)
     over_utilization: float = Field(ge=0)
     contract_utilization: float = Field(ge=0)
     contract_budget_cap: float = Field(ge=0)
@@ -22,6 +22,14 @@ class Thresholds(BaseModel):
     stale_rate_min: float = Field(ge=0, le=1)
     stale_rate_max: float = Field(ge=0, le=1)
     headcount_budget: int = Field(ge=0)
+
+    @model_validator(mode="after")
+    def validate_utilization_thresholds(self) -> Thresholds:
+        if self.high_utilization > self.over_utilization:
+            raise ValueError("high_utilization must not exceed over_utilization")
+        if self.over_utilization >= self.contract_utilization:
+            raise ValueError("contract_utilization must exceed over_utilization")
+        return self
 
 
 class AllocationRealism(BaseModel):

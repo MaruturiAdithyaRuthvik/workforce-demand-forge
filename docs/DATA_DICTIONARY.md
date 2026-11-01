@@ -178,6 +178,7 @@ Generated from the Pydantic table models in `wdf/models.py`; rerun `python scrip
 | allocated_hours | number | yes | — | hours per week | not unique | pct sum times available hours. |
 | utilization_available | number \| null | no | — | proportion | not unique | null when available hours is zero. |
 | utilization_capacity | number \| null | no | — | proportion | not unique | allocated hours divided by capacity. |
+| risk_level | string | yes | Normal, High, Overutilized, Unavailable | none | not unique | configured utilization threshold band. |
 | flag | string \| null | no | — | none | not unique | ZERO_AVAILABILITY or null. |
 
 ## `supply`

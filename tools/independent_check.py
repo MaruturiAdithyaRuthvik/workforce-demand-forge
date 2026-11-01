@@ -64,6 +64,7 @@ ENUMS = {
     ("allocations", "status"): {"Proposed", "Active", "Completed", "Cancelled"},
     ("training", "status"): {"Planned", "Enrolled", "Completed", "Failed", "Cancelled"},
     ("gap_analysis", "risk_level"): {"Covered", "Low", "Medium", "High"},
+    ("utilization", "risk_level"): {"Normal", "High", "Overutilized", "Unavailable"},
     ("gap_actions", "action_type"): {"Reverify", "Train", "Hire", "Reallocate", "Contract"},
     ("gap_actions", "owner_actor"): {"Employee", "Manager", "HR Partner", "IT/Ops Partner", "System Admin"},
     ("gap_actions", "status"): {"Proposed", "Approved", "InProgress", "Done", "Rejected", "Escalated"},

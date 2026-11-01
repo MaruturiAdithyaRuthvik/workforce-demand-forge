@@ -10,7 +10,7 @@ Deterministic synthetic workforce planning data, source validation, rule-based a
 4. Validate: `uv run wdf validate --input output/starter`.
 5. Run `uv run wdf forecast --input output/starter`, `uv run wdf detect --input output/starter`, or `uv run wdf evaluate --input output/starter`.
 
-The starter scale is 300 employees, 60 skills, and 30 projects. The full scale is 5,000 employees, 300 skills, and 500 projects. Output includes a CSV and JSON per table, role-level `forecast.csv`, project/role/week `forecast_project.csv`, schema/seed SQL, SQLite database, and a manifest. Project forecasts use only demand visible at each origin and reconcile to the role-level totals. `uv.lock` pins the full dependency graph; `requirements-lock.txt` pins runtime and development tools.
+The starter scale is 300 employees, 60 skills, and 30 projects. The full scale is 5,000 employees, 300 skills, and 500 projects. Output includes a CSV and JSON per table, role-level `forecast.csv`, project/role/week `forecast_project.csv`, schema/seed SQL, SQLite database, and a manifest. Project forecasts use only demand visible at each origin and reconcile to the role-level totals. Utilization is classified into config-driven risk bands, including a legal 0.9–1.0 high-utilization band with traceable review actions that are distinct from anomaly detection. `uv.lock` pins the full dependency graph; `requirements-lock.txt` pins runtime and development tools.
 
 ## Layout
 

@@ -70,6 +70,7 @@ ENUMS = {
     ("gap_actions", "owner_actor"): ["Employee", "Manager", "HR Partner", "IT/Ops Partner", "System Admin"],
     ("gap_actions", "status"): ["Proposed", "Approved", "InProgress", "Done", "Rejected", "Escalated"],
     ("gap_analysis", "risk_level"): ["Covered", "Low", "Medium", "High"],
+    ("utilization", "risk_level"): ["Normal", "High", "Overutilized", "Unavailable"],
     ("lifecycle_events", "entity_type"): ["Employee", "Project", "Allocation", "Training", "DemandLine"],
 }
 

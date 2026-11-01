@@ -247,7 +247,9 @@ CREATE TABLE "utilization" (
   "allocated_hours" REAL,
   "utilization_available" REAL,
   "utilization_capacity" REAL,
+  "risk_level" TEXT,
   "flag" TEXT,
   PRIMARY KEY ("utilization_id"),
-  FOREIGN KEY ("employee_id") REFERENCES "employees"("employee_id")
+  FOREIGN KEY ("employee_id") REFERENCES "employees"("employee_id"),
+  CHECK ("risk_level" IN ('Normal', 'High', 'Overutilized', 'Unavailable'))
 );

@@ -156,6 +156,9 @@ class Utilization(Row):
     allocated_hours: float = Field(ge=0, description="units=hours per week; uniqueness=not unique; validation=pct sum times available hours.")
     utilization_available: float | None = Field(default=None, description="units=proportion; uniqueness=not unique; validation=null when available hours is zero.")
     utilization_capacity: float | None = Field(default=None, description="units=proportion; uniqueness=not unique; validation=allocated hours divided by capacity.")
+    risk_level: Literal["Normal", "High", "Overutilized", "Unavailable"] = Field(
+        description="units=none; uniqueness=not unique; validation=configured utilization threshold band."
+    )
     flag: str | None = Field(default=None, description="units=none; uniqueness=not unique; validation=ZERO_AVAILABILITY or null.")
 
 

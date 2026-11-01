@@ -2,6 +2,7 @@ from datetime import date, timedelta
 
 from wdf.anomalies import inject_anomalies
 from wdf.config import load_settings
+from wdf.detect import detect_anomalies
 from wdf.derived import compute_derived
 from wdf.transactions import generate_sources
 
@@ -65,3 +66,39 @@ def test_utilization_risk_actions_are_traceable_and_contracts_escalate_over_budg
                 if action["estimated_cost"] > settings.thresholds.contract_budget_cap
                 else "Proposed"
             )
+
+
+def test_legal_high_utilization_is_a_risk_not_an_anomaly():
+    settings = load_settings()
+    sources = generate_sources(67, employees=120, skills=36, projects=30, roles=8)
+    derived = compute_derived(sources, settings.thresholds.model_dump())
+    high_rows = [
+        row for row in derived["utilization"] if row["risk_level"] == "High"
+    ]
+    assert high_rows
+    assert all(
+        settings.thresholds.high_utilization <= row["utilization_available"]
+        <= settings.thresholds.over_utilization
+        for row in high_rows
+    )
+
+    actions = [
+        row for row in derived["gap_actions"]
+        if row["rule_id"] == "UTIL_HIGH_BAND_REVIEW"
+    ]
+    assert actions
+    high_utilization_ids = {row["utilization_id"] for row in high_rows}
+    assert {row["source_utilization_id"] for row in actions} == high_utilization_ids
+    assert all(
+        row["action_type"] == "Reallocate"
+        and row["owner_actor"] == "Manager"
+        and row["source_allocation_ids"]
+        and row["rule_id"] in row["assumptions"]
+        for row in actions
+    )
+
+    allocation_anomalies = {
+        row["record_id"] for row in detect_anomalies(sources)
+        if row["issue_type"] == "ALLOC_EXCEEDS_AVAILABILITY"
+    }
+    assert not allocation_anomalies
