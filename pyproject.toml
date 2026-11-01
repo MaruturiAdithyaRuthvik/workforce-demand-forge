@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "workforce-demand-forecaster"
+version = "0.1.0"
+description = "Synthetic workforce planning data generator, validator, anomaly detector, and forecaster"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy==2.3.2",
+  "pandas==2.3.1",
+  "pydantic==2.11.7",
+  "PyYAML==6.0.2",
+  "typer==0.16.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.1", "ruff==0.12.3"]
+
+[project.scripts]
+wdf = "wdf.cli:app"
+
+[tool.setuptools.packages.find]
+include = ["wdf*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+

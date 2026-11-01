@@ -1,0 +1,17 @@
+as_of: "2026-10-22"
+seed: 20261022
+anomaly_rate: 0.02
+thresholds:
+  low_gap_fte: 0.5
+  medium_gap_fte: 2.0
+  high_utilization: 0.9
+  over_utilization: 1.0
+  stale_rate_min: 0.12
+  stale_rate_max: 0.18
+  headcount_budget: 12
+forecast:
+  confidence:
+    Planned: 0.45
+    Active: 0.8
+    Completed: 0.0
+    Cancelled: 0.0
