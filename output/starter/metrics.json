@@ -1,0 +1,162 @@
+{
+  "detection_count": 19,
+  "evaluation": {
+    "cross_type_confusion": [
+      {
+        "count": 4,
+        "detected": "ALLOC_EXCEEDS_AVAILABILITY",
+        "expected": "ALLOC_EXCEEDS_AVAILABILITY"
+      },
+      {
+        "count": 7,
+        "detected": "DEMAND_DOUBLE_COUNTED",
+        "expected": "DEMAND_DOUBLE_COUNTED"
+      },
+      {
+        "count": 2,
+        "detected": "OVERLAPPING_PROJECT_ASSIGNMENT",
+        "expected": "OVERLAPPING_PROJECT_ASSIGNMENT"
+      },
+      {
+        "count": 6,
+        "detected": "STALE_SKILL_TREATED_CURRENT",
+        "expected": "STALE_SKILL_TREATED_CURRENT"
+      }
+    ],
+    "held_out_seed": {
+      "cross_type_confusion": [
+        {
+          "count": 5,
+          "detected": "ALLOC_EXCEEDS_AVAILABILITY",
+          "expected": "ALLOC_EXCEEDS_AVAILABILITY"
+        },
+        {
+          "count": 7,
+          "detected": "DEMAND_DOUBLE_COUNTED",
+          "expected": "DEMAND_DOUBLE_COUNTED"
+        },
+        {
+          "count": 1,
+          "detected": "OVERLAPPING_PROJECT_ASSIGNMENT",
+          "expected": "OVERLAPPING_PROJECT_ASSIGNMENT"
+        },
+        {
+          "count": 7,
+          "detected": "STALE_SKILL_TREATED_CURRENT",
+          "expected": "STALE_SKILL_TREATED_CURRENT"
+        }
+      ],
+      "per_issue_type": {
+        "ALLOC_EXCEEDS_AVAILABILITY": {
+          "f1": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 5
+        },
+        "DEMAND_DOUBLE_COUNTED": {
+          "f1": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 7
+        },
+        "OVERLAPPING_PROJECT_ASSIGNMENT": {
+          "f1": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 1
+        },
+        "STALE_SKILL_TREATED_CURRENT": {
+          "f1": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 7
+        }
+      },
+      "seed": 20261023
+    },
+    "per_issue_type": {
+      "ALLOC_EXCEEDS_AVAILABILITY": {
+        "f1": 1.0,
+        "false_negative": 0,
+        "false_positive": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 4
+      },
+      "DEMAND_DOUBLE_COUNTED": {
+        "f1": 1.0,
+        "false_negative": 0,
+        "false_positive": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 7
+      },
+      "OVERLAPPING_PROJECT_ASSIGNMENT": {
+        "f1": 1.0,
+        "false_negative": 0,
+        "false_positive": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 2
+      },
+      "STALE_SKILL_TREATED_CURRENT": {
+        "f1": 1.0,
+        "false_negative": 0,
+        "false_positive": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 6
+      }
+    },
+    "seed": 20261022
+  },
+  "forecast": {
+    "as_of": "2026-10-22",
+    "backtest_method": "rolling origin, observed weeks through W43, origin-specific created_on cutoff",
+    "forecast_weeks": 10,
+    "methods": {
+      "moving_average_4w": [
+        {
+          "bias": -0.11106859904884239,
+          "horizon_weeks": 4,
+          "wape": 1.5708390386733782
+        },
+        {
+          "bias": -0.19031045377843514,
+          "horizon_weeks": 8,
+          "wape": 1.5192312736388625
+        },
+        {
+          "bias": -0.288706505517418,
+          "horizon_weeks": 12,
+          "wape": 1.460490606359371
+        }
+      ],
+      "pipeline_adjusted": [
+        {
+          "bias": -0.43907962407875806,
+          "horizon_weeks": 4,
+          "wape": 0.43907962407875795
+        },
+        {
+          "bias": -0.5650273863792681,
+          "horizon_weeks": 8,
+          "wape": 0.565027386379268
+        },
+        {
+          "bias": -0.6747339050593143,
+          "horizon_weeks": 12,
+          "wape": 0.6747339050593143
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,202 @@
+[
+  {
+    "family": "Engineering",
+    "role_id": "ROLE-0001",
+    "title": "Associate Engineering 01"
+  },
+  {
+    "family": "Data",
+    "role_id": "ROLE-0002",
+    "title": "Analyst Data 02"
+  },
+  {
+    "family": "QA",
+    "role_id": "ROLE-0003",
+    "title": "Engineer QA 03"
+  },
+  {
+    "family": "Design",
+    "role_id": "ROLE-0004",
+    "title": "Senior Engineer Design 04"
+  },
+  {
+    "family": "PM",
+    "role_id": "ROLE-0005",
+    "title": "Lead PM 05"
+  },
+  {
+    "family": "DevOps",
+    "role_id": "ROLE-0006",
+    "title": "Principal DevOps 06"
+  },
+  {
+    "family": "Security",
+    "role_id": "ROLE-0007",
+    "title": "Associate Security 07"
+  },
+  {
+    "family": "Support",
+    "role_id": "ROLE-0008",
+    "title": "Analyst Support 08"
+  },
+  {
+    "family": "Engineering",
+    "role_id": "ROLE-0009",
+    "title": "Engineer Engineering 09"
+  },
+  {
+    "family": "Data",
+    "role_id": "ROLE-0010",
+    "title": "Senior Engineer Data 10"
+  },
+  {
+    "family": "QA",
+    "role_id": "ROLE-0011",
+    "title": "Lead QA 11"
+  },
+  {
+    "family": "Design",
+    "role_id": "ROLE-0012",
+    "title": "Principal Design 12"
+  },
+  {
+    "family": "PM",
+    "role_id": "ROLE-0013",
+    "title": "Associate PM 13"
+  },
+  {
+    "family": "DevOps",
+    "role_id": "ROLE-0014",
+    "title": "Analyst DevOps 14"
+  },
+  {
+    "family": "Security",
+    "role_id": "ROLE-0015",
+    "title": "Engineer Security 15"
+  },
+  {
+    "family": "Support",
+    "role_id": "ROLE-0016",
+    "title": "Senior Engineer Support 16"
+  },
+  {
+    "family": "Engineering",
+    "role_id": "ROLE-0017",
+    "title": "Lead Engineering 17"
+  },
+  {
+    "family": "Data",
+    "role_id": "ROLE-0018",
+    "title": "Principal Data 18"
+  },
+  {
+    "family": "QA",
+    "role_id": "ROLE-0019",
+    "title": "Associate QA 19"
+  },
+  {
+    "family": "Design",
+    "role_id": "ROLE-0020",
+    "title": "Analyst Design 20"
+  },
+  {
+    "family": "PM",
+    "role_id": "ROLE-0021",
+    "title": "Engineer PM 21"
+  },
+  {
+    "family": "DevOps",
+    "role_id": "ROLE-0022",
+    "title": "Senior Engineer DevOps 22"
+  },
+  {
+    "family": "Security",
+    "role_id": "ROLE-0023",
+    "title": "Lead Security 23"
+  },
+  {
+    "family": "Support",
+    "role_id": "ROLE-0024",
+    "title": "Principal Support 24"
+  },
+  {
+    "family": "Engineering",
+    "role_id": "ROLE-0025",
+    "title": "Associate Engineering 25"
+  },
+  {
+    "family": "Data",
+    "role_id": "ROLE-0026",
+    "title": "Analyst Data 26"
+  },
+  {
+    "family": "QA",
+    "role_id": "ROLE-0027",
+    "title": "Engineer QA 27"
+  },
+  {
+    "family": "Design",
+    "role_id": "ROLE-0028",
+    "title": "Senior Engineer Design 28"
+  },
+  {
+    "family": "PM",
+    "role_id": "ROLE-0029",
+    "title": "Lead PM 29"
+  },
+  {
+    "family": "DevOps",
+    "role_id": "ROLE-0030",
+    "title": "Principal DevOps 30"
+  },
+  {
+    "family": "Security",
+    "role_id": "ROLE-0031",
+    "title": "Associate Security 31"
+  },
+  {
+    "family": "Support",
+    "role_id": "ROLE-0032",
+    "title": "Analyst Support 32"
+  },
+  {
+    "family": "Engineering",
+    "role_id": "ROLE-0033",
+    "title": "Engineer Engineering 33"
+  },
+  {
+    "family": "Data",
+    "role_id": "ROLE-0034",
+    "title": "Senior Engineer Data 34"
+  },
+  {
+    "family": "QA",
+    "role_id": "ROLE-0035",
+    "title": "Lead QA 35"
+  },
+  {
+    "family": "Design",
+    "role_id": "ROLE-0036",
+    "title": "Principal Design 36"
+  },
+  {
+    "family": "PM",
+    "role_id": "ROLE-0037",
+    "title": "Associate PM 37"
+  },
+  {
+    "family": "DevOps",
+    "role_id": "ROLE-0038",
+    "title": "Analyst DevOps 38"
+  },
+  {
+    "family": "Security",
+    "role_id": "ROLE-0039",
+    "title": "Engineer Security 39"
+  },
+  {
+    "family": "Support",
+    "role_id": "ROLE-0040",
+    "title": "Senior Engineer Support 40"
+  }
+]

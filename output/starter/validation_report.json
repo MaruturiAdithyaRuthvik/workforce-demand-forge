@@ -1,0 +1,38 @@
+{
+  "checks": {
+    "approved_demand_business_key_duplicates": 7,
+    "capacity_weeks_reconciled": 53,
+    "derived_tables_recomputed": true,
+    "employee_skill_currency_flag_mismatches": 6,
+    "foreign_key_relationships_checked": 26,
+    "lifecycle_entities_reconciled": 1043,
+    "primary_key_tables": 17,
+    "row_counts": {
+      "allocations": 304,
+      "availability": 15900,
+      "demand_lines": 393,
+      "demand_plans": 237,
+      "employee_skills": 2198,
+      "employees": 300,
+      "gap_actions": 253,
+      "gap_analysis": 350,
+      "holidays": 6,
+      "leave": 47,
+      "lifecycle_events": 1079,
+      "proficiency_scale": 5,
+      "projects": 30,
+      "role_skills": 191,
+      "roles": 40,
+      "skills": 60,
+      "supply": 350,
+      "training": 16,
+      "utilization": 15900
+    }
+  },
+  "errors": [],
+  "status": "PASS",
+  "warnings": [
+    "7 approved demand business-key duplicate(s), surfaced for anomaly detection",
+    "6 employee skill currency flag(s) disagree with expiry and are detector cases"
+  ]
+}

@@ -1,0 +1,41 @@
+role_id,title,family
+ROLE-0001,Associate Engineering 01,Engineering
+ROLE-0002,Analyst Data 02,Data
+ROLE-0003,Engineer QA 03,QA
+ROLE-0004,Senior Engineer Design 04,Design
+ROLE-0005,Lead PM 05,PM
+ROLE-0006,Principal DevOps 06,DevOps
+ROLE-0007,Associate Security 07,Security
+ROLE-0008,Analyst Support 08,Support
+ROLE-0009,Engineer Engineering 09,Engineering
+ROLE-0010,Senior Engineer Data 10,Data
+ROLE-0011,Lead QA 11,QA
+ROLE-0012,Principal Design 12,Design
+ROLE-0013,Associate PM 13,PM
+ROLE-0014,Analyst DevOps 14,DevOps
+ROLE-0015,Engineer Security 15,Security
+ROLE-0016,Senior Engineer Support 16,Support
+ROLE-0017,Lead Engineering 17,Engineering
+ROLE-0018,Principal Data 18,Data
+ROLE-0019,Associate QA 19,QA
+ROLE-0020,Analyst Design 20,Design
+ROLE-0021,Engineer PM 21,PM
+ROLE-0022,Senior Engineer DevOps 22,DevOps
+ROLE-0023,Lead Security 23,Security
+ROLE-0024,Principal Support 24,Support
+ROLE-0025,Associate Engineering 25,Engineering
+ROLE-0026,Analyst Data 26,Data
+ROLE-0027,Engineer QA 27,QA
+ROLE-0028,Senior Engineer Design 28,Design
+ROLE-0029,Lead PM 29,PM
+ROLE-0030,Principal DevOps 30,DevOps
+ROLE-0031,Associate Security 31,Security
+ROLE-0032,Analyst Support 32,Support
+ROLE-0033,Engineer Engineering 33,Engineering
+ROLE-0034,Senior Engineer Data 34,Data
+ROLE-0035,Lead QA 35,QA
+ROLE-0036,Principal Design 36,Design
+ROLE-0037,Associate PM 37,PM
+ROLE-0038,Analyst DevOps 38,DevOps
+ROLE-0039,Engineer Security 39,Security
+ROLE-0040,Senior Engineer Support 40,Support

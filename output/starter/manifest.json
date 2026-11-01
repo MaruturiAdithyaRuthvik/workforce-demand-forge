@@ -1,0 +1,501 @@
+{
+  "command": "wdf generate --scale starter --seed 20261022",
+  "files": [
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "allocations.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 304,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "5327ffedbc48a6c3bdd6b6258814f05409b2772c36d64c0f8e7c4f144509e6ea"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "allocations.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "dac532d8ae8710198eb30ad631d400e91b3e439dd7d460d3631e385656b6546f"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "availability.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 15900,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "04cd328f60c57e85238e767c08f1bb5d5901952e587fb8ff1c328c55eab111e1"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "availability.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "8c09be94ca336eac01f0b8e2ac6f64cbad170a857158da04d925f7b9efcebfd0"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "demand_lines.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 393,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "f77af824e4551c2d2b673921d73490e163730314a72a0d8bd4dd1f09e815ef0d"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "demand_lines.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "be2a9faecb332e31281e6395a07f9298f90a5b27fbe4c831e6344578380f2fa0"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "demand_plans.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 237,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "35b457034ec087182fc5c3889a6aff5388c97424214dcb81be2aed567b5fde9d"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "demand_plans.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "3ad75686e040acdd927024d9fd8168f11e5b94e3dc92cebc25ee3b918e4b80b6"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "detections.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 19,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "5a390dfab3c11b8466ec8935d2e2b8f719ef5a0d717afdb0055acebe04586a44"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "detections.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "51e590bf1c46d2fddf2d7b84e514c97a4ffcc9d2ad856957f720c84a39f98fee"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "employee_skills.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 2198,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "36617594a9737aa3c5f0ff8a2f9ea040f6baac7f9b2943214506eb27600d280f"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "employee_skills.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "f9f0530a34a65037d048655cb70ec599113f2afed55216a29a226306bffd85f9"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "employees.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 300,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "faa7933742f114cdf14ffe076ffde401dbbf7ccd85824f9e9a7eb36825ff34e1"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "employees.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "e81375c99e6478d787a6e427d4576cd91131f4d8c6d9b66beca9e413f4340eda"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "forecast.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 800,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "57ab1975685a00bd9ac38c13227cd39135ae7ed2376997ac5ad54095be81ceee"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "gap_actions.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 253,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "4f5d934c6c48feee5bfaaeca3afbfcef210ec7cc7c93727dd9ef9780f5a4a29b"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "gap_actions.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "867020b8c05ea3487e917569c2fe52d789407a52bd62aad712bf390d714405c3"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "gap_analysis.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 350,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "2d019b1abbbe64b4b14f836cf3091438e5858af3b426f9dc986579fcadf65d00"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "gap_analysis.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "4770b7ce83919aaac580df1984e659a6af14ce1f99605c571499f13e9e84d62f"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "ground_truth/ground_truth.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 19,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "56fee9ed61a9666bb738a43f7d2dd715a61961f8dae25e30f02e1e7b6be4167e"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "ground_truth/ground_truth.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "3bbbb77a888570653655900663926f380c371c57a387b344793918e44a776890"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "holidays.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 6,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "5711c21093aebd2ba01b16b87b3aca0d47fb612f2c03dbe2d8d59dd75918fffe"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "holidays.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "28199297d67197d153827ef093f72abe36ced5ab463748e5b18410d584d720c7"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "leave.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 47,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "984f04c5bd10cf4e391418353ef6581c27c4c83b58db08f15559b130c3cbe497"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "leave.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "26ded71794071d5977c5dc46d4be64be37c75065a1c3519330b237cbe1eb3b80"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "lifecycle_events.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 1079,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "75ea91d34a6cd30da2c38c3e9a19d73c66eec21611786d0e696efe79ec812bbd"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "lifecycle_events.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "d07de185383ddbe34f6fef3387327c1c73f432ecaf2baad1de1831758f0ed9e8"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "metrics.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "e69d7bdcdc46107c4ea487f2d3e2a0d28cb95a71971e72b0af732080616972c0"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "proficiency_scale.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 5,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "27f5db839505a2ac7d13362e70b6a530157958baa84a987c939f180b38d74221"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "proficiency_scale.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "4db213c4d0a2ac1959d64f520c8eeb0f5ae1b4f7a2dc5c6dfd792848b58e242c"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "projects.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 30,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "ae986bc49c568a4d4a50450ac8439afdd8515b904b4073ed5dd7008ad1ecc6ff"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "projects.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "2519008c4d7246e7357dc3f3e5fb37ac7ba97cdef2ab581057512aa5009d0bb3"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "role_skills.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 191,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "dc8f1042dc4275e50c7cec1906089edcce3cae1cf25b90379e8f94c4ef5d6d9c"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "role_skills.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "e3c9dfbbf47c6feab5d43ce367c6dacdd281febea6d2be90995809083033119d"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "roles.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 40,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "8b13b2267412a6e3d622d48548175b11030f297269dcf98f67d576f4fda1c71b"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "roles.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "d495f704a6caa55db151278bc8c7db884e694fda1da3b4ed84db7b4eebfec918"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "schema.sql",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "f5c736339d71fc31e828a65600e86a7a3454e3468685815aa82082e2b7798dab"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "seed.sql",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "853430bd44d1b57503c490c7fbd421c71594484f23da55532b17b7c3050df87f"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "skills.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 60,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "20808e193a951838bf83683cee757cf8713927c1fbcab7338a196e11d82354cf"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "skills.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "e4c9c0e0befbe907b87447ba6221867b790dfaab27f88558ef6670bf07a2ef40"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "SOURCE_MANIFEST.md",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "5c5f41c8ee2963da09bf56244eb0d2f9bb36f12f85e657c720224e707403987e"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "supply.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 350,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "4c4c502e78e25d33f1feaaba1a568a189d237f4aa988d830f4ad669bbc9e134f"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "supply.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "b1789039252185dee323a08ad9fb73aa825f46ff7cd69534c4067734acd11512"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "training.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 16,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "b3e6f139503027312a11b2bc5df099e69550a3249557d3623dcc844dc2cc1a88"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "training.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "50aef957dca8f31218807f28c7a2d6fed9ddf184fe3f48a200cbb89dcbb58a82"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "utilization.csv",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": 15900,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "c134bb176d2b1c5f047b6369b1bb726448745d6a99cde80fbaa16893171e34dc"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "utilization.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "0f9334cd60429f73049ffcdcc8181c3e07a6cbb64b8a8a03dfd4acdb4eb27ee5"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "validation_report.json",
+      "generator_version": "0.1.0",
+      "hash_method": "file",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "f5f604241f2e0c2f725eab8c4b1f4ace045704620ca70d7aa3dcef1fa448992b"
+    },
+    {
+      "command": "wdf generate --scale starter --seed 20261022",
+      "file": "workforce.db",
+      "generator_version": "0.1.0",
+      "hash_method": "logical_sql_dump",
+      "rows": null,
+      "scale": "starter",
+      "seed": 20261022,
+      "sha256": "848e1140056bca54b826d4497e4551f8644bb710295847bca21c9ce705ab95f1"
+    }
+  ],
+  "generator_version": "0.1.0",
+  "numpy_version": "2.3.3",
+  "pandas_version": "3.0.0",
+  "python_version": "3.14.7",
+  "scale": "starter",
+  "seed": 20261022
+}

@@ -33,3 +33,9 @@ def test_lifecycle_events_cover_current_transaction_states():
         ("DemandLine", "demand_lines", "demand_line_id"),
     ]:
         assert all(states[(entity_type, row[key])][-1] == row["status"] for row in data[table])
+    superseded_line = next(row for row in data["demand_lines"] if row["status"] == "Superseded")
+    revision_history = [
+        row for row in data["lifecycle_events"]
+        if row["entity_type"] == "DemandLine" and row["entity_id"] == superseded_line["demand_line_id"]
+    ]
+    assert [row["to_state"] for row in revision_history] == ["Approved", "Superseded"]

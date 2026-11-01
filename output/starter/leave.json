@@ -1,0 +1,378 @@
+[
+  {
+    "employee_id": "EMP-000007",
+    "end_date": "2026-07-16",
+    "leave_id": "LEAVE-000007",
+    "leave_type": "Other",
+    "start_date": "2026-07-15",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000025",
+    "end_date": "2026-12-22",
+    "leave_id": "LEAVE-000025",
+    "leave_type": "Care",
+    "start_date": "2026-12-18",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000030",
+    "end_date": "2026-02-17",
+    "leave_id": "LEAVE-000030",
+    "leave_type": "Annual",
+    "start_date": "2026-02-17",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000031",
+    "end_date": "2026-12-06",
+    "leave_id": "LEAVE-000031",
+    "leave_type": "Care",
+    "start_date": "2026-12-02",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000035",
+    "end_date": "2026-07-24",
+    "leave_id": "LEAVE-000035",
+    "leave_type": "Sick",
+    "start_date": "2026-07-20",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000036",
+    "end_date": "2026-07-08",
+    "leave_id": "LEAVE-000036",
+    "leave_type": "Annual",
+    "start_date": "2026-07-06",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000037",
+    "end_date": "2026-05-16",
+    "leave_id": "LEAVE-000037",
+    "leave_type": "Care",
+    "start_date": "2026-05-07",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000041",
+    "end_date": "2026-12-15",
+    "leave_id": "LEAVE-000041",
+    "leave_type": "Other",
+    "start_date": "2026-12-14",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000043",
+    "end_date": "2026-07-21",
+    "leave_id": "LEAVE-000043",
+    "leave_type": "Care",
+    "start_date": "2026-07-21",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000045",
+    "end_date": "2026-12-20",
+    "leave_id": "LEAVE-000045",
+    "leave_type": "Sick",
+    "start_date": "2026-12-16",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000046",
+    "end_date": "2026-05-03",
+    "leave_id": "LEAVE-000046",
+    "leave_type": "Other",
+    "start_date": "2026-05-03",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000053",
+    "end_date": "2026-02-03",
+    "leave_id": "LEAVE-000053",
+    "leave_type": "Other",
+    "start_date": "2026-02-03",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000060",
+    "end_date": "2026-05-11",
+    "leave_id": "LEAVE-000060",
+    "leave_type": "Sick",
+    "start_date": "2026-05-02",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000061",
+    "end_date": "2026-07-20",
+    "leave_id": "LEAVE-000061",
+    "leave_type": "Sick",
+    "start_date": "2026-07-16",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000071",
+    "end_date": "2026-07-07",
+    "leave_id": "LEAVE-000071",
+    "leave_type": "Sick",
+    "start_date": "2026-07-07",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000082",
+    "end_date": "2026-02-20",
+    "leave_id": "LEAVE-000082",
+    "leave_type": "Other",
+    "start_date": "2026-02-20",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000084",
+    "end_date": "2026-05-17",
+    "leave_id": "LEAVE-000084",
+    "leave_type": "Care",
+    "start_date": "2026-05-08",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000088",
+    "end_date": "2026-12-02",
+    "leave_id": "LEAVE-000088",
+    "leave_type": "Care",
+    "start_date": "2026-12-02",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000092",
+    "end_date": "2026-07-12",
+    "leave_id": "LEAVE-000092",
+    "leave_type": "Sick",
+    "start_date": "2026-07-08",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000108",
+    "end_date": "2026-05-28",
+    "leave_id": "LEAVE-000108",
+    "leave_type": "Care",
+    "start_date": "2026-05-19",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000116",
+    "end_date": "2026-02-03",
+    "leave_id": "LEAVE-000116",
+    "leave_type": "Care",
+    "start_date": "2026-02-02",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000117",
+    "end_date": "2026-07-16",
+    "leave_id": "LEAVE-000117",
+    "leave_type": "Annual",
+    "start_date": "2026-07-12",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000134",
+    "end_date": "2026-05-22",
+    "leave_id": "LEAVE-000134",
+    "leave_type": "Other",
+    "start_date": "2026-05-18",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000137",
+    "end_date": "2026-12-14",
+    "leave_id": "LEAVE-000137",
+    "leave_type": "Annual",
+    "start_date": "2026-12-14",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000145",
+    "end_date": "2026-05-09",
+    "leave_id": "LEAVE-000145",
+    "leave_type": "Annual",
+    "start_date": "2026-05-09",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000153",
+    "end_date": "2026-02-04",
+    "leave_id": "LEAVE-000153",
+    "leave_type": "Sick",
+    "start_date": "2026-02-03",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000154",
+    "end_date": "2026-05-27",
+    "leave_id": "LEAVE-000154",
+    "leave_type": "Annual",
+    "start_date": "2026-05-18",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000162",
+    "end_date": "2026-05-08",
+    "leave_id": "LEAVE-000162",
+    "leave_type": "Annual",
+    "start_date": "2026-05-06",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000180",
+    "end_date": "2026-05-16",
+    "leave_id": "LEAVE-000180",
+    "leave_type": "Care",
+    "start_date": "2026-05-15",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000190",
+    "end_date": "2026-12-17",
+    "leave_id": "LEAVE-000190",
+    "leave_type": "Care",
+    "start_date": "2026-12-16",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000192",
+    "end_date": "2026-05-07",
+    "leave_id": "LEAVE-000192",
+    "leave_type": "Annual",
+    "start_date": "2026-05-05",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000195",
+    "end_date": "2026-05-24",
+    "leave_id": "LEAVE-000195",
+    "leave_type": "Sick",
+    "start_date": "2026-05-15",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000216",
+    "end_date": "2026-05-22",
+    "leave_id": "LEAVE-000216",
+    "leave_type": "Sick",
+    "start_date": "2026-05-18",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000234",
+    "end_date": "2026-07-23",
+    "leave_id": "LEAVE-000234",
+    "leave_type": "Sick",
+    "start_date": "2026-07-14",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000236",
+    "end_date": "2026-05-12",
+    "leave_id": "LEAVE-000236",
+    "leave_type": "Other",
+    "start_date": "2026-05-11",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000240",
+    "end_date": "2026-12-14",
+    "leave_id": "LEAVE-000240",
+    "leave_type": "Care",
+    "start_date": "2026-12-05",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000246",
+    "end_date": "2026-02-13",
+    "leave_id": "LEAVE-000246",
+    "leave_type": "Annual",
+    "start_date": "2026-02-13",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000247",
+    "end_date": "2026-02-12",
+    "leave_id": "LEAVE-000247",
+    "leave_type": "Care",
+    "start_date": "2026-02-12",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000272",
+    "end_date": "2026-07-15",
+    "leave_id": "LEAVE-000272",
+    "leave_type": "Sick",
+    "start_date": "2026-07-11",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000275",
+    "end_date": "2026-07-20",
+    "leave_id": "LEAVE-000275",
+    "leave_type": "Sick",
+    "start_date": "2026-07-11",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000276",
+    "end_date": "2026-07-30",
+    "leave_id": "LEAVE-000276",
+    "leave_type": "Annual",
+    "start_date": "2026-07-21",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000277",
+    "end_date": "2026-12-10",
+    "leave_id": "LEAVE-000277",
+    "leave_type": "Other",
+    "start_date": "2026-12-08",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000280",
+    "end_date": "2026-07-15",
+    "leave_id": "LEAVE-000280",
+    "leave_type": "Care",
+    "start_date": "2026-07-06",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000281",
+    "end_date": "2026-12-14",
+    "leave_id": "LEAVE-000281",
+    "leave_type": "Annual",
+    "start_date": "2026-12-05",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000287",
+    "end_date": "2026-12-03",
+    "leave_id": "LEAVE-000287",
+    "leave_type": "Sick",
+    "start_date": "2026-12-01",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000300",
+    "end_date": "2026-12-16",
+    "leave_id": "LEAVE-000300",
+    "leave_type": "Care",
+    "start_date": "2026-12-12",
+    "status": "Approved"
+  },
+  {
+    "employee_id": "EMP-000001",
+    "end_date": "2026-05-15",
+    "leave_id": "LEAVE-000301",
+    "leave_type": "Annual",
+    "start_date": "2026-05-11",
+    "status": "Approved"
+  }
+]

@@ -3,8 +3,10 @@ from __future__ import annotations
 from copy import deepcopy
 from datetime import date, timedelta
 
+import numpy as np
+
 from wdf.calendar import AS_OF, add_months
-from wdf.ids import entity_id
+from wdf.ids import allocation_id, entity_id
 
 
 def _next_number(rows: list[dict], key: str, prefix: str) -> int:
@@ -35,10 +37,22 @@ def _append_event(
         event["event_id"] = entity_id("EVT", index)
 
 
-def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, list[dict]], list[dict]]:
+def inject_anomalies(
+    data: dict[str, list[dict]], seed: int, rate: float = 0.02
+) -> tuple[dict[str, list[dict]], list[dict]]:
+    if not 0 < rate <= 1:
+        raise ValueError("Anomaly rate must be greater than zero and at most one")
     sources = deepcopy(data)
     truth = []
     projects = {row["project_id"]: row for row in sources["projects"]}
+    rng = np.random.default_rng(np.random.SeedSequence(seed, spawn_key=(99,)))
+
+    def select_targets(rows: list[dict]) -> list[dict]:
+        if not rows:
+            return []
+        count = min(len(rows), max(1, round(len(rows) * rate)))
+        indices = sorted(int(value) for value in rng.choice(len(rows), size=count, replace=False))
+        return [rows[index] for index in indices]
 
     shared_allocations = [
         row for row in sources["allocations"]
@@ -46,16 +60,19 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
     ]
     if not shared_allocations:
         raise ValueError("No Shared-Pool allocation available for deterministic anomaly injection")
-    allocation = shared_allocations[(seed % len(shared_allocations))]
-    previous_pct = allocation["allocation_pct"]
-    allocation["allocation_pct"] = 1.25
-    truth.append({
-        "record_id": allocation["allocation_id"], "entity": "Allocation",
-        "issue_type": "ALLOC_EXCEEDS_AVAILABILITY", "issue_subtype": None,
-        "injected_field": "allocation_pct", "original_value": previous_pct,
-        "injected_value": 1.25, "expected_detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
-        "expected_decision": "Reallocate", "affected_derived_ids": [],
-    })
+    allocation_targets = select_targets(shared_allocations)
+    allocation_project_ids = set()
+    for allocation in allocation_targets:
+        previous_pct = allocation["allocation_pct"]
+        allocation["allocation_pct"] = 1.25
+        allocation_project_ids.add(allocation["project_id"])
+        truth.append({
+            "record_id": allocation["allocation_id"], "entity": "Allocation",
+            "issue_type": "ALLOC_EXCEEDS_AVAILABILITY", "issue_subtype": None,
+            "injected_field": "allocation_pct", "original_value": previous_pct,
+            "injected_value": 1.25, "expected_detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
+            "expected_decision": "Reallocate", "affected_derived_ids": [],
+        })
 
     stale_skills = [
         row for row in sources["employee_skills"]
@@ -63,40 +80,44 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
     ]
     if not stale_skills:
         raise ValueError("No stale employee skill available for deterministic anomaly injection")
-    stale = stale_skills[seed % len(stale_skills)]
-    prior_flag = stale["currency_flag"]
-    stale["currency_flag"] = "Current"
-    truth.append({
-        "record_id": stale["employee_skill_id"], "entity": "EmployeeSkill",
-        "issue_type": "STALE_SKILL_TREATED_CURRENT", "issue_subtype": "FLAG_WRONG",
-        "injected_field": "currency_flag", "original_value": prior_flag,
-        "injected_value": "Current", "expected_detection_rule": "SKILL_FLAG_EXPIRY_MISMATCH",
-        "expected_decision": "Reverify", "affected_derived_ids": [],
-    })
+    stale_targets = select_targets(stale_skills)
+    stale_target_ids = {row["employee_skill_id"] for row in stale_targets}
+    for stale in stale_targets:
+        prior_flag = stale["currency_flag"]
+        stale["currency_flag"] = "Current"
+        truth.append({
+            "record_id": stale["employee_skill_id"], "entity": "EmployeeSkill",
+            "issue_type": "STALE_SKILL_TREATED_CURRENT", "issue_subtype": "FLAG_WRONG",
+            "injected_field": "currency_flag", "original_value": prior_flag,
+            "injected_value": "Current", "expected_detection_rule": "SKILL_FLAG_EXPIRY_MISMATCH",
+            "expected_decision": "Reverify", "affected_derived_ids": [],
+        })
 
     approved = [row for row in sources["demand_lines"] if row["status"] == "Approved"]
     if not approved:
         raise ValueError("No approved demand line available for duplicate injection")
-    duplicate = dict(approved[seed % len(approved)])
-    duplicate["demand_line_id"] = entity_id(
-        "DEML", _next_number(sources["demand_lines"], "demand_line_id", "DEML")
-    )
-    duplicate["source"] = "ResourceRequest"
-    duplicate["supersedes_line_id"] = None
-    sources["demand_lines"].append(duplicate)
-    sources["lifecycle_events"].append({
-        "event_id": entity_id("EVT", _next_number(sources["lifecycle_events"], "event_id", "EVT")),
-        "entity_type": "DemandLine", "entity_id": duplicate["demand_line_id"],
-        "from_state": None, "to_state": "Approved", "effective_date": duplicate["created_on"],
-        "reason": "Synthetic duplicate demand request",
-    })
-    truth.append({
-        "record_id": duplicate["demand_line_id"], "entity": "DemandLine",
-        "issue_type": "DEMAND_DOUBLE_COUNTED", "issue_subtype": None,
-        "injected_field": "demand_line_id", "original_value": None,
-        "injected_value": duplicate["demand_line_id"], "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
-        "expected_decision": "System Admin correction", "affected_derived_ids": [],
-    })
+    demand_targets = select_targets(approved)
+    for demand_target in demand_targets:
+        duplicate = dict(demand_target)
+        duplicate["demand_line_id"] = entity_id(
+            "DEML", _next_number(sources["demand_lines"], "demand_line_id", "DEML")
+        )
+        duplicate["source"] = "ResourceRequest"
+        duplicate["supersedes_line_id"] = None
+        sources["demand_lines"].append(duplicate)
+        sources["lifecycle_events"].append({
+            "event_id": entity_id("EVT", _next_number(sources["lifecycle_events"], "event_id", "EVT")),
+            "entity_type": "DemandLine", "entity_id": duplicate["demand_line_id"],
+            "from_state": None, "to_state": "Approved", "effective_date": duplicate["created_on"],
+            "reason": "Synthetic duplicate demand request",
+        })
+        truth.append({
+            "record_id": duplicate["demand_line_id"], "entity": "DemandLine",
+            "issue_type": "DEMAND_DOUBLE_COUNTED", "issue_subtype": None,
+            "injected_field": "demand_line_id", "original_value": None,
+            "injected_value": duplicate["demand_line_id"], "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+            "expected_decision": "System Admin correction", "affected_derived_ids": [],
+        })
 
     dedicated = [
         row for row in sources["allocations"]
@@ -105,29 +126,31 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
     ]
     if not dedicated:
         raise ValueError("No Dedicated-Team allocation available for overlap injection")
-    primary = dedicated[seed % len(dedicated)]
-    alternate_project = next(row for row in sources["projects"] if row["project_id"] != primary["project_id"])
-    new_allocation = {
-        **primary,
-        "allocation_id": entity_id("ALLOC", _next_number(sources["allocations"], "allocation_id", "ALLOC")),
-        "project_id": alternate_project["project_id"],
-        "allocation_pct": 0.1,
-        "skill_basis_esk_id": None,
-    }
-    sources["allocations"].append(new_allocation)
-    sources["lifecycle_events"].append({
-        "event_id": entity_id("EVT", _next_number(sources["lifecycle_events"], "event_id", "EVT")),
-        "entity_type": "Allocation", "entity_id": new_allocation["allocation_id"],
-        "from_state": None, "to_state": "Active", "effective_date": new_allocation["start_date"],
-        "reason": "Synthetic overlapping project assignment",
-    })
-    truth.append({
-        "record_id": new_allocation["allocation_id"], "entity": "Allocation",
-        "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT", "issue_subtype": None,
-        "injected_field": "project_id", "original_value": primary["project_id"],
-        "injected_value": alternate_project["project_id"], "expected_detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
-        "expected_decision": "Reallocate", "affected_derived_ids": [],
-    })
+    overlap_targets = select_targets(dedicated)
+    overlap_project_ids = set()
+    for primary in overlap_targets:
+        alternate_project = next(
+            row for row in sources["projects"]
+            if row["project_id"] != primary["project_id"] and row["staffing_model"] == "Shared-Pool"
+        )
+        new_allocation = {
+            **primary,
+            "allocation_id": allocation_id(_next_number(sources["allocations"], "allocation_id", "ALLOC")),
+            "project_id": alternate_project["project_id"],
+            "allocation_pct": 0.1,
+            "skill_basis_esk_id": None,
+        }
+        sources["allocations"].append(new_allocation)
+        _append_event(sources, "Allocation", new_allocation["allocation_id"], None, "Active",
+                      new_allocation["start_date"], "Synthetic overlapping project assignment")
+        overlap_project_ids.update({primary["project_id"], alternate_project["project_id"]})
+        truth.append({
+            "record_id": new_allocation["allocation_id"], "entity": "Allocation",
+            "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT", "issue_subtype": None,
+            "injected_field": "project_id", "original_value": primary["project_id"],
+            "injected_value": alternate_project["project_id"], "expected_detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
+            "expected_decision": "Reallocate", "affected_derived_ids": [],
+        })
 
     # Hard negative: a Shared-Pool overlap whose combined weekly percentage stays within 100%.
     hard_negative_employee = next(
@@ -139,8 +162,12 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
     )
     negative_allocation = {
         **hard_negative_base,
-        "allocation_id": entity_id("ALLOC", _next_number(sources["allocations"], "allocation_id", "ALLOC")),
-        "project_id": next(row["project_id"] for row in sources["projects"] if row["project_id"] != hard_negative_base["project_id"]),
+        "allocation_id": allocation_id(_next_number(sources["allocations"], "allocation_id", "ALLOC")),
+        "project_id": next(
+            row["project_id"] for row in sources["projects"]
+            if row["project_id"] != hard_negative_base["project_id"]
+            and row["staffing_model"] == "Shared-Pool"
+        ),
         "allocation_pct": min(0.1, 1.0 - float(hard_negative_base["allocation_pct"])),
         "skill_basis_esk_id": None,
     }
@@ -152,7 +179,7 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
     allocation_basis_ids = {row["skill_basis_esk_id"] for row in sources["allocations"]}
     boundary_skill = next(
         row for row in sources["employee_skills"]
-        if row["employee_skill_id"] != stale["employee_skill_id"]
+        if row["employee_skill_id"] not in stale_target_ids
         and row["employee_skill_id"] not in allocation_basis_ids
     )
     skill = next(row for row in sources["skills"] if row["skill_id"] == boundary_skill["skill_id"])
@@ -181,7 +208,7 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
     )
     project = next(row for row in sources["projects"] if row["staffing_model"] == "Shared-Pool")
     boundary_allocation = {
-        "allocation_id": entity_id("ALLOC", _next_number(sources["allocations"], "allocation_id", "ALLOC")),
+        "allocation_id": allocation_id(_next_number(sources["allocations"], "allocation_id", "ALLOC")),
         "employee_id": part_timer["employee_id"], "project_id": project["project_id"],
         "role_id": part_timer["role_id"], "start_date": boundary_week.isoformat(),
         "end_date": (boundary_week + timedelta(days=6)).isoformat(), "allocation_pct": 1.0,
@@ -194,7 +221,7 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
     active_project = next(
         (row for row in sources["projects"] if row["status"] == "Active"
          and row["project_id"] not in {
-             primary["project_id"], alternate_project["project_id"], allocation["project_id"],
+             *overlap_project_ids, *allocation_project_ids,
              negative_allocation["project_id"], project["project_id"]
          }
          and any(
@@ -217,7 +244,7 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
                        active_project["start_date"], "Synthetic cancellation edge-case project")
          employee = sources["employees"][-1]
          fallback_allocation = {
-             "allocation_id": entity_id("ALLOC", _next_number(sources["allocations"], "allocation_id", "ALLOC")),
+             "allocation_id": allocation_id(_next_number(sources["allocations"], "allocation_id", "ALLOC")),
              "employee_id": employee["employee_id"], "project_id": active_project["project_id"],
              "role_id": employee["role_id"], "start_date": "2026-02-01", "end_date": "2026-10-01",
              "allocation_pct": 0.1, "skill_basis_esk_id": None, "status": "Active",

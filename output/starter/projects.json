@@ -1,0 +1,242 @@
+[
+  {
+    "end_date": "2026-12-04",
+    "priority": "High",
+    "project_id": "PRJ-2026-000001",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-10-04",
+    "status": "Active"
+  },
+  {
+    "end_date": "2026-08-01",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000002",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-06-27",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-08-07",
+    "priority": "Low",
+    "project_id": "PRJ-2026-000003",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-05-03",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2027-01-02",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000004",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-11-08",
+    "status": "Planned"
+  },
+  {
+    "end_date": "2026-04-17",
+    "priority": "High",
+    "project_id": "PRJ-2026-000005",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-03-04",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-06-06",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000006",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-05-02",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-07-09",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000007",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-06-04",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-11-25",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000008",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-08-27",
+    "status": "Cancelled"
+  },
+  {
+    "end_date": "2026-10-08",
+    "priority": "High",
+    "project_id": "PRJ-2026-000009",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-08-04",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-08-29",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000010",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-05-06",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-09-04",
+    "priority": "Critical",
+    "project_id": "PRJ-2026-000011",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-07-22",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-04-26",
+    "priority": "High",
+    "project_id": "PRJ-2026-000012",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-01-22",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-09-26",
+    "priority": "Critical",
+    "project_id": "PRJ-2026-000013",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-07-29",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-11-21",
+    "priority": "High",
+    "project_id": "PRJ-2026-000014",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-09-27",
+    "status": "Active"
+  },
+  {
+    "end_date": "2026-09-22",
+    "priority": "High",
+    "project_id": "PRJ-2026-000015",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-06-24",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-09-08",
+    "priority": "High",
+    "project_id": "PRJ-2026-000016",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-08-04",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2027-01-02",
+    "priority": "High",
+    "project_id": "PRJ-2026-000017",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-08-23",
+    "status": "Active"
+  },
+  {
+    "end_date": "2026-08-13",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000018",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-04-28",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2027-01-13",
+    "priority": "Critical",
+    "project_id": "PRJ-2026-000019",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-11-06",
+    "status": "Planned"
+  },
+  {
+    "end_date": "2026-02-22",
+    "priority": "High",
+    "project_id": "PRJ-2026-000020",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-01-18",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-08-29",
+    "priority": "Critical",
+    "project_id": "PRJ-2026-000021",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-07-12",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2027-03-06",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000022",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-09-26",
+    "status": "Active"
+  },
+  {
+    "end_date": "2026-05-15",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000023",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-02-20",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-10-10",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000024",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-08-23",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-07-09",
+    "priority": "Critical",
+    "project_id": "PRJ-2026-000025",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-01-29",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-03-15",
+    "priority": "Low",
+    "project_id": "PRJ-2026-000026",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-02-03",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-05-10",
+    "priority": "Critical",
+    "project_id": "PRJ-2026-000027",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-04-05",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2026-09-02",
+    "priority": "Critical",
+    "project_id": "PRJ-2026-000028",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-07-05",
+    "status": "Completed"
+  },
+  {
+    "end_date": "2027-01-13",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000029",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-11-04",
+    "status": "Planned"
+  },
+  {
+    "end_date": "2026-10-01",
+    "priority": "High",
+    "project_id": "PRJ-2026-000030",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-07-18",
+    "status": "Completed"
+  }
+]

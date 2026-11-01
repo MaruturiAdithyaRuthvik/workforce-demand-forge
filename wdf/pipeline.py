@@ -27,7 +27,8 @@ def build_data(scale: str, seed: int) -> tuple[dict, list[dict], dict, list[dict
     settings = load_settings()
     sizes = load_scale(scale)
     sources = generate_sources(seed, **sizes.model_dump())
-    sources, ground_truth = inject_anomalies(sources, seed)
+    sources, ground_truth = inject_anomalies(sources, seed, settings.anomaly_rate)
+    _ensure_failed_training_fixture(sources, settings.thresholds.model_dump())
     derived = compute_derived(sources, settings.thresholds.model_dump())
     _attach_derived_trace_ids(sources, ground_truth, derived)
     forecast_rows, forecast_metrics = forecast_data(sources, settings.forecast["confidence"], settings.as_of)
@@ -80,12 +81,58 @@ def _attach_derived_trace_ids(
             truth["affected_derived_ids"] = []
 
 
+def _ensure_failed_training_fixture(sources: dict[str, list[dict]], thresholds: dict) -> None:
+    preview = compute_derived(sources, thresholds)
+    train_action = next(
+        (row for row in preview["gap_actions"] if row["action_type"] == "Train"), None
+    )
+    if train_action is None:
+        return
+    gap = next(row for row in preview["gap_analysis"] if row["gap_id"] == train_action["gap_id"])
+    week_start = date.fromisocalendar(2026, int(gap["iso_week"][-2:]), 1)
+    training_number = max(
+        (int(row["training_id"].split("-")[-1]) for row in sources["training"]), default=0
+    ) + 1
+    training_id = f"TRN-{training_number:06d}"
+    sources["training"].append({
+        "training_id": training_id,
+        "employee_id": train_action["candidate_employee_id"],
+        "skill_id": gap["skill_id"],
+        "target_proficiency": 3,
+        "cost": 900.0,
+        "start_date": week_start.isoformat(),
+        "end_date": (week_start + timedelta(days=14)).isoformat(),
+        "status": "Failed",
+    })
+    sources["lifecycle_events"].append({
+        "event_id": "",
+        "entity_type": "Training",
+        "entity_id": training_id,
+        "from_state": None,
+        "to_state": "Failed",
+        "effective_date": week_start.isoformat(),
+        "reason": "Synthetic failed training exception fixture",
+    })
+    sources["lifecycle_events"].sort(
+        key=lambda event: (event["entity_type"], event["entity_id"], event["effective_date"])
+    )
+    from wdf.ids import entity_id
+
+    for index, event in enumerate(sources["lifecycle_events"], start=1):
+        event["event_id"] = entity_id("EVT", index)
+
+
 def run_generate(output: Path, scale: str, seed: int, include_heldout: bool = True) -> dict:
     sources, ground_truth, derived, forecast_rows, metrics, validation = build_data(scale, seed)
     if include_heldout:
         heldout_seed = seed + 1
         heldout_sources = generate_sources(heldout_seed, **load_scale(scale).model_dump())
-        heldout_sources, heldout_truth = inject_anomalies(heldout_sources, heldout_seed)
+        heldout_sources, heldout_truth = inject_anomalies(
+            heldout_sources, heldout_seed, load_settings().anomaly_rate
+        )
+        _ensure_failed_training_fixture(
+            heldout_sources, load_settings().thresholds.model_dump()
+        )
         heldout_evaluation = evaluate_detections(
             detect_anomalies(heldout_sources), heldout_truth
         )
@@ -149,7 +196,9 @@ def run_evaluation(path: Path) -> dict:
     manifest = json.loads((path / "manifest.json").read_text(encoding="utf-8"))
     heldout_seed = int(manifest["seed"]) + 1
     heldout_sources = generate_sources(heldout_seed, **load_scale(manifest["scale"]).model_dump())
-    heldout_sources, heldout_truth = inject_anomalies(heldout_sources, heldout_seed)
+    heldout_sources, heldout_truth = inject_anomalies(
+        heldout_sources, heldout_seed, load_settings().anomaly_rate
+    )
     heldout = evaluate_detections(detect_anomalies(heldout_sources), heldout_truth)
     metrics_path = path / "metrics.json"
     current_metrics: dict[str, Any] = json.loads(metrics_path.read_text(encoding="utf-8")) if metrics_path.exists() else {}

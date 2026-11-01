@@ -1,0 +1,5179 @@
+[
+  {
+    "demand_fte": 1.5232,
+    "gap_fte": 1.5232,
+    "gap_id": "GAP-2026W03-000001",
+    "iso_week": "2026W03",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000036",
+    "source_demand_line_ids": [
+      "DEML-000228"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.6373,
+    "gap_fte": 1.6373,
+    "gap_id": "GAP-2026W05-000002",
+    "iso_week": "2026W05",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0003",
+    "skill_id": "SKL-000060",
+    "source_demand_line_ids": [
+      "DEML-000122"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7215,
+    "gap_fte": 0.7215,
+    "gap_id": "GAP-2026W05-000003",
+    "iso_week": "2026W05",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0007",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000123"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.2936,
+    "gap_fte": 0.2936,
+    "gap_id": "GAP-2026W05-000004",
+    "iso_week": "2026W05",
+    "risk_level": "Low",
+    "role_id": "ROLE-0016",
+    "skill_id": "SKL-000035",
+    "source_demand_line_ids": [
+      "DEML-000230"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.8818,
+    "gap_fte": 1.8818,
+    "gap_id": "GAP-2026W05-000005",
+    "iso_week": "2026W05",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000036",
+    "source_demand_line_ids": [
+      "DEML-000229"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.2169,
+    "gap_fte": 0.6169,
+    "gap_id": "GAP-2026W06-000006",
+    "iso_week": "2026W06",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0009",
+    "skill_id": "SKL-000018",
+    "source_demand_line_ids": [
+      "DEML-000124"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-000894"
+    ]
+  },
+  {
+    "demand_fte": 0.8084,
+    "gap_fte": 0.8084,
+    "gap_id": "GAP-2026W06-000007",
+    "iso_week": "2026W06",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0011",
+    "skill_id": "SKL-000015",
+    "source_demand_line_ids": [
+      "DEML-000317"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7372,
+    "gap_fte": 0.1372,
+    "gap_id": "GAP-2026W06-000008",
+    "iso_week": "2026W06",
+    "risk_level": "Low",
+    "role_id": "ROLE-0012",
+    "skill_id": "SKL-000053",
+    "source_demand_line_ids": [
+      "DEML-000316"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-001128"
+    ]
+  },
+  {
+    "demand_fte": 0.617,
+    "gap_fte": 0.617,
+    "gap_id": "GAP-2026W06-000009",
+    "iso_week": "2026W06",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000038",
+    "source_demand_line_ids": [
+      "DEML-000288"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.687,
+    "gap_fte": -1.313,
+    "gap_id": "GAP-2026W06-000010",
+    "iso_week": "2026W06",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0017",
+    "skill_id": "SKL-000028",
+    "source_demand_line_ids": [
+      "DEML-000125"
+    ],
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-001210",
+      "ESK-002154"
+    ]
+  },
+  {
+    "demand_fte": 0.7226,
+    "gap_fte": 0.7226,
+    "gap_id": "GAP-2026W06-000011",
+    "iso_week": "2026W06",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000038",
+    "source_demand_line_ids": [
+      "DEML-000287"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8637,
+    "gap_fte": -0.1363,
+    "gap_id": "GAP-2026W06-000012",
+    "iso_week": "2026W06",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000232"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001315"
+    ]
+  },
+  {
+    "demand_fte": 1.2075,
+    "gap_fte": 0.2075,
+    "gap_id": "GAP-2026W06-000013",
+    "iso_week": "2026W06",
+    "risk_level": "Low",
+    "role_id": "ROLE-0030",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000231"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001903"
+    ]
+  },
+  {
+    "demand_fte": 1.0699,
+    "gap_fte": 1.0699,
+    "gap_id": "GAP-2026W07-000014",
+    "iso_week": "2026W07",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000007",
+    "source_demand_line_ids": [
+      "DEML-000290"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.6617,
+    "gap_fte": 0.6617,
+    "gap_id": "GAP-2026W07-000015",
+    "iso_week": "2026W07",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000028",
+    "source_demand_line_ids": [
+      "DEML-000319"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000526"
+    ]
+  },
+  {
+    "demand_fte": 1.1319,
+    "gap_fte": 0.1319,
+    "gap_id": "GAP-2026W07-000016",
+    "iso_week": "2026W07",
+    "risk_level": "Low",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000041",
+    "source_demand_line_ids": [
+      "DEML-000318"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001305"
+    ]
+  },
+  {
+    "demand_fte": 0.9712,
+    "gap_fte": 0.9712,
+    "gap_id": "GAP-2026W07-000017",
+    "iso_week": "2026W07",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0032",
+    "skill_id": "SKL-000010",
+    "source_demand_line_ids": [
+      "DEML-000289"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9746,
+    "gap_fte": 1.9746,
+    "gap_id": "GAP-2026W07-000018",
+    "iso_week": "2026W07",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0033",
+    "skill_id": "SKL-000039",
+    "source_demand_line_ids": [
+      "DEML-000233"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.7936,
+    "gap_fte": 1.7936,
+    "gap_id": "GAP-2026W08-000019",
+    "iso_week": "2026W08",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0009",
+    "skill_id": "SKL-000022",
+    "source_demand_line_ids": [
+      "DEML-000235"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4218,
+    "gap_fte": 1.4218,
+    "gap_id": "GAP-2026W08-000020",
+    "iso_week": "2026W08",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0011",
+    "skill_id": "SKL-000019",
+    "source_demand_line_ids": [
+      "DEML-000126"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.8243,
+    "gap_fte": 1.8243,
+    "gap_id": "GAP-2026W08-000021",
+    "iso_week": "2026W08",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0016",
+    "skill_id": "SKL-000011",
+    "source_demand_line_ids": [
+      "DEML-000265"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9327,
+    "gap_fte": 1.9327,
+    "gap_id": "GAP-2026W08-000022",
+    "iso_week": "2026W08",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0027",
+    "skill_id": "SKL-000038",
+    "source_demand_line_ids": [
+      "DEML-000234"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.385,
+    "gap_fte": 1.385,
+    "gap_id": "GAP-2026W09-000023",
+    "iso_week": "2026W09",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0011",
+    "skill_id": "SKL-000019",
+    "source_demand_line_ids": [
+      "DEML-000371"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9872,
+    "gap_fte": -0.0128,
+    "gap_id": "GAP-2026W09-000024",
+    "iso_week": "2026W09",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000029",
+    "source_demand_line_ids": [
+      "DEML-000291"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000449"
+    ]
+  },
+  {
+    "demand_fte": 1.7067,
+    "gap_fte": 0.7067,
+    "gap_id": "GAP-2026W09-000025",
+    "iso_week": "2026W09",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000017",
+    "source_demand_line_ids": [
+      "DEML-000320"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000515"
+    ]
+  },
+  {
+    "demand_fte": 1.8793,
+    "gap_fte": 1.8793,
+    "gap_id": "GAP-2026W10-000026",
+    "iso_week": "2026W10",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0001",
+    "skill_id": "SKL-000013",
+    "source_demand_line_ids": [
+      "DEML-000292"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4964,
+    "gap_fte": 0.4964,
+    "gap_id": "GAP-2026W10-000027",
+    "iso_week": "2026W10",
+    "risk_level": "Low",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000047",
+    "source_demand_line_ids": [
+      "DEML-000293"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8244,
+    "gap_fte": -1.1756,
+    "gap_id": "GAP-2026W10-000028",
+    "iso_week": "2026W10",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000025",
+    "source_demand_line_ids": [
+      "DEML-000049"
+    ],
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000763",
+      "ESK-001289"
+    ]
+  },
+  {
+    "demand_fte": 1.4117,
+    "gap_fte": 0.4117,
+    "gap_id": "GAP-2026W10-000029",
+    "iso_week": "2026W10",
+    "risk_level": "Low",
+    "role_id": "ROLE-0032",
+    "skill_id": "SKL-000030",
+    "source_demand_line_ids": [
+      "DEML-000266"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001553"
+    ]
+  },
+  {
+    "demand_fte": 1.6719,
+    "gap_fte": 0.6719,
+    "gap_id": "GAP-2026W11-000030",
+    "iso_week": "2026W11",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0002",
+    "skill_id": "SKL-000006",
+    "source_demand_line_ids": [
+      "DEML-000294"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000877"
+    ]
+  },
+  {
+    "demand_fte": 1.3556,
+    "gap_fte": 1.3556,
+    "gap_id": "GAP-2026W11-000031",
+    "iso_week": "2026W11",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0002",
+    "skill_id": "SKL-000021",
+    "source_demand_line_ids": [
+      "DEML-000268"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0862,
+    "gap_fte": 1.0862,
+    "gap_id": "GAP-2026W11-000032",
+    "iso_week": "2026W11",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000007",
+    "source_demand_line_ids": [
+      "DEML-000050"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.6492,
+    "gap_fte": 1.6492,
+    "gap_id": "GAP-2026W11-000033",
+    "iso_week": "2026W11",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000052",
+    "source_demand_line_ids": [
+      "DEML-000381"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3926,
+    "gap_fte": 0.3926,
+    "gap_id": "GAP-2026W11-000034",
+    "iso_week": "2026W11",
+    "risk_level": "Low",
+    "role_id": "ROLE-0022",
+    "skill_id": "SKL-000010",
+    "source_demand_line_ids": [
+      "DEML-000128"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3023,
+    "gap_fte": 0.3023,
+    "gap_id": "GAP-2026W11-000035",
+    "iso_week": "2026W11",
+    "risk_level": "Low",
+    "role_id": "ROLE-0022",
+    "skill_id": "SKL-000030",
+    "source_demand_line_ids": [
+      "DEML-000129"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8997,
+    "gap_fte": 0.8997,
+    "gap_id": "GAP-2026W11-000036",
+    "iso_week": "2026W11",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000033",
+    "source_demand_line_ids": [
+      "DEML-000322"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9332,
+    "gap_fte": 0.9332,
+    "gap_id": "GAP-2026W11-000037",
+    "iso_week": "2026W11",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0039",
+    "skill_id": "SKL-000038",
+    "source_demand_line_ids": [
+      "DEML-000321"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.3085,
+    "gap_fte": 1.3085,
+    "gap_id": "GAP-2026W12-000038",
+    "iso_week": "2026W12",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0025",
+    "skill_id": "SKL-000023",
+    "source_demand_line_ids": [
+      "DEML-000269"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4182,
+    "gap_fte": -0.5818,
+    "gap_id": "GAP-2026W12-000039",
+    "iso_week": "2026W12",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0032",
+    "skill_id": "SKL-000023",
+    "source_demand_line_ids": [
+      "DEML-000383"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000825"
+    ]
+  },
+  {
+    "demand_fte": 1.0253,
+    "gap_fte": 1.0253,
+    "gap_id": "GAP-2026W13-000040",
+    "iso_week": "2026W13",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0002",
+    "skill_id": "SKL-000021",
+    "source_demand_line_ids": [
+      "DEML-000130"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.7397,
+    "gap_fte": 1.7397,
+    "gap_id": "GAP-2026W13-000041",
+    "iso_week": "2026W13",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0028",
+    "skill_id": "SKL-000004",
+    "source_demand_line_ids": [
+      "DEML-000296"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 3.468,
+    "gap_fte": 2.468,
+    "gap_id": "GAP-2026W14-000042",
+    "iso_week": "2026W14",
+    "risk_level": "High",
+    "role_id": "ROLE-0012",
+    "skill_id": "SKL-000005",
+    "source_demand_line_ids": [
+      "DEML-000132",
+      "DEML-000270"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000055"
+    ]
+  },
+  {
+    "demand_fte": 1.5127,
+    "gap_fte": 0.5127,
+    "gap_id": "GAP-2026W14-000043",
+    "iso_week": "2026W14",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0030",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000298"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001903"
+    ]
+  },
+  {
+    "demand_fte": 0.8936,
+    "gap_fte": -0.1064,
+    "gap_id": "GAP-2026W14-000044",
+    "iso_week": "2026W14",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000297"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000177"
+    ]
+  },
+  {
+    "demand_fte": 1.4836,
+    "gap_fte": 0.4836,
+    "gap_id": "GAP-2026W14-000045",
+    "iso_week": "2026W14",
+    "risk_level": "Low",
+    "role_id": "ROLE-0032",
+    "skill_id": "SKL-000030",
+    "source_demand_line_ids": [
+      "DEML-000131"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001553"
+    ]
+  },
+  {
+    "demand_fte": 0.6214,
+    "gap_fte": 0.0214,
+    "gap_id": "GAP-2026W14-000046",
+    "iso_week": "2026W14",
+    "risk_level": "Low",
+    "role_id": "ROLE-0039",
+    "skill_id": "SKL-000021",
+    "source_demand_line_ids": [
+      "DEML-000385"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-001999"
+    ]
+  },
+  {
+    "demand_fte": 1.33,
+    "gap_fte": 1.33,
+    "gap_id": "GAP-2026W15-000047",
+    "iso_week": "2026W15",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000035",
+    "source_demand_line_ids": [
+      "DEML-000300"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9827,
+    "gap_fte": 1.9827,
+    "gap_id": "GAP-2026W15-000048",
+    "iso_week": "2026W15",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0014",
+    "skill_id": "SKL-000009",
+    "source_demand_line_ids": [
+      "DEML-000051"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.8873,
+    "gap_fte": 1.8873,
+    "gap_id": "GAP-2026W15-000049",
+    "iso_week": "2026W15",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0015",
+    "skill_id": "SKL-000059",
+    "source_demand_line_ids": [
+      "DEML-000324"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0939,
+    "gap_fte": 0.0939,
+    "gap_id": "GAP-2026W15-000050",
+    "iso_week": "2026W15",
+    "risk_level": "Low",
+    "role_id": "ROLE-0021",
+    "skill_id": "SKL-000042",
+    "source_demand_line_ids": [
+      "DEML-000271"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000924"
+    ]
+  },
+  {
+    "demand_fte": 1.2249,
+    "gap_fte": 1.2249,
+    "gap_id": "GAP-2026W15-000051",
+    "iso_week": "2026W15",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0022",
+    "skill_id": "SKL-000030",
+    "source_demand_line_ids": [
+      "DEML-000299"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.5928,
+    "gap_fte": 0.5928,
+    "gap_id": "GAP-2026W15-000052",
+    "iso_week": "2026W15",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0026",
+    "skill_id": "SKL-000011",
+    "source_demand_line_ids": [
+      "DEML-000133"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3188,
+    "gap_fte": -0.1812,
+    "gap_id": "GAP-2026W15-000053",
+    "iso_week": "2026W15",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0027",
+    "skill_id": "SKL-000046",
+    "source_demand_line_ids": [
+      "DEML-000325"
+    ],
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000133"
+    ]
+  },
+  {
+    "demand_fte": 1.7903,
+    "gap_fte": 1.1903,
+    "gap_id": "GAP-2026W16-000054",
+    "iso_week": "2026W16",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0015",
+    "skill_id": "SKL-000032",
+    "source_demand_line_ids": [
+      "DEML-000272"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-001781"
+    ]
+  },
+  {
+    "demand_fte": 1.3603,
+    "gap_fte": 1.3603,
+    "gap_id": "GAP-2026W16-000055",
+    "iso_week": "2026W16",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0024",
+    "skill_id": "SKL-000053",
+    "source_demand_line_ids": [
+      "DEML-000134"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.5901,
+    "gap_fte": 0.5901,
+    "gap_id": "GAP-2026W16-000056",
+    "iso_week": "2026W16",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000302"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000177"
+    ]
+  },
+  {
+    "demand_fte": 0.4962,
+    "gap_fte": -0.1038,
+    "gap_id": "GAP-2026W16-000057",
+    "iso_week": "2026W16",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000301"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-001565"
+    ]
+  },
+  {
+    "demand_fte": 1.1804,
+    "gap_fte": 1.1804,
+    "gap_id": "GAP-2026W17-000058",
+    "iso_week": "2026W17",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0001",
+    "skill_id": "SKL-000008",
+    "source_demand_line_ids": [
+      "DEML-000135"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8505,
+    "gap_fte": 0.8505,
+    "gap_id": "GAP-2026W17-000059",
+    "iso_week": "2026W17",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000014",
+    "source_demand_line_ids": [
+      "DEML-000303"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3304,
+    "gap_fte": 0.3304,
+    "gap_id": "GAP-2026W18-000060",
+    "iso_week": "2026W18",
+    "risk_level": "Low",
+    "role_id": "ROLE-0008",
+    "skill_id": "SKL-000014",
+    "source_demand_line_ids": [
+      "DEML-000020"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4301,
+    "gap_fte": 1.4301,
+    "gap_id": "GAP-2026W18-000061",
+    "iso_week": "2026W18",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0008",
+    "skill_id": "SKL-000054",
+    "source_demand_line_ids": [
+      "DEML-000273"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 2.1881,
+    "gap_fte": 0.1881,
+    "gap_id": "GAP-2026W18-000062",
+    "iso_week": "2026W18",
+    "risk_level": "Low",
+    "role_id": "ROLE-0034",
+    "skill_id": "SKL-000012",
+    "source_demand_line_ids": [
+      "DEML-000199",
+      "DEML-000326"
+    ],
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000619",
+      "ESK-001556"
+    ]
+  },
+  {
+    "demand_fte": 1.5643,
+    "gap_fte": 1.5643,
+    "gap_id": "GAP-2026W18-000063",
+    "iso_week": "2026W18",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000015",
+    "source_demand_line_ids": [
+      "DEML-000021"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3585,
+    "gap_fte": 0.3585,
+    "gap_id": "GAP-2026W19-000064",
+    "iso_week": "2026W19",
+    "risk_level": "Low",
+    "role_id": "ROLE-0001",
+    "skill_id": "SKL-000024",
+    "source_demand_line_ids": [
+      "DEML-000052"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7422,
+    "gap_fte": -0.2578,
+    "gap_id": "GAP-2026W19-000065",
+    "iso_week": "2026W19",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0003",
+    "skill_id": "SKL-000032",
+    "source_demand_line_ids": [
+      "DEML-000022"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001682"
+    ]
+  },
+  {
+    "demand_fte": 0.5968,
+    "gap_fte": 0.5968,
+    "gap_id": "GAP-2026W19-000066",
+    "iso_week": "2026W19",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000304"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.5471,
+    "gap_fte": 0.5471,
+    "gap_id": "GAP-2026W19-000067",
+    "iso_week": "2026W19",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0010",
+    "skill_id": "SKL-000037",
+    "source_demand_line_ids": [
+      "DEML-000053"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-002097"
+    ]
+  },
+  {
+    "demand_fte": 1.9173,
+    "gap_fte": 1.9173,
+    "gap_id": "GAP-2026W19-000068",
+    "iso_week": "2026W19",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0018",
+    "skill_id": "SKL-000011",
+    "source_demand_line_ids": [
+      "DEML-000305"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.5336,
+    "gap_fte": 1.5336,
+    "gap_id": "GAP-2026W19-000069",
+    "iso_week": "2026W19",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0018",
+    "skill_id": "SKL-000044",
+    "source_demand_line_ids": [
+      "DEML-000274"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.6096,
+    "gap_fte": 0.6096,
+    "gap_id": "GAP-2026W19-000070",
+    "iso_week": "2026W19",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0024",
+    "skill_id": "SKL-000053",
+    "source_demand_line_ids": [
+      "DEML-000275"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 2.2075,
+    "gap_fte": 2.2075,
+    "gap_id": "GAP-2026W19-000071",
+    "iso_week": "2026W19",
+    "risk_level": "High",
+    "role_id": "ROLE-0027",
+    "skill_id": "SKL-000012",
+    "source_demand_line_ids": [
+      "DEML-000023",
+      "DEML-000096"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4734,
+    "gap_fte": 1.4734,
+    "gap_id": "GAP-2026W19-000072",
+    "iso_week": "2026W19",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000001",
+    "source_demand_line_ids": [
+      "DEML-000200"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4274,
+    "gap_fte": 1.4274,
+    "gap_id": "GAP-2026W20-000073",
+    "iso_week": "2026W20",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0008",
+    "skill_id": "SKL-000054",
+    "source_demand_line_ids": [
+      "DEML-000277"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3501,
+    "gap_fte": -0.6499,
+    "gap_id": "GAP-2026W20-000074",
+    "iso_week": "2026W20",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0017",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000054"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001233"
+    ]
+  },
+  {
+    "demand_fte": 1.6958,
+    "gap_fte": 0.6958,
+    "gap_id": "GAP-2026W20-000075",
+    "iso_week": "2026W20",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0032",
+    "skill_id": "SKL-000023",
+    "source_demand_line_ids": [
+      "DEML-000024"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000825"
+    ]
+  },
+  {
+    "demand_fte": 1.4479,
+    "gap_fte": 1.4479,
+    "gap_id": "GAP-2026W20-000076",
+    "iso_week": "2026W20",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0033",
+    "skill_id": "SKL-000039",
+    "source_demand_line_ids": [
+      "DEML-000201"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3648,
+    "gap_fte": 0.3648,
+    "gap_id": "GAP-2026W20-000077",
+    "iso_week": "2026W20",
+    "risk_level": "Low",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000001",
+    "source_demand_line_ids": [
+      "DEML-000276"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.1398,
+    "gap_fte": 0.1398,
+    "gap_id": "GAP-2026W21-000078",
+    "iso_week": "2026W21",
+    "risk_level": "Low",
+    "role_id": "ROLE-0001",
+    "skill_id": "SKL-000030",
+    "source_demand_line_ids": [
+      "DEML-000306"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001618"
+    ]
+  },
+  {
+    "demand_fte": 1.7369,
+    "gap_fte": 0.7369,
+    "gap_id": "GAP-2026W21-000079",
+    "iso_week": "2026W21",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0010",
+    "skill_id": "SKL-000037",
+    "source_demand_line_ids": [
+      "DEML-000056"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-002097"
+    ]
+  },
+  {
+    "demand_fte": 0.3744,
+    "gap_fte": 0.3744,
+    "gap_id": "GAP-2026W21-000080",
+    "iso_week": "2026W21",
+    "risk_level": "Low",
+    "role_id": "ROLE-0016",
+    "skill_id": "SKL-000035",
+    "source_demand_line_ids": [
+      "DEML-000202"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.948,
+    "gap_fte": 0.948,
+    "gap_id": "GAP-2026W21-000081",
+    "iso_week": "2026W21",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0025",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000055"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0801,
+    "gap_fte": 1.0801,
+    "gap_id": "GAP-2026W21-000082",
+    "iso_week": "2026W21",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0027",
+    "skill_id": "SKL-000033",
+    "source_demand_line_ids": [
+      "DEML-000025"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.8161,
+    "gap_fte": 1.3361,
+    "gap_id": "GAP-2026W22-000083",
+    "iso_week": "2026W22",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0015",
+    "skill_id": "SKL-000032",
+    "source_demand_line_ids": [
+      "DEML-000366"
+    ],
+    "supply_fte": 0.48,
+    "supporting_esk_ids": [
+      "ESK-001781"
+    ]
+  },
+  {
+    "demand_fte": 0.8958,
+    "gap_fte": 0.0958,
+    "gap_id": "GAP-2026W22-000084",
+    "iso_week": "2026W22",
+    "risk_level": "Low",
+    "role_id": "ROLE-0016",
+    "skill_id": "SKL-000025",
+    "source_demand_line_ids": [
+      "DEML-000097"
+    ],
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-001159"
+    ]
+  },
+  {
+    "demand_fte": 0.2652,
+    "gap_fte": 0.2652,
+    "gap_id": "GAP-2026W22-000085",
+    "iso_week": "2026W22",
+    "risk_level": "Low",
+    "role_id": "ROLE-0023",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000307"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4724,
+    "gap_fte": 1.4724,
+    "gap_id": "GAP-2026W22-000086",
+    "iso_week": "2026W22",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0024",
+    "skill_id": "SKL-000018",
+    "source_demand_line_ids": [
+      "DEML-000308"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4327,
+    "gap_fte": 0.4327,
+    "gap_id": "GAP-2026W22-000087",
+    "iso_week": "2026W22",
+    "risk_level": "Low",
+    "role_id": "ROLE-0028",
+    "skill_id": "SKL-000006",
+    "source_demand_line_ids": [
+      "DEML-000026"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3519,
+    "gap_fte": 0.3519,
+    "gap_id": "GAP-2026W22-000088",
+    "iso_week": "2026W22",
+    "risk_level": "Low",
+    "role_id": "ROLE-0034",
+    "skill_id": "SKL-000050",
+    "source_demand_line_ids": [
+      "DEML-000203"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0972,
+    "gap_fte": 1.0972,
+    "gap_id": "GAP-2026W22-000089",
+    "iso_week": "2026W22",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0039",
+    "skill_id": "SKL-000038",
+    "source_demand_line_ids": [
+      "DEML-000058"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9551,
+    "gap_fte": -0.0449,
+    "gap_id": "GAP-2026W23-000090",
+    "iso_week": "2026W23",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000027"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001315"
+    ]
+  },
+  {
+    "demand_fte": 0.3148,
+    "gap_fte": 0.3148,
+    "gap_id": "GAP-2026W23-000091",
+    "iso_week": "2026W23",
+    "risk_level": "Low",
+    "role_id": "ROLE-0033",
+    "skill_id": "SKL-000039",
+    "source_demand_line_ids": [
+      "DEML-000384"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4511,
+    "gap_fte": 1.4511,
+    "gap_id": "GAP-2026W23-000092",
+    "iso_week": "2026W23",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000012",
+    "source_demand_line_ids": [
+      "DEML-000059"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4838,
+    "gap_fte": 0.4838,
+    "gap_id": "GAP-2026W24-000093",
+    "iso_week": "2026W24",
+    "risk_level": "Low",
+    "role_id": "ROLE-0009",
+    "skill_id": "SKL-000022",
+    "source_demand_line_ids": [
+      "DEML-000369"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.7501,
+    "gap_fte": 0.7501,
+    "gap_id": "GAP-2026W24-000094",
+    "iso_week": "2026W24",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0010",
+    "skill_id": "SKL-000016",
+    "source_demand_line_ids": [
+      "DEML-000310"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-002087"
+    ]
+  },
+  {
+    "demand_fte": 0.6621,
+    "gap_fte": 0.6621,
+    "gap_id": "GAP-2026W24-000095",
+    "iso_week": "2026W24",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0014",
+    "skill_id": "SKL-000049",
+    "source_demand_line_ids": [
+      "DEML-000204"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.6048,
+    "gap_fte": 1.6048,
+    "gap_id": "GAP-2026W24-000096",
+    "iso_week": "2026W24",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0023",
+    "skill_id": "SKL-000001",
+    "source_demand_line_ids": [
+      "DEML-000098"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7513,
+    "gap_fte": 0.7513,
+    "gap_id": "GAP-2026W24-000097",
+    "iso_week": "2026W24",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0028",
+    "skill_id": "SKL-000052",
+    "source_demand_line_ids": [
+      "DEML-000028"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.177,
+    "gap_fte": 0.577,
+    "gap_id": "GAP-2026W24-000098",
+    "iso_week": "2026W24",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0038",
+    "skill_id": "SKL-000046",
+    "source_demand_line_ids": [
+      "DEML-000061"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-000311"
+    ]
+  },
+  {
+    "demand_fte": 1.2336,
+    "gap_fte": 1.2336,
+    "gap_id": "GAP-2026W24-000099",
+    "iso_week": "2026W24",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0039",
+    "skill_id": "SKL-000059",
+    "source_demand_line_ids": [
+      "DEML-000060"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 2.2751,
+    "gap_fte": 2.2751,
+    "gap_id": "GAP-2026W25-000100",
+    "iso_week": "2026W25",
+    "risk_level": "High",
+    "role_id": "ROLE-0015",
+    "skill_id": "SKL-000059",
+    "source_demand_line_ids": [
+      "DEML-000063",
+      "DEML-000364"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.562,
+    "gap_fte": -0.438,
+    "gap_id": "GAP-2026W25-000101",
+    "iso_week": "2026W25",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000041",
+    "source_demand_line_ids": [
+      "DEML-000311"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001305"
+    ]
+  },
+  {
+    "demand_fte": 1.3391,
+    "gap_fte": 0.3391,
+    "gap_id": "GAP-2026W25-000102",
+    "iso_week": "2026W25",
+    "risk_level": "Low",
+    "role_id": "ROLE-0021",
+    "skill_id": "SKL-000020",
+    "source_demand_line_ids": [
+      "DEML-000062"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001518"
+    ]
+  },
+  {
+    "demand_fte": 0.702,
+    "gap_fte": -0.298,
+    "gap_id": "GAP-2026W25-000103",
+    "iso_week": "2026W25",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0021",
+    "skill_id": "SKL-000043",
+    "source_demand_line_ids": [
+      "DEML-000205"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001797"
+    ]
+  },
+  {
+    "demand_fte": 0.4297,
+    "gap_fte": 0.4297,
+    "gap_id": "GAP-2026W25-000104",
+    "iso_week": "2026W25",
+    "risk_level": "Low",
+    "role_id": "ROLE-0028",
+    "skill_id": "SKL-000006",
+    "source_demand_line_ids": [
+      "DEML-000100"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.2812,
+    "gap_fte": -0.3188,
+    "gap_id": "GAP-2026W26-000105",
+    "iso_week": "2026W26",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0009",
+    "skill_id": "SKL-000018",
+    "source_demand_line_ids": [
+      "DEML-000102"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-000894"
+    ]
+  },
+  {
+    "demand_fte": 1.4446,
+    "gap_fte": 1.4446,
+    "gap_id": "GAP-2026W26-000106",
+    "iso_week": "2026W26",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0012",
+    "skill_id": "SKL-000003",
+    "source_demand_line_ids": [
+      "DEML-000207"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9365,
+    "gap_fte": 0.9365,
+    "gap_id": "GAP-2026W26-000107",
+    "iso_week": "2026W26",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0016",
+    "skill_id": "SKL-000035",
+    "source_demand_line_ids": [
+      "DEML-000312"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4837,
+    "gap_fte": -0.5163,
+    "gap_id": "GAP-2026W26-000108",
+    "iso_week": "2026W26",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000015",
+    "source_demand_line_ids": [
+      "DEML-000013"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001279"
+    ]
+  },
+  {
+    "demand_fte": 2.577,
+    "gap_fte": 1.577,
+    "gap_id": "GAP-2026W26-000109",
+    "iso_week": "2026W26",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0021",
+    "skill_id": "SKL-000043",
+    "source_demand_line_ids": [
+      "DEML-000065",
+      "DEML-000158"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001797"
+    ]
+  },
+  {
+    "demand_fte": 1.205,
+    "gap_fte": 1.205,
+    "gap_id": "GAP-2026W26-000110",
+    "iso_week": "2026W26",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0024",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000030"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4654,
+    "gap_fte": 0.4654,
+    "gap_id": "GAP-2026W26-000111",
+    "iso_week": "2026W26",
+    "risk_level": "Low",
+    "role_id": "ROLE-0029",
+    "skill_id": "SKL-000045",
+    "source_demand_line_ids": [
+      "DEML-000206"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.607,
+    "gap_fte": 1.607,
+    "gap_id": "GAP-2026W26-000112",
+    "iso_week": "2026W26",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0032",
+    "skill_id": "SKL-000010",
+    "source_demand_line_ids": [
+      "DEML-000064"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.5465,
+    "gap_fte": 0.5465,
+    "gap_id": "GAP-2026W26-000113",
+    "iso_week": "2026W26",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000013",
+    "source_demand_line_ids": [
+      "DEML-000101"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.6154,
+    "gap_fte": 0.8154,
+    "gap_id": "GAP-2026W27-000114",
+    "iso_week": "2026W27",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0001",
+    "skill_id": "SKL-000041",
+    "source_demand_line_ids": [
+      "DEML-000066"
+    ],
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-001629"
+    ]
+  },
+  {
+    "demand_fte": 0.6489,
+    "gap_fte": 0.6489,
+    "gap_id": "GAP-2026W27-000115",
+    "iso_week": "2026W27",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0002",
+    "skill_id": "SKL-000049",
+    "source_demand_line_ids": [
+      "DEML-000104"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.6501,
+    "gap_fte": 0.6501,
+    "gap_id": "GAP-2026W27-000116",
+    "iso_week": "2026W27",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0008",
+    "skill_id": "SKL-000014",
+    "source_demand_line_ids": [
+      "DEML-000014"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.6424,
+    "gap_fte": 0.8424,
+    "gap_id": "GAP-2026W27-000117",
+    "iso_week": "2026W27",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0011",
+    "skill_id": "SKL-000004",
+    "source_demand_line_ids": [
+      "DEML-000103"
+    ],
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-000727"
+    ]
+  },
+  {
+    "demand_fte": 0.2527,
+    "gap_fte": 0.2527,
+    "gap_id": "GAP-2026W27-000118",
+    "iso_week": "2026W27",
+    "risk_level": "Low",
+    "role_id": "ROLE-0018",
+    "skill_id": "SKL-000060",
+    "source_demand_line_ids": [
+      "DEML-000209"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0285,
+    "gap_fte": 1.0285,
+    "gap_id": "GAP-2026W27-000119",
+    "iso_week": "2026W27",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0024",
+    "skill_id": "SKL-000018",
+    "source_demand_line_ids": [
+      "DEML-000031"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0675,
+    "gap_fte": 1.0675,
+    "gap_id": "GAP-2026W27-000120",
+    "iso_week": "2026W27",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0024",
+    "skill_id": "SKL-000042",
+    "source_demand_line_ids": [
+      "DEML-000313"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.3163,
+    "gap_fte": 1.3163,
+    "gap_id": "GAP-2026W27-000121",
+    "iso_week": "2026W27",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0026",
+    "skill_id": "SKL-000049",
+    "source_demand_line_ids": [
+      "DEML-000327"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7713,
+    "gap_fte": 0.2913,
+    "gap_id": "GAP-2026W27-000122",
+    "iso_week": "2026W27",
+    "risk_level": "Low",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000208"
+    ],
+    "supply_fte": 0.48,
+    "supporting_esk_ids": [
+      "ESK-001565"
+    ]
+  },
+  {
+    "demand_fte": 0.9971,
+    "gap_fte": 0.9971,
+    "gap_id": "GAP-2026W27-000123",
+    "iso_week": "2026W27",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0039",
+    "skill_id": "SKL-000059",
+    "source_demand_line_ids": [
+      "DEML-000328"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.538,
+    "gap_fte": 0.538,
+    "gap_id": "GAP-2026W28-000124",
+    "iso_week": "2026W28",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0001",
+    "skill_id": "SKL-000008",
+    "source_demand_line_ids": [
+      "DEML-000329"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0666,
+    "gap_fte": 1.0666,
+    "gap_id": "GAP-2026W28-000125",
+    "iso_week": "2026W28",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000007",
+    "source_demand_line_ids": [
+      "DEML-000314"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.3854,
+    "gap_fte": 0.3854,
+    "gap_id": "GAP-2026W28-000126",
+    "iso_week": "2026W28",
+    "risk_level": "Low",
+    "role_id": "ROLE-0010",
+    "skill_id": "SKL-000037",
+    "source_demand_line_ids": [
+      "DEML-000016"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-002097"
+    ]
+  },
+  {
+    "demand_fte": 1.1724,
+    "gap_fte": 0.5724,
+    "gap_id": "GAP-2026W28-000127",
+    "iso_week": "2026W28",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0012",
+    "skill_id": "SKL-000053",
+    "source_demand_line_ids": [
+      "DEML-000377"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-001128"
+    ]
+  },
+  {
+    "demand_fte": 1.2639,
+    "gap_fte": 1.2639,
+    "gap_id": "GAP-2026W28-000128",
+    "iso_week": "2026W28",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000038",
+    "source_demand_line_ids": [
+      "DEML-000315"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.575,
+    "gap_fte": 0.575,
+    "gap_id": "GAP-2026W28-000129",
+    "iso_week": "2026W28",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0014",
+    "skill_id": "SKL-000021",
+    "source_demand_line_ids": [
+      "DEML-000159"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 2.1711,
+    "gap_fte": 2.1711,
+    "gap_id": "GAP-2026W28-000130",
+    "iso_week": "2026W28",
+    "risk_level": "High",
+    "role_id": "ROLE-0016",
+    "skill_id": "SKL-000035",
+    "source_demand_line_ids": [
+      "DEML-000105",
+      "DEML-000236"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.3947,
+    "gap_fte": 0.3947,
+    "gap_id": "GAP-2026W28-000131",
+    "iso_week": "2026W28",
+    "risk_level": "Low",
+    "role_id": "ROLE-0017",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000210"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001233"
+    ]
+  },
+  {
+    "demand_fte": 0.6851,
+    "gap_fte": 0.6851,
+    "gap_id": "GAP-2026W28-000132",
+    "iso_week": "2026W28",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0018",
+    "skill_id": "SKL-000044",
+    "source_demand_line_ids": [
+      "DEML-000068"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9152,
+    "gap_fte": 0.9152,
+    "gap_id": "GAP-2026W28-000133",
+    "iso_week": "2026W28",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000029",
+    "source_demand_line_ids": [
+      "DEML-000032"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.1882,
+    "gap_fte": -0.8118,
+    "gap_id": "GAP-2026W28-000134",
+    "iso_week": "2026W28",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000025",
+    "source_demand_line_ids": [
+      "DEML-000237"
+    ],
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000763",
+      "ESK-001289"
+    ]
+  },
+  {
+    "demand_fte": 0.2737,
+    "gap_fte": 0.2737,
+    "gap_id": "GAP-2026W28-000135",
+    "iso_week": "2026W28",
+    "risk_level": "Low",
+    "role_id": "ROLE-0022",
+    "skill_id": "SKL-000030",
+    "source_demand_line_ids": [
+      "DEML-000330"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.8806,
+    "gap_fte": 1.8806,
+    "gap_id": "GAP-2026W28-000136",
+    "iso_week": "2026W28",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0029",
+    "skill_id": "SKL-000045",
+    "source_demand_line_ids": [
+      "DEML-000363"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7171,
+    "gap_fte": 0.7171,
+    "gap_id": "GAP-2026W28-000137",
+    "iso_week": "2026W28",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000025",
+    "source_demand_line_ids": [
+      "DEML-000067"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.7098,
+    "gap_fte": 1.7098,
+    "gap_id": "GAP-2026W29-000138",
+    "iso_week": "2026W29",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0008",
+    "skill_id": "SKL-000014",
+    "source_demand_line_ids": [
+      "DEML-000332"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4015,
+    "gap_fte": 1.4015,
+    "gap_id": "GAP-2026W29-000139",
+    "iso_week": "2026W29",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000038",
+    "source_demand_line_ids": [
+      "DEML-000213"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.3998,
+    "gap_fte": 0.3998,
+    "gap_id": "GAP-2026W29-000140",
+    "iso_week": "2026W29",
+    "risk_level": "Low",
+    "role_id": "ROLE-0016",
+    "skill_id": "SKL-000025",
+    "source_demand_line_ids": [
+      "DEML-000347"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001159"
+    ]
+  },
+  {
+    "demand_fte": 1.1346,
+    "gap_fte": 0.1346,
+    "gap_id": "GAP-2026W29-000141",
+    "iso_week": "2026W29",
+    "risk_level": "Low",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000017",
+    "source_demand_line_ids": [
+      "DEML-000346"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000515"
+    ]
+  },
+  {
+    "demand_fte": 1.3621,
+    "gap_fte": 0.3621,
+    "gap_id": "GAP-2026W29-000142",
+    "iso_week": "2026W29",
+    "risk_level": "Low",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000015",
+    "source_demand_line_ids": [
+      "DEML-000238"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001279"
+    ]
+  },
+  {
+    "demand_fte": 0.4205,
+    "gap_fte": -0.5795,
+    "gap_id": "GAP-2026W29-000143",
+    "iso_week": "2026W29",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0021",
+    "skill_id": "SKL-000043",
+    "source_demand_line_ids": [
+      "DEML-000107"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001797"
+    ]
+  },
+  {
+    "demand_fte": 1.8774,
+    "gap_fte": 1.8774,
+    "gap_id": "GAP-2026W29-000144",
+    "iso_week": "2026W29",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0023",
+    "skill_id": "SKL-000001",
+    "source_demand_line_ids": [
+      "DEML-000033"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.323,
+    "gap_fte": 0.323,
+    "gap_id": "GAP-2026W29-000145",
+    "iso_week": "2026W29",
+    "risk_level": "Low",
+    "role_id": "ROLE-0023",
+    "skill_id": "SKL-000059",
+    "source_demand_line_ids": [
+      "DEML-000160"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4634,
+    "gap_fte": 0.4634,
+    "gap_id": "GAP-2026W29-000146",
+    "iso_week": "2026W29",
+    "risk_level": "Low",
+    "role_id": "ROLE-0030",
+    "skill_id": "SKL-000050",
+    "source_demand_line_ids": [
+      "DEML-000017"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3845,
+    "gap_fte": 0.3845,
+    "gap_id": "GAP-2026W29-000147",
+    "iso_week": "2026W29",
+    "risk_level": "Low",
+    "role_id": "ROLE-0032",
+    "skill_id": "SKL-000010",
+    "source_demand_line_ids": [
+      "DEML-000106"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8695,
+    "gap_fte": 0.8695,
+    "gap_id": "GAP-2026W29-000148",
+    "iso_week": "2026W29",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0033",
+    "skill_id": "SKL-000010",
+    "source_demand_line_ids": [
+      "DEML-000331"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.5764,
+    "gap_fte": 0.5764,
+    "gap_id": "GAP-2026W29-000149",
+    "iso_week": "2026W29",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0033",
+    "skill_id": "SKL-000039",
+    "source_demand_line_ids": [
+      "DEML-000212"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8487,
+    "gap_fte": 0.8487,
+    "gap_id": "GAP-2026W29-000150",
+    "iso_week": "2026W29",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000013",
+    "source_demand_line_ids": [
+      "DEML-000379"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7765,
+    "gap_fte": -0.2235,
+    "gap_id": "GAP-2026W30-000151",
+    "iso_week": "2026W30",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0003",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000161"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001652"
+    ]
+  },
+  {
+    "demand_fte": 1.3964,
+    "gap_fte": 1.3964,
+    "gap_id": "GAP-2026W30-000152",
+    "iso_week": "2026W30",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0007",
+    "skill_id": "SKL-000024",
+    "source_demand_line_ids": [
+      "DEML-000115",
+      "DEML-000241"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.5551,
+    "gap_fte": 0.9551,
+    "gap_id": "GAP-2026W30-000153",
+    "iso_week": "2026W30",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0009",
+    "skill_id": "SKL-000018",
+    "source_demand_line_ids": [
+      "DEML-000035"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-000894"
+    ]
+  },
+  {
+    "demand_fte": 1.377,
+    "gap_fte": 1.377,
+    "gap_id": "GAP-2026W30-000154",
+    "iso_week": "2026W30",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000035",
+    "source_demand_line_ids": [
+      "DEML-000240"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.8918,
+    "gap_fte": 1.8918,
+    "gap_id": "GAP-2026W30-000155",
+    "iso_week": "2026W30",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0023",
+    "skill_id": "SKL-000001",
+    "source_demand_line_ids": [
+      "DEML-000349"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.6316,
+    "gap_fte": 1.6316,
+    "gap_id": "GAP-2026W30-000156",
+    "iso_week": "2026W30",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0025",
+    "skill_id": "SKL-000054",
+    "source_demand_line_ids": [
+      "DEML-000333"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7845,
+    "gap_fte": 0.7845,
+    "gap_id": "GAP-2026W30-000157",
+    "iso_week": "2026W30",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0027",
+    "skill_id": "SKL-000012",
+    "source_demand_line_ids": [
+      "DEML-000114"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.3245,
+    "gap_fte": 1.3245,
+    "gap_id": "GAP-2026W30-000158",
+    "iso_week": "2026W30",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0034",
+    "skill_id": "SKL-000033",
+    "source_demand_line_ids": [
+      "DEML-000214"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.2115,
+    "gap_fte": 1.2115,
+    "gap_id": "GAP-2026W30-000159",
+    "iso_week": "2026W30",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0037",
+    "skill_id": "SKL-000055",
+    "source_demand_line_ids": [
+      "DEML-000034"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4687,
+    "gap_fte": 0.4687,
+    "gap_id": "GAP-2026W30-000160",
+    "iso_week": "2026W30",
+    "risk_level": "Low",
+    "role_id": "ROLE-0038",
+    "skill_id": "SKL-000054",
+    "source_demand_line_ids": [
+      "DEML-000348"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.6597,
+    "gap_fte": -0.3403,
+    "gap_id": "GAP-2026W31-000161",
+    "iso_week": "2026W31",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0002",
+    "skill_id": "SKL-000006",
+    "source_demand_line_ids": [
+      "DEML-000215"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000877"
+    ]
+  },
+  {
+    "demand_fte": 1.6717,
+    "gap_fte": 1.6717,
+    "gap_id": "GAP-2026W31-000162",
+    "iso_week": "2026W31",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000052",
+    "source_demand_line_ids": [
+      "DEML-000037"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9874,
+    "gap_fte": 1.3874,
+    "gap_id": "GAP-2026W31-000163",
+    "iso_week": "2026W31",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0009",
+    "skill_id": "SKL-000018",
+    "source_demand_line_ids": [
+      "DEML-000019"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-000894"
+    ]
+  },
+  {
+    "demand_fte": 1.03,
+    "gap_fte": 0.03,
+    "gap_id": "GAP-2026W31-000164",
+    "iso_week": "2026W31",
+    "risk_level": "Low",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000017",
+    "source_demand_line_ids": [
+      "DEML-000116"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000515"
+    ]
+  },
+  {
+    "demand_fte": 1.4138,
+    "gap_fte": 1.4138,
+    "gap_id": "GAP-2026W31-000165",
+    "iso_week": "2026W31",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0021",
+    "skill_id": "SKL-000052",
+    "source_demand_line_ids": [
+      "DEML-000018"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.8389,
+    "gap_fte": 1.8389,
+    "gap_id": "GAP-2026W31-000166",
+    "iso_week": "2026W31",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0024",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000108"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.2757,
+    "gap_fte": -1.3243,
+    "gap_id": "GAP-2026W31-000167",
+    "iso_week": "2026W31",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0035",
+    "skill_id": "SKL-000035",
+    "source_demand_line_ids": [
+      "DEML-000136"
+    ],
+    "supply_fte": 1.6,
+    "supporting_esk_ids": [
+      "ESK-000848",
+      "ESK-001960"
+    ]
+  },
+  {
+    "demand_fte": 1.1161,
+    "gap_fte": 1.1161,
+    "gap_id": "GAP-2026W31-000168",
+    "iso_week": "2026W31",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0035",
+    "skill_id": "SKL-000055",
+    "source_demand_line_ids": [
+      "DEML-000117"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.138,
+    "gap_fte": 0.638,
+    "gap_id": "GAP-2026W31-000169",
+    "iso_week": "2026W31",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0037",
+    "skill_id": "SKL-000013",
+    "source_demand_line_ids": [
+      "DEML-000036"
+    ],
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000238"
+    ]
+  },
+  {
+    "demand_fte": 1.9593,
+    "gap_fte": 1.9593,
+    "gap_id": "GAP-2026W31-000170",
+    "iso_week": "2026W31",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000013",
+    "source_demand_line_ids": [
+      "DEML-000109"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.2177,
+    "gap_fte": 1.2177,
+    "gap_id": "GAP-2026W32-000171",
+    "iso_week": "2026W32",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0002",
+    "skill_id": "SKL-000049",
+    "source_demand_line_ids": [
+      "DEML-000039"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.3863,
+    "gap_fte": 1.3863,
+    "gap_id": "GAP-2026W32-000172",
+    "iso_week": "2026W32",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000007",
+    "source_demand_line_ids": [
+      "DEML-000118"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.691,
+    "gap_fte": 1.691,
+    "gap_id": "GAP-2026W32-000173",
+    "iso_week": "2026W32",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000052",
+    "source_demand_line_ids": [
+      "DEML-000084"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.5502,
+    "gap_fte": 0.5502,
+    "gap_id": "GAP-2026W32-000174",
+    "iso_week": "2026W32",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0005",
+    "skill_id": "SKL-000053",
+    "source_demand_line_ids": [
+      "DEML-000162"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000400"
+    ]
+  },
+  {
+    "demand_fte": 1.7789,
+    "gap_fte": 1.7789,
+    "gap_id": "GAP-2026W32-000175",
+    "iso_week": "2026W32",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0012",
+    "skill_id": "SKL-000039",
+    "source_demand_line_ids": [
+      "DEML-000217"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4229,
+    "gap_fte": 1.4229,
+    "gap_id": "GAP-2026W32-000176",
+    "iso_week": "2026W32",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000029",
+    "source_demand_line_ids": [
+      "DEML-000334"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.6464,
+    "gap_fte": 0.1464,
+    "gap_id": "GAP-2026W32-000177",
+    "iso_week": "2026W32",
+    "risk_level": "Low",
+    "role_id": "ROLE-0026",
+    "skill_id": "SKL-000013",
+    "source_demand_line_ids": [
+      "DEML-000242"
+    ],
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000954"
+    ]
+  },
+  {
+    "demand_fte": 1.9189,
+    "gap_fte": 1.9189,
+    "gap_id": "GAP-2026W32-000178",
+    "iso_week": "2026W32",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000033",
+    "source_demand_line_ids": [
+      "DEML-000038"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4143,
+    "gap_fte": -0.5857,
+    "gap_id": "GAP-2026W32-000179",
+    "iso_week": "2026W32",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0032",
+    "skill_id": "SKL-000060",
+    "source_demand_line_ids": [
+      "DEML-000163"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001928"
+    ]
+  },
+  {
+    "demand_fte": 1.867,
+    "gap_fte": 1.867,
+    "gap_id": "GAP-2026W32-000180",
+    "iso_week": "2026W32",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000036",
+    "source_demand_line_ids": [
+      "DEML-000216"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4152,
+    "gap_fte": 1.4152,
+    "gap_id": "GAP-2026W32-000181",
+    "iso_week": "2026W32",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000015",
+    "source_demand_line_ids": [
+      "DEML-000243"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 3.4478,
+    "gap_fte": 3.4478,
+    "gap_id": "GAP-2026W33-000182",
+    "iso_week": "2026W33",
+    "risk_level": "High",
+    "role_id": "ROLE-0012",
+    "skill_id": "SKL-000010",
+    "source_demand_line_ids": [
+      "DEML-000374",
+      "DEML-000392"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9984,
+    "gap_fte": 1.9984,
+    "gap_id": "GAP-2026W33-000183",
+    "iso_week": "2026W33",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0014",
+    "skill_id": "SKL-000049",
+    "source_demand_line_ids": [
+      "DEML-000245"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4283,
+    "gap_fte": -0.5717,
+    "gap_id": "GAP-2026W33-000184",
+    "iso_week": "2026W33",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0017",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000110"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001233"
+    ]
+  },
+  {
+    "demand_fte": 0.3225,
+    "gap_fte": -0.6775,
+    "gap_id": "GAP-2026W33-000185",
+    "iso_week": "2026W33",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000028",
+    "source_demand_line_ids": [
+      "DEML-000086"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000526"
+    ]
+  },
+  {
+    "demand_fte": 0.5566,
+    "gap_fte": 0.5566,
+    "gap_id": "GAP-2026W33-000186",
+    "iso_week": "2026W33",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0023",
+    "skill_id": "SKL-000047",
+    "source_demand_line_ids": [
+      "DEML-000368"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4495,
+    "gap_fte": 1.4495,
+    "gap_id": "GAP-2026W33-000187",
+    "iso_week": "2026W33",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0026",
+    "skill_id": "SKL-000049",
+    "source_demand_line_ids": [
+      "DEML-000244"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.5322,
+    "gap_fte": 1.5322,
+    "gap_id": "GAP-2026W33-000188",
+    "iso_week": "2026W33",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0028",
+    "skill_id": "SKL-000004",
+    "source_demand_line_ids": [
+      "DEML-000218"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.327,
+    "gap_fte": -0.673,
+    "gap_id": "GAP-2026W33-000189",
+    "iso_week": "2026W33",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000350"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000177"
+    ]
+  },
+  {
+    "demand_fte": 1.5351,
+    "gap_fte": 1.5351,
+    "gap_id": "GAP-2026W33-000190",
+    "iso_week": "2026W33",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000137"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7374,
+    "gap_fte": -0.2626,
+    "gap_id": "GAP-2026W33-000191",
+    "iso_week": "2026W33",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000026",
+    "source_demand_line_ids": [
+      "DEML-000168"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000645"
+    ]
+  },
+  {
+    "demand_fte": 0.3712,
+    "gap_fte": 0.3712,
+    "gap_id": "GAP-2026W34-000192",
+    "iso_week": "2026W34",
+    "risk_level": "Low",
+    "role_id": "ROLE-0003",
+    "skill_id": "SKL-000060",
+    "source_demand_line_ids": [
+      "DEML-000111"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9899,
+    "gap_fte": 0.9899,
+    "gap_id": "GAP-2026W34-000193",
+    "iso_week": "2026W34",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000014",
+    "source_demand_line_ids": [
+      "DEML-000351"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000071"
+    ]
+  },
+  {
+    "demand_fte": 1.9941,
+    "gap_fte": 1.9941,
+    "gap_id": "GAP-2026W34-000194",
+    "iso_week": "2026W34",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0015",
+    "skill_id": "SKL-000059",
+    "source_demand_line_ids": [
+      "DEML-000336"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.712,
+    "gap_fte": 1.712,
+    "gap_id": "GAP-2026W34-000195",
+    "iso_week": "2026W34",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0018",
+    "skill_id": "SKL-000060",
+    "source_demand_line_ids": [
+      "DEML-000173"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.6692,
+    "gap_fte": 1.6692,
+    "gap_id": "GAP-2026W34-000196",
+    "iso_week": "2026W34",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000045",
+    "source_demand_line_ids": [
+      "DEML-000246"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 3.4464,
+    "gap_fte": 2.4464,
+    "gap_id": "GAP-2026W34-000197",
+    "iso_week": "2026W34",
+    "risk_level": "High",
+    "role_id": "ROLE-0021",
+    "skill_id": "SKL-000042",
+    "source_demand_line_ids": [
+      "DEML-000087",
+      "DEML-000170"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000924"
+    ]
+  },
+  {
+    "demand_fte": 0.7968,
+    "gap_fte": 0.7968,
+    "gap_id": "GAP-2026W34-000198",
+    "iso_week": "2026W34",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0024",
+    "skill_id": "SKL-000053",
+    "source_demand_line_ids": [
+      "DEML-000352"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.5711,
+    "gap_fte": 0.5711,
+    "gap_id": "GAP-2026W34-000199",
+    "iso_week": "2026W34",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0027",
+    "skill_id": "SKL-000024",
+    "source_demand_line_ids": [
+      "DEML-000335"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8091,
+    "gap_fte": 0.8091,
+    "gap_id": "GAP-2026W34-000200",
+    "iso_week": "2026W34",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0029",
+    "skill_id": "SKL-000029",
+    "source_demand_line_ids": [
+      "DEML-000119"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.7367,
+    "gap_fte": 1.7367,
+    "gap_id": "GAP-2026W34-000201",
+    "iso_week": "2026W34",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0034",
+    "skill_id": "SKL-000033",
+    "source_demand_line_ids": [
+      "DEML-000174"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3763,
+    "gap_fte": 0.3763,
+    "gap_id": "GAP-2026W34-000202",
+    "iso_week": "2026W34",
+    "risk_level": "Low",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000001",
+    "source_demand_line_ids": [
+      "DEML-000247"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.7592,
+    "gap_fte": 1.7592,
+    "gap_id": "GAP-2026W35-000203",
+    "iso_week": "2026W35",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000354"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.6702,
+    "gap_fte": -0.3298,
+    "gap_id": "GAP-2026W35-000204",
+    "iso_week": "2026W35",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0012",
+    "skill_id": "SKL-000005",
+    "source_demand_line_ids": [
+      "DEML-000386"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000055"
+    ]
+  },
+  {
+    "demand_fte": 0.4209,
+    "gap_fte": 0.4209,
+    "gap_id": "GAP-2026W35-000205",
+    "iso_week": "2026W35",
+    "risk_level": "Low",
+    "role_id": "ROLE-0018",
+    "skill_id": "SKL-000060",
+    "source_demand_line_ids": [
+      "DEML-000088"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0142,
+    "gap_fte": 0.0142,
+    "gap_id": "GAP-2026W35-000206",
+    "iso_week": "2026W35",
+    "risk_level": "Low",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000028",
+    "source_demand_line_ids": [
+      "DEML-000353"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000526"
+    ]
+  },
+  {
+    "demand_fte": 0.5415,
+    "gap_fte": -0.4585,
+    "gap_id": "GAP-2026W35-000207",
+    "iso_week": "2026W35",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000370"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001315"
+    ]
+  },
+  {
+    "demand_fte": 0.4477,
+    "gap_fte": -0.5523,
+    "gap_id": "GAP-2026W35-000208",
+    "iso_week": "2026W35",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0021",
+    "skill_id": "SKL-000020",
+    "source_demand_line_ids": [
+      "DEML-000112"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001518"
+    ]
+  },
+  {
+    "demand_fte": 0.6765,
+    "gap_fte": 0.6765,
+    "gap_id": "GAP-2026W35-000209",
+    "iso_week": "2026W35",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0028",
+    "skill_id": "SKL-000052",
+    "source_demand_line_ids": [
+      "DEML-000278"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.624,
+    "gap_fte": 1.624,
+    "gap_id": "GAP-2026W36-000210",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0001",
+    "skill_id": "SKL-000055",
+    "source_demand_line_ids": [
+      "DEML-000171"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9506,
+    "gap_fte": 1.9506,
+    "gap_id": "GAP-2026W36-000211",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0005",
+    "skill_id": "SKL-000057",
+    "source_demand_line_ids": [
+      "DEML-000138"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9986,
+    "gap_fte": 0.9986,
+    "gap_id": "GAP-2026W36-000212",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0014",
+    "skill_id": "SKL-000009",
+    "source_demand_line_ids": [
+      "DEML-000089"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8555,
+    "gap_fte": 0.8555,
+    "gap_id": "GAP-2026W36-000213",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000045",
+    "source_demand_line_ids": [
+      "DEML-000069"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9799,
+    "gap_fte": 0.9799,
+    "gap_id": "GAP-2026W36-000214",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0021",
+    "skill_id": "SKL-000042",
+    "source_demand_line_ids": [
+      "DEML-000172"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000924"
+    ]
+  },
+  {
+    "demand_fte": 1.2043,
+    "gap_fte": 1.2043,
+    "gap_id": "GAP-2026W36-000215",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0022",
+    "skill_id": "SKL-000010",
+    "source_demand_line_ids": [
+      "DEML-000139"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7945,
+    "gap_fte": 0.7945,
+    "gap_id": "GAP-2026W36-000216",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0023",
+    "skill_id": "SKL-000001",
+    "source_demand_line_ids": [
+      "DEML-000355"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.2871,
+    "gap_fte": 0.2871,
+    "gap_id": "GAP-2026W36-000217",
+    "iso_week": "2026W36",
+    "risk_level": "Low",
+    "role_id": "ROLE-0023",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000175"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.2111,
+    "gap_fte": 1.2111,
+    "gap_id": "GAP-2026W36-000218",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0025",
+    "skill_id": "SKL-000054",
+    "source_demand_line_ids": [
+      "DEML-000356"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 2.2154,
+    "gap_fte": 2.2154,
+    "gap_id": "GAP-2026W36-000219",
+    "iso_week": "2026W36",
+    "risk_level": "High",
+    "role_id": "ROLE-0027",
+    "skill_id": "SKL-000033",
+    "source_demand_line_ids": [
+      "DEML-000120",
+      "DEML-000279"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7476,
+    "gap_fte": 0.7476,
+    "gap_id": "GAP-2026W36-000220",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0030",
+    "skill_id": "SKL-000040",
+    "source_demand_line_ids": [
+      "DEML-000090"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.6377,
+    "gap_fte": 0.6377,
+    "gap_id": "GAP-2026W36-000221",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0030",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000339"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001903"
+    ]
+  },
+  {
+    "demand_fte": 1.3341,
+    "gap_fte": -0.6659,
+    "gap_id": "GAP-2026W36-000222",
+    "iso_week": "2026W36",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0034",
+    "skill_id": "SKL-000012",
+    "source_demand_line_ids": [
+      "DEML-000280"
+    ],
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000619",
+      "ESK-001556"
+    ]
+  },
+  {
+    "demand_fte": 0.47,
+    "gap_fte": 0.47,
+    "gap_id": "GAP-2026W36-000223",
+    "iso_week": "2026W36",
+    "risk_level": "Low",
+    "role_id": "ROLE-0034",
+    "skill_id": "SKL-000033",
+    "source_demand_line_ids": [
+      "DEML-000121"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.1072,
+    "gap_fte": 1.1072,
+    "gap_id": "GAP-2026W36-000224",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0035",
+    "skill_id": "SKL-000055",
+    "source_demand_line_ids": [
+      "DEML-000338"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.08,
+    "gap_fte": 1.08,
+    "gap_id": "GAP-2026W36-000225",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000001",
+    "source_demand_line_ids": [
+      "DEML-000176"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.6851,
+    "gap_fte": 1.0851,
+    "gap_id": "GAP-2026W36-000226",
+    "iso_week": "2026W36",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0039",
+    "skill_id": "SKL-000021",
+    "source_demand_line_ids": [
+      "DEML-000070"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-001999"
+    ]
+  },
+  {
+    "demand_fte": 1.9995,
+    "gap_fte": 1.9995,
+    "gap_id": "GAP-2026W37-000227",
+    "iso_week": "2026W37",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0008",
+    "skill_id": "SKL-000014",
+    "source_demand_line_ids": [
+      "DEML-000177"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.942,
+    "gap_fte": 1.462,
+    "gap_id": "GAP-2026W37-000228",
+    "iso_week": "2026W37",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0009",
+    "skill_id": "SKL-000018",
+    "source_demand_line_ids": [
+      "DEML-000282",
+      "DEML-000390"
+    ],
+    "supply_fte": 0.48,
+    "supporting_esk_ids": [
+      "ESK-000894"
+    ]
+  },
+  {
+    "demand_fte": 1.9471,
+    "gap_fte": 1.9471,
+    "gap_id": "GAP-2026W37-000229",
+    "iso_week": "2026W37",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000033",
+    "source_demand_line_ids": [
+      "DEML-000372"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 2.0724,
+    "gap_fte": 2.0724,
+    "gap_id": "GAP-2026W37-000230",
+    "iso_week": "2026W37",
+    "risk_level": "High",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000060",
+    "source_demand_line_ids": [
+      "DEML-000382",
+      "DEML-000393"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.2952,
+    "gap_fte": 0.2952,
+    "gap_id": "GAP-2026W37-000231",
+    "iso_week": "2026W37",
+    "risk_level": "Low",
+    "role_id": "ROLE-0033",
+    "skill_id": "SKL-000039",
+    "source_demand_line_ids": [
+      "DEML-000164"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3658,
+    "gap_fte": 0.3658,
+    "gap_id": "GAP-2026W37-000232",
+    "iso_week": "2026W37",
+    "risk_level": "Low",
+    "role_id": "ROLE-0034",
+    "skill_id": "SKL-000033",
+    "source_demand_line_ids": [
+      "DEML-000140"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8206,
+    "gap_fte": 0.8206,
+    "gap_id": "GAP-2026W38-000233",
+    "iso_week": "2026W38",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0001",
+    "skill_id": "SKL-000055",
+    "source_demand_line_ids": [
+      "DEML-000091",
+      "DEML-000358"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.2442,
+    "gap_fte": 1.2442,
+    "gap_id": "GAP-2026W38-000234",
+    "iso_week": "2026W38",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000052",
+    "source_demand_line_ids": [
+      "DEML-000092"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9586,
+    "gap_fte": 0.9586,
+    "gap_id": "GAP-2026W38-000235",
+    "iso_week": "2026W38",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0010",
+    "skill_id": "SKL-000009",
+    "source_demand_line_ids": [
+      "DEML-000283"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0029,
+    "gap_fte": 1.0029,
+    "gap_id": "GAP-2026W38-000236",
+    "iso_week": "2026W38",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0011",
+    "skill_id": "SKL-000019",
+    "source_demand_line_ids": [
+      "DEML-000142"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.109,
+    "gap_fte": 1.109,
+    "gap_id": "GAP-2026W38-000237",
+    "iso_week": "2026W38",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0012",
+    "skill_id": "SKL-000003",
+    "source_demand_line_ids": [
+      "DEML-000166"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 4.0894,
+    "gap_fte": 4.0894,
+    "gap_id": "GAP-2026W38-000238",
+    "iso_week": "2026W38",
+    "risk_level": "High",
+    "role_id": "ROLE-0026",
+    "skill_id": "SKL-000049",
+    "source_demand_line_ids": [
+      "DEML-000367",
+      "DEML-000391"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4409,
+    "gap_fte": 1.4409,
+    "gap_id": "GAP-2026W38-000239",
+    "iso_week": "2026W38",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000033",
+    "source_demand_line_ids": [
+      "DEML-000165"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9017,
+    "gap_fte": 1.9017,
+    "gap_id": "GAP-2026W38-000240",
+    "iso_week": "2026W38",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000001",
+    "source_demand_line_ids": [
+      "DEML-000357"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9789,
+    "gap_fte": 0.9789,
+    "gap_id": "GAP-2026W39-000241",
+    "iso_week": "2026W39",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000007",
+    "source_demand_line_ids": [
+      "DEML-000144"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.7435,
+    "gap_fte": 0.7435,
+    "gap_id": "GAP-2026W39-000242",
+    "iso_week": "2026W39",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0005",
+    "skill_id": "SKL-000037",
+    "source_demand_line_ids": [
+      "DEML-000360"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000391"
+    ]
+  },
+  {
+    "demand_fte": 1.9591,
+    "gap_fte": 0.9591,
+    "gap_id": "GAP-2026W39-000243",
+    "iso_week": "2026W39",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0010",
+    "skill_id": "SKL-000037",
+    "source_demand_line_ids": [
+      "DEML-000179"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-002097"
+    ]
+  },
+  {
+    "demand_fte": 1.8785,
+    "gap_fte": 1.8785,
+    "gap_id": "GAP-2026W39-000244",
+    "iso_week": "2026W39",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0011",
+    "skill_id": "SKL-000015",
+    "source_demand_line_ids": [
+      "DEML-000178"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8292,
+    "gap_fte": -0.1708,
+    "gap_id": "GAP-2026W39-000245",
+    "iso_week": "2026W39",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000029",
+    "source_demand_line_ids": [
+      "DEML-000284"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000449"
+    ]
+  },
+  {
+    "demand_fte": 1.7163,
+    "gap_fte": -0.0837,
+    "gap_id": "GAP-2026W39-000246",
+    "iso_week": "2026W39",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0014",
+    "skill_id": "SKL-000048",
+    "source_demand_line_ids": [
+      "DEML-000143"
+    ],
+    "supply_fte": 1.8,
+    "supporting_esk_ids": [
+      "ESK-000906",
+      "ESK-001772"
+    ]
+  },
+  {
+    "demand_fte": 1.9241,
+    "gap_fte": 1.9241,
+    "gap_id": "GAP-2026W39-000247",
+    "iso_week": "2026W39",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0016",
+    "skill_id": "SKL-000035",
+    "source_demand_line_ids": [
+      "DEML-000359"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0239,
+    "gap_fte": 1.0239,
+    "gap_id": "GAP-2026W39-000248",
+    "iso_week": "2026W39",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0029",
+    "skill_id": "SKL-000045",
+    "source_demand_line_ids": [
+      "DEML-000145"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.5188,
+    "gap_fte": 1.5188,
+    "gap_id": "GAP-2026W39-000249",
+    "iso_week": "2026W39",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0033",
+    "skill_id": "SKL-000039",
+    "source_demand_line_ids": [
+      "DEML-000146"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7375,
+    "gap_fte": 0.1375,
+    "gap_id": "GAP-2026W39-000250",
+    "iso_week": "2026W39",
+    "risk_level": "Low",
+    "role_id": "ROLE-0038",
+    "skill_id": "SKL-000046",
+    "source_demand_line_ids": [
+      "DEML-000167"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-000311"
+    ]
+  },
+  {
+    "demand_fte": 1.2902,
+    "gap_fte": 1.2902,
+    "gap_id": "GAP-2026W39-000251",
+    "iso_week": "2026W39",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0038",
+    "skill_id": "SKL-000054",
+    "source_demand_line_ids": [
+      "DEML-000285"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0577,
+    "gap_fte": 1.0577,
+    "gap_id": "GAP-2026W40-000252",
+    "iso_week": "2026W40",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0002",
+    "skill_id": "SKL-000021",
+    "source_demand_line_ids": [
+      "DEML-000286"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9147,
+    "gap_fte": 0.9147,
+    "gap_id": "GAP-2026W40-000253",
+    "iso_week": "2026W40",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0005",
+    "skill_id": "SKL-000032",
+    "source_demand_line_ids": [
+      "DEML-000072"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.33,
+    "gap_fte": -0.67,
+    "gap_id": "GAP-2026W40-000254",
+    "iso_week": "2026W40",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0005",
+    "skill_id": "SKL-000037",
+    "source_demand_line_ids": [
+      "DEML-000093"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000391"
+    ]
+  },
+  {
+    "demand_fte": 1.166,
+    "gap_fte": 1.166,
+    "gap_id": "GAP-2026W40-000255",
+    "iso_week": "2026W40",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0024",
+    "skill_id": "SKL-000053",
+    "source_demand_line_ids": [
+      "DEML-000094"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0244,
+    "gap_fte": 1.0244,
+    "gap_id": "GAP-2026W40-000256",
+    "iso_week": "2026W40",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0030",
+    "skill_id": "SKL-000050",
+    "source_demand_line_ids": [
+      "DEML-000073"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.8068,
+    "gap_fte": 1.8068,
+    "gap_id": "GAP-2026W40-000257",
+    "iso_week": "2026W40",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000001",
+    "source_demand_line_ids": [
+      "DEML-000181"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.2897,
+    "gap_fte": 0.2897,
+    "gap_id": "GAP-2026W40-000258",
+    "iso_week": "2026W40",
+    "risk_level": "Low",
+    "role_id": "ROLE-0032",
+    "skill_id": "SKL-000060",
+    "source_demand_line_ids": [
+      "DEML-000361"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001928"
+    ]
+  },
+  {
+    "demand_fte": 0.7911,
+    "gap_fte": 0.7911,
+    "gap_id": "GAP-2026W40-000259",
+    "iso_week": "2026W40",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0035",
+    "skill_id": "SKL-000044",
+    "source_demand_line_ids": [
+      "DEML-000180"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.6305,
+    "gap_fte": 0.6305,
+    "gap_id": "GAP-2026W40-000260",
+    "iso_week": "2026W40",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0037",
+    "skill_id": "SKL-000021",
+    "source_demand_line_ids": [
+      "DEML-000248"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.7088,
+    "gap_fte": 1.7088,
+    "gap_id": "GAP-2026W41-000261",
+    "iso_week": "2026W41",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0005",
+    "skill_id": "SKL-000057",
+    "source_demand_line_ids": [
+      "DEML-000182"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.3785,
+    "gap_fte": 1.3785,
+    "gap_id": "GAP-2026W41-000262",
+    "iso_week": "2026W41",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0010",
+    "skill_id": "SKL-000009",
+    "source_demand_line_ids": [
+      "DEML-000362"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4222,
+    "gap_fte": 1.4222,
+    "gap_id": "GAP-2026W41-000263",
+    "iso_week": "2026W41",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000038",
+    "source_demand_line_ids": [
+      "DEML-000375"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.5666,
+    "gap_fte": 0.5666,
+    "gap_id": "GAP-2026W41-000264",
+    "iso_week": "2026W41",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0016",
+    "skill_id": "SKL-000025",
+    "source_demand_line_ids": [
+      "DEML-000095"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001159"
+    ]
+  },
+  {
+    "demand_fte": 1.4863,
+    "gap_fte": 1.4863,
+    "gap_id": "GAP-2026W41-000265",
+    "iso_week": "2026W41",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0017",
+    "skill_id": "SKL-000013",
+    "source_demand_line_ids": [
+      "DEML-000148"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4177,
+    "gap_fte": -0.5823,
+    "gap_id": "GAP-2026W41-000266",
+    "iso_week": "2026W41",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0021",
+    "skill_id": "SKL-000020",
+    "source_demand_line_ids": [
+      "DEML-000147"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001518"
+    ]
+  },
+  {
+    "demand_fte": 1.4227,
+    "gap_fte": 1.4227,
+    "gap_id": "GAP-2026W41-000267",
+    "iso_week": "2026W41",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0026",
+    "skill_id": "SKL-000040",
+    "source_demand_line_ids": [
+      "DEML-000250"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.1695,
+    "gap_fte": 0.1695,
+    "gap_id": "GAP-2026W41-000268",
+    "iso_week": "2026W41",
+    "risk_level": "Low",
+    "role_id": "ROLE-0030",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000249"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001903"
+    ]
+  },
+  {
+    "demand_fte": 2.1872,
+    "gap_fte": 2.1872,
+    "gap_id": "GAP-2026W41-000269",
+    "iso_week": "2026W41",
+    "risk_level": "High",
+    "role_id": "ROLE-0037",
+    "skill_id": "SKL-000041",
+    "source_demand_line_ids": [
+      "DEML-000074",
+      "DEML-000388"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.6166,
+    "gap_fte": -0.3834,
+    "gap_id": "GAP-2026W42-000270",
+    "iso_week": "2026W42",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0010",
+    "skill_id": "SKL-000016",
+    "source_demand_line_ids": [
+      "DEML-000251"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-002087"
+    ]
+  },
+  {
+    "demand_fte": 0.7012,
+    "gap_fte": -0.2988,
+    "gap_id": "GAP-2026W42-000271",
+    "iso_week": "2026W42",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0016",
+    "skill_id": "SKL-000025",
+    "source_demand_line_ids": [
+      "DEML-000150"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001159"
+    ]
+  },
+  {
+    "demand_fte": 1.4211,
+    "gap_fte": 0.4211,
+    "gap_id": "GAP-2026W42-000272",
+    "iso_week": "2026W42",
+    "risk_level": "Low",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000015",
+    "source_demand_line_ids": [
+      "DEML-000075"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001279"
+    ]
+  },
+  {
+    "demand_fte": 0.4002,
+    "gap_fte": -1.5998,
+    "gap_id": "GAP-2026W42-000273",
+    "iso_week": "2026W42",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000025",
+    "source_demand_line_ids": [
+      "DEML-000149"
+    ],
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000763",
+      "ESK-001289"
+    ]
+  },
+  {
+    "demand_fte": 0.7497,
+    "gap_fte": 0.1497,
+    "gap_id": "GAP-2026W42-000274",
+    "iso_week": "2026W42",
+    "risk_level": "Low",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000076"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-001565"
+    ]
+  },
+  {
+    "demand_fte": 1.8256,
+    "gap_fte": 1.8256,
+    "gap_id": "GAP-2026W42-000275",
+    "iso_week": "2026W42",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000012",
+    "source_demand_line_ids": [
+      "DEML-000185"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.5002,
+    "gap_fte": 1.5002,
+    "gap_id": "GAP-2026W42-000276",
+    "iso_week": "2026W42",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000013",
+    "source_demand_line_ids": [
+      "DEML-000184"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9544,
+    "gap_fte": 0.9544,
+    "gap_id": "GAP-2026W43-000277",
+    "iso_week": "2026W43",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0003",
+    "skill_id": "SKL-000024",
+    "source_demand_line_ids": [
+      "DEML-000002"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.139,
+    "gap_fte": 1.139,
+    "gap_id": "GAP-2026W43-000278",
+    "iso_week": "2026W43",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0016",
+    "skill_id": "SKL-000011",
+    "source_demand_line_ids": [
+      "DEML-000078"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8704,
+    "gap_fte": -0.1296,
+    "gap_id": "GAP-2026W43-000279",
+    "iso_week": "2026W43",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0017",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000077"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001233"
+    ]
+  },
+  {
+    "demand_fte": 1.7607,
+    "gap_fte": 1.7607,
+    "gap_id": "GAP-2026W43-000280",
+    "iso_week": "2026W43",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0019",
+    "skill_id": "SKL-000045",
+    "source_demand_line_ids": [
+      "DEML-000003"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4892,
+    "gap_fte": -0.5108,
+    "gap_id": "GAP-2026W43-000281",
+    "iso_week": "2026W43",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000025",
+    "source_demand_line_ids": [
+      "DEML-000380"
+    ],
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000763",
+      "ESK-001289"
+    ]
+  },
+  {
+    "demand_fte": 1.3645,
+    "gap_fte": 1.3645,
+    "gap_id": "GAP-2026W43-000282",
+    "iso_week": "2026W43",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0024",
+    "skill_id": "SKL-000028",
+    "source_demand_line_ids": [
+      "DEML-000187"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.65,
+    "gap_fte": 0.65,
+    "gap_id": "GAP-2026W43-000283",
+    "iso_week": "2026W43",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0035",
+    "skill_id": "SKL-000004",
+    "source_demand_line_ids": [
+      "DEML-000252"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.1453,
+    "gap_fte": 0.5453,
+    "gap_id": "GAP-2026W43-000284",
+    "iso_week": "2026W43",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0039",
+    "skill_id": "SKL-000021",
+    "source_demand_line_ids": [
+      "DEML-000186"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-001999"
+    ]
+  },
+  {
+    "demand_fte": 1.0582,
+    "gap_fte": 1.0582,
+    "gap_id": "GAP-2026W44-000285",
+    "iso_week": "2026W44",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0006",
+    "skill_id": "SKL-000028",
+    "source_demand_line_ids": [
+      "DEML-000254"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.1577,
+    "gap_fte": 1.1577,
+    "gap_id": "GAP-2026W44-000286",
+    "iso_week": "2026W44",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0007",
+    "skill_id": "SKL-000024",
+    "source_demand_line_ids": [
+      "DEML-000079"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.5622,
+    "gap_fte": 1.5622,
+    "gap_id": "GAP-2026W44-000287",
+    "iso_week": "2026W44",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0011",
+    "skill_id": "SKL-000019",
+    "source_demand_line_ids": [
+      "DEML-000152"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8147,
+    "gap_fte": 0.2147,
+    "gap_id": "GAP-2026W44-000288",
+    "iso_week": "2026W44",
+    "risk_level": "Low",
+    "role_id": "ROLE-0015",
+    "skill_id": "SKL-000032",
+    "source_demand_line_ids": [
+      "DEML-000151"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-001781"
+    ]
+  },
+  {
+    "demand_fte": 0.8664,
+    "gap_fte": -0.7336,
+    "gap_id": "GAP-2026W44-000289",
+    "iso_week": "2026W44",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0035",
+    "skill_id": "SKL-000025",
+    "source_demand_line_ids": [
+      "DEML-000255"
+    ],
+    "supply_fte": 1.6,
+    "supporting_esk_ids": [
+      "ESK-000844",
+      "ESK-001069"
+    ]
+  },
+  {
+    "demand_fte": 0.6752,
+    "gap_fte": 0.6752,
+    "gap_id": "GAP-2026W44-000290",
+    "iso_week": "2026W44",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000080"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0492,
+    "gap_fte": 1.0492,
+    "gap_id": "GAP-2026W45-000291",
+    "iso_week": "2026W45",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0006",
+    "skill_id": "SKL-000028",
+    "source_demand_line_ids": [
+      "DEML-000219"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9944,
+    "gap_fte": -0.0056,
+    "gap_id": "GAP-2026W45-000292",
+    "iso_week": "2026W45",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0010",
+    "skill_id": "SKL-000037",
+    "source_demand_line_ids": [
+      "DEML-000154"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-002097"
+    ]
+  },
+  {
+    "demand_fte": 0.6718,
+    "gap_fte": -0.3282,
+    "gap_id": "GAP-2026W45-000293",
+    "iso_week": "2026W45",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000220"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001322"
+    ]
+  },
+  {
+    "demand_fte": 1.6014,
+    "gap_fte": 1.6014,
+    "gap_id": "GAP-2026W45-000294",
+    "iso_week": "2026W45",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0025",
+    "skill_id": "SKL-000023",
+    "source_demand_line_ids": [
+      "DEML-000153"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9405,
+    "gap_fte": 0.9405,
+    "gap_id": "GAP-2026W45-000295",
+    "iso_week": "2026W45",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0029",
+    "skill_id": "SKL-000045",
+    "source_demand_line_ids": [
+      "DEML-000256"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.3947,
+    "gap_fte": 1.3947,
+    "gap_id": "GAP-2026W45-000296",
+    "iso_week": "2026W45",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0033",
+    "skill_id": "SKL-000039",
+    "source_demand_line_ids": [
+      "DEML-000189"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9598,
+    "gap_fte": 0.3598,
+    "gap_id": "GAP-2026W45-000297",
+    "iso_week": "2026W45",
+    "risk_level": "Low",
+    "role_id": "ROLE-0038",
+    "skill_id": "SKL-000046",
+    "source_demand_line_ids": [
+      "DEML-000004"
+    ],
+    "supply_fte": 0.6,
+    "supporting_esk_ids": [
+      "ESK-000311"
+    ]
+  },
+  {
+    "demand_fte": 1.3492,
+    "gap_fte": 1.3492,
+    "gap_id": "GAP-2026W45-000298",
+    "iso_week": "2026W45",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000025",
+    "source_demand_line_ids": [
+      "DEML-000188"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.5818,
+    "gap_fte": 0.5818,
+    "gap_id": "GAP-2026W46-000299",
+    "iso_week": "2026W46",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0003",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000222"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001652"
+    ]
+  },
+  {
+    "demand_fte": 1.6287,
+    "gap_fte": 0.1287,
+    "gap_id": "GAP-2026W46-000300",
+    "iso_week": "2026W46",
+    "risk_level": "Low",
+    "role_id": "ROLE-0006",
+    "skill_id": "SKL-000014",
+    "source_demand_line_ids": [
+      "DEML-000006"
+    ],
+    "supply_fte": 1.5,
+    "supporting_esk_ids": [
+      "ESK-000693",
+      "ESK-001717"
+    ]
+  },
+  {
+    "demand_fte": 0.6036,
+    "gap_fte": -0.3964,
+    "gap_id": "GAP-2026W46-000301",
+    "iso_week": "2026W46",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0010",
+    "skill_id": "SKL-000016",
+    "source_demand_line_ids": [
+      "DEML-000156"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-002087"
+    ]
+  },
+  {
+    "demand_fte": 1.2659,
+    "gap_fte": 1.2659,
+    "gap_id": "GAP-2026W46-000302",
+    "iso_week": "2026W46",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0018",
+    "skill_id": "SKL-000030",
+    "source_demand_line_ids": [
+      "DEML-000221"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7286,
+    "gap_fte": -0.2714,
+    "gap_id": "GAP-2026W46-000303",
+    "iso_week": "2026W46",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000081"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001322"
+    ]
+  },
+  {
+    "demand_fte": 1.3332,
+    "gap_fte": 0.3332,
+    "gap_id": "GAP-2026W46-000304",
+    "iso_week": "2026W46",
+    "risk_level": "Low",
+    "role_id": "ROLE-0021",
+    "skill_id": "SKL-000043",
+    "source_demand_line_ids": [
+      "DEML-000191"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001797"
+    ]
+  },
+  {
+    "demand_fte": 0.7631,
+    "gap_fte": 0.7631,
+    "gap_id": "GAP-2026W46-000305",
+    "iso_week": "2026W46",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0027",
+    "skill_id": "SKL-000012",
+    "source_demand_line_ids": [
+      "DEML-000373"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9101,
+    "gap_fte": 0.9101,
+    "gap_id": "GAP-2026W46-000306",
+    "iso_week": "2026W46",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000190"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000177"
+    ]
+  },
+  {
+    "demand_fte": 1.0767,
+    "gap_fte": 1.0767,
+    "gap_id": "GAP-2026W46-000307",
+    "iso_week": "2026W46",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000012",
+    "source_demand_line_ids": [
+      "DEML-000005"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9402,
+    "gap_fte": 1.9402,
+    "gap_id": "GAP-2026W47-000308",
+    "iso_week": "2026W47",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000035",
+    "source_demand_line_ids": [
+      "DEML-000008"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9486,
+    "gap_fte": -0.0514,
+    "gap_id": "GAP-2026W47-000309",
+    "iso_week": "2026W47",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0017",
+    "skill_id": "SKL-000052",
+    "source_demand_line_ids": [
+      "DEML-000041"
+    ],
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-001234",
+      "ESK-002178"
+    ]
+  },
+  {
+    "demand_fte": 1.3744,
+    "gap_fte": 1.3744,
+    "gap_id": "GAP-2026W47-000310",
+    "iso_week": "2026W47",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0022",
+    "skill_id": "SKL-000043",
+    "source_demand_line_ids": [
+      "DEML-000223"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.1695,
+    "gap_fte": 1.1695,
+    "gap_id": "GAP-2026W47-000311",
+    "iso_week": "2026W47",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0025",
+    "skill_id": "SKL-000054",
+    "source_demand_line_ids": [
+      "DEML-000007"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.8906,
+    "gap_fte": 1.8906,
+    "gap_id": "GAP-2026W47-000312",
+    "iso_week": "2026W47",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0029",
+    "skill_id": "SKL-000029",
+    "source_demand_line_ids": [
+      "DEML-000157"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0575,
+    "gap_fte": 1.0575,
+    "gap_id": "GAP-2026W47-000313",
+    "iso_week": "2026W47",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0034",
+    "skill_id": "SKL-000050",
+    "source_demand_line_ids": [
+      "DEML-000082"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4107,
+    "gap_fte": 1.4107,
+    "gap_id": "GAP-2026W47-000314",
+    "iso_week": "2026W47",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0035",
+    "skill_id": "SKL-000055",
+    "source_demand_line_ids": [
+      "DEML-000040"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.1885,
+    "gap_fte": 0.3885,
+    "gap_id": "GAP-2026W48-000315",
+    "iso_week": "2026W48",
+    "risk_level": "Low",
+    "role_id": "ROLE-0002",
+    "skill_id": "SKL-000006",
+    "source_demand_line_ids": [
+      "DEML-000224"
+    ],
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-000877"
+    ]
+  },
+  {
+    "demand_fte": 0.2717,
+    "gap_fte": -0.5283,
+    "gap_id": "GAP-2026W48-000316",
+    "iso_week": "2026W48",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0003",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000192"
+    ],
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-001652"
+    ]
+  },
+  {
+    "demand_fte": 0.4443,
+    "gap_fte": 0.4443,
+    "gap_id": "GAP-2026W48-000317",
+    "iso_week": "2026W48",
+    "risk_level": "Low",
+    "role_id": "ROLE-0018",
+    "skill_id": "SKL-000054",
+    "source_demand_line_ids": [
+      "DEML-000257"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.6203,
+    "gap_fte": 0.6203,
+    "gap_id": "GAP-2026W48-000318",
+    "iso_week": "2026W48",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0027",
+    "skill_id": "SKL-000012",
+    "source_demand_line_ids": [
+      "DEML-000010"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.2685,
+    "gap_fte": 0.8685,
+    "gap_id": "GAP-2026W48-000319",
+    "iso_week": "2026W48",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0027",
+    "skill_id": "SKL-000046",
+    "source_demand_line_ids": [
+      "DEML-000009"
+    ],
+    "supply_fte": 0.4,
+    "supporting_esk_ids": [
+      "ESK-000133"
+    ]
+  },
+  {
+    "demand_fte": 1.7101,
+    "gap_fte": 1.7101,
+    "gap_id": "GAP-2026W48-000320",
+    "iso_week": "2026W48",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0036",
+    "skill_id": "SKL-000012",
+    "source_demand_line_ids": [
+      "DEML-000083"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 3.0728,
+    "gap_fte": 2.0728,
+    "gap_id": "GAP-2026W49-000321",
+    "iso_week": "2026W49",
+    "risk_level": "High",
+    "role_id": "ROLE-0002",
+    "skill_id": "SKL-000057",
+    "source_demand_line_ids": [
+      "DEML-000012",
+      "DEML-000378"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000661"
+    ]
+  },
+  {
+    "demand_fte": 1.3367,
+    "gap_fte": 1.3367,
+    "gap_id": "GAP-2026W49-000322",
+    "iso_week": "2026W49",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0006",
+    "skill_id": "SKL-000027",
+    "source_demand_line_ids": [
+      "DEML-000258"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.8099,
+    "gap_fte": 0.3099,
+    "gap_id": "GAP-2026W49-000323",
+    "iso_week": "2026W49",
+    "risk_level": "Low",
+    "role_id": "ROLE-0022",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000226"
+    ],
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000103"
+    ]
+  },
+  {
+    "demand_fte": 3.5182,
+    "gap_fte": 3.5182,
+    "gap_id": "GAP-2026W49-000324",
+    "iso_week": "2026W49",
+    "risk_level": "High",
+    "role_id": "ROLE-0023",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000011",
+      "DEML-000387"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.7123,
+    "gap_fte": 1.7123,
+    "gap_id": "GAP-2026W49-000325",
+    "iso_week": "2026W49",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0027",
+    "skill_id": "SKL-000038",
+    "source_demand_line_ids": [
+      "DEML-000365"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.361,
+    "gap_fte": -0.139,
+    "gap_id": "GAP-2026W49-000326",
+    "iso_week": "2026W49",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0037",
+    "skill_id": "SKL-000013",
+    "source_demand_line_ids": [
+      "DEML-000042"
+    ],
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000238"
+    ]
+  },
+  {
+    "demand_fte": 1.9003,
+    "gap_fte": 1.9003,
+    "gap_id": "GAP-2026W49-000327",
+    "iso_week": "2026W49",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0037",
+    "skill_id": "SKL-000055",
+    "source_demand_line_ids": [
+      "DEML-000193"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9442,
+    "gap_fte": 1.9442,
+    "gap_id": "GAP-2026W50-000328",
+    "iso_week": "2026W50",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0006",
+    "skill_id": "SKL-000028",
+    "source_demand_line_ids": [
+      "DEML-000195",
+      "DEML-000389"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7149,
+    "gap_fte": 0.7149,
+    "gap_id": "GAP-2026W50-000329",
+    "iso_week": "2026W50",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000035",
+    "source_demand_line_ids": [
+      "DEML-000194"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.9831,
+    "gap_fte": -0.0169,
+    "gap_id": "GAP-2026W50-000330",
+    "iso_week": "2026W50",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0017",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000259"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001233"
+    ]
+  },
+  {
+    "demand_fte": 1.2906,
+    "gap_fte": 0.2906,
+    "gap_id": "GAP-2026W50-000331",
+    "iso_week": "2026W50",
+    "risk_level": "Low",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000051",
+    "source_demand_line_ids": [
+      "DEML-000227"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001315"
+    ]
+  },
+  {
+    "demand_fte": 1.8346,
+    "gap_fte": 1.8346,
+    "gap_id": "GAP-2026W50-000332",
+    "iso_week": "2026W50",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0023",
+    "skill_id": "SKL-000059",
+    "source_demand_line_ids": [
+      "DEML-000341"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.2888,
+    "gap_fte": 0.2888,
+    "gap_id": "GAP-2026W50-000333",
+    "iso_week": "2026W50",
+    "risk_level": "Low",
+    "role_id": "ROLE-0029",
+    "skill_id": "SKL-000029",
+    "source_demand_line_ids": [
+      "DEML-000340"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0377,
+    "gap_fte": 0.0377,
+    "gap_id": "GAP-2026W51-000334",
+    "iso_week": "2026W51",
+    "risk_level": "Low",
+    "role_id": "ROLE-0003",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000342"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001652"
+    ]
+  },
+  {
+    "demand_fte": 1.9585,
+    "gap_fte": 1.9585,
+    "gap_id": "GAP-2026W51-000335",
+    "iso_week": "2026W51",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0014",
+    "skill_id": "SKL-000021",
+    "source_demand_line_ids": [
+      "DEML-000261"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.0109,
+    "gap_fte": 1.0109,
+    "gap_id": "GAP-2026W51-000336",
+    "iso_week": "2026W51",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0025",
+    "skill_id": "SKL-000023",
+    "source_demand_line_ids": [
+      "DEML-000260"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.3956,
+    "gap_fte": 0.3956,
+    "gap_id": "GAP-2026W51-000337",
+    "iso_week": "2026W51",
+    "risk_level": "Low",
+    "role_id": "ROLE-0031",
+    "skill_id": "SKL-000036",
+    "source_demand_line_ids": [
+      "DEML-000196"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.5646,
+    "gap_fte": 0.5646,
+    "gap_id": "GAP-2026W51-000338",
+    "iso_week": "2026W51",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0033",
+    "skill_id": "SKL-000039",
+    "source_demand_line_ids": [
+      "DEML-000045"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.4822,
+    "gap_fte": -0.5178,
+    "gap_id": "GAP-2026W51-000339",
+    "iso_week": "2026W51",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0034",
+    "skill_id": "SKL-000012",
+    "source_demand_line_ids": [
+      "DEML-000044"
+    ],
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000619",
+      "ESK-001556"
+    ]
+  },
+  {
+    "demand_fte": 1.1967,
+    "gap_fte": 1.1967,
+    "gap_id": "GAP-2026W51-000340",
+    "iso_week": "2026W51",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0040",
+    "skill_id": "SKL-000002",
+    "source_demand_line_ids": [
+      "DEML-000343"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.4103,
+    "gap_fte": -0.3897,
+    "gap_id": "GAP-2026W52-000341",
+    "iso_week": "2026W52",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0005",
+    "skill_id": "SKL-000015",
+    "source_demand_line_ids": [
+      "DEML-000344"
+    ],
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-000377"
+    ]
+  },
+  {
+    "demand_fte": 1.2553,
+    "gap_fte": 1.2553,
+    "gap_id": "GAP-2026W52-000342",
+    "iso_week": "2026W52",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0007",
+    "skill_id": "SKL-000036",
+    "source_demand_line_ids": [
+      "DEML-000345"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.2685,
+    "gap_fte": 0.4685,
+    "gap_id": "GAP-2026W52-000343",
+    "iso_week": "2026W52",
+    "risk_level": "Low",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000014",
+    "source_demand_line_ids": [
+      "DEML-000047"
+    ],
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-000071"
+    ]
+  },
+  {
+    "demand_fte": 0.7803,
+    "gap_fte": -0.0197,
+    "gap_id": "GAP-2026W52-000344",
+    "iso_week": "2026W52",
+    "risk_level": "Covered",
+    "role_id": "ROLE-0020",
+    "skill_id": "SKL-000041",
+    "source_demand_line_ids": [
+      "DEML-000376"
+    ],
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-001305"
+    ]
+  },
+  {
+    "demand_fte": 0.9949,
+    "gap_fte": 0.5149,
+    "gap_id": "GAP-2026W52-000345",
+    "iso_week": "2026W52",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0038",
+    "skill_id": "SKL-000046",
+    "source_demand_line_ids": [
+      "DEML-000046"
+    ],
+    "supply_fte": 0.48,
+    "supporting_esk_ids": [
+      "ESK-000311"
+    ]
+  },
+  {
+    "demand_fte": 0.4923,
+    "gap_fte": 0.4923,
+    "gap_id": "GAP-2026W52-000346",
+    "iso_week": "2026W52",
+    "risk_level": "Low",
+    "role_id": "ROLE-0039",
+    "skill_id": "SKL-000038",
+    "source_demand_line_ids": [
+      "DEML-000262"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.1901,
+    "gap_fte": 1.1901,
+    "gap_id": "GAP-2026W53-000347",
+    "iso_week": "2026W53",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0022",
+    "skill_id": "SKL-000030",
+    "source_demand_line_ids": [
+      "DEML-000198"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 0.7561,
+    "gap_fte": 0.2561,
+    "gap_id": "GAP-2026W53-000348",
+    "iso_week": "2026W53",
+    "risk_level": "Low",
+    "role_id": "ROLE-0022",
+    "skill_id": "SKL-000058",
+    "source_demand_line_ids": [
+      "DEML-000048"
+    ],
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000103"
+    ]
+  },
+  {
+    "demand_fte": 0.9727,
+    "gap_fte": 0.9727,
+    "gap_id": "GAP-2026W53-000349",
+    "iso_week": "2026W53",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0024",
+    "skill_id": "SKL-000042",
+    "source_demand_line_ids": [
+      "DEML-000263"
+    ],
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
+  },
+  {
+    "demand_fte": 1.9682,
+    "gap_fte": 0.9682,
+    "gap_id": "GAP-2026W53-000350",
+    "iso_week": "2026W53",
+    "risk_level": "Medium",
+    "role_id": "ROLE-0025",
+    "skill_id": "SKL-000017",
+    "source_demand_line_ids": [
+      "DEML-000264"
+    ],
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000935"
+    ]
+  }
+]

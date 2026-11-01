@@ -1,0 +1,26 @@
+[
+  {
+    "holiday_date": "2026-01-01",
+    "name": "Synthetic holiday 1"
+  },
+  {
+    "holiday_date": "2026-05-25",
+    "name": "Synthetic holiday 2"
+  },
+  {
+    "holiday_date": "2026-07-03",
+    "name": "Synthetic holiday 3"
+  },
+  {
+    "holiday_date": "2026-09-07",
+    "name": "Synthetic holiday 4"
+  },
+  {
+    "holiday_date": "2026-11-26",
+    "name": "Synthetic holiday 5"
+  },
+  {
+    "holiday_date": "2026-12-25",
+    "name": "Synthetic holiday 6"
+  }
+]

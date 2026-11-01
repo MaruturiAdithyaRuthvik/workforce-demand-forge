@@ -1,7 +1,7 @@
 .PHONY: setup starter full validate test repro all clean
 
 setup:
-	python -m pip install -e ".[dev]"
+	uv sync --extra dev
 
 starter:
 	wdf generate --scale starter --seed 20261022 --out output/starter

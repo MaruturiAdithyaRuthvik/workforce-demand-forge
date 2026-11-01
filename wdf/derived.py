@@ -27,6 +27,7 @@ def compute_derived(
 
     availability = []
     avail_by_key: dict[tuple[str, str], dict] = {}
+    availability_counter = 1
     for employee in sources["employees"]:
         fte = employee["fte"]
         capacity = 40.0 * fte
@@ -41,7 +42,7 @@ def compute_derived(
             leave_hours = min(capacity, len(leave_days) * 8.0 * fte)
             holiday_hours = min(max(0.0, capacity - leave_hours), len(holiday_days) * 8.0 * fte)
             row = {
-                "availability_id": f"AVL-{employee['employee_id'][4:]}-{week['iso_week']}",
+                "availability_id": entity_id("AVL", availability_counter),
                 "employee_id": employee["employee_id"],
                 "iso_week": week["iso_week"],
                 "capacity_hours": round(capacity, 4),
@@ -50,6 +51,7 @@ def compute_derived(
                 "available_hours": round(max(0.0, capacity - leave_hours - holiday_hours), 4),
             }
             availability.append(row)
+            availability_counter += 1
             avail_by_key[(employee["employee_id"], str(week["iso_week"]))] = row
 
     employee_skills_by_employee: dict[str, list[dict]] = defaultdict(list)

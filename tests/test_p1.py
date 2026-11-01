@@ -1,3 +1,5 @@
+from datetime import date
+
 from wdf.calendar import iso_weeks
 from wdf.config import load_scale, load_settings
 from wdf.masters import generate_masters
@@ -23,3 +25,12 @@ def test_master_generation_is_deterministic_and_referential():
     employees = {row["employee_id"] for row in first["employees"]}
     assert all(row["manager_id"] is None or row["manager_id"] in employees for row in first["employees"])
     assert all(row["role_id"] in {r["role_id"] for r in first["roles"]} for row in first["employees"])
+
+
+def test_baseline_skill_currency_is_expiry_derived_and_stale_rate_is_in_range():
+    data = generate_masters(20261022, employees=300, skills=60, projects=30, roles=40)
+    as_of = date(2026, 10, 22)
+    for row in data["employee_skills"]:
+        assert (row["currency_flag"] == "Current") == (date.fromisoformat(row["expiry_date"]) >= as_of)
+    stale_rate = sum(row["currency_flag"] == "Stale" for row in data["employee_skills"]) / len(data["employee_skills"])
+    assert 0.12 <= stale_rate <= 0.18

@@ -8,7 +8,7 @@ thresholds:
   over_utilization: 1.0
   stale_rate_min: 0.12
   stale_rate_max: 0.18
-  headcount_budget: 12
+  headcount_budget: 8
 forecast:
   confidence:
     Planned: 0.45

@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import date, timedelta
 
 from wdf.calendar import iso_weeks
-from wdf.ids import demand_id, entity_id
+from wdf.ids import allocation_id, demand_id, entity_id
 from wdf.masters import generate_masters, rng_for
 
 
@@ -99,6 +99,8 @@ def generate_sources(
         revision = dict(original)
         revision["demand_line_id"] = entity_id("DEML", line_counter)
         revision["required_fte"] = round(float(original["required_fte"]) * 1.1, 4)
+        header = next(row for row in demand_headers if row["demand_id"] == original["demand_id"])
+        revision["created_on"] = max(original["created_on"], str(header["week_start"]))
         revision["supersedes_line_id"] = original["demand_line_id"]
         revision["status"] = "Approved"
         original["status"] = "Superseded"
@@ -137,7 +139,7 @@ def generate_sources(
         ]
         basis = employee_skills[int(alloc_rng.integers(0, len(employee_skills)))] if employee_skills else None
         allocations.append({
-            "allocation_id": entity_id("ALLOC", index),
+            "allocation_id": allocation_id(index),
             "employee_id": employee["employee_id"],
             "project_id": project["project_id"],
             "role_id": employee["role_id"],
@@ -174,8 +176,26 @@ def generate_sources(
         events.append(_event("Allocation", row["allocation_id"], row["status"], row["start_date"], "Synthetic staffing"))
     for row in training:
         events.append(_event("Training", row["training_id"], row["status"], row["start_date"], "Synthetic development"))
+    superseding_by_id = {
+        row["supersedes_line_id"]: row for row in demand_lines if row["supersedes_line_id"]
+    }
     for row in demand_lines:
-        events.append(_event("DemandLine", row["demand_line_id"], row["status"], row["created_on"], "Synthetic planning"))
+        if row["status"] == "Superseded":
+            events.append(_event(
+                "DemandLine", row["demand_line_id"], "Approved", row["created_on"], "Synthetic approval"
+            ))
+            superseding = superseding_by_id[row["demand_line_id"]]
+            events.append({
+                "event_id": "",
+                "entity_type": "DemandLine",
+                "entity_id": row["demand_line_id"],
+                "from_state": "Approved",
+                "to_state": "Superseded",
+                "effective_date": superseding["created_on"],
+                "reason": "Replaced by appended demand revision",
+            })
+        else:
+            events.append(_event("DemandLine", row["demand_line_id"], row["status"], row["created_on"], "Synthetic planning"))
     events.sort(key=lambda event: (event["entity_type"], event["entity_id"], event["effective_date"]))
     for index, event in enumerate(events, start=1):
         event["event_id"] = entity_id("EVT", index)

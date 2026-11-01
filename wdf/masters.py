@@ -84,12 +84,13 @@ def generate_masters(seed: int, employees: int, skills: int, projects: int, role
         for skill_index in sorted(int(value) for value in selected):
             skill = skill_rows[skill_index]
             is_stale = bool(esk_rng.random() < 0.15)
-            expiry = (
-                AS_OF - timedelta(days=int(esk_rng.integers(1, 91)))
+            validity = int(skill["validity_months"])
+            verified = (
+                add_months(AS_OF, -validity) - timedelta(days=int(esk_rng.integers(1, 91)))
                 if is_stale
-                else AS_OF + timedelta(days=int(esk_rng.integers(1, 366)))
+                else AS_OF - timedelta(days=int(esk_rng.integers(0, validity * 30 + 1)))
             )
-            verified = add_months(expiry, -skill["validity_months"])
+            expiry = add_months(verified, validity)
             employee_skill_rows.append({
                 "employee_skill_id": entity_id("ESK", esk_index),
                 "employee_id": employee["employee_id"],

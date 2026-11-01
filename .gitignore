@@ -9,3 +9,6 @@ dist/
 output/full/
 output/repro*/
 output/heldout/
+output/*
+!output/starter/
+!output/starter/**

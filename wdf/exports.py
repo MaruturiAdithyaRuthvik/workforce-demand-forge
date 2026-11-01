@@ -50,20 +50,25 @@ FOREIGN_KEYS = {
 }
 
 ENUMS = {
+    ("roles", "family"): ["Engineering", "Data", "QA", "Design", "PM", "DevOps", "Security", "Support"],
+    ("skills", "category"): ["Technical", "Domain", "Leadership", "Platform", "Compliance"],
     ("employees", "employment_type"): ["FT", "PT"],
     ("employees", "status"): ["Active", "Inactive"],
+    ("employee_skills", "currency_flag"): ["Current", "Stale"],
     ("projects", "priority"): ["Low", "Medium", "High", "Critical"],
     ("projects", "staffing_model"): ["Shared-Pool", "Dedicated-Team"],
     ("projects", "status"): ["Planned", "Active", "Completed", "Cancelled"],
-    ("employee_skills", "currency_flag"): ["Current", "Stale"],
     ("demand_lines", "source"): ["PlanTool", "ResourceRequest"],
     ("demand_lines", "status"): ["Draft", "Approved", "Superseded"],
+    ("leave", "leave_type"): ["Annual", "Sick", "Care", "Other"],
     ("leave", "status"): ["Approved", "Pending", "Rejected"],
     ("allocations", "status"): ["Proposed", "Active", "Completed", "Cancelled"],
     ("training", "status"): ["Planned", "Enrolled", "Completed", "Failed", "Cancelled"],
     ("gap_actions", "action_type"): ["Reverify", "Train", "Hire", "Reallocate", "Contract"],
     ("gap_actions", "owner_actor"): ["Employee", "Manager", "HR Partner", "IT/Ops Partner", "System Admin"],
     ("gap_actions", "status"): ["Proposed", "Approved", "InProgress", "Done", "Rejected", "Escalated"],
+    ("gap_analysis", "risk_level"): ["Covered", "Low", "Medium", "High"],
+    ("lifecycle_events", "entity_type"): ["Employee", "Project", "Allocation", "Training", "DemandLine"],
 }
 
 INSERT_ORDER = [
@@ -151,6 +156,8 @@ def _schema_sql(tables: dict[str, list[dict]]) -> str:
             if enum_table == table and field in columns:
                 literals = ", ".join(_sql_literal(value) for value in values)
                 definitions.append(f'CHECK ("{field}" IN ({literals}))')
+        if table == "employees" and "fte" in columns:
+            definitions.append('CHECK ("fte" IN (1.0, 0.8, 0.6, 0.5))')
         statements.append(f'CREATE TABLE "{table}" (\n  ' + ",\n  ".join(definitions) + "\n);")
     return "\n\n".join(statements) + "\n"
 
@@ -213,6 +220,9 @@ def write_exports(
     command: str,
 ) -> dict:
     output.mkdir(parents=True, exist_ok=True)
+    for stale_report in (output / "detections.csv", output / "detections.json"):
+        if stale_report.exists():
+            stale_report.unlink()
     tables = {**sources, **derived}
     for name in sorted(tables):
         rows = _sort_key(name, tables[name])
@@ -222,6 +232,8 @@ def write_exports(
     (output / "schema.sql").write_text(_schema_sql(tables), encoding="utf-8", newline="\n")
     (output / "seed.sql").write_text(_seed_sql(tables), encoding="utf-8", newline="\n")
     database = output / "workforce.db"
+    if database.exists():
+        database.unlink()
     connection = sqlite3.connect(database)
     try:
         connection.executescript((output / "schema.sql").read_text(encoding="utf-8"))

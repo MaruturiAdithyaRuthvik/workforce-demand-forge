@@ -1,0 +1,141 @@
+[
+  {
+    "detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
+    "entity": "Allocation",
+    "iso_week": "2026W36",
+    "issue_subtype": null,
+    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
+    "record_id": "ALLOC-2026-000028"
+  },
+  {
+    "detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
+    "entity": "Allocation",
+    "iso_week": "2026W40",
+    "issue_subtype": null,
+    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
+    "record_id": "ALLOC-2026-000090"
+  },
+  {
+    "detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
+    "entity": "Allocation",
+    "iso_week": "2026W40",
+    "issue_subtype": null,
+    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
+    "record_id": "ALLOC-2026-000120"
+  },
+  {
+    "detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
+    "entity": "Allocation",
+    "iso_week": "2026W08",
+    "issue_subtype": null,
+    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
+    "record_id": "ALLOC-2026-000200"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000387"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000388"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000389"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000390"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000391"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000392"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000393"
+  },
+  {
+    "detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
+    "entity": "Allocation",
+    "iso_week": "2026W39",
+    "issue_subtype": null,
+    "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
+    "record_id": "ALLOC-2026-000301"
+  },
+  {
+    "detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
+    "entity": "Allocation",
+    "iso_week": "2026W53",
+    "issue_subtype": null,
+    "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
+    "record_id": "ALLOC-2026-000302"
+  },
+  {
+    "detection_rule": "SKILL_FLAG_EXPIRY_MISMATCH",
+    "entity": "EmployeeSkill",
+    "issue_subtype": "FLAG_WRONG",
+    "issue_type": "STALE_SKILL_TREATED_CURRENT",
+    "record_id": "ESK-000496"
+  },
+  {
+    "detection_rule": "SKILL_FLAG_EXPIRY_MISMATCH",
+    "entity": "EmployeeSkill",
+    "issue_subtype": "FLAG_WRONG",
+    "issue_type": "STALE_SKILL_TREATED_CURRENT",
+    "record_id": "ESK-000528"
+  },
+  {
+    "detection_rule": "SKILL_FLAG_EXPIRY_MISMATCH",
+    "entity": "EmployeeSkill",
+    "issue_subtype": "FLAG_WRONG",
+    "issue_type": "STALE_SKILL_TREATED_CURRENT",
+    "record_id": "ESK-001381"
+  },
+  {
+    "detection_rule": "SKILL_FLAG_EXPIRY_MISMATCH",
+    "entity": "EmployeeSkill",
+    "issue_subtype": "FLAG_WRONG",
+    "issue_type": "STALE_SKILL_TREATED_CURRENT",
+    "record_id": "ESK-001396"
+  },
+  {
+    "detection_rule": "SKILL_FLAG_EXPIRY_MISMATCH",
+    "entity": "EmployeeSkill",
+    "issue_subtype": "FLAG_WRONG",
+    "issue_type": "STALE_SKILL_TREATED_CURRENT",
+    "record_id": "ESK-001420"
+  },
+  {
+    "detection_rule": "SKILL_FLAG_EXPIRY_MISMATCH",
+    "entity": "EmployeeSkill",
+    "issue_subtype": "FLAG_WRONG",
+    "issue_type": "STALE_SKILL_TREATED_CURRENT",
+    "record_id": "ESK-001946"
+  }
+]

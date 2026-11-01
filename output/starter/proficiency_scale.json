@@ -1,0 +1,22 @@
+[
+  {
+    "definition": "Awareness",
+    "proficiency": 1
+  },
+  {
+    "definition": "Basic",
+    "proficiency": 2
+  },
+  {
+    "definition": "Working",
+    "proficiency": 3
+  },
+  {
+    "definition": "Advanced",
+    "proficiency": 4
+  },
+  {
+    "definition": "Expert",
+    "proficiency": 5
+  }
+]

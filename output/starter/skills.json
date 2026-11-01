@@ -1,0 +1,362 @@
+[
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0001",
+    "skill_id": "SKL-000001",
+    "validity_months": 36
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0002",
+    "skill_id": "SKL-000002",
+    "validity_months": 24
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0003",
+    "skill_id": "SKL-000003",
+    "validity_months": 18
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0004",
+    "skill_id": "SKL-000004",
+    "validity_months": 24
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0005",
+    "skill_id": "SKL-000005",
+    "validity_months": 36
+  },
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0006",
+    "skill_id": "SKL-000006",
+    "validity_months": 36
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0007",
+    "skill_id": "SKL-000007",
+    "validity_months": 36
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0008",
+    "skill_id": "SKL-000008",
+    "validity_months": 12
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0009",
+    "skill_id": "SKL-000009",
+    "validity_months": 18
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0010",
+    "skill_id": "SKL-000010",
+    "validity_months": 12
+  },
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0011",
+    "skill_id": "SKL-000011",
+    "validity_months": 12
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0012",
+    "skill_id": "SKL-000012",
+    "validity_months": 36
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0013",
+    "skill_id": "SKL-000013",
+    "validity_months": 18
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0014",
+    "skill_id": "SKL-000014",
+    "validity_months": 18
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0015",
+    "skill_id": "SKL-000015",
+    "validity_months": 36
+  },
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0016",
+    "skill_id": "SKL-000016",
+    "validity_months": 36
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0017",
+    "skill_id": "SKL-000017",
+    "validity_months": 24
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0018",
+    "skill_id": "SKL-000018",
+    "validity_months": 36
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0019",
+    "skill_id": "SKL-000019",
+    "validity_months": 12
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0020",
+    "skill_id": "SKL-000020",
+    "validity_months": 36
+  },
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0021",
+    "skill_id": "SKL-000021",
+    "validity_months": 24
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0022",
+    "skill_id": "SKL-000022",
+    "validity_months": 12
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0023",
+    "skill_id": "SKL-000023",
+    "validity_months": 36
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0024",
+    "skill_id": "SKL-000024",
+    "validity_months": 36
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0025",
+    "skill_id": "SKL-000025",
+    "validity_months": 36
+  },
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0026",
+    "skill_id": "SKL-000026",
+    "validity_months": 24
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0027",
+    "skill_id": "SKL-000027",
+    "validity_months": 12
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0028",
+    "skill_id": "SKL-000028",
+    "validity_months": 18
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0029",
+    "skill_id": "SKL-000029",
+    "validity_months": 24
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0030",
+    "skill_id": "SKL-000030",
+    "validity_months": 24
+  },
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0031",
+    "skill_id": "SKL-000031",
+    "validity_months": 18
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0032",
+    "skill_id": "SKL-000032",
+    "validity_months": 24
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0033",
+    "skill_id": "SKL-000033",
+    "validity_months": 24
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0034",
+    "skill_id": "SKL-000034",
+    "validity_months": 36
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0035",
+    "skill_id": "SKL-000035",
+    "validity_months": 24
+  },
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0036",
+    "skill_id": "SKL-000036",
+    "validity_months": 36
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0037",
+    "skill_id": "SKL-000037",
+    "validity_months": 12
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0038",
+    "skill_id": "SKL-000038",
+    "validity_months": 12
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0039",
+    "skill_id": "SKL-000039",
+    "validity_months": 24
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0040",
+    "skill_id": "SKL-000040",
+    "validity_months": 24
+  },
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0041",
+    "skill_id": "SKL-000041",
+    "validity_months": 24
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0042",
+    "skill_id": "SKL-000042",
+    "validity_months": 36
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0043",
+    "skill_id": "SKL-000043",
+    "validity_months": 18
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0044",
+    "skill_id": "SKL-000044",
+    "validity_months": 24
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0045",
+    "skill_id": "SKL-000045",
+    "validity_months": 36
+  },
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0046",
+    "skill_id": "SKL-000046",
+    "validity_months": 24
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0047",
+    "skill_id": "SKL-000047",
+    "validity_months": 18
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0048",
+    "skill_id": "SKL-000048",
+    "validity_months": 18
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0049",
+    "skill_id": "SKL-000049",
+    "validity_months": 18
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0050",
+    "skill_id": "SKL-000050",
+    "validity_months": 24
+  },
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0051",
+    "skill_id": "SKL-000051",
+    "validity_months": 24
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0052",
+    "skill_id": "SKL-000052",
+    "validity_months": 18
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0053",
+    "skill_id": "SKL-000053",
+    "validity_months": 24
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0054",
+    "skill_id": "SKL-000054",
+    "validity_months": 24
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0055",
+    "skill_id": "SKL-000055",
+    "validity_months": 36
+  },
+  {
+    "category": "Technical",
+    "name": "Synthetic Skill 0056",
+    "skill_id": "SKL-000056",
+    "validity_months": 24
+  },
+  {
+    "category": "Domain",
+    "name": "Synthetic Skill 0057",
+    "skill_id": "SKL-000057",
+    "validity_months": 36
+  },
+  {
+    "category": "Leadership",
+    "name": "Synthetic Skill 0058",
+    "skill_id": "SKL-000058",
+    "validity_months": 18
+  },
+  {
+    "category": "Platform",
+    "name": "Synthetic Skill 0059",
+    "skill_id": "SKL-000059",
+    "validity_months": 36
+  },
+  {
+    "category": "Compliance",
+    "name": "Synthetic Skill 0060",
+    "skill_id": "SKL-000060",
+    "validity_months": 12
+  }
+]
