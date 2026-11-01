@@ -130,7 +130,11 @@ def generate_sources(
         span = max(1, (project_end - project_start).days)
         start_day = project_start + timedelta(days=int(alloc_rng.integers(0, span)))
         end_day = min(project_end, start_day + timedelta(days=int(alloc_rng.integers(21, 100))))
-        employee_skills = skills_by_employee.get(employee["employee_id"], [])
+        employee_skills = [
+            row for row in skills_by_employee.get(employee["employee_id"], [])
+            if row["currency_flag"] == "Current"
+            and date.fromisoformat(row["expiry_date"]) >= start_day
+        ]
         basis = employee_skills[int(alloc_rng.integers(0, len(employee_skills)))] if employee_skills else None
         allocations.append({
             "allocation_id": entity_id("ALLOC", index),

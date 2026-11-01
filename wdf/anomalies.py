@@ -50,7 +50,7 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
     previous_pct = allocation["allocation_pct"]
     allocation["allocation_pct"] = 1.25
     truth.append({
-        "record_id": "GT-000001", "entity": "Allocation",
+        "record_id": allocation["allocation_id"], "entity": "Allocation",
         "issue_type": "ALLOC_EXCEEDS_AVAILABILITY", "issue_subtype": None,
         "injected_field": "allocation_pct", "original_value": previous_pct,
         "injected_value": 1.25, "expected_detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
@@ -67,7 +67,7 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
     prior_flag = stale["currency_flag"]
     stale["currency_flag"] = "Current"
     truth.append({
-        "record_id": "GT-000002", "entity": "EmployeeSkill",
+        "record_id": stale["employee_skill_id"], "entity": "EmployeeSkill",
         "issue_type": "STALE_SKILL_TREATED_CURRENT", "issue_subtype": "FLAG_WRONG",
         "injected_field": "currency_flag", "original_value": prior_flag,
         "injected_value": "Current", "expected_detection_rule": "SKILL_FLAG_EXPIRY_MISMATCH",
@@ -91,7 +91,7 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
         "reason": "Synthetic duplicate demand request",
     })
     truth.append({
-        "record_id": "GT-000003", "entity": "DemandLine",
+        "record_id": duplicate["demand_line_id"], "entity": "DemandLine",
         "issue_type": "DEMAND_DOUBLE_COUNTED", "issue_subtype": None,
         "injected_field": "demand_line_id", "original_value": None,
         "injected_value": duplicate["demand_line_id"], "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
@@ -122,7 +122,7 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
         "reason": "Synthetic overlapping project assignment",
     })
     truth.append({
-        "record_id": "GT-000004", "entity": "Allocation",
+        "record_id": new_allocation["allocation_id"], "entity": "Allocation",
         "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT", "issue_subtype": None,
         "injected_field": "project_id", "original_value": primary["project_id"],
         "injected_value": alternate_project["project_id"], "expected_detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
@@ -188,13 +188,45 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
 
     active_project = next(
         (row for row in sources["projects"] if row["status"] == "Active"
+         and row["project_id"] not in {
+             primary["project_id"], alternate_project["project_id"], allocation["project_id"],
+             negative_allocation["project_id"], project["project_id"]
+         }
+         and any(
+             alloc["project_id"] == row["project_id"]
+             and date.fromisoformat(alloc["start_date"]) <= AS_OF
+             for alloc in sources["allocations"]
+         )
          and any(alloc["project_id"] == row["project_id"] for alloc in sources["allocations"])),
         None,
     )
+    if active_project is None:
+         project_number = max(int(row["project_id"].split("-")[-1]) for row in sources["projects"]) + 1
+         active_project = {
+             "project_id": f"PRJ-2026-{project_number:06d}", "start_date": "2026-01-05",
+             "end_date": "2026-12-31", "priority": "Medium", "staffing_model": "Shared-Pool",
+             "status": "Active",
+         }
+         sources["projects"].append(active_project)
+         _append_event(sources, "Project", active_project["project_id"], None, "Active",
+                       active_project["start_date"], "Synthetic cancellation edge-case project")
+         employee = sources["employees"][-1]
+         fallback_allocation = {
+             "allocation_id": entity_id("ALLOC", _next_number(sources["allocations"], "allocation_id", "ALLOC")),
+             "employee_id": employee["employee_id"], "project_id": active_project["project_id"],
+             "role_id": employee["role_id"], "start_date": "2026-02-01", "end_date": "2026-10-01",
+             "allocation_pct": 0.1, "skill_basis_esk_id": None, "status": "Active",
+         }
+         sources["allocations"].append(fallback_allocation)
+         _append_event(sources, "Allocation", fallback_allocation["allocation_id"], None, "Active",
+                       fallback_allocation["start_date"], "Synthetic cancellation edge-case staffing")
     if active_project:
         start = date.fromisoformat(active_project["start_date"])
-        end = date.fromisoformat(active_project["end_date"])
-        cancellation_day = start + timedelta(days=min(30, max(1, (end - start).days // 2)))
+        allocation_starts = [
+            date.fromisoformat(row["start_date"]) for row in sources["allocations"]
+            if row["project_id"] == active_project["project_id"]
+        ]
+        cancellation_day = max(start, max(allocation_starts))
         cancellation_date = cancellation_day.isoformat()
         prior_project_state = active_project["status"]
         active_project["status"] = "Cancelled"
