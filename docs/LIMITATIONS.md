@@ -1,6 +1,7 @@
 # Limitations
 
 - All datasets, evaluation labels, and detector results are synthetic; they are not operational recommendations or evidence of real-world accuracy.
+- Starter validation intentionally reports `11 approved demand business-key duplicate(s), surfaced for anomaly detection` and `6 employee skill currency flag(s) disagree with expiry and are detector cases`. These are the injected duplicate-demand and stale-skill/current-flag test cases; validation still reports zero structural errors. Warning counts scale with the generated dataset and seed.
 - Project-level forecasts are allocated from historical project/role demand shares for the moving-average method and from visible pipeline lines for pipeline methods. This reconciles to role totals but does not model project-specific drivers beyond those observed lines and shares; project-level backtest errors are consequently worse in some method/horizon combinations.
 - Full-scale rolling-origin backtests show pipeline realization adjustment wins WAPE at 4/8/12 weeks, but still underforecasts at 8 and 12 weeks. Results vary by seed and synthetic demand profile.
 - Perfect detector scores on the three tested seeds reflect deterministic injected conditions matching deterministic rules. They should not be interpreted as production precision or recall.

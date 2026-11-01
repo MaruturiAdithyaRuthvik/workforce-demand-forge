@@ -31,6 +31,7 @@ These are real results from seed `20261022` (held-out seed `20261023`):
 
 - Rows: 300 employees, 60 skills, 30 projects, 567 demand lines, 457 allocations, 15,900 availability rows, 15,900 utilization rows, 514 gap rows, and 325 gap actions.
 - Validation: **PASS**, 0 errors; 11 approved demand duplicates and 6 injected skill currency mismatches were reported as expected anomaly findings.
+- Exact starter validation warnings: `11 approved demand business-key duplicate(s), surfaced for anomaly detection`; `6 employee skill currency flag(s) disagree with expiry and are detector cases`. These are intentional injected anomaly fixtures (duplicate Approved demand and stale-skill/current-flag mismatch), not structural validation failures.
 - Detector P/R/F1: **1.000 / 1.000 / 1.000** for each of the four issue types on both seeds.
 - Full-scale generation and validation: **87.16 seconds**, with a sampled process-tree peak working set of **739.9 MiB** on the local Windows/Python 3.14.7 environment.
 - Reproducibility: **PASS**; 46 canonical CSV/JSON/SQL files and the logical SQLite dump matched for repeated seed `20261022`; seed `20261023` changed 39 file hashes.
