@@ -108,16 +108,23 @@ def generate_masters(seed: int, employees: int, skills: int, projects: int, role
 
     project_rows = []
     for index in range(1, projects + 1):
-        start = date(2026, 1, 5) + timedelta(days=int(project_rng.integers(0, 320)))
-        duration_days = int(np.clip(project_rng.lognormal(mean=4.0, sigma=0.65), 35, 430))
-        end = start + timedelta(days=duration_days)
+        if index <= min(2, projects):
+            start, end = date(2026, 1, 5), date(2026, 12, 31)
+            staffing_model = "Shared-Pool"
+        else:
+            start = date(2026, 1, 5) + timedelta(days=int(project_rng.integers(0, 320)))
+            duration_days = int(np.clip(project_rng.lognormal(mean=4.0, sigma=0.65), 35, 430))
+            end = start + timedelta(days=duration_days)
+            staffing_model = str(project_rng.choice(
+                ["Shared-Pool", "Dedicated-Team"], p=[0.75, 0.25]
+            ))
         status = "Planned" if start > AS_OF else ("Completed" if end < AS_OF else "Active")
         project_rows.append({
             "project_id": project_id(index),
             "start_date": start.isoformat(),
             "end_date": end.isoformat(),
             "priority": str(project_rng.choice(["Low", "Medium", "High", "Critical"], p=[0.15, 0.4, 0.35, 0.1])),
-            "staffing_model": str(project_rng.choice(["Shared-Pool", "Dedicated-Team"], p=[0.75, 0.25])),
+            "staffing_model": staffing_model,
             "status": status,
         })
 

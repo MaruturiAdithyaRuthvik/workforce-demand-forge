@@ -12,6 +12,11 @@ thresholds:
 allocation_realism:
   minimum_allocations_per_employee: 1.5
   shared_overlap_employee_share: 0.2
+leave_realism:
+  employee_share: 0.8
+  full_week_records_per_employee: 2
+  short_records_per_employee: 1
+  month_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.2, 2.0, 1.7, 1.0, 1.0, 1.0, 2.0]
 forecast:
   confidence:
     Planned: 0.45

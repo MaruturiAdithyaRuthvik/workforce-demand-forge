@@ -4,6 +4,8 @@ from itertools import combinations
 from math import ceil
 from datetime import date, timedelta
 
+import numpy as np
+
 from wdf.calendar import iso_weeks
 from wdf.config import load_settings
 from wdf.ids import allocation_id, demand_id, entity_id
@@ -116,20 +118,74 @@ def generate_sources(
         demand_lines.append(revision)
         line_counter += 1
 
+    leave_config = load_settings().leave_realism
+    eligible_count = min(
+        employees, max(1, round(employees * leave_config.employee_share))
+    )
+    leave_employee_indices = set(
+        int(value) for value in leave_rng.choice(employees, size=eligible_count, replace=False)
+    )
+    week_starts: dict[int, list[date]] = {month: [] for month in range(1, 13)}
+    for week in weeks:
+        week_start = date.fromisoformat(str(week["week_start"]))
+        if week_start.year == 2026 and week_start + timedelta(days=4) <= date(2026, 12, 31):
+            week_starts[week_start.month].append(week_start)
+
+    month_weights = np.asarray(leave_config.month_weights, dtype=float)
+    if np.any(month_weights <= 0):
+        raise ValueError("Leave month weights must all be positive")
+    month_probabilities = month_weights / month_weights.sum()
     leave_rows = []
-    for index, employee in enumerate(data["employees"], start=1):
-        if leave_rng.random() < 0.12:
-            season = int(leave_rng.choice([0, 1, 2, 3]))
-            start_day = date(2026, [2, 5, 7, 12][season], int(leave_rng.integers(1, 22)))
-            length = int(leave_rng.choice([1, 2, 3, 5, 10]))
-            leave_rows.append({
-                "leave_id": entity_id("LEAVE", index),
-                "employee_id": employee["employee_id"],
-                "start_date": start_day.isoformat(),
-                "end_date": (start_day + timedelta(days=length - 1)).isoformat(),
-                "leave_type": str(leave_rng.choice(["Annual", "Sick", "Care", "Other"])),
-                "status": "Approved",
-            })
+
+    def leave_month() -> int:
+        return int(leave_rng.choice(np.arange(1, 13), p=month_probabilities))
+
+    def append_leave(employee: dict, start_day: date, length: int) -> None:
+        leave_rows.append({
+            "leave_id": entity_id("LEAVE", len(leave_rows) + 1),
+            "employee_id": employee["employee_id"],
+            "start_date": start_day.isoformat(),
+            "end_date": (start_day + timedelta(days=length - 1)).isoformat(),
+            "leave_type": str(leave_rng.choice(["Annual", "Sick", "Care", "Other"])),
+            "status": "Approved",
+        })
+
+    for employee_index, employee in enumerate(data["employees"]):
+        if employee_index not in leave_employee_indices:
+            continue
+        used_weeks = set()
+        for _ in range(leave_config.full_week_records_per_employee):
+            available_months = [
+                month for month in range(1, 13)
+                if any(start.isocalendar().week not in used_weeks for start in week_starts[month])
+            ]
+            weights = np.asarray(
+                [month_weights[month - 1] for month in available_months], dtype=float
+            )
+            weights /= weights.sum()
+            month = int(leave_rng.choice(available_months, p=weights))
+            candidates = [
+                start for start in week_starts[month]
+                if start.isocalendar().week not in used_weeks
+            ]
+            start_day = candidates[int(leave_rng.integers(0, len(candidates)))]
+            used_weeks.add(start_day.isocalendar().week)
+            append_leave(employee, start_day, 5)
+
+        for _ in range(leave_config.short_records_per_employee):
+            for _attempt in range(100):
+                month = leave_month()
+                start_day = date(2026, month, int(leave_rng.integers(1, 29)))
+                length = int(leave_rng.choice([1, 2, 3]))
+                if not any(
+                    start_day <= date.fromisoformat(row["end_date"])
+                    and date.fromisoformat(row["start_date"]) <= start_day + timedelta(days=length - 1)
+                    for row in leave_rows if row["employee_id"] == employee["employee_id"]
+                ):
+                    break
+            else:
+                raise ValueError(f"Unable to place non-overlapping short leave for {employee['employee_id']}")
+            append_leave(employee, start_day, length)
 
     allocation_targets = load_settings().allocation_realism
     allocations = []

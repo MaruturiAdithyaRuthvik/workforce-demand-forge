@@ -1,5 +1,8 @@
 from collections import defaultdict
+from datetime import date
 
+from wdf.config import load_settings
+from wdf.derived import compute_derived
 from wdf.transactions import generate_sources
 
 
@@ -39,3 +42,29 @@ def test_lifecycle_events_cover_current_transaction_states():
         if row["entity_type"] == "DemandLine" and row["entity_id"] == superseded_line["demand_line_id"]
     ]
     assert [row["to_state"] for row in revision_history] == ["Approved", "Superseded"]
+
+
+def test_leave_covers_all_months_has_seasonality_and_creates_full_weeks_off():
+    sources = generate_sources(59, employees=300, skills=24, projects=20, roles=8)
+    employee_count = len(sources["employees"])
+    employees_with_leave = {row["employee_id"] for row in sources["leave"]}
+    assert 0.7 <= len(employees_with_leave) / employee_count <= 0.9
+
+    month_counts = defaultdict(int)
+    durations = defaultdict(int)
+    for row in sources["leave"]:
+        month_counts[int(row["start_date"][5:7])] += 1
+        duration = (
+            date.fromisoformat(row["end_date"]) - date.fromisoformat(row["start_date"])
+        ).days + 1
+        durations[duration] += 1
+    assert set(month_counts) == set(range(1, 13))
+    assert (month_counts[7] + month_counts[8] + month_counts[12]) / len(sources["leave"]) > 0.3
+    assert any(duration <= 3 for duration in durations)
+    assert durations[5] > 0
+
+    derived = compute_derived(sources, load_settings().thresholds.model_dump())
+    zero_share = sum(row["available_hours"] == 0 for row in derived["availability"]) / len(
+        derived["availability"]
+    )
+    assert 0.02 <= zero_share <= 0.04

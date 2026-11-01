@@ -26,6 +26,13 @@ class AllocationRealism(BaseModel):
     shared_overlap_employee_share: float = Field(gt=0, le=1)
 
 
+class LeaveRealism(BaseModel):
+    employee_share: float = Field(gt=0, le=1)
+    full_week_records_per_employee: int = Field(ge=1)
+    short_records_per_employee: int = Field(ge=0)
+    month_weights: list[float] = Field(min_length=12, max_length=12)
+
+
 class Settings(BaseModel):
     model_config = ConfigDict(extra="forbid")
     as_of: date
@@ -33,6 +40,7 @@ class Settings(BaseModel):
     anomaly_rate: float = Field(ge=0, le=1)
     thresholds: Thresholds
     allocation_realism: AllocationRealism
+    leave_realism: LeaveRealism
     forecast: dict[str, Any]
 
 
