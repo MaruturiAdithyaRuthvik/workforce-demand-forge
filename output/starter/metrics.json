@@ -3,7 +3,7 @@
   "evaluation": {
     "cross_type_confusion": [
       {
-        "count": 4,
+        "count": 3,
         "detected": "ALLOC_EXCEEDS_AVAILABILITY",
         "expected": "ALLOC_EXCEEDS_AVAILABILITY"
       },
@@ -13,7 +13,7 @@
         "expected": "DEMAND_DOUBLE_COUNTED"
       },
       {
-        "count": 2,
+        "count": 3,
         "detected": "OVERLAPPING_PROJECT_ASSIGNMENT",
         "expected": "OVERLAPPING_PROJECT_ASSIGNMENT"
       },
@@ -41,7 +41,7 @@
           "expected": "OVERLAPPING_PROJECT_ASSIGNMENT"
         },
         {
-          "count": 7,
+          "count": 6,
           "detected": "STALE_SKILL_TREATED_CURRENT",
           "expected": "STALE_SKILL_TREATED_CURRENT"
         }
@@ -77,7 +77,7 @@
           "false_positive": 0,
           "precision": 1.0,
           "recall": 1.0,
-          "true_positive": 7
+          "true_positive": 6
         }
       },
       "seed": 20261023
@@ -89,7 +89,7 @@
         "false_positive": 0,
         "precision": 1.0,
         "recall": 1.0,
-        "true_positive": 4
+        "true_positive": 3
       },
       "DEMAND_DOUBLE_COUNTED": {
         "f1": 1.0,
@@ -105,7 +105,7 @@
         "false_positive": 0,
         "precision": 1.0,
         "recall": 1.0,
-        "true_positive": 2
+        "true_positive": 3
       },
       "STALE_SKILL_TREATED_CURRENT": {
         "f1": 1.0,
@@ -125,36 +125,36 @@
     "methods": {
       "moving_average_4w": [
         {
-          "bias": -0.11106859904884239,
+          "bias": -0.10846023106775068,
           "horizon_weeks": 4,
-          "wape": 1.5708390386733782
+          "wape": 1.5722791467965693
         },
         {
-          "bias": -0.19031045377843514,
+          "bias": -0.17950303699415882,
           "horizon_weeks": 8,
-          "wape": 1.5192312736388625
+          "wape": 1.5265993238281492
         },
         {
-          "bias": -0.288706505517418,
+          "bias": -0.27861578744359655,
           "horizon_weeks": 12,
-          "wape": 1.460490606359371
+          "wape": 1.4681800432791765
         }
       ],
       "pipeline_adjusted": [
         {
-          "bias": -0.43907962407875806,
+          "bias": -0.4302663454098789,
           "horizon_weeks": 4,
-          "wape": 0.43907962407875795
+          "wape": 0.4302663454098788
         },
         {
-          "bias": -0.5650273863792681,
+          "bias": -0.5586485951897534,
           "horizon_weeks": 8,
-          "wape": 0.565027386379268
+          "wape": 0.5586485951897534
         },
         {
-          "bias": -0.6747339050593143,
+          "bias": -0.6710992822405034,
           "horizon_weeks": 12,
-          "wape": 0.6747339050593143
+          "wape": 0.6710992822405035
         }
       ]
     }

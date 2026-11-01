@@ -38,9 +38,9 @@
     "iso_week": "2026W06",
     "role_id": "ROLE-0009",
     "skill_id": "SKL-000018",
-    "supply_fte": 0.6,
+    "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000894"
+      "ESK-001281"
     ]
   },
   {
@@ -54,27 +54,24 @@
     "iso_week": "2026W06",
     "role_id": "ROLE-0012",
     "skill_id": "SKL-000053",
-    "supply_fte": 0.6,
-    "supporting_esk_ids": [
-      "ESK-001128"
-    ]
-  },
-  {
-    "iso_week": "2026W06",
-    "role_id": "ROLE-0013",
-    "skill_id": "SKL-000038",
     "supply_fte": 0.0,
     "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W06",
+    "role_id": "ROLE-0013",
+    "skill_id": "SKL-000038",
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000479"
+    ]
+  },
+  {
+    "iso_week": "2026W06",
     "role_id": "ROLE-0017",
     "skill_id": "SKL-000028",
-    "supply_fte": 2.0,
-    "supporting_esk_ids": [
-      "ESK-001210",
-      "ESK-002154"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W06",
@@ -89,17 +86,15 @@
     "skill_id": "SKL-000051",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001315"
+      "ESK-000503"
     ]
   },
   {
     "iso_week": "2026W06",
     "role_id": "ROLE-0030",
     "skill_id": "SKL-000058",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001903"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W07",
@@ -112,19 +107,15 @@
     "iso_week": "2026W07",
     "role_id": "ROLE-0019",
     "skill_id": "SKL-000028",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000526"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W07",
     "role_id": "ROLE-0020",
     "skill_id": "SKL-000041",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001305"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W07",
@@ -151,8 +142,11 @@
     "iso_week": "2026W08",
     "role_id": "ROLE-0011",
     "skill_id": "SKL-000019",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000722",
+      "ESK-001588"
+    ]
   },
   {
     "iso_week": "2026W08",
@@ -165,33 +159,34 @@
     "iso_week": "2026W08",
     "role_id": "ROLE-0027",
     "skill_id": "SKL-000038",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000564"
+    ]
   },
   {
     "iso_week": "2026W09",
     "role_id": "ROLE-0011",
     "skill_id": "SKL-000019",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000722",
+      "ESK-001588"
+    ]
   },
   {
     "iso_week": "2026W09",
     "role_id": "ROLE-0013",
     "skill_id": "SKL-000029",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000449"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W09",
     "role_id": "ROLE-0019",
     "skill_id": "SKL-000017",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000515"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W10",
@@ -211,29 +206,22 @@
     "iso_week": "2026W10",
     "role_id": "ROLE-0020",
     "skill_id": "SKL-000025",
-    "supply_fte": 2.0,
-    "supporting_esk_ids": [
-      "ESK-000763",
-      "ESK-001289"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W10",
     "role_id": "ROLE-0032",
     "skill_id": "SKL-000030",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001553"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W11",
     "role_id": "ROLE-0002",
     "skill_id": "SKL-000006",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000877"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W11",
@@ -260,8 +248,10 @@
     "iso_week": "2026W11",
     "role_id": "ROLE-0022",
     "skill_id": "SKL-000010",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-001686"
+    ]
   },
   {
     "iso_week": "2026W11",
@@ -281,23 +271,30 @@
     "iso_week": "2026W11",
     "role_id": "ROLE-0039",
     "skill_id": "SKL-000038",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001139"
+    ]
   },
   {
     "iso_week": "2026W12",
     "role_id": "ROLE-0025",
     "skill_id": "SKL-000023",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000524",
+      "ESK-001884"
+    ]
   },
   {
     "iso_week": "2026W12",
     "role_id": "ROLE-0032",
     "skill_id": "SKL-000023",
-    "supply_fte": 1.0,
+    "supply_fte": 2.8,
     "supporting_esk_ids": [
-      "ESK-000825"
+      "ESK-001497",
+      "ESK-001730",
+      "ESK-001955"
     ]
   },
   {
@@ -318,19 +315,15 @@
     "iso_week": "2026W14",
     "role_id": "ROLE-0012",
     "skill_id": "SKL-000005",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000055"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W14",
     "role_id": "ROLE-0030",
     "skill_id": "SKL-000058",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001903"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W14",
@@ -338,26 +331,22 @@
     "skill_id": "SKL-000058",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000177"
+      "ESK-001035"
     ]
   },
   {
     "iso_week": "2026W14",
     "role_id": "ROLE-0032",
     "skill_id": "SKL-000030",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001553"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W14",
     "role_id": "ROLE-0039",
     "skill_id": "SKL-000021",
-    "supply_fte": 0.6,
-    "supporting_esk_ids": [
-      "ESK-001999"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W15",
@@ -370,8 +359,10 @@
     "iso_week": "2026W15",
     "role_id": "ROLE-0014",
     "skill_id": "SKL-000009",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001609"
+    ]
   },
   {
     "iso_week": "2026W15",
@@ -386,7 +377,7 @@
     "skill_id": "SKL-000042",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000924"
+      "ESK-001386"
     ]
   },
   {
@@ -407,19 +398,17 @@
     "iso_week": "2026W15",
     "role_id": "ROLE-0027",
     "skill_id": "SKL-000046",
-    "supply_fte": 0.5,
+    "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000133"
+      "ESK-000572"
     ]
   },
   {
     "iso_week": "2026W16",
     "role_id": "ROLE-0015",
     "skill_id": "SKL-000032",
-    "supply_fte": 0.6,
-    "supporting_esk_ids": [
-      "ESK-001781"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W16",
@@ -434,24 +423,27 @@
     "skill_id": "SKL-000058",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000177"
+      "ESK-001035"
     ]
   },
   {
     "iso_week": "2026W16",
     "role_id": "ROLE-0036",
     "skill_id": "SKL-000002",
-    "supply_fte": 0.6,
+    "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001565"
+      "ESK-001064"
     ]
   },
   {
     "iso_week": "2026W17",
     "role_id": "ROLE-0001",
     "skill_id": "SKL-000008",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.8,
+    "supporting_esk_ids": [
+      "ESK-000195",
+      "ESK-000437"
+    ]
   },
   {
     "iso_week": "2026W17",
@@ -478,18 +470,19 @@
     "iso_week": "2026W18",
     "role_id": "ROLE-0034",
     "skill_id": "SKL-000012",
-    "supply_fte": 2.0,
+    "supply_fte": 0.8,
     "supporting_esk_ids": [
-      "ESK-000619",
-      "ESK-001556"
+      "ESK-001525"
     ]
   },
   {
     "iso_week": "2026W18",
     "role_id": "ROLE-0040",
     "skill_id": "SKL-000015",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001164"
+    ]
   },
   {
     "iso_week": "2026W19",
@@ -502,26 +495,24 @@
     "iso_week": "2026W19",
     "role_id": "ROLE-0003",
     "skill_id": "SKL-000032",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001682"
-    ]
-  },
-  {
-    "iso_week": "2026W19",
-    "role_id": "ROLE-0004",
-    "skill_id": "SKL-000051",
     "supply_fte": 0.0,
     "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W19",
-    "role_id": "ROLE-0010",
-    "skill_id": "SKL-000037",
+    "role_id": "ROLE-0004",
+    "skill_id": "SKL-000051",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-002097"
+      "ESK-001240"
     ]
+  },
+  {
+    "iso_week": "2026W19",
+    "role_id": "ROLE-0010",
+    "skill_id": "SKL-000037",
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W19",
@@ -548,8 +539,10 @@
     "iso_week": "2026W19",
     "role_id": "ROLE-0027",
     "skill_id": "SKL-000012",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000130"
+    ]
   },
   {
     "iso_week": "2026W19",
@@ -569,18 +562,18 @@
     "iso_week": "2026W20",
     "role_id": "ROLE-0017",
     "skill_id": "SKL-000051",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001233"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W20",
     "role_id": "ROLE-0032",
     "skill_id": "SKL-000023",
-    "supply_fte": 1.0,
+    "supply_fte": 2.8,
     "supporting_esk_ids": [
-      "ESK-000825"
+      "ESK-001497",
+      "ESK-001730",
+      "ESK-001955"
     ]
   },
   {
@@ -601,19 +594,15 @@
     "iso_week": "2026W21",
     "role_id": "ROLE-0001",
     "skill_id": "SKL-000030",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001618"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W21",
     "role_id": "ROLE-0010",
     "skill_id": "SKL-000037",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-002097"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W21",
@@ -626,8 +615,10 @@
     "iso_week": "2026W21",
     "role_id": "ROLE-0025",
     "skill_id": "SKL-000051",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001912"
+    ]
   },
   {
     "iso_week": "2026W21",
@@ -640,10 +631,8 @@
     "iso_week": "2026W22",
     "role_id": "ROLE-0015",
     "skill_id": "SKL-000032",
-    "supply_fte": 0.48,
-    "supporting_esk_ids": [
-      "ESK-001781"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W22",
@@ -651,7 +640,8 @@
     "skill_id": "SKL-000025",
     "supply_fte": 0.8,
     "supporting_esk_ids": [
-      "ESK-001159"
+      "ESK-000316",
+      "ESK-000770"
     ]
   },
   {
@@ -686,8 +676,10 @@
     "iso_week": "2026W22",
     "role_id": "ROLE-0039",
     "skill_id": "SKL-000038",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-001139"
+    ]
   },
   {
     "iso_week": "2026W23",
@@ -695,7 +687,7 @@
     "skill_id": "SKL-000051",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001315"
+      "ESK-000503"
     ]
   },
   {
@@ -709,8 +701,10 @@
     "iso_week": "2026W23",
     "role_id": "ROLE-0036",
     "skill_id": "SKL-000012",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000414"
+    ]
   },
   {
     "iso_week": "2026W24",
@@ -723,17 +717,20 @@
     "iso_week": "2026W24",
     "role_id": "ROLE-0010",
     "skill_id": "SKL-000016",
-    "supply_fte": 1.0,
+    "supply_fte": 0.8,
     "supporting_esk_ids": [
-      "ESK-002087"
+      "ESK-001282"
     ]
   },
   {
     "iso_week": "2026W24",
     "role_id": "ROLE-0014",
     "skill_id": "SKL-000049",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000274",
+      "ESK-001649"
+    ]
   },
   {
     "iso_week": "2026W24",
@@ -753,17 +750,18 @@
     "iso_week": "2026W24",
     "role_id": "ROLE-0038",
     "skill_id": "SKL-000046",
-    "supply_fte": 0.6,
-    "supporting_esk_ids": [
-      "ESK-000311"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W24",
     "role_id": "ROLE-0039",
     "skill_id": "SKL-000059",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.8,
+    "supporting_esk_ids": [
+      "ESK-000191",
+      "ESK-000433"
+    ]
   },
   {
     "iso_week": "2026W25",
@@ -776,27 +774,29 @@
     "iso_week": "2026W25",
     "role_id": "ROLE-0020",
     "skill_id": "SKL-000041",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001305"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W25",
     "role_id": "ROLE-0021",
     "skill_id": "SKL-000020",
-    "supply_fte": 1.0,
+    "supply_fte": 3.8,
     "supporting_esk_ids": [
-      "ESK-001518"
+      "ESK-000370",
+      "ESK-000505",
+      "ESK-001367",
+      "ESK-001682"
     ]
   },
   {
     "iso_week": "2026W25",
     "role_id": "ROLE-0021",
     "skill_id": "SKL-000043",
-    "supply_fte": 1.0,
+    "supply_fte": 2.0,
     "supporting_esk_ids": [
-      "ESK-001797"
+      "ESK-000845",
+      "ESK-001387"
     ]
   },
   {
@@ -810,17 +810,19 @@
     "iso_week": "2026W26",
     "role_id": "ROLE-0009",
     "skill_id": "SKL-000018",
-    "supply_fte": 0.6,
+    "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000894"
+      "ESK-001281"
     ]
   },
   {
     "iso_week": "2026W26",
     "role_id": "ROLE-0012",
     "skill_id": "SKL-000003",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-002037"
+    ]
   },
   {
     "iso_week": "2026W26",
@@ -835,24 +837,27 @@
     "skill_id": "SKL-000015",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001279"
+      "ESK-000086"
     ]
   },
   {
     "iso_week": "2026W26",
     "role_id": "ROLE-0021",
     "skill_id": "SKL-000043",
-    "supply_fte": 1.0,
+    "supply_fte": 2.0,
     "supporting_esk_ids": [
-      "ESK-001797"
+      "ESK-000845",
+      "ESK-001387"
     ]
   },
   {
     "iso_week": "2026W26",
     "role_id": "ROLE-0024",
     "skill_id": "SKL-000002",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000099"
+    ]
   },
   {
     "iso_week": "2026W26",
@@ -879,10 +884,8 @@
     "iso_week": "2026W27",
     "role_id": "ROLE-0001",
     "skill_id": "SKL-000041",
-    "supply_fte": 0.8,
-    "supporting_esk_ids": [
-      "ESK-001629"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W27",
@@ -902,17 +905,17 @@
     "iso_week": "2026W27",
     "role_id": "ROLE-0011",
     "skill_id": "SKL-000004",
-    "supply_fte": 0.8,
-    "supporting_esk_ids": [
-      "ESK-000727"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W27",
     "role_id": "ROLE-0018",
     "skill_id": "SKL-000060",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.64,
+    "supporting_esk_ids": [
+      "ESK-000364"
+    ]
   },
   {
     "iso_week": "2026W27",
@@ -939,24 +942,30 @@
     "iso_week": "2026W27",
     "role_id": "ROLE-0036",
     "skill_id": "SKL-000002",
-    "supply_fte": 0.48,
+    "supply_fte": 0.8,
     "supporting_esk_ids": [
-      "ESK-001565"
+      "ESK-001064"
     ]
   },
   {
     "iso_week": "2026W27",
     "role_id": "ROLE-0039",
     "skill_id": "SKL-000059",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.44,
+    "supporting_esk_ids": [
+      "ESK-000191",
+      "ESK-000433"
+    ]
   },
   {
     "iso_week": "2026W28",
     "role_id": "ROLE-0001",
     "skill_id": "SKL-000008",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.8,
+    "supporting_esk_ids": [
+      "ESK-000195",
+      "ESK-000437"
+    ]
   },
   {
     "iso_week": "2026W28",
@@ -969,26 +978,24 @@
     "iso_week": "2026W28",
     "role_id": "ROLE-0010",
     "skill_id": "SKL-000037",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-002097"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W28",
     "role_id": "ROLE-0012",
     "skill_id": "SKL-000053",
-    "supply_fte": 0.6,
-    "supporting_esk_ids": [
-      "ESK-001128"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W28",
     "role_id": "ROLE-0013",
     "skill_id": "SKL-000038",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000479"
+    ]
   },
   {
     "iso_week": "2026W28",
@@ -1008,10 +1015,8 @@
     "iso_week": "2026W28",
     "role_id": "ROLE-0017",
     "skill_id": "SKL-000051",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001233"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W28",
@@ -1031,11 +1036,8 @@
     "iso_week": "2026W28",
     "role_id": "ROLE-0020",
     "skill_id": "SKL-000025",
-    "supply_fte": 2.0,
-    "supporting_esk_ids": [
-      "ESK-000763",
-      "ESK-001289"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W28",
@@ -1055,8 +1057,10 @@
     "iso_week": "2026W28",
     "role_id": "ROLE-0040",
     "skill_id": "SKL-000025",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001174"
+    ]
   },
   {
     "iso_week": "2026W29",
@@ -1069,8 +1073,10 @@
     "iso_week": "2026W29",
     "role_id": "ROLE-0013",
     "skill_id": "SKL-000038",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000479"
+    ]
   },
   {
     "iso_week": "2026W29",
@@ -1078,17 +1084,16 @@
     "skill_id": "SKL-000025",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001159"
+      "ESK-000316",
+      "ESK-000770"
     ]
   },
   {
     "iso_week": "2026W29",
     "role_id": "ROLE-0019",
     "skill_id": "SKL-000017",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000515"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W29",
@@ -1096,16 +1101,17 @@
     "skill_id": "SKL-000015",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001279"
+      "ESK-000086"
     ]
   },
   {
     "iso_week": "2026W29",
     "role_id": "ROLE-0021",
     "skill_id": "SKL-000043",
-    "supply_fte": 1.0,
+    "supply_fte": 2.0,
     "supporting_esk_ids": [
-      "ESK-001797"
+      "ESK-000845",
+      "ESK-001387"
     ]
   },
   {
@@ -1119,15 +1125,20 @@
     "iso_week": "2026W29",
     "role_id": "ROLE-0023",
     "skill_id": "SKL-000059",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-001710",
+      "ESK-001856"
+    ]
   },
   {
     "iso_week": "2026W29",
     "role_id": "ROLE-0030",
     "skill_id": "SKL-000050",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-000994"
+    ]
   },
   {
     "iso_week": "2026W29",
@@ -1161,9 +1172,10 @@
     "iso_week": "2026W30",
     "role_id": "ROLE-0003",
     "skill_id": "SKL-000002",
-    "supply_fte": 1.0,
+    "supply_fte": 1.8,
     "supporting_esk_ids": [
-      "ESK-001652"
+      "ESK-000701",
+      "ESK-001998"
     ]
   },
   {
@@ -1177,9 +1189,9 @@
     "iso_week": "2026W30",
     "role_id": "ROLE-0009",
     "skill_id": "SKL-000018",
-    "supply_fte": 0.6,
+    "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000894"
+      "ESK-001281"
     ]
   },
   {
@@ -1207,8 +1219,10 @@
     "iso_week": "2026W30",
     "role_id": "ROLE-0027",
     "skill_id": "SKL-000012",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000130"
+    ]
   },
   {
     "iso_week": "2026W30",
@@ -1228,17 +1242,17 @@
     "iso_week": "2026W30",
     "role_id": "ROLE-0038",
     "skill_id": "SKL-000054",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001984"
+    ]
   },
   {
     "iso_week": "2026W31",
     "role_id": "ROLE-0002",
     "skill_id": "SKL-000006",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000877"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W31",
@@ -1251,42 +1265,43 @@
     "iso_week": "2026W31",
     "role_id": "ROLE-0009",
     "skill_id": "SKL-000018",
-    "supply_fte": 0.6,
+    "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000894"
+      "ESK-001281"
     ]
   },
   {
     "iso_week": "2026W31",
     "role_id": "ROLE-0019",
     "skill_id": "SKL-000017",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000515"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W31",
     "role_id": "ROLE-0021",
     "skill_id": "SKL-000052",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001394"
+    ]
   },
   {
     "iso_week": "2026W31",
     "role_id": "ROLE-0024",
     "skill_id": "SKL-000002",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000099"
+    ]
   },
   {
     "iso_week": "2026W31",
     "role_id": "ROLE-0035",
     "skill_id": "SKL-000035",
-    "supply_fte": 1.6,
+    "supply_fte": 0.6,
     "supporting_esk_ids": [
-      "ESK-000848",
-      "ESK-001960"
+      "ESK-000409"
     ]
   },
   {
@@ -1300,10 +1315,8 @@
     "iso_week": "2026W31",
     "role_id": "ROLE-0037",
     "skill_id": "SKL-000013",
-    "supply_fte": 0.5,
-    "supporting_esk_ids": [
-      "ESK-000238"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W31",
@@ -1337,10 +1350,8 @@
     "iso_week": "2026W32",
     "role_id": "ROLE-0005",
     "skill_id": "SKL-000053",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000400"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W32",
@@ -1360,10 +1371,8 @@
     "iso_week": "2026W32",
     "role_id": "ROLE-0026",
     "skill_id": "SKL-000013",
-    "supply_fte": 0.5,
-    "supporting_esk_ids": [
-      "ESK-000954"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W32",
@@ -1378,7 +1387,7 @@
     "skill_id": "SKL-000060",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001928"
+      "ESK-001967"
     ]
   },
   {
@@ -1392,8 +1401,10 @@
     "iso_week": "2026W32",
     "role_id": "ROLE-0040",
     "skill_id": "SKL-000015",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001164"
+    ]
   },
   {
     "iso_week": "2026W33",
@@ -1406,26 +1417,25 @@
     "iso_week": "2026W33",
     "role_id": "ROLE-0014",
     "skill_id": "SKL-000049",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000274",
+      "ESK-001649"
+    ]
   },
   {
     "iso_week": "2026W33",
     "role_id": "ROLE-0017",
     "skill_id": "SKL-000051",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001233"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W33",
     "role_id": "ROLE-0019",
     "skill_id": "SKL-000028",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000526"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W33",
@@ -1454,23 +1464,26 @@
     "skill_id": "SKL-000058",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000177"
+      "ESK-001035"
     ]
   },
   {
     "iso_week": "2026W33",
     "role_id": "ROLE-0040",
     "skill_id": "SKL-000002",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000638"
+    ]
   },
   {
     "iso_week": "2026W33",
     "role_id": "ROLE-0040",
     "skill_id": "SKL-000026",
-    "supply_fte": 1.0,
+    "supply_fte": 2.0,
     "supporting_esk_ids": [
-      "ESK-000645"
+      "ESK-000659",
+      "ESK-001175"
     ]
   },
   {
@@ -1484,10 +1497,8 @@
     "iso_week": "2026W34",
     "role_id": "ROLE-0013",
     "skill_id": "SKL-000014",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000071"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W34",
@@ -1500,8 +1511,10 @@
     "iso_week": "2026W34",
     "role_id": "ROLE-0018",
     "skill_id": "SKL-000060",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-000364"
+    ]
   },
   {
     "iso_week": "2026W34",
@@ -1516,7 +1529,7 @@
     "skill_id": "SKL-000042",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000924"
+      "ESK-001386"
     ]
   },
   {
@@ -1530,15 +1543,19 @@
     "iso_week": "2026W34",
     "role_id": "ROLE-0027",
     "skill_id": "SKL-000024",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000550"
+    ]
   },
   {
     "iso_week": "2026W34",
     "role_id": "ROLE-0029",
     "skill_id": "SKL-000029",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001934"
+    ]
   },
   {
     "iso_week": "2026W34",
@@ -1558,33 +1575,33 @@
     "iso_week": "2026W35",
     "role_id": "ROLE-0004",
     "skill_id": "SKL-000051",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001240"
+    ]
   },
   {
     "iso_week": "2026W35",
     "role_id": "ROLE-0012",
     "skill_id": "SKL-000005",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000055"
-    ]
-  },
-  {
-    "iso_week": "2026W35",
-    "role_id": "ROLE-0018",
-    "skill_id": "SKL-000060",
     "supply_fte": 0.0,
     "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W35",
+    "role_id": "ROLE-0018",
+    "skill_id": "SKL-000060",
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-000364"
+    ]
+  },
+  {
+    "iso_week": "2026W35",
     "role_id": "ROLE-0019",
     "skill_id": "SKL-000028",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000526"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W35",
@@ -1592,16 +1609,19 @@
     "skill_id": "SKL-000051",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001315"
+      "ESK-000503"
     ]
   },
   {
     "iso_week": "2026W35",
     "role_id": "ROLE-0021",
     "skill_id": "SKL-000020",
-    "supply_fte": 1.0,
+    "supply_fte": 3.8,
     "supporting_esk_ids": [
-      "ESK-001518"
+      "ESK-000370",
+      "ESK-000505",
+      "ESK-001367",
+      "ESK-001682"
     ]
   },
   {
@@ -1629,8 +1649,10 @@
     "iso_week": "2026W36",
     "role_id": "ROLE-0014",
     "skill_id": "SKL-000009",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001609"
+    ]
   },
   {
     "iso_week": "2026W36",
@@ -1645,15 +1667,17 @@
     "skill_id": "SKL-000042",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000924"
+      "ESK-001386"
     ]
   },
   {
     "iso_week": "2026W36",
     "role_id": "ROLE-0022",
     "skill_id": "SKL-000010",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-001686"
+    ]
   },
   {
     "iso_week": "2026W36",
@@ -1694,19 +1718,16 @@
     "iso_week": "2026W36",
     "role_id": "ROLE-0030",
     "skill_id": "SKL-000058",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001903"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W36",
     "role_id": "ROLE-0034",
     "skill_id": "SKL-000012",
-    "supply_fte": 2.0,
+    "supply_fte": 0.8,
     "supporting_esk_ids": [
-      "ESK-000619",
-      "ESK-001556"
+      "ESK-001525"
     ]
   },
   {
@@ -1734,10 +1755,8 @@
     "iso_week": "2026W36",
     "role_id": "ROLE-0039",
     "skill_id": "SKL-000021",
-    "supply_fte": 0.6,
-    "supporting_esk_ids": [
-      "ESK-001999"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W37",
@@ -1750,9 +1769,9 @@
     "iso_week": "2026W37",
     "role_id": "ROLE-0009",
     "skill_id": "SKL-000018",
-    "supply_fte": 0.48,
+    "supply_fte": 0.8,
     "supporting_esk_ids": [
-      "ESK-000894"
+      "ESK-001281"
     ]
   },
   {
@@ -1808,15 +1827,20 @@
     "iso_week": "2026W38",
     "role_id": "ROLE-0011",
     "skill_id": "SKL-000019",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000722",
+      "ESK-001588"
+    ]
   },
   {
     "iso_week": "2026W38",
     "role_id": "ROLE-0012",
     "skill_id": "SKL-000003",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-002037"
+    ]
   },
   {
     "iso_week": "2026W38",
@@ -1852,17 +1876,15 @@
     "skill_id": "SKL-000037",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000391"
+      "ESK-000043"
     ]
   },
   {
     "iso_week": "2026W39",
     "role_id": "ROLE-0010",
     "skill_id": "SKL-000037",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-002097"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W39",
@@ -1875,19 +1897,17 @@
     "iso_week": "2026W39",
     "role_id": "ROLE-0013",
     "skill_id": "SKL-000029",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-000449"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W39",
     "role_id": "ROLE-0014",
     "skill_id": "SKL-000048",
-    "supply_fte": 1.8,
+    "supply_fte": 2.0,
     "supporting_esk_ids": [
-      "ESK-000906",
-      "ESK-001772"
+      "ESK-000273",
+      "ESK-001648"
     ]
   },
   {
@@ -1915,17 +1935,17 @@
     "iso_week": "2026W39",
     "role_id": "ROLE-0038",
     "skill_id": "SKL-000046",
-    "supply_fte": 0.6,
-    "supporting_esk_ids": [
-      "ESK-000311"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W39",
     "role_id": "ROLE-0038",
     "skill_id": "SKL-000054",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001984"
+    ]
   },
   {
     "iso_week": "2026W40",
@@ -1947,7 +1967,7 @@
     "skill_id": "SKL-000037",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000391"
+      "ESK-000043"
     ]
   },
   {
@@ -1961,8 +1981,10 @@
     "iso_week": "2026W40",
     "role_id": "ROLE-0030",
     "skill_id": "SKL-000050",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-000994"
+    ]
   },
   {
     "iso_week": "2026W40",
@@ -1977,7 +1999,7 @@
     "skill_id": "SKL-000060",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001928"
+      "ESK-001967"
     ]
   },
   {
@@ -2012,8 +2034,10 @@
     "iso_week": "2026W41",
     "role_id": "ROLE-0013",
     "skill_id": "SKL-000038",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000479"
+    ]
   },
   {
     "iso_week": "2026W41",
@@ -2021,7 +2045,8 @@
     "skill_id": "SKL-000025",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001159"
+      "ESK-000316",
+      "ESK-000770"
     ]
   },
   {
@@ -2035,9 +2060,12 @@
     "iso_week": "2026W41",
     "role_id": "ROLE-0021",
     "skill_id": "SKL-000020",
-    "supply_fte": 1.0,
+    "supply_fte": 3.8,
     "supporting_esk_ids": [
-      "ESK-001518"
+      "ESK-000370",
+      "ESK-000505",
+      "ESK-001367",
+      "ESK-001682"
     ]
   },
   {
@@ -2051,10 +2079,8 @@
     "iso_week": "2026W41",
     "role_id": "ROLE-0030",
     "skill_id": "SKL-000058",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001903"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W41",
@@ -2067,9 +2093,9 @@
     "iso_week": "2026W42",
     "role_id": "ROLE-0010",
     "skill_id": "SKL-000016",
-    "supply_fte": 1.0,
+    "supply_fte": 0.8,
     "supporting_esk_ids": [
-      "ESK-002087"
+      "ESK-001282"
     ]
   },
   {
@@ -2078,7 +2104,8 @@
     "skill_id": "SKL-000025",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001159"
+      "ESK-000316",
+      "ESK-000770"
     ]
   },
   {
@@ -2087,34 +2114,33 @@
     "skill_id": "SKL-000015",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001279"
+      "ESK-000086"
     ]
   },
   {
     "iso_week": "2026W42",
     "role_id": "ROLE-0020",
     "skill_id": "SKL-000025",
-    "supply_fte": 2.0,
-    "supporting_esk_ids": [
-      "ESK-000763",
-      "ESK-001289"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W42",
     "role_id": "ROLE-0036",
     "skill_id": "SKL-000002",
-    "supply_fte": 0.6,
+    "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001565"
+      "ESK-001064"
     ]
   },
   {
     "iso_week": "2026W42",
     "role_id": "ROLE-0036",
     "skill_id": "SKL-000012",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000414"
+    ]
   },
   {
     "iso_week": "2026W42",
@@ -2141,10 +2167,8 @@
     "iso_week": "2026W43",
     "role_id": "ROLE-0017",
     "skill_id": "SKL-000051",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001233"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W43",
@@ -2157,18 +2181,17 @@
     "iso_week": "2026W43",
     "role_id": "ROLE-0020",
     "skill_id": "SKL-000025",
-    "supply_fte": 2.0,
-    "supporting_esk_ids": [
-      "ESK-000763",
-      "ESK-001289"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W43",
     "role_id": "ROLE-0024",
     "skill_id": "SKL-000028",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000112"
+    ]
   },
   {
     "iso_week": "2026W43",
@@ -2181,17 +2204,17 @@
     "iso_week": "2026W43",
     "role_id": "ROLE-0039",
     "skill_id": "SKL-000021",
-    "supply_fte": 0.6,
-    "supporting_esk_ids": [
-      "ESK-001999"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W44",
     "role_id": "ROLE-0006",
     "skill_id": "SKL-000028",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001769"
+    ]
   },
   {
     "iso_week": "2026W44",
@@ -2204,66 +2227,69 @@
     "iso_week": "2026W44",
     "role_id": "ROLE-0011",
     "skill_id": "SKL-000019",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000722",
+      "ESK-001588"
+    ]
   },
   {
     "iso_week": "2026W44",
     "role_id": "ROLE-0015",
     "skill_id": "SKL-000032",
-    "supply_fte": 0.6,
-    "supporting_esk_ids": [
-      "ESK-001781"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W44",
     "role_id": "ROLE-0035",
     "skill_id": "SKL-000025",
-    "supply_fte": 1.6,
-    "supporting_esk_ids": [
-      "ESK-000844",
-      "ESK-001069"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W44",
     "role_id": "ROLE-0040",
     "skill_id": "SKL-000002",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000638"
+    ]
   },
   {
     "iso_week": "2026W45",
     "role_id": "ROLE-0006",
     "skill_id": "SKL-000028",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001769"
+    ]
   },
   {
     "iso_week": "2026W45",
     "role_id": "ROLE-0010",
     "skill_id": "SKL-000037",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-002097"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W45",
     "role_id": "ROLE-0020",
     "skill_id": "SKL-000058",
-    "supply_fte": 1.0,
+    "supply_fte": 0.5,
     "supporting_esk_ids": [
-      "ESK-001322"
+      "ESK-002127"
     ]
   },
   {
     "iso_week": "2026W45",
     "role_id": "ROLE-0025",
     "skill_id": "SKL-000023",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000524",
+      "ESK-001884"
+    ]
   },
   {
     "iso_week": "2026W45",
@@ -2283,77 +2309,82 @@
     "iso_week": "2026W45",
     "role_id": "ROLE-0038",
     "skill_id": "SKL-000046",
-    "supply_fte": 0.6,
-    "supporting_esk_ids": [
-      "ESK-000311"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W45",
     "role_id": "ROLE-0040",
     "skill_id": "SKL-000025",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001174"
+    ]
   },
   {
     "iso_week": "2026W46",
     "role_id": "ROLE-0003",
     "skill_id": "SKL-000002",
-    "supply_fte": 1.0,
+    "supply_fte": 1.8,
     "supporting_esk_ids": [
-      "ESK-001652"
+      "ESK-000701",
+      "ESK-001998"
     ]
   },
   {
     "iso_week": "2026W46",
     "role_id": "ROLE-0006",
     "skill_id": "SKL-000014",
-    "supply_fte": 1.5,
+    "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000693",
-      "ESK-001717"
+      "ESK-001274"
     ]
   },
   {
     "iso_week": "2026W46",
     "role_id": "ROLE-0010",
     "skill_id": "SKL-000016",
-    "supply_fte": 1.0,
+    "supply_fte": 0.8,
     "supporting_esk_ids": [
-      "ESK-002087"
+      "ESK-001282"
     ]
   },
   {
     "iso_week": "2026W46",
     "role_id": "ROLE-0018",
     "skill_id": "SKL-000030",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-002092"
+    ]
   },
   {
     "iso_week": "2026W46",
     "role_id": "ROLE-0020",
     "skill_id": "SKL-000058",
-    "supply_fte": 1.0,
+    "supply_fte": 0.5,
     "supporting_esk_ids": [
-      "ESK-001322"
+      "ESK-002127"
     ]
   },
   {
     "iso_week": "2026W46",
     "role_id": "ROLE-0021",
     "skill_id": "SKL-000043",
-    "supply_fte": 1.0,
+    "supply_fte": 2.0,
     "supporting_esk_ids": [
-      "ESK-001797"
+      "ESK-000845",
+      "ESK-001387"
     ]
   },
   {
     "iso_week": "2026W46",
     "role_id": "ROLE-0027",
     "skill_id": "SKL-000012",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.5,
+    "supporting_esk_ids": [
+      "ESK-000130"
+    ]
   },
   {
     "iso_week": "2026W46",
@@ -2361,15 +2392,17 @@
     "skill_id": "SKL-000058",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000177"
+      "ESK-001035"
     ]
   },
   {
     "iso_week": "2026W46",
     "role_id": "ROLE-0036",
     "skill_id": "SKL-000012",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000414"
+    ]
   },
   {
     "iso_week": "2026W47",
@@ -2382,18 +2415,17 @@
     "iso_week": "2026W47",
     "role_id": "ROLE-0017",
     "skill_id": "SKL-000052",
-    "supply_fte": 2.0,
-    "supporting_esk_ids": [
-      "ESK-001234",
-      "ESK-002178"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W47",
     "role_id": "ROLE-0022",
     "skill_id": "SKL-000043",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-001700"
+    ]
   },
   {
     "iso_week": "2026W47",
@@ -2406,8 +2438,10 @@
     "iso_week": "2026W47",
     "role_id": "ROLE-0029",
     "skill_id": "SKL-000029",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001934"
+    ]
   },
   {
     "iso_week": "2026W47",
@@ -2427,18 +2461,17 @@
     "iso_week": "2026W48",
     "role_id": "ROLE-0002",
     "skill_id": "SKL-000006",
-    "supply_fte": 0.8,
-    "supporting_esk_ids": [
-      "ESK-000877"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W48",
     "role_id": "ROLE-0003",
     "skill_id": "SKL-000002",
-    "supply_fte": 0.8,
+    "supply_fte": 1.44,
     "supporting_esk_ids": [
-      "ESK-001652"
+      "ESK-000701",
+      "ESK-001998"
     ]
   },
   {
@@ -2452,24 +2485,28 @@
     "iso_week": "2026W48",
     "role_id": "ROLE-0027",
     "skill_id": "SKL-000012",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.4,
+    "supporting_esk_ids": [
+      "ESK-000130"
+    ]
   },
   {
     "iso_week": "2026W48",
     "role_id": "ROLE-0027",
     "skill_id": "SKL-000046",
-    "supply_fte": 0.4,
+    "supply_fte": 0.8,
     "supporting_esk_ids": [
-      "ESK-000133"
+      "ESK-000572"
     ]
   },
   {
     "iso_week": "2026W48",
     "role_id": "ROLE-0036",
     "skill_id": "SKL-000012",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-000414"
+    ]
   },
   {
     "iso_week": "2026W49",
@@ -2477,7 +2514,7 @@
     "skill_id": "SKL-000057",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-000661"
+      "ESK-000030"
     ]
   },
   {
@@ -2491,10 +2528,8 @@
     "iso_week": "2026W49",
     "role_id": "ROLE-0022",
     "skill_id": "SKL-000058",
-    "supply_fte": 0.5,
-    "supporting_esk_ids": [
-      "ESK-000103"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W49",
@@ -2507,17 +2542,17 @@
     "iso_week": "2026W49",
     "role_id": "ROLE-0027",
     "skill_id": "SKL-000038",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000564"
+    ]
   },
   {
     "iso_week": "2026W49",
     "role_id": "ROLE-0037",
     "skill_id": "SKL-000013",
-    "supply_fte": 0.5,
-    "supporting_esk_ids": [
-      "ESK-000238"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W49",
@@ -2530,8 +2565,10 @@
     "iso_week": "2026W50",
     "role_id": "ROLE-0006",
     "skill_id": "SKL-000028",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001769"
+    ]
   },
   {
     "iso_week": "2026W50",
@@ -2544,10 +2581,8 @@
     "iso_week": "2026W50",
     "role_id": "ROLE-0017",
     "skill_id": "SKL-000051",
-    "supply_fte": 1.0,
-    "supporting_esk_ids": [
-      "ESK-001233"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W50",
@@ -2555,30 +2590,36 @@
     "skill_id": "SKL-000051",
     "supply_fte": 1.0,
     "supporting_esk_ids": [
-      "ESK-001315"
+      "ESK-000503"
     ]
   },
   {
     "iso_week": "2026W50",
     "role_id": "ROLE-0023",
     "skill_id": "SKL-000059",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-001710",
+      "ESK-001856"
+    ]
   },
   {
     "iso_week": "2026W50",
     "role_id": "ROLE-0029",
     "skill_id": "SKL-000029",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-001934"
+    ]
   },
   {
     "iso_week": "2026W51",
     "role_id": "ROLE-0003",
     "skill_id": "SKL-000002",
-    "supply_fte": 1.0,
+    "supply_fte": 1.8,
     "supporting_esk_ids": [
-      "ESK-001652"
+      "ESK-000701",
+      "ESK-001998"
     ]
   },
   {
@@ -2592,8 +2633,11 @@
     "iso_week": "2026W51",
     "role_id": "ROLE-0025",
     "skill_id": "SKL-000023",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 2.0,
+    "supporting_esk_ids": [
+      "ESK-000524",
+      "ESK-001884"
+    ]
   },
   {
     "iso_week": "2026W51",
@@ -2613,27 +2657,26 @@
     "iso_week": "2026W51",
     "role_id": "ROLE-0034",
     "skill_id": "SKL-000012",
-    "supply_fte": 2.0,
+    "supply_fte": 0.8,
     "supporting_esk_ids": [
-      "ESK-000619",
-      "ESK-001556"
+      "ESK-001525"
     ]
   },
   {
     "iso_week": "2026W51",
     "role_id": "ROLE-0040",
     "skill_id": "SKL-000002",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 1.0,
+    "supporting_esk_ids": [
+      "ESK-000638"
+    ]
   },
   {
     "iso_week": "2026W52",
     "role_id": "ROLE-0005",
     "skill_id": "SKL-000015",
-    "supply_fte": 0.8,
-    "supporting_esk_ids": [
-      "ESK-000377"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W52",
@@ -2646,35 +2689,31 @@
     "iso_week": "2026W52",
     "role_id": "ROLE-0013",
     "skill_id": "SKL-000014",
-    "supply_fte": 0.8,
-    "supporting_esk_ids": [
-      "ESK-000071"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W52",
     "role_id": "ROLE-0020",
     "skill_id": "SKL-000041",
-    "supply_fte": 0.8,
-    "supporting_esk_ids": [
-      "ESK-001305"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W52",
     "role_id": "ROLE-0038",
     "skill_id": "SKL-000046",
-    "supply_fte": 0.48,
-    "supporting_esk_ids": [
-      "ESK-000311"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W52",
     "role_id": "ROLE-0039",
     "skill_id": "SKL-000038",
-    "supply_fte": 0.0,
-    "supporting_esk_ids": []
+    "supply_fte": 0.8,
+    "supporting_esk_ids": [
+      "ESK-001139"
+    ]
   },
   {
     "iso_week": "2026W53",
@@ -2687,10 +2726,8 @@
     "iso_week": "2026W53",
     "role_id": "ROLE-0022",
     "skill_id": "SKL-000058",
-    "supply_fte": 0.5,
-    "supporting_esk_ids": [
-      "ESK-000103"
-    ]
+    "supply_fte": 0.0,
+    "supporting_esk_ids": []
   },
   {
     "iso_week": "2026W53",
@@ -2703,9 +2740,10 @@
     "iso_week": "2026W53",
     "role_id": "ROLE-0025",
     "skill_id": "SKL-000017",
-    "supply_fte": 1.0,
+    "supply_fte": 2.0,
     "supporting_esk_ids": [
-      "ESK-000935"
+      "ESK-000522",
+      "ESK-001878"
     ]
   }
 ]

@@ -1,46 +1,19 @@
 [
   {
     "affected_derived_ids": [
-      "UTL-000028-2026W32",
-      "UTL-000028-2026W33",
-      "UTL-000028-2026W34",
-      "UTL-000028-2026W35",
-      "UTL-000028-2026W36"
-    ],
-    "entity": "Allocation",
-    "expected_decision": "Reallocate",
-    "expected_detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
-    "injected_field": "allocation_pct",
-    "injected_value": 1.25,
-    "issue_subtype": null,
-    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
-    "original_value": 0.75,
-    "record_id": "ALLOC-2026-000028"
-  },
-  {
-    "affected_derived_ids": [
-      "UTL-000090-2026W34",
-      "UTL-000090-2026W35",
-      "UTL-000090-2026W36",
-      "UTL-000090-2026W37",
-      "UTL-000090-2026W38",
-      "UTL-000090-2026W39",
-      "UTL-000090-2026W40"
-    ],
-    "entity": "Allocation",
-    "expected_decision": "Reallocate",
-    "expected_detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
-    "injected_field": "allocation_pct",
-    "injected_value": 1.25,
-    "issue_subtype": null,
-    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
-    "original_value": 0.5,
-    "record_id": "ALLOC-2026-000090"
-  },
-  {
-    "affected_derived_ids": [
-      "UTL-000120-2026W39",
-      "UTL-000120-2026W40"
+      "UTL-000026-2026W16",
+      "UTL-000026-2026W17",
+      "UTL-000026-2026W18",
+      "UTL-000026-2026W19",
+      "UTL-000026-2026W20",
+      "UTL-000026-2026W21",
+      "UTL-000026-2026W22",
+      "UTL-000026-2026W23",
+      "UTL-000026-2026W24",
+      "UTL-000026-2026W25",
+      "UTL-000026-2026W26",
+      "UTL-000026-2026W27",
+      "UTL-000026-2026W28"
     ],
     "entity": "Allocation",
     "expected_decision": "Reallocate",
@@ -50,14 +23,12 @@
     "issue_subtype": null,
     "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
     "original_value": 0.25,
-    "record_id": "ALLOC-2026-000120"
+    "record_id": "ALLOC-2026-000026"
   },
   {
     "affected_derived_ids": [
-      "UTL-000200-2026W05",
-      "UTL-000200-2026W06",
-      "UTL-000200-2026W07",
-      "UTL-000200-2026W08"
+      "UTL-000140-2026W35",
+      "UTL-000140-2026W36"
     ],
     "entity": "Allocation",
     "expected_decision": "Reallocate",
@@ -67,18 +38,29 @@
     "issue_subtype": null,
     "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
     "original_value": 0.75,
-    "record_id": "ALLOC-2026-000200"
+    "record_id": "ALLOC-2026-000140"
   },
   {
     "affected_derived_ids": [
-      "UTL-000013-2026W32",
-      "UTL-000013-2026W33",
-      "UTL-000013-2026W34",
-      "UTL-000013-2026W35",
-      "UTL-000013-2026W36",
-      "UTL-000013-2026W37",
-      "UTL-000013-2026W38",
-      "UTL-000013-2026W39"
+      "UTL-000224-2026W36"
+    ],
+    "entity": "Allocation",
+    "expected_decision": "Reallocate",
+    "expected_detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
+    "injected_field": "allocation_pct",
+    "injected_value": 1.25,
+    "issue_subtype": null,
+    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
+    "original_value": 0.75,
+    "record_id": "ALLOC-2026-000224"
+  },
+  {
+    "affected_derived_ids": [
+      "UTL-000019-2026W35",
+      "UTL-000019-2026W36",
+      "UTL-000019-2026W37",
+      "UTL-000019-2026W38",
+      "UTL-000019-2026W39"
     ],
     "entity": "Allocation",
     "expected_decision": "Reallocate",
@@ -87,14 +69,19 @@
     "injected_value": "PRJ-2026-000001",
     "issue_subtype": null,
     "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
-    "original_value": "PRJ-2026-000013",
+    "original_value": "PRJ-2026-000015",
     "record_id": "ALLOC-2026-000301"
   },
   {
     "affected_derived_ids": [
-      "UTL-000017-2026W51",
-      "UTL-000017-2026W52",
-      "UTL-000017-2026W53"
+      "UTL-000137-2026W46",
+      "UTL-000137-2026W47",
+      "UTL-000137-2026W48",
+      "UTL-000137-2026W49",
+      "UTL-000137-2026W50",
+      "UTL-000137-2026W51",
+      "UTL-000137-2026W52",
+      "UTL-000137-2026W53"
     ],
     "entity": "Allocation",
     "expected_decision": "Reallocate",
@@ -103,8 +90,30 @@
     "injected_value": "PRJ-2026-000001",
     "issue_subtype": null,
     "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
-    "original_value": "PRJ-2026-000017",
+    "original_value": "PRJ-2026-000022",
     "record_id": "ALLOC-2026-000302"
+  },
+  {
+    "affected_derived_ids": [
+      "UTL-000273-2026W45",
+      "UTL-000273-2026W46",
+      "UTL-000273-2026W47",
+      "UTL-000273-2026W48",
+      "UTL-000273-2026W49",
+      "UTL-000273-2026W50",
+      "UTL-000273-2026W51",
+      "UTL-000273-2026W52",
+      "UTL-000273-2026W53"
+    ],
+    "entity": "Allocation",
+    "expected_decision": "Reallocate",
+    "expected_detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
+    "injected_field": "project_id",
+    "injected_value": "PRJ-2026-000001",
+    "issue_subtype": null,
+    "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
+    "original_value": "PRJ-2026-000022",
+    "record_id": "ALLOC-2026-000303"
   },
   {
     "affected_derived_ids": [
@@ -122,7 +131,7 @@
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W41-000269"
+      "GAP-2026W22-000089"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
@@ -136,7 +145,7 @@
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W50-000328"
+      "GAP-2026W42-000272"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
@@ -150,7 +159,7 @@
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W37-000228"
+      "GAP-2026W51-000337"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
@@ -164,7 +173,7 @@
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W38-000238"
+      "GAP-2026W39-000245"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
@@ -178,7 +187,7 @@
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W33-000182"
+      "GAP-2026W30-000155"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
@@ -192,7 +201,7 @@
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W37-000230"
+      "GAP-2026W23-000091"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
@@ -214,7 +223,7 @@
     "issue_subtype": "FLAG_WRONG",
     "issue_type": "STALE_SKILL_TREATED_CURRENT",
     "original_value": "Stale",
-    "record_id": "ESK-000496"
+    "record_id": "ESK-000119"
   },
   {
     "affected_derived_ids": [],
@@ -226,7 +235,7 @@
     "issue_subtype": "FLAG_WRONG",
     "issue_type": "STALE_SKILL_TREATED_CURRENT",
     "original_value": "Stale",
-    "record_id": "ESK-000528"
+    "record_id": "ESK-000475"
   },
   {
     "affected_derived_ids": [],
@@ -238,7 +247,7 @@
     "issue_subtype": "FLAG_WRONG",
     "issue_type": "STALE_SKILL_TREATED_CURRENT",
     "original_value": "Stale",
-    "record_id": "ESK-001381"
+    "record_id": "ESK-000507"
   },
   {
     "affected_derived_ids": [],
@@ -250,7 +259,7 @@
     "issue_subtype": "FLAG_WRONG",
     "issue_type": "STALE_SKILL_TREATED_CURRENT",
     "original_value": "Stale",
-    "record_id": "ESK-001396"
+    "record_id": "ESK-000547"
   },
   {
     "affected_derived_ids": [],
@@ -262,7 +271,7 @@
     "issue_subtype": "FLAG_WRONG",
     "issue_type": "STALE_SKILL_TREATED_CURRENT",
     "original_value": "Stale",
-    "record_id": "ESK-001420"
+    "record_id": "ESK-001277"
   },
   {
     "affected_derived_ids": [],
@@ -274,6 +283,6 @@
     "issue_subtype": "FLAG_WRONG",
     "issue_type": "STALE_SKILL_TREATED_CURRENT",
     "original_value": "Stale",
-    "record_id": "ESK-001946"
+    "record_id": "ESK-001857"
   }
 ]
