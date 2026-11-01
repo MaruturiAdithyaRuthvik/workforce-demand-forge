@@ -3,8 +3,8 @@
     "currency_flag": "Current",
     "employee_id": "EMP-000001",
     "employee_skill_id": "ESK-000001",
-    "expiry_date": "2026-12-03",
-    "last_verified_date": "2025-12-03",
+    "expiry_date": "2026-10-22",
+    "last_verified_date": "2025-10-22",
     "proficiency": 3,
     "skill_id": "SKL-000011"
   },
@@ -12,8 +12,8 @@
     "currency_flag": "Current",
     "employee_id": "EMP-000001",
     "employee_skill_id": "ESK-000002",
-    "expiry_date": "2026-10-22",
-    "last_verified_date": "2023-10-22",
+    "expiry_date": "2029-05-02",
+    "last_verified_date": "2026-05-02",
     "proficiency": 3,
     "skill_id": "SKL-000020"
   },

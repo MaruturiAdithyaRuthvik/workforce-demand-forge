@@ -29,24 +29,27 @@ Run `uv run pytest --cov=wdf --cov-report=term-missing`, `uv run wdf validate --
 
 These are real results from seed `20261022` (held-out seed `20261023`):
 
-- Rows: 300 employees, 60 skills, 30 projects, 393 demand lines, 305 allocations, 15,900 availability rows, 15,900 utilization rows, 350 gap rows, and 244 gap actions.
-- Validation: **PASS**, 0 errors; 7 approved demand duplicates and 6 injected skill currency mismatches were reported as expected anomaly findings.
+- Rows: 300 employees, 60 skills, 30 projects, 567 demand lines, 457 allocations, 15,900 availability rows, 15,900 utilization rows, 514 gap rows, and 325 gap actions.
+- Validation: **PASS**, 0 errors; 11 approved demand duplicates and 6 injected skill currency mismatches were reported as expected anomaly findings.
 - Detector P/R/F1: **1.000 / 1.000 / 1.000** for each of the four issue types on both seeds.
-- Full-scale generation and validation: **70.50 seconds**, with a sampled process-tree peak working set of **720.1 MiB** on the local Windows/Python 3.14.7 environment.
-- Reproducibility: **PASS**; 46 canonical CSV/JSON/SQL files and the logical SQLite dump matched for repeated seed `20261022`; seed `20261023` produced different hashes.
+- Full-scale generation and validation: **87.16 seconds**, with a sampled process-tree peak working set of **739.9 MiB** on the local Windows/Python 3.14.7 environment.
+- Reproducibility: **PASS**; 46 canonical CSV/JSON/SQL files and the logical SQLite dump matched for repeated seed `20261022`; seed `20261023` changed 39 file hashes.
 
-Rolling-origin forecast WAPE (lower is better; bias is signed relative error):
+Starter rolling-origin backtest (36/32/28 origins for 4/8/12 weeks; WAPE lower is better, bias is signed relative error):
 
 | Method | Horizon | WAPE | Bias |
 |---|---:|---:|---:|
-| 4-week moving average | 4 | 1.5723 | -0.1085 |
-| 4-week moving average | 8 | 1.5266 | -0.1795 |
-| 4-week moving average | 12 | 1.4682 | -0.2786 |
-| Pipeline adjusted | 4 | 0.4303 | -0.4303 |
-| Pipeline adjusted | 8 | 0.5586 | -0.5586 |
-| Pipeline adjusted | 12 | 0.6711 | -0.6711 |
+| 4-week moving average | 4 | 1.5472 | -0.0287 |
+| 4-week moving average | 8 | 1.5363 | -0.0495 |
+| 4-week moving average | 12 | 1.5115 | -0.0692 |
+| Pipeline adjusted | 4 | 0.3873 | -0.3873 |
+| Pipeline adjusted | 8 | 0.5263 | -0.5263 |
+| Pipeline adjusted | 12 | 0.6341 | -0.6341 |
+| Pipeline realization adjusted | 4 | 0.3852 | -0.0335 |
+| Pipeline realization adjusted | 8 | 0.4937 | -0.2561 |
+| Pipeline realization adjusted | 12 | 0.5986 | -0.4307 |
 
-Forecast metrics and per-issue seed-specific scores are in [output/starter/metrics.json](output/starter/metrics.json); the row-level validation counts are in [output/starter/validation_report.json](output/starter/validation_report.json). On this starter sample, pipeline adjustment wins WAPE at all three horizons but is more negatively biased at each horizon. The full-scale result differs: moving average wins WAPE at 12 weeks.
+Forecast metrics and per-issue seed-specific scores are in [output/starter/metrics.json](output/starter/metrics.json); the row-level validation counts are in [output/starter/validation_report.json](output/starter/validation_report.json). On this starter sample, pipeline realization adjustment wins WAPE at all three horizons; it remains negatively biased. In the full-scale backtest it also wins WAPE at all horizons, but underforecasts at 8 and 12 weeks. These are synthetic-data results, not a general forecast benchmark.
 
 ## Data documentation
 
@@ -54,4 +57,4 @@ See [DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md), [ERD.md](docs/ERD.md), and [T
 
 ## Environment and limitations
 
-Python 3.11 or newer is required. Dependencies are pinned in `pyproject.toml`, `uv.lock`, and `requirements-lock.txt`. Full scale completed in 70.50 seconds with a sampled 720.1 MiB process-tree peak in the recorded local run; runtime and memory vary by machine. NumPy generator streams are only stable within a pinned version. All output is synthetic and should not be used for real workforce decisions.
+Python 3.11 or newer is required. Dependencies are pinned in `pyproject.toml`, `uv.lock`, and `requirements-lock.txt`. Full-scale runtime and memory vary by machine; see the verified run above for the current audit measurement. NumPy generator streams are only stable within a pinned version. All output is synthetic and should not be used for real workforce decisions.

@@ -1,70 +1,86 @@
 # Validation and evaluation summary
 
-The following results were collected from fresh starter and full runs using main seed `20261022`, held-out seed `20261023`, Python 3.14.7, NumPy 2.3.3, and pandas 3.0.0.
+Results below use seed `20261022`, held-out seeds `20261023` and `20261024` where indicated, and Python 3.14.7 / NumPy 2.3.3 / pandas 3.0.0.
 
 ## Data validation
 
-**PASS** with 0 structural errors. The validator checked 53 weeks of employee capacity, 26 foreign-key relationships, lifecycle state history, identifiers, dates, and recomputed derived tables. Seven Approved demand business-key duplicates and six intentionally wrong skill currency flags were retained as injected data-quality cases and reported as warnings for the detector.
+Both generated scales passed validation with zero structural errors. The two warnings per scale are the intentionally injected Approved-demand duplicate groups and EmployeeSkill currency/expiry mismatches.
 
-Selected row counts:
+| Table | Starter rows | Full rows |
+|---|---:|---:|
+| Employees | 300 | 5,000 |
+| Skills | 60 | 300 |
+| Projects | 30 | 500 |
+| EmployeeSkill | 2,127 | 57,595 |
+| DemandPlan | 346 | 4,079 |
+| DemandLine | 567 | 6,277 |
+| Leave | 721 | 12,001 |
+| Allocation | 457 | 7,535 |
+| Availability | 15,900 | 265,000 |
+| Utilization | 15,900 | 265,000 |
+| GapAnalysis | 514 | 4,389 |
+| GapAction | 325 | 2,151 |
 
-| Table | Rows |
-|---|---:|
-| Employees | 300 |
-| Skills | 60 |
-| Projects | 30 |
-| EmployeeSkill | 2,127 |
-| DemandLine | 393 |
-| Allocation | 305 |
-| Availability | 15,900 |
-| Utilization | 15,900 |
-| GapAnalysis | 350 |
-| GapAction | 244 |
-| Training | 16 |
+The full independent stdlib checker passed PK/FK/enums/IDs/dates, 53-week capacity reconciliation, 265,000 utilization rows, 1,000 stratified gap recomputations, lifecycle state, injected duplicate-label agreement, and a fresh SQLite `PRAGMA foreign_key_check`.
 
 ## Detection evaluation
 
-Metrics are evaluated by exact source `record_id` and issue type. Every issue family met the 0.95 target on both seeds:
+Full-scale exact source-record/issue-type metrics:
 
-| Issue type | Main P | Main R | Main F1 | Held-out P | Held-out R | Held-out F1 |
-|---|---:|---:|---:|---:|---:|---:|
-| ALLOC_EXCEEDS_AVAILABILITY | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
-| STALE_SKILL_TREATED_CURRENT | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
-| DEMAND_DOUBLE_COUNTED | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
-| OVERLAPPING_PROJECT_ASSIGNMENT | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| Seed | Issue type | Injected / detected | TP | FP | FN | Precision | Recall | F1 |
+|---:|---|---:|---:|---:|---:|---:|---:|---:|
+| 20261022 | ALLOC_EXCEEDS_AVAILABILITY | 79 / 79 | 79 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| 20261022 | DEMAND_DOUBLE_COUNTED | 121 / 121 | 121 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| 20261022 | OVERLAPPING_PROJECT_ASSIGNMENT | 31 / 31 | 31 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| 20261022 | STALE_SKILL_TREATED_CURRENT | 173 / 173 | 173 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| 20261023 | ALLOC_EXCEEDS_AVAILABILITY | 80 / 80 | 80 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| 20261023 | DEMAND_DOUBLE_COUNTED | 122 / 122 | 122 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| 20261023 | OVERLAPPING_PROJECT_ASSIGNMENT | 30 / 30 | 30 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| 20261023 | STALE_SKILL_TREATED_CURRENT | 168 / 168 | 168 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| 20261024 | ALLOC_EXCEEDS_AVAILABILITY | 82 / 82 | 82 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| 20261024 | DEMAND_DOUBLE_COUNTED | 126 / 126 | 126 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| 20261024 | OVERLAPPING_PROJECT_ASSIGNMENT | 28 / 28 | 28 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| 20261024 | STALE_SKILL_TREATED_CURRENT | 181 / 181 | 181 | 0 | 0 | 1.000 | 1.000 | 1.000 |
 
-## Forecast backtest
+These are synthetic-rule results: injected records deliberately satisfy the detector predicates. No ground-truth labels or injected-ID lists appear in input-table fields, and source-only detection passes after deleting the `ground_truth` directory.
+
+## Forecast backtests
+
+Rolling-origin backtests use 36, 32, and 28 origins at the 4-, 8-, and 12-week horizons. WAPE is lower-is-better; bias is signed relative error.
+
+### Starter
 
 | Method | Horizon (weeks) | WAPE | Bias |
 |---|---:|---:|---:|
-| 4-week moving average | 4 | 1.5723 | -0.1085 |
-| 4-week moving average | 8 | 1.5266 | -0.1795 |
-| 4-week moving average | 12 | 1.4682 | -0.2786 |
-| Pipeline adjusted | 4 | 0.4303 | -0.4303 |
-| Pipeline adjusted | 8 | 0.5586 | -0.5586 |
-| Pipeline adjusted | 12 | 0.6711 | -0.6711 |
+| 4-week moving average | 4 | 1.54722625 | -0.02871761 |
+| 4-week moving average | 8 | 1.53629666 | -0.04952360 |
+| 4-week moving average | 12 | 1.51146390 | -0.06915606 |
+| Pipeline adjusted | 4 | 0.38732809 | -0.38732809 |
+| Pipeline adjusted | 8 | 0.52632881 | -0.52632881 |
+| Pipeline adjusted | 12 | 0.63408723 | -0.63408723 |
+| Pipeline realization adjusted | 4 | 0.38518927 | -0.03346620 |
+| Pipeline realization adjusted | 8 | 0.49365089 | -0.25614278 |
+| Pipeline realization adjusted | 12 | 0.59857961 | -0.43066711 |
 
-On the starter sample, pipeline adjustment has lower WAPE at all three horizons. Both methods underforecast; pipeline adjustment's bias is more negative at every horizon. No claim is made that this ranking generalizes.
-
-The full-scale backtest produced a different 12-week ranking:
+### Full
 
 | Method | Horizon (weeks) | WAPE | Bias |
 |---|---:|---:|---:|
-| 4-week moving average | 4 | 0.5451 | -0.0949 |
-| 4-week moving average | 8 | 0.5566 | -0.1532 |
-| 4-week moving average | 12 | 0.5629 | -0.2220 |
-| Pipeline adjusted | 4 | 0.3766 | -0.3766 |
-| Pipeline adjusted | 8 | 0.5264 | -0.5264 |
-| Pipeline adjusted | 12 | 0.6498 | -0.6498 |
+| 4-week moving average | 4 | 0.57811463 | -0.11000130 |
+| 4-week moving average | 8 | 0.56952677 | -0.16911512 |
+| 4-week moving average | 12 | 0.57377841 | -0.22819074 |
+| Pipeline adjusted | 4 | 0.37434853 | -0.37434853 |
+| Pipeline adjusted | 8 | 0.52768210 | -0.52768210 |
+| Pipeline adjusted | 12 | 0.65303915 | -0.65303915 |
+| Pipeline realization adjusted | 4 | 0.25253672 | 0.00672615 |
+| Pipeline realization adjusted | 8 | 0.37752342 | -0.24277524 |
+| Pipeline realization adjusted | 12 | 0.53146164 | -0.44600512 |
 
-Pipeline adjustment wins at 4 and 8 weeks; moving average wins at 12. Pipeline adjustment is more negatively biased at each horizon.
+Pipeline realization adjustment has the lowest full-scale WAPE at each horizon. It is nearly unbiased at four weeks but underforecasts at eight and twelve weeks. No-look-ahead tests passed for the origin-specific realization ratio.
 
 ## Reproducibility and scale
 
-- Same-seed canonical files: **PASS**, 46 CSV/JSON/SQL files matched.
-- Same-seed logical SQLite dump: **PASS**.
-- Different-seed hashes: **PASS**, seed `20261023` differs from `20261022`.
-- Full scale: **PASS**, generation and validation completed in 70.50 seconds with sampled process-tree peak working set 720.1 MiB on the recorded Windows/Python 3.14.7 environment.
-- Full-scale rows: 5,000 employees; 300 skills; 500 projects; 57,595 employee skills; 6,193 demand lines; 5,025 allocations; 265,000 availability and utilization rows; 4,316 gaps; 1,939 gap actions.
-
-Detailed artifacts: `output/starter/metrics.json`, `output/starter/validation_report.json`, and `output/repro_report.json`.
+- Current full-scale repro: **PASS**, 46 canonical artifacts, same-seed hashes and CSV row counts identical, logical SQLite dump SHA-256 identical, and 39 artifacts changed for seed `20261023`.
+- Full generation plus validation: **87.16 seconds**, sampled peak process-tree working set **739.9 MiB** on Windows/Python 3.14.7.
+- Starter manifest file hashes matched under Python 3.11.15 and 3.14.7; the top-level runtime version in the manifest is expected to differ.
+- GNU Make was not installed locally; direct commands passed. Remote CI was not run and is not claimed.

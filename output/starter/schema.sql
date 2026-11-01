@@ -98,6 +98,8 @@ CREATE TABLE "gap_actions" (
   "action_type" TEXT,
   "candidate_employee_id" TEXT,
   "candidate_skill_id" TEXT,
+  "source_utilization_id" TEXT,
+  "source_allocation_ids" TEXT,
   "rule_id" TEXT,
   "owner_actor" TEXT,
   "status" TEXT,
@@ -108,6 +110,7 @@ CREATE TABLE "gap_actions" (
   FOREIGN KEY ("gap_id") REFERENCES "gap_analysis"("gap_id"),
   FOREIGN KEY ("candidate_employee_id") REFERENCES "employees"("employee_id"),
   FOREIGN KEY ("candidate_skill_id") REFERENCES "skills"("skill_id"),
+  FOREIGN KEY ("source_utilization_id") REFERENCES "utilization"("utilization_id"),
   CHECK ("action_type" IN ('Reverify', 'Train', 'Hire', 'Reallocate', 'Contract')),
   CHECK ("owner_actor" IN ('Employee', 'Manager', 'HR Partner', 'IT/Ops Partner', 'System Admin')),
   CHECK ("status" IN ('Proposed', 'Approved', 'InProgress', 'Done', 'Rejected', 'Escalated'))
@@ -174,9 +177,11 @@ CREATE TABLE "projects" (
   "priority" TEXT,
   "staffing_model" TEXT,
   "status" TEXT,
+  "demand_profile" TEXT,
   PRIMARY KEY ("project_id"),
   CHECK ("priority" IN ('Low', 'Medium', 'High', 'Critical')),
   CHECK ("staffing_model" IN ('Shared-Pool', 'Dedicated-Team')),
+  CHECK ("demand_profile" IN ('ramp_up', 'steady', 'ramp_down')),
   CHECK ("status" IN ('Planned', 'Active', 'Completed', 'Cancelled'))
 );
 

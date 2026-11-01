@@ -1,242 +1,272 @@
 [
   {
-    "end_date": "2026-12-04",
-    "priority": "High",
+    "demand_profile": "ramp_up",
+    "end_date": "2026-12-31",
+    "priority": "Medium",
     "project_id": "PRJ-2026-000001",
     "staffing_model": "Shared-Pool",
-    "start_date": "2026-10-04",
+    "start_date": "2026-01-05",
     "status": "Active"
   },
   {
-    "end_date": "2026-08-01",
-    "priority": "Medium",
+    "demand_profile": "steady",
+    "end_date": "2026-12-31",
+    "priority": "High",
     "project_id": "PRJ-2026-000002",
     "staffing_model": "Shared-Pool",
-    "start_date": "2026-06-27",
-    "status": "Completed"
-  },
-  {
-    "end_date": "2026-08-07",
-    "priority": "Low",
-    "project_id": "PRJ-2026-000003",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-05-03",
-    "status": "Completed"
-  },
-  {
-    "end_date": "2027-01-02",
-    "priority": "Medium",
-    "project_id": "PRJ-2026-000004",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-11-08",
-    "status": "Planned"
-  },
-  {
-    "end_date": "2026-04-17",
-    "priority": "High",
-    "project_id": "PRJ-2026-000005",
-    "staffing_model": "Dedicated-Team",
-    "start_date": "2026-03-04",
-    "status": "Completed"
-  },
-  {
-    "end_date": "2026-06-06",
-    "priority": "Medium",
-    "project_id": "PRJ-2026-000006",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-05-02",
-    "status": "Completed"
-  },
-  {
-    "end_date": "2026-07-09",
-    "priority": "Medium",
-    "project_id": "PRJ-2026-000007",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-06-04",
-    "status": "Completed"
-  },
-  {
-    "end_date": "2026-11-25",
-    "priority": "Medium",
-    "project_id": "PRJ-2026-000008",
-    "staffing_model": "Dedicated-Team",
-    "start_date": "2026-08-27",
+    "start_date": "2026-01-05",
     "status": "Cancelled"
   },
   {
-    "end_date": "2026-10-08",
+    "demand_profile": "ramp_down",
+    "end_date": "2026-12-31",
+    "priority": "High",
+    "project_id": "PRJ-2026-000003",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-01-05",
+    "status": "Active"
+  },
+  {
+    "demand_profile": "steady",
+    "end_date": "2026-12-31",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000004",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-01-05",
+    "status": "Active"
+  },
+  {
+    "demand_profile": "steady",
+    "end_date": "2026-10-06",
+    "priority": "Critical",
+    "project_id": "PRJ-2026-000005",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-07-09",
+    "status": "Completed"
+  },
+  {
+    "demand_profile": "ramp_up",
+    "end_date": "2026-11-17",
+    "priority": "High",
+    "project_id": "PRJ-2026-000006",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-08-13",
+    "status": "Active"
+  },
+  {
+    "demand_profile": "ramp_down",
+    "end_date": "2026-07-23",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000007",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-06-18",
+    "status": "Completed"
+  },
+  {
+    "demand_profile": "steady",
+    "end_date": "2026-05-09",
+    "priority": "High",
+    "project_id": "PRJ-2026-000008",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-03-26",
+    "status": "Completed"
+  },
+  {
+    "demand_profile": "steady",
+    "end_date": "2026-12-19",
     "priority": "High",
     "project_id": "PRJ-2026-000009",
     "staffing_model": "Shared-Pool",
-    "start_date": "2026-08-04",
-    "status": "Completed"
+    "start_date": "2026-11-03",
+    "status": "Planned"
   },
   {
-    "end_date": "2026-08-29",
+    "demand_profile": "steady",
+    "end_date": "2026-02-27",
     "priority": "Medium",
     "project_id": "PRJ-2026-000010",
-    "staffing_model": "Dedicated-Team",
-    "start_date": "2026-05-06",
-    "status": "Completed"
-  },
-  {
-    "end_date": "2026-09-04",
-    "priority": "Critical",
-    "project_id": "PRJ-2026-000011",
     "staffing_model": "Shared-Pool",
-    "start_date": "2026-07-22",
+    "start_date": "2026-01-23",
     "status": "Completed"
   },
   {
-    "end_date": "2026-04-26",
+    "demand_profile": "ramp_down",
+    "end_date": "2027-06-20",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000011",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-11-07",
+    "status": "Planned"
+  },
+  {
+    "demand_profile": "ramp_up",
+    "end_date": "2026-04-05",
     "priority": "High",
     "project_id": "PRJ-2026-000012",
     "staffing_model": "Shared-Pool",
-    "start_date": "2026-01-22",
+    "start_date": "2026-01-30",
     "status": "Completed"
   },
   {
-    "end_date": "2026-09-26",
-    "priority": "Critical",
+    "demand_profile": "ramp_down",
+    "end_date": "2026-07-08",
+    "priority": "Low",
     "project_id": "PRJ-2026-000013",
     "staffing_model": "Dedicated-Team",
-    "start_date": "2026-07-29",
+    "start_date": "2026-05-21",
     "status": "Completed"
   },
   {
-    "end_date": "2026-11-21",
+    "demand_profile": "ramp_up",
+    "end_date": "2026-03-29",
     "priority": "High",
     "project_id": "PRJ-2026-000014",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-09-27",
-    "status": "Active"
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-02-13",
+    "status": "Completed"
   },
   {
-    "end_date": "2026-09-22",
+    "demand_profile": "steady",
+    "end_date": "2026-07-05",
     "priority": "High",
     "project_id": "PRJ-2026-000015",
-    "staffing_model": "Dedicated-Team",
-    "start_date": "2026-06-24",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-05-12",
     "status": "Completed"
   },
   {
-    "end_date": "2026-09-08",
-    "priority": "High",
+    "demand_profile": "ramp_down",
+    "end_date": "2026-06-24",
+    "priority": "Critical",
     "project_id": "PRJ-2026-000016",
     "staffing_model": "Dedicated-Team",
-    "start_date": "2026-08-04",
+    "start_date": "2026-04-26",
     "status": "Completed"
   },
   {
-    "end_date": "2027-01-02",
+    "demand_profile": "ramp_up",
+    "end_date": "2026-06-29",
     "priority": "High",
     "project_id": "PRJ-2026-000017",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-03-31",
+    "status": "Completed"
+  },
+  {
+    "demand_profile": "steady",
+    "end_date": "2026-06-24",
+    "priority": "Critical",
+    "project_id": "PRJ-2026-000018",
     "staffing_model": "Dedicated-Team",
-    "start_date": "2026-08-23",
+    "start_date": "2026-03-26",
+    "status": "Completed"
+  },
+  {
+    "demand_profile": "steady",
+    "end_date": "2026-11-22",
+    "priority": "Medium",
+    "project_id": "PRJ-2026-000019",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-10-11",
     "status": "Active"
   },
   {
-    "end_date": "2026-08-13",
-    "priority": "Medium",
-    "project_id": "PRJ-2026-000018",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-04-28",
-    "status": "Completed"
-  },
-  {
-    "end_date": "2027-01-13",
-    "priority": "Critical",
-    "project_id": "PRJ-2026-000019",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-11-06",
-    "status": "Planned"
-  },
-  {
-    "end_date": "2026-02-22",
+    "demand_profile": "steady",
+    "end_date": "2026-12-27",
     "priority": "High",
     "project_id": "PRJ-2026-000020",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-01-18",
-    "status": "Completed"
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-08-17",
+    "status": "Active"
   },
   {
-    "end_date": "2026-08-29",
-    "priority": "Critical",
+    "demand_profile": "steady",
+    "end_date": "2026-09-16",
+    "priority": "Low",
     "project_id": "PRJ-2026-000021",
     "staffing_model": "Shared-Pool",
-    "start_date": "2026-07-12",
+    "start_date": "2026-07-25",
     "status": "Completed"
   },
   {
-    "end_date": "2027-03-06",
+    "demand_profile": "ramp_down",
+    "end_date": "2026-06-27",
     "priority": "Medium",
     "project_id": "PRJ-2026-000022",
     "staffing_model": "Dedicated-Team",
-    "start_date": "2026-09-26",
+    "start_date": "2026-04-20",
+    "status": "Completed"
+  },
+  {
+    "demand_profile": "steady",
+    "end_date": "2026-07-01",
+    "priority": "High",
+    "project_id": "PRJ-2026-000023",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-05-19",
+    "status": "Completed"
+  },
+  {
+    "demand_profile": "ramp_up",
+    "end_date": "2026-11-20",
+    "priority": "High",
+    "project_id": "PRJ-2026-000024",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-10-03",
     "status": "Active"
   },
   {
-    "end_date": "2026-05-15",
-    "priority": "Medium",
-    "project_id": "PRJ-2026-000023",
-    "staffing_model": "Dedicated-Team",
-    "start_date": "2026-02-20",
-    "status": "Completed"
-  },
-  {
-    "end_date": "2026-10-10",
-    "priority": "Medium",
-    "project_id": "PRJ-2026-000024",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-08-23",
-    "status": "Completed"
-  },
-  {
-    "end_date": "2026-07-09",
-    "priority": "Critical",
+    "demand_profile": "ramp_up",
+    "end_date": "2026-05-26",
+    "priority": "High",
     "project_id": "PRJ-2026-000025",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-01-29",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-03-15",
     "status": "Completed"
   },
   {
-    "end_date": "2026-03-15",
-    "priority": "Low",
+    "demand_profile": "ramp_down",
+    "end_date": "2026-06-12",
+    "priority": "Critical",
     "project_id": "PRJ-2026-000026",
-    "staffing_model": "Dedicated-Team",
-    "start_date": "2026-02-03",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-03-20",
     "status": "Completed"
   },
   {
-    "end_date": "2026-05-10",
-    "priority": "Critical",
+    "demand_profile": "steady",
+    "end_date": "2026-07-27",
+    "priority": "Low",
     "project_id": "PRJ-2026-000027",
-    "staffing_model": "Dedicated-Team",
-    "start_date": "2026-04-05",
+    "staffing_model": "Shared-Pool",
+    "start_date": "2026-06-22",
     "status": "Completed"
   },
   {
-    "end_date": "2026-09-02",
-    "priority": "Critical",
+    "demand_profile": "steady",
+    "end_date": "2027-03-25",
+    "priority": "High",
     "project_id": "PRJ-2026-000028",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-07-05",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-10-15",
+    "status": "Active"
+  },
+  {
+    "demand_profile": "steady",
+    "end_date": "2026-09-20",
+    "priority": "High",
+    "project_id": "PRJ-2026-000029",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-07-20",
     "status": "Completed"
   },
   {
-    "end_date": "2027-01-13",
-    "priority": "Medium",
-    "project_id": "PRJ-2026-000029",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-11-04",
-    "status": "Planned"
-  },
-  {
-    "end_date": "2026-10-01",
+    "demand_profile": "steady",
+    "end_date": "2026-10-17",
     "priority": "High",
     "project_id": "PRJ-2026-000030",
-    "staffing_model": "Shared-Pool",
-    "start_date": "2026-07-18",
+    "staffing_model": "Dedicated-Team",
+    "start_date": "2026-09-12",
     "status": "Completed"
   }
 ]

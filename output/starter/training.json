@@ -151,9 +151,9 @@
   },
   {
     "cost": 900.0,
-    "employee_id": "EMP-000031",
+    "employee_id": "EMP-000010",
     "end_date": "2026-01-26",
-    "skill_id": "SKL-000036",
+    "skill_id": "SKL-000037",
     "start_date": "2026-01-12",
     "status": "Failed",
     "target_proficiency": 3,

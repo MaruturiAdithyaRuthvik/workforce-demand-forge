@@ -1,19 +1,16 @@
 [
   {
     "affected_derived_ids": [
-      "UTL-000026-2026W16",
-      "UTL-000026-2026W17",
-      "UTL-000026-2026W18",
-      "UTL-000026-2026W19",
-      "UTL-000026-2026W20",
-      "UTL-000026-2026W21",
-      "UTL-000026-2026W22",
-      "UTL-000026-2026W23",
-      "UTL-000026-2026W24",
-      "UTL-000026-2026W25",
-      "UTL-000026-2026W26",
-      "UTL-000026-2026W27",
-      "UTL-000026-2026W28"
+      "UTL-000030-2026W44",
+      "UTL-000030-2026W45",
+      "UTL-000030-2026W46",
+      "UTL-000030-2026W47",
+      "UTL-000030-2026W48",
+      "UTL-000030-2026W49",
+      "UTL-000030-2026W50",
+      "UTL-000030-2026W51",
+      "UTL-000030-2026W52",
+      "UTL-000030-2026W53"
     ],
     "entity": "Allocation",
     "expected_decision": "Reallocate",
@@ -23,12 +20,31 @@
     "issue_subtype": null,
     "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
     "original_value": 0.25,
-    "record_id": "ALLOC-2026-000026"
+    "record_id": "ALLOC-2026-000046"
   },
   {
     "affected_derived_ids": [
-      "UTL-000140-2026W35",
-      "UTL-000140-2026W36"
+      "UTL-000114-2026W24",
+      "UTL-000114-2026W25",
+      "UTL-000114-2026W26",
+      "UTL-000114-2026W27"
+    ],
+    "entity": "Allocation",
+    "expected_decision": "Reallocate",
+    "expected_detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
+    "injected_field": "allocation_pct",
+    "injected_value": 1.25,
+    "issue_subtype": null,
+    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
+    "original_value": 0.25,
+    "record_id": "ALLOC-2026-000173"
+  },
+  {
+    "affected_derived_ids": [
+      "UTL-000201-2026W16",
+      "UTL-000201-2026W17",
+      "UTL-000201-2026W18",
+      "UTL-000201-2026W19"
     ],
     "entity": "Allocation",
     "expected_decision": "Reallocate",
@@ -38,72 +54,19 @@
     "issue_subtype": null,
     "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
     "original_value": 0.75,
-    "record_id": "ALLOC-2026-000140"
-  },
-  {
-    "affected_derived_ids": [
-      "UTL-000224-2026W36"
-    ],
-    "entity": "Allocation",
-    "expected_decision": "Reallocate",
-    "expected_detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
-    "injected_field": "allocation_pct",
-    "injected_value": 1.25,
-    "issue_subtype": null,
-    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
-    "original_value": 0.75,
-    "record_id": "ALLOC-2026-000224"
-  },
-  {
-    "affected_derived_ids": [
-      "UTL-000019-2026W35",
-      "UTL-000019-2026W36",
-      "UTL-000019-2026W37",
-      "UTL-000019-2026W38",
-      "UTL-000019-2026W39"
-    ],
-    "entity": "Allocation",
-    "expected_decision": "Reallocate",
-    "expected_detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
-    "injected_field": "project_id",
-    "injected_value": "PRJ-2026-000001",
-    "issue_subtype": null,
-    "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
-    "original_value": "PRJ-2026-000015",
-    "record_id": "ALLOC-2026-000301"
-  },
-  {
-    "affected_derived_ids": [
-      "UTL-000137-2026W46",
-      "UTL-000137-2026W47",
-      "UTL-000137-2026W48",
-      "UTL-000137-2026W49",
-      "UTL-000137-2026W50",
-      "UTL-000137-2026W51",
-      "UTL-000137-2026W52",
-      "UTL-000137-2026W53"
-    ],
-    "entity": "Allocation",
-    "expected_decision": "Reallocate",
-    "expected_detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
-    "injected_field": "project_id",
-    "injected_value": "PRJ-2026-000001",
-    "issue_subtype": null,
-    "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
-    "original_value": "PRJ-2026-000022",
     "record_id": "ALLOC-2026-000302"
   },
   {
     "affected_derived_ids": [
-      "UTL-000273-2026W45",
-      "UTL-000273-2026W46",
-      "UTL-000273-2026W47",
-      "UTL-000273-2026W48",
-      "UTL-000273-2026W49",
-      "UTL-000273-2026W50",
-      "UTL-000273-2026W51",
-      "UTL-000273-2026W52",
-      "UTL-000273-2026W53"
+      "UTL-000003-2026W45",
+      "UTL-000003-2026W46",
+      "UTL-000003-2026W47",
+      "UTL-000003-2026W48",
+      "UTL-000003-2026W49",
+      "UTL-000003-2026W50",
+      "UTL-000003-2026W51",
+      "UTL-000003-2026W52",
+      "UTL-000003-2026W53"
     ],
     "entity": "Allocation",
     "expected_decision": "Reallocate",
@@ -112,106 +75,204 @@
     "injected_value": "PRJ-2026-000001",
     "issue_subtype": null,
     "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
-    "original_value": "PRJ-2026-000022",
-    "record_id": "ALLOC-2026-000303"
+    "original_value": "PRJ-2026-000011",
+    "record_id": "ALLOC-2026-000453"
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W49-000324"
+      "UTL-000198-2026W11",
+      "UTL-000198-2026W12",
+      "UTL-000198-2026W13",
+      "UTL-000198-2026W14",
+      "UTL-000198-2026W15",
+      "UTL-000198-2026W16",
+      "UTL-000198-2026W17",
+      "UTL-000198-2026W18",
+      "UTL-000198-2026W19",
+      "UTL-000198-2026W20",
+      "UTL-000198-2026W21",
+      "UTL-000198-2026W22"
+    ],
+    "entity": "Allocation",
+    "expected_decision": "Reallocate",
+    "expected_detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
+    "injected_field": "project_id",
+    "injected_value": "PRJ-2026-000001",
+    "issue_subtype": null,
+    "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
+    "original_value": "PRJ-2026-000025",
+    "record_id": "ALLOC-2026-000454"
+  },
+  {
+    "affected_derived_ids": [
+      "UTL-000295-2026W24",
+      "UTL-000295-2026W25",
+      "UTL-000295-2026W26",
+      "UTL-000295-2026W27"
+    ],
+    "entity": "Allocation",
+    "expected_decision": "Reallocate",
+    "expected_detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
+    "injected_field": "project_id",
+    "injected_value": "PRJ-2026-000001",
+    "issue_subtype": null,
+    "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
+    "original_value": "PRJ-2026-000013",
+    "record_id": "ALLOC-2026-000455"
+  },
+  {
+    "affected_derived_ids": [
+      "GAP-2026W12-000074"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
     "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
     "injected_field": "demand_line_id",
-    "injected_value": "DEML-000387",
+    "injected_value": "DEML-000557",
     "issue_subtype": null,
     "issue_type": "DEMAND_DOUBLE_COUNTED",
     "original_value": null,
-    "record_id": "DEML-000387"
+    "record_id": "DEML-000557"
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W22-000089"
+      "GAP-2026W23-000213"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
     "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
     "injected_field": "demand_line_id",
-    "injected_value": "DEML-000388",
+    "injected_value": "DEML-000558",
     "issue_subtype": null,
     "issue_type": "DEMAND_DOUBLE_COUNTED",
     "original_value": null,
-    "record_id": "DEML-000388"
+    "record_id": "DEML-000558"
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W42-000272"
+      "GAP-2026W18-000131"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
     "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
     "injected_field": "demand_line_id",
-    "injected_value": "DEML-000389",
+    "injected_value": "DEML-000559",
     "issue_subtype": null,
     "issue_type": "DEMAND_DOUBLE_COUNTED",
     "original_value": null,
-    "record_id": "DEML-000389"
+    "record_id": "DEML-000559"
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W51-000337"
+      "GAP-2026W38-000375"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
     "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
     "injected_field": "demand_line_id",
-    "injected_value": "DEML-000390",
+    "injected_value": "DEML-000560",
     "issue_subtype": null,
     "issue_type": "DEMAND_DOUBLE_COUNTED",
     "original_value": null,
-    "record_id": "DEML-000390"
+    "record_id": "DEML-000560"
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W39-000245"
+      "GAP-2026W41-000389"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
     "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
     "injected_field": "demand_line_id",
-    "injected_value": "DEML-000391",
+    "injected_value": "DEML-000561",
     "issue_subtype": null,
     "issue_type": "DEMAND_DOUBLE_COUNTED",
     "original_value": null,
-    "record_id": "DEML-000391"
+    "record_id": "DEML-000561"
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W30-000155"
+      "GAP-2026W18-000130"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
     "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
     "injected_field": "demand_line_id",
-    "injected_value": "DEML-000392",
+    "injected_value": "DEML-000562",
     "issue_subtype": null,
     "issue_type": "DEMAND_DOUBLE_COUNTED",
     "original_value": null,
-    "record_id": "DEML-000392"
+    "record_id": "DEML-000562"
   },
   {
     "affected_derived_ids": [
-      "GAP-2026W23-000091"
+      "GAP-2026W42-000398"
     ],
     "entity": "DemandLine",
     "expected_decision": "System Admin correction",
     "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
     "injected_field": "demand_line_id",
-    "injected_value": "DEML-000393",
+    "injected_value": "DEML-000563",
     "issue_subtype": null,
     "issue_type": "DEMAND_DOUBLE_COUNTED",
     "original_value": null,
-    "record_id": "DEML-000393"
+    "record_id": "DEML-000563"
+  },
+  {
+    "affected_derived_ids": [
+      "GAP-2026W31-000307"
+    ],
+    "entity": "DemandLine",
+    "expected_decision": "System Admin correction",
+    "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "injected_field": "demand_line_id",
+    "injected_value": "DEML-000564",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "original_value": null,
+    "record_id": "DEML-000564"
+  },
+  {
+    "affected_derived_ids": [
+      "GAP-2026W38-000376"
+    ],
+    "entity": "DemandLine",
+    "expected_decision": "System Admin correction",
+    "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "injected_field": "demand_line_id",
+    "injected_value": "DEML-000565",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "original_value": null,
+    "record_id": "DEML-000565"
+  },
+  {
+    "affected_derived_ids": [
+      "GAP-2026W42-000403"
+    ],
+    "entity": "DemandLine",
+    "expected_decision": "System Admin correction",
+    "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "injected_field": "demand_line_id",
+    "injected_value": "DEML-000566",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "original_value": null,
+    "record_id": "DEML-000566"
+  },
+  {
+    "affected_derived_ids": [
+      "GAP-2026W17-000118"
+    ],
+    "entity": "DemandLine",
+    "expected_decision": "System Admin correction",
+    "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "injected_field": "demand_line_id",
+    "injected_value": "DEML-000567",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "original_value": null,
+    "record_id": "DEML-000567"
   },
   {
     "affected_derived_ids": [],

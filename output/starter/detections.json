@@ -2,99 +2,127 @@
   {
     "detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
     "entity": "Allocation",
-    "iso_week": "2026W28",
-    "issue_subtype": null,
-    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
-    "record_id": "ALLOC-2026-000026"
-  },
-  {
-    "detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
-    "entity": "Allocation",
-    "iso_week": "2026W36",
-    "issue_subtype": null,
-    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
-    "record_id": "ALLOC-2026-000140"
-  },
-  {
-    "detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
-    "entity": "Allocation",
-    "iso_week": "2026W36",
-    "issue_subtype": null,
-    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
-    "record_id": "ALLOC-2026-000224"
-  },
-  {
-    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
-    "entity": "DemandLine",
-    "issue_subtype": null,
-    "issue_type": "DEMAND_DOUBLE_COUNTED",
-    "record_id": "DEML-000387"
-  },
-  {
-    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
-    "entity": "DemandLine",
-    "issue_subtype": null,
-    "issue_type": "DEMAND_DOUBLE_COUNTED",
-    "record_id": "DEML-000388"
-  },
-  {
-    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
-    "entity": "DemandLine",
-    "issue_subtype": null,
-    "issue_type": "DEMAND_DOUBLE_COUNTED",
-    "record_id": "DEML-000389"
-  },
-  {
-    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
-    "entity": "DemandLine",
-    "issue_subtype": null,
-    "issue_type": "DEMAND_DOUBLE_COUNTED",
-    "record_id": "DEML-000390"
-  },
-  {
-    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
-    "entity": "DemandLine",
-    "issue_subtype": null,
-    "issue_type": "DEMAND_DOUBLE_COUNTED",
-    "record_id": "DEML-000391"
-  },
-  {
-    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
-    "entity": "DemandLine",
-    "issue_subtype": null,
-    "issue_type": "DEMAND_DOUBLE_COUNTED",
-    "record_id": "DEML-000392"
-  },
-  {
-    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
-    "entity": "DemandLine",
-    "issue_subtype": null,
-    "issue_type": "DEMAND_DOUBLE_COUNTED",
-    "record_id": "DEML-000393"
-  },
-  {
-    "detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
-    "entity": "Allocation",
-    "iso_week": "2026W39",
-    "issue_subtype": null,
-    "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
-    "record_id": "ALLOC-2026-000301"
-  },
-  {
-    "detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
-    "entity": "Allocation",
     "iso_week": "2026W53",
     "issue_subtype": null,
-    "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
+    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
+    "record_id": "ALLOC-2026-000046"
+  },
+  {
+    "detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
+    "entity": "Allocation",
+    "iso_week": "2026W27",
+    "issue_subtype": null,
+    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
+    "record_id": "ALLOC-2026-000173"
+  },
+  {
+    "detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
+    "entity": "Allocation",
+    "iso_week": "2026W19",
+    "issue_subtype": null,
+    "issue_type": "ALLOC_EXCEEDS_AVAILABILITY",
     "record_id": "ALLOC-2026-000302"
   },
   {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000557"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000558"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000559"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000560"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000561"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000562"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000563"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000564"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000565"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000566"
+  },
+  {
+    "detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+    "entity": "DemandLine",
+    "issue_subtype": null,
+    "issue_type": "DEMAND_DOUBLE_COUNTED",
+    "record_id": "DEML-000567"
+  },
+  {
     "detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
     "entity": "Allocation",
     "iso_week": "2026W53",
     "issue_subtype": null,
     "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
-    "record_id": "ALLOC-2026-000303"
+    "record_id": "ALLOC-2026-000453"
+  },
+  {
+    "detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
+    "entity": "Allocation",
+    "iso_week": "2026W22",
+    "issue_subtype": null,
+    "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
+    "record_id": "ALLOC-2026-000454"
+  },
+  {
+    "detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
+    "entity": "Allocation",
+    "iso_week": "2026W27",
+    "issue_subtype": null,
+    "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT",
+    "record_id": "ALLOC-2026-000455"
   },
   {
     "detection_rule": "SKILL_FLAG_EXPIRY_MISMATCH",

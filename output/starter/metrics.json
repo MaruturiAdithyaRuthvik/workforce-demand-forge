@@ -1,5 +1,5 @@
 {
-  "detection_count": 19,
+  "detection_count": 23,
   "evaluation": {
     "cross_type_confusion": [
       {
@@ -8,7 +8,7 @@
         "expected": "ALLOC_EXCEEDS_AVAILABILITY"
       },
       {
-        "count": 7,
+        "count": 11,
         "detected": "DEMAND_DOUBLE_COUNTED",
         "expected": "DEMAND_DOUBLE_COUNTED"
       },
@@ -26,17 +26,17 @@
     "held_out_seed": {
       "cross_type_confusion": [
         {
-          "count": 5,
+          "count": 4,
           "detected": "ALLOC_EXCEEDS_AVAILABILITY",
           "expected": "ALLOC_EXCEEDS_AVAILABILITY"
         },
         {
-          "count": 7,
+          "count": 11,
           "detected": "DEMAND_DOUBLE_COUNTED",
           "expected": "DEMAND_DOUBLE_COUNTED"
         },
         {
-          "count": 1,
+          "count": 2,
           "detected": "OVERLAPPING_PROJECT_ASSIGNMENT",
           "expected": "OVERLAPPING_PROJECT_ASSIGNMENT"
         },
@@ -53,7 +53,7 @@
           "false_positive": 0,
           "precision": 1.0,
           "recall": 1.0,
-          "true_positive": 5
+          "true_positive": 4
         },
         "DEMAND_DOUBLE_COUNTED": {
           "f1": 1.0,
@@ -61,7 +61,7 @@
           "false_positive": 0,
           "precision": 1.0,
           "recall": 1.0,
-          "true_positive": 7
+          "true_positive": 11
         },
         "OVERLAPPING_PROJECT_ASSIGNMENT": {
           "f1": 1.0,
@@ -69,7 +69,7 @@
           "false_positive": 0,
           "precision": 1.0,
           "recall": 1.0,
-          "true_positive": 1
+          "true_positive": 2
         },
         "STALE_SKILL_TREATED_CURRENT": {
           "f1": 1.0,
@@ -97,7 +97,7 @@
         "false_positive": 0,
         "precision": 1.0,
         "recall": 1.0,
-        "true_positive": 7
+        "true_positive": 11
       },
       "OVERLAPPING_PROJECT_ASSIGNMENT": {
         "f1": 1.0,
@@ -125,36 +125,62 @@
     "methods": {
       "moving_average_4w": [
         {
-          "bias": -0.10846023106775068,
+          "bias": -0.02871761,
           "horizon_weeks": 4,
-          "wape": 1.5722791467965693
+          "origins": 36,
+          "wape": 1.54722625
         },
         {
-          "bias": -0.17950303699415882,
+          "bias": -0.0495236,
           "horizon_weeks": 8,
-          "wape": 1.5265993238281492
+          "origins": 32,
+          "wape": 1.53629666
         },
         {
-          "bias": -0.27861578744359655,
+          "bias": -0.06915606,
           "horizon_weeks": 12,
-          "wape": 1.4681800432791765
+          "origins": 28,
+          "wape": 1.5114639
         }
       ],
       "pipeline_adjusted": [
         {
-          "bias": -0.4302663454098789,
+          "bias": -0.38732809,
           "horizon_weeks": 4,
-          "wape": 0.4302663454098788
+          "origins": 36,
+          "wape": 0.38732809
         },
         {
-          "bias": -0.5586485951897534,
+          "bias": -0.52632881,
           "horizon_weeks": 8,
-          "wape": 0.5586485951897534
+          "origins": 32,
+          "wape": 0.52632881
         },
         {
-          "bias": -0.6710992822405034,
+          "bias": -0.63408723,
           "horizon_weeks": 12,
-          "wape": 0.6710992822405035
+          "origins": 28,
+          "wape": 0.63408723
+        }
+      ],
+      "pipeline_realization_adjusted": [
+        {
+          "bias": -0.0334662,
+          "horizon_weeks": 4,
+          "origins": 36,
+          "wape": 0.38518927
+        },
+        {
+          "bias": -0.25614278,
+          "horizon_weeks": 8,
+          "origins": 32,
+          "wape": 0.49365089
+        },
+        {
+          "bias": -0.43066711,
+          "horizon_weeks": 12,
+          "origins": 28,
+          "wape": 0.59857961
         }
       ]
     }

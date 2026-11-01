@@ -1,14 +1,15 @@
 # Limitations
 
-- Forecast and anomaly results are demonstrations over synthetic data and are not operational recommendations.
-- NumPy `Generator` stream output is only guaranteed stable when the pinned NumPy version is unchanged.
-- Full-scale generation and validation completed in 70.50 seconds with a sampled peak process-tree working set of 720.1 MiB on the recorded Windows/Python 3.14.7 environment; other machines and operating systems were not benchmarked.
-- The `make` executable is not installed in the audited Windows environment. GNU Make targets exist; equivalent `uv run` commands were used.
-- Detector metrics are perfect on the tested seeds because deterministic anomaly injection and rule detectors encode matching conditions. These results do not establish production detector accuracy; no false positives/negatives occurred on these generated cases.
-- Forecast pipeline adjustment has lower WAPE at 4 and 8 weeks; moving average is better at 12 weeks. Pipeline adjustment has more negative bias at all horizons, and both methods underforecast in the audited full run.
-- Zero availability occurred in 131 of 265,000 employee-weeks (0.049%). Leave is concentrated in four synthetic months (February, May, July, December), and only six fixed holidays are modeled.
-- A deliberate exception fixture leaves one Active allocation on a Cancelled project to exercise cancellation handling.
-- The source problem statement is needed to certify that the traceability table covers every original step, edge case, acceptance criterion, and evaluation focus.
-- Test coverage was 89% overall; CLI statements were not exercised by the Python unit tests, although the documented CLI workflows passed in a fresh clone.
-- The small starter sample's moving-average WAPE exceeds 1.0 at all three horizons; this is a property of the synthetic sample, not a general forecast benchmark.
-- Platform-specific timing varies. Hashes cover canonical exports, not SQLite file bytes.
+- All datasets, evaluation labels, and detector results are synthetic; they are not operational recommendations or evidence of real-world accuracy.
+- The forecast output is indexed by role and week, not by project. It therefore does not fully satisfy the project-level forecasting aspect of the problem.
+- Full-scale rolling-origin backtests show pipeline realization adjustment wins WAPE at 4/8/12 weeks, but still underforecasts at 8 and 12 weeks. Results vary by seed and synthetic demand profile.
+- Perfect detector scores on the three tested seeds reflect deterministic injected conditions matching deterministic rules. They should not be interpreted as production precision or recall.
+- The stale-skill anomaly is an expired skill incorrectly marked `Current`; it does not model a separate stale proficiency value.
+- A deliberate exception fixture leaves one Active allocation on a Cancelled project to demonstrate lifecycle exception handling. It is not a production cancellation policy.
+- In the audited full run, 8,001 of 265,000 employee-weeks (3.019%) had zero availability. Leave covers 80.020% of employees, is modeled across all months with July and December peaks, and only six fixed holidays are included.
+- Full-scale generation and validation took 87.16 seconds with a sampled peak process-tree working set of 739.9 MiB on the local Windows/Python 3.14.7 environment. Other platforms and machines were not benchmarked, and sub-250-ms memory peaks may be missed.
+- NumPy `Generator` stream output is guaranteed only under the pinned NumPy version. Starter artifact hashes matched under Python 3.11.15 and 3.14.7; the manifest's runtime-version field itself is expected to differ.
+- Hash evidence covers canonical CSV/JSON/SQL files and a logical SQLite dump, not raw SQLite file bytes.
+- The test suite measured 92% overall coverage; CLI coverage was 55%, with a `CliRunner` smoke test for `generate`. The README command sequence was separately checked in a fresh clone.
+- GNU Make and remote GitHub Actions were not run in the audited Windows environment because Make was unavailable. Direct `uv run` checks passed; no remote CI success is claimed.
+- The public GitHub push requested by the problem statement was not performed or verified.
