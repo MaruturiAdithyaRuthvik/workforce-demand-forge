@@ -1,4 +1,4 @@
-.PHONY: setup starter full validate test repro all clean
+.PHONY: setup starter full validate test repro independent-check docs-check all clean
 
 setup:
 	uv sync --extra dev
@@ -17,6 +17,12 @@ test:
 
 repro:
 	wdf repro --scale starter --seed 20261022 --out output
+
+independent-check:
+	uv run python tools/independent_check.py output/full
+
+docs-check:
+	uv run python tools/check_docs.py output/full
 
 all: test starter validate forecast detect evaluate
 
