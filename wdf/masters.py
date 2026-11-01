@@ -111,6 +111,9 @@ def generate_masters(seed: int, employees: int, skills: int, projects: int, role
         if index <= min(2, projects):
             start, end = date(2026, 1, 5), date(2026, 12, 31)
             staffing_model = "Shared-Pool"
+        elif index <= min(4, projects):
+            start, end = date(2026, 1, 5), date(2026, 12, 31)
+            staffing_model = "Dedicated-Team"
         else:
             start = date(2026, 1, 5) + timedelta(days=int(project_rng.integers(0, 320)))
             duration_days = int(np.clip(project_rng.lognormal(mean=4.0, sigma=0.65), 35, 430))

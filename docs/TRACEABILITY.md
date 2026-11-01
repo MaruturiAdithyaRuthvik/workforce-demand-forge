@@ -13,7 +13,7 @@
 | Demand/supply/gaps and source trace IDs | `wdf/derived.py`, `wdf/pipeline.py` | `tests/test_p3.py`, `tests/test_p6.py` |
 | Gap and utilization-risk recommendations cite rule IDs, actors, lead time, cost, assumptions, and source rows | `wdf/derived.py`, `wdf/models.py`, `wdf/exports.py` | `tests/test_p3.py`, `tools/independent_check.py` |
 | Forecast after AS_OF; rolling origins, created-on cutoff, and past-only realization calibration | `wdf/forecast.py`, `config/default.yaml` | `tests/test_p4.py` |
-| Four anomaly families, hard negatives, labels isolated to ground-truth exports | `wdf/anomalies.py`, `wdf/detect.py`, `wdf/exports.py` | `tests/test_p5.py`, `tests/test_p6.py` |
+| Four anomaly families, programmatic near-miss negatives, labels isolated to ground-truth exports | `wdf/anomalies.py`, `wdf/detect.py`, `wdf/exports.py` | `tests/test_p5.py`, `tests/test_p6.py` |
 | Validator checks PK/FK/enums/IDs/dates/lifecycle/capacity/derived values | `wdf/validate.py`, `wdf/exports.py` | `tests/test_p6.py`, `tests/test_p7.py` |
 | Main and held-out seed detection evaluation | `wdf/pipeline.py`, `wdf/evaluate.py` | `tests/test_p6.py`; `output/starter/metrics.json` |
 | CSV/JSON exports, SQLite, SQL, manifest, and reproducibility hashes | `wdf/exports.py`, `wdf/pipeline.py` | `tests/test_p7.py`; `wdf repro` |

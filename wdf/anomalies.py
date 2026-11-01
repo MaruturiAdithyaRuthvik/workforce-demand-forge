@@ -118,6 +118,25 @@ def inject_anomalies(
         })
 
     approved = [row for row in sources["demand_lines"] if row["status"] == "Approved"]
+    adjacent_demand_groups: dict[tuple[str, str, str], list[dict]] = {}
+    for row in approved:
+        adjacent_demand_groups.setdefault(
+            (row["project_id"], row["role_id"], row["skill_id"]), []
+        ).append(row)
+    adjacent_negative_ids = set()
+    for rows in adjacent_demand_groups.values():
+        ordered = sorted(rows, key=lambda row: row["iso_week"])
+        for first, second in zip(ordered, ordered[1:]):
+            if (
+                first["iso_week"][:4] == second["iso_week"][:4]
+                and int(second["iso_week"][-2:]) == int(first["iso_week"][-2:]) + 1
+            ):
+                adjacent_negative_ids.update({
+                    first["demand_line_id"], second["demand_line_id"]
+                })
+    approved = [
+        row for row in approved if row["demand_line_id"] not in adjacent_negative_ids
+    ]
     if not approved:
         raise ValueError("No approved demand line available for duplicate injection")
     demand_targets = select_targets(approved)

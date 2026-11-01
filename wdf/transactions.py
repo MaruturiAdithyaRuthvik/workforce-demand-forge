@@ -59,10 +59,16 @@ def generate_sources(
     if np.any(profile_weights < 0) or not np.any(profile_weights > 0):
         raise ValueError("Demand curve weights must be non-negative with positive total")
     profile_weights /= profile_weights.sum()
-    for project in data["projects"]:
-        project["demand_profile"] = str(
-            demand_rng.choice(profile_names, p=profile_weights)
-        )
+    long_lived_project_count = min(3, len(data["projects"]))
+    assigned_profiles = list(demand_rng.choice(
+        profile_names, size=long_lived_project_count, replace=False, p=profile_weights
+    ))
+    assigned_profiles.extend(
+        str(demand_rng.choice(profile_names, p=profile_weights))
+        for _ in range(len(data["projects"]) - long_lived_project_count)
+    )
+    for project, profile in zip(data["projects"], assigned_profiles):
+        project["demand_profile"] = str(profile)
     weeks = iso_weeks()
     role_skills: dict[str, list[dict]] = {}
     for row in data["role_skills"]:
@@ -147,6 +153,65 @@ def generate_sources(
         original["status"] = "Superseded"
         demand_lines.append(revision)
         line_counter += 1
+
+    if projects >= 2:
+        near_miss_project = data["projects"][0]
+        near_miss_weeks = ("2026W30", "2026W31")
+        plan_by_key = {
+            (row["project_id"], row["iso_week"]): row for row in demand_headers
+        }
+        near_miss_plans = []
+        for week_id in near_miss_weeks:
+            plan = plan_by_key.get((near_miss_project["project_id"], week_id))
+            if plan is None:
+                week_number = int(week_id[-2:])
+                week_start = date.fromisocalendar(2026, week_number, 1)
+                plan = {
+                    "demand_id": demand_id(near_miss_project["project_id"], week_id),
+                    "project_id": near_miss_project["project_id"],
+                    "iso_week": week_id,
+                    "week_start": week_start.isoformat(),
+                }
+                demand_headers.append(plan)
+                plan_by_key[(near_miss_project["project_id"], week_id)] = plan
+            near_miss_plans.append(plan)
+        existing_keys = {
+            (row["demand_id"], row["role_id"], row["skill_id"])
+            for row in demand_lines if row["status"] == "Approved"
+        }
+        candidate_pairs = [
+            (role_skill["role_id"], role_skill["skill_id"])
+            for role_skill in data["role_skills"]
+            if all(
+                (plan["demand_id"], role_skill["role_id"], role_skill["skill_id"])
+                not in existing_keys
+                for plan in near_miss_plans
+            )
+        ]
+        if not candidate_pairs:
+            raise ValueError("No unused role/skill pair for adjacent-week demand fixture")
+        role_id, skill_id = candidate_pairs[0]
+        min_proficiency = next(
+            row["min_proficiency"] for row in data["role_skills"]
+            if row["role_id"] == role_id and row["skill_id"] == skill_id
+        )
+        for plan in near_miss_plans:
+            week_start = date.fromisoformat(plan["week_start"])
+            demand_lines.append({
+                "demand_line_id": entity_id("DEML", line_counter),
+                "demand_id": plan["demand_id"],
+                "project_id": near_miss_project["project_id"],
+                "iso_week": plan["iso_week"],
+                "role_id": role_id,
+                "skill_id": skill_id,
+                "required_fte": round(float(demand_rng.uniform(0.25, 2.0)), 4),
+                "min_proficiency": min_proficiency,
+                "source": "PlanTool",
+                "created_on": max(date(2025, 1, 1), week_start - timedelta(days=14)).isoformat(),
+                "supersedes_line_id": None,
+                "status": "Approved",
+            })
+            line_counter += 1
 
     leave_config = load_settings().leave_realism
     eligible_count = min(
@@ -361,6 +426,39 @@ def generate_sources(
             employee, alternate, sequential_start, sequential_start + timedelta(days=duration - 1),
             float(alloc_rng.choice([0.25, 0.5, 0.75])),
         ))
+
+    if projects >= 4 and employees >= 8:
+        dedicated_projects = [
+            project for project in data["projects"]
+            if project["staffing_model"] == "Dedicated-Team"
+        ]
+        first_week = date.fromisocalendar(2026, 25, 1)
+        second_week = first_week + timedelta(days=7)
+        employee_ids_with_weekly_allocations = {
+            allocation["employee_id"]
+            for allocation in allocations
+            if date.fromisoformat(allocation["start_date"]) <= second_week + timedelta(days=6)
+            and date.fromisoformat(allocation["end_date"]) >= first_week
+        }
+        eligible_employees = [
+            employee for employee in data["employees"]
+            if employee["employee_id"] not in employee_ids_with_weekly_allocations
+        ]
+        if not eligible_employees or len(dedicated_projects) < 2:
+            raise ValueError("Cannot place adjacent Dedicated-Team near-miss allocations")
+        employee = eligible_employees[0]
+        for project, start_day in zip(dedicated_projects[:2], (first_week, second_week)):
+            allocations.append({
+                "allocation_id": allocation_id(len(allocations) + 1),
+                "employee_id": employee["employee_id"],
+                "project_id": project["project_id"],
+                "role_id": employee["role_id"],
+                "start_date": start_day.isoformat(),
+                "end_date": (start_day + timedelta(days=6)).isoformat(),
+                "allocation_pct": 0.5,
+                "skill_basis_esk_id": None,
+                "status": "Active",
+            })
 
     training = []
     for index in range(1, max(2, employees // 20) + 1):
