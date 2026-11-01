@@ -2,16 +2,16 @@
 
 Audit run on 2026-11-01 against seed `20261022` on Windows. Commands and outputs below are from this session. `N/A` means the section found no code defect requiring a fix; commit hashes identify the commits that repaired discovered issues.
 
-## A. Full scale
+## A. Full scale (final rerun in K)
 
 **Command:** `uv run wdf generate --scale full --seed 20261022 --out output/full` (run under a PowerShell process-tree working-set sampler at 250 ms intervals).
 
 **Key output:**
 
 ```text
-Generated 47 artifacts in output\full
+Generated 48 artifacts in output\full
 Validation: PASS
-WALL_SECONDS=87.158 PEAK_TREE_RSS_MIB=739.9
+WALL_SECONDS=101.609 PEAK_TREE_RSS_MIB=827.4
 ```
 
 `config/scale_full.yaml` reports employees `5000`, skills `300`, projects `500`, roles `40`. The independent check verified all 53 weeks `2026W01`–`2026W53`, every ID regex, and the counts below. Example IDs: `EMP-000001`, `SKL-000083`, `PRJ-2026-000001`, `DEM-PRJ-2026-000001-2026W41`, and `ALLOC-2026-000001`.
@@ -36,9 +36,9 @@ WALL_SECONDS=87.158 PEAK_TREE_RSS_MIB=739.9
 | utilization | 265,000 |
 | supply | 4,389 |
 | gap_analysis | 4,389 |
-| gap_actions | 2,151 |
+| gap_actions | 8,242 |
 
-**Verdict:** PASS. Runtime is below the 180-second threshold; sampled peak process-tree working set was 739.9 MiB. A sub-250-ms peak could be missed.
+**Verdict:** PASS. Runtime is below the 180-second threshold; sampled peak process-tree working set was 827.4 MiB. A sub-250-ms peak could be missed.
 
 **Fix commit:** `2dbdbfb` (indexed anomaly and trace processing; current full-scale runtime and same-seed behavior are recorded above and in section J).
 
@@ -202,11 +202,27 @@ The rolling-origin backtest evaluates 36, 32, and 28 origins at the 4-, 8-, and 
 
 No-look-ahead tests passed (`2 passed`), including the origin-specific realization ratio. The calibrated pipeline method wins full-scale WAPE at all three horizons; it is nearly unbiased at four weeks but underforecasts at eight and twelve weeks. Moving average also underforecasts. The uncalibrated pipeline method has bias equal to negative WAPE because every evaluated prediction is below actual; this is explained in `docs/DESIGN_DECISIONS.md`.
 
+The project/role/week backtest from the same full-scale command:
+
+| Method | Horizon (weeks) | WAPE | Bias |
+|---|---:|---:|---:|
+| 4-week moving average | 4 | 1.85634063 | -0.11000170 |
+| 4-week moving average | 8 | 1.80812723 | -0.16911561 |
+| 4-week moving average | 12 | 1.75412930 | -0.22819106 |
+| Pipeline adjusted | 4 | 0.37434853 | -0.37434853 |
+| Pipeline adjusted | 8 | 0.52768210 | -0.52768210 |
+| Pipeline adjusted | 12 | 0.65303907 | -0.65303907 |
+| Pipeline realization adjusted | 4 | 0.38780579 | 0.00672645 |
+| Pipeline realization adjusted | 8 | 0.49934238 | -0.24277502 |
+| Pipeline realization adjusted | 12 | 0.61643032 | -0.44600495 |
+
+Pipeline adjusted wins at four weeks for project-level WAPE; pipeline realization adjusted wins at eight and twelve weeks. Detector and forecast no-look-ahead test results are unaffected by the utilization risk field.
+
 **Verdict:** PASS; limits and horizon-dependent results are documented.
 
 **Fix commit:** `2167eaf`.
 
-## G. Reproducibility (earlier audit run; final rerun in J)
+## G. Reproducibility (earlier audit run; final rerun in K)
 
 The following paired values record the prior full-scale audit run. The item 9 final run below supersedes these values for the current generator.
 
@@ -344,13 +360,13 @@ The initial `pytest --cov` attempt failed because `pytest-cov`/coverage was not 
 **Key output:**
 
 ```text
-PASS data dictionary: 19 tables, 126 Pydantic fields
+PASS data dictionary: 19 tables, 127 Pydantic fields
 PASS SOURCE_MANIFEST.md states synthetic records and no external data
-PASS manifest checksums and inventory: 49 files
+PASS manifest checksums and inventory: 50 files
 docs\PROBLEM.md: True
 ```
 
-`docs/TRACEABILITY.md` maps every numbered line 1–55 of the supplied statement, including steps 1–10, edge cases, acceptance criteria, evaluation focus (a)–(g), provenance, and submission requirements. It explicitly lists incomplete project-level forecasting and the unverified public push. README figures are refreshed from the current starter/full outputs. `docs/PROBLEM.md` is committed unchanged as requested.
+`docs/TRACEABILITY.md` maps every numbered line 1–55 of the supplied statement, including steps 1–10, edge cases, acceptance criteria, evaluation focus (a)–(g), provenance, and submission requirements. It lists the unverified public push as a known gap. README figures are refreshed from current starter/full outputs. `docs/PROBLEM.md` is committed unchanged as requested.
 
 **Verdict:** PASS for schema, manifest, and line-referenced documentation checks; remaining functional/documentation gaps are explicit below.
 
@@ -360,7 +376,6 @@ docs\PROBLEM.md: True
 
 | Gap | Evidence/status |
 |---|---|
-| Forecast output is role/week, not project/role/week | `wdf/forecast.py` does not retain `project_id`; project-level demand forecasting is incomplete |
 | Stale-skill injection uses an expired skill incorrectly marked `Current` | It does not model a separate stale proficiency value; the currency/expiry detector case is still covered |
 | One Active allocation remains on a Cancelled project | Deliberate exception fixture, not a production cancellation policy |
 | Public GitHub push is unverified | This local audit neither pushed nor verified a public repository |
@@ -440,7 +455,9 @@ The detached worktree comparison verifies the moved defaults preserved the gener
 
 **Fix commit:** `7c47949`.
 
-### Item 9: before/after measures and final rerun
+### Item 9: before/after measures before the utilization-risk follow-up
+
+The action totals and risk classification in this historical section predate item 3 of the current round; section K records the final outputs after that change.
 
 **Commands:** `uv run python -` for allocation, leave, action, and forecast comparisons; `uv run wdf forecast --input output/full`; `uv run wdf detect --input output/full`; `uv run wdf evaluate --input output/full`.
 
@@ -501,7 +518,7 @@ uv lock --check: Resolved 27 packages
 
 The three-seed full-scale detector results, near-miss counts, exception paths, and no-look-ahead test results are recorded in sections D–F. The per-issue results were recomputed from all three full-scale outputs: all four issue types had zero FP/FN for seeds 20261022, 20261023, and 20261024; type-(d)-as-type-(a) detections and unlabeled detections were both zero for each seed.
 
-### Full-scale reproducibility hashes and row counts
+### Previous full-scale reproducibility (before item 3)
 
 **Command:** `uv run wdf repro --scale full --seed 20261022 --out output/full-repro`.
 
@@ -556,7 +573,63 @@ The three-seed full-scale detector results, near-miss counts, exception paths, a
 | utilization.json | 4844bce40a3768071e48cb017ae6634d5a783d434ef9bbb2934fb7a01432d028 | 4844bce40a3768071e48cb017ae6634d5a783d434ef9bbb2934fb7a01432d028 | - |
 | validation_report.json | 5a745631630d727b75a935821a467c64a59b53e605050f1b0e11ed5ac6380b86 | 5a745631630d727b75a935821a467c64a59b53e605050f1b0e11ed5ac6380b86 | - |
 
-### Portability, hygiene, and remaining gaps
+### Final full-scale reproducibility after item 3
+
+**Command:** `uv run wdf repro --scale full --seed 20261022 --out output/full-repro`.
+
+**Key output:** `Reproducibility: PASS (47 files)`; all same-seed file hashes, CSV row counts, and logical database hashes matched; 40 files changed for seed `20261023`. Logical database SHA-256 for both runs: `c6cd2cf1a0d93bb7403f979e5198222c4f7b702036bc576d10dff029cd7986e5`. Versions: Python `3.14.7`, NumPy `2.3.3`, pandas `3.0.0`.
+
+| File | SHA-256 run A | SHA-256 run B | CSV rows A/B |
+|---|---|---|---:|
+| allocations.csv | 9578eafa0cacd50cf79766e7a3c1d6f7cbac0d5ad827d95ee63a2d091b2a0322 | 9578eafa0cacd50cf79766e7a3c1d6f7cbac0d5ad827d95ee63a2d091b2a0322 | 7535/7535 |
+| allocations.json | ba5e4879db3172e7d46bf59d7f4ee1ff013c73f20f1b70337c8279e2ed856e2f | ba5e4879db3172e7d46bf59d7f4ee1ff013c73f20f1b70337c8279e2ed856e2f | - |
+| availability.csv | a259de214272ba4a6147c3f86d7d0f404cc77c68c728e978c372fab031d5ae4c | a259de214272ba4a6147c3f86d7d0f404cc77c68c728e978c372fab031d5ae4c | 265000/265000 |
+| availability.json | cd4eba4771628b923627dd245751916e0f42ddd5bf377fb75b253fded7341250 | cd4eba4771628b923627dd245751916e0f42ddd5bf377fb75b253fded7341250 | - |
+| demand_lines.csv | a2d6f66d7af68e878ba8acc757a4629074277aa97eebc8964446c640bbe7acce | a2d6f66d7af68e878ba8acc757a4629074277aa97eebc8964446c640bbe7acce | 6277/6277 |
+| demand_lines.json | 466e57130df9aad87b246865d2fa0e1d3c7746aef271a4f030412e613854d238 | 466e57130df9aad87b246865d2fa0e1d3c7746aef271a4f030412e613854d238 | - |
+| demand_plans.csv | d45eebe7ff732b6583e5677f57c5f5dd6bc1319fcde711139d59e7a3f6fb8ca3 | d45eebe7ff732b6583e5677f57c5f5dd6bc1319fcde711139d59e7a3f6fb8ca3 | 4079/4079 |
+| demand_plans.json | 0486ecca19e9ad18bba61905d8fdd9f090d1c5c337bfd9c7060f3e4adbd6f4c4 | 0486ecca19e9ad18bba61905d8fdd9f090d1c5c337bfd9c7060f3e4adbd6f4c4 | - |
+| employee_skills.csv | b85455d3da16ca04ec3f925447b37364588986233027dc0879d66c81d83934f1 | b85455d3da16ca04ec3f925447b37364588986233027dc0879d66c81d83934f1 | 57595/57595 |
+| employee_skills.json | ab99dde1734f1600380bdc400ad147927b989cb44e3ab5b949d053c31d08dbb9 | ab99dde1734f1600380bdc400ad147927b989cb44e3ab5b949d053c31d08dbb9 | - |
+| employees.csv | a10a02314fbacf6a27f6a75d596c39d5a16c07654bea007dbfeff40c3b2422cb | a10a02314fbacf6a27f6a75d596c39d5a16c07654bea007dbfeff40c3b2422cb | 5000/5000 |
+| employees.json | cc1461710ef38563ffefd86a52b66863d98b23faa89bbe77d8f955b9e65a90da | cc1461710ef38563ffefd86a52b66863d98b23faa89bbe77d8f955b9e65a90da | - |
+| forecast.csv | 7fcc380165ce67eb8b5be94acf37516a209fcac061402890933db4576bf97c7f | 7fcc380165ce67eb8b5be94acf37516a209fcac061402890933db4576bf97c7f | 1200/1200 |
+| forecast_project.csv | bf8bb735bb201381a669b4cb4f0b677ca1a9e904f5db920f5e8cd2dfa9388ea2 | bf8bb735bb201381a669b4cb4f0b677ca1a9e904f5db920f5e8cd2dfa9388ea2 | 20238/20238 |
+| gap_actions.csv | 48c860009079d85ebe521de6429eb7851490021fc7abf63c90def3ab202b24ee | 48c860009079d85ebe521de6429eb7851490021fc7abf63c90def3ab202b24ee | 8242/8242 |
+| gap_actions.json | 0e3765b13771a5d86f812c8927d4760e4035ed7de7a6008df49f2454ce79177c | 0e3765b13771a5d86f812c8927d4760e4035ed7de7a6008df49f2454ce79177c | - |
+| gap_analysis.csv | 164f737115ba4eb0794a73dc21f4bfbf518eaf0b3cf2ef4a4728c33b614fe0f4 | 164f737115ba4eb0794a73dc21f4bfbf518eaf0b3cf2ef4a4728c33b614fe0f4 | 4389/4389 |
+| gap_analysis.json | 7fb2e5e8de91168ba5877266749a60cdeac89648138a902caaccb1a363253c6a | 7fb2e5e8de91168ba5877266749a60cdeac89648138a902caaccb1a363253c6a | - |
+| ground_truth/ground_truth.csv | 715434d343b8a225585a75432eba2afbb702d3f252c337d1936d5bc21005b79e | 715434d343b8a225585a75432eba2afbb702d3f252c337d1936d5bc21005b79e | 404/404 |
+| ground_truth/ground_truth.json | ecd8c9ff41351a122ddc7cbd07e9be51919efe1036d44f23c97fc0b93957a4fa | ecd8c9ff41351a122ddc7cbd07e9be51919efe1036d44f23c97fc0b93957a4fa | - |
+| holidays.csv | 5711c21093aebd2ba01b16b87b3aca0d47fb612f2c03dbe2d8d59dd75918fffe | 5711c21093aebd2ba01b16b87b3aca0d47fb612f2c03dbe2d8d59dd75918fffe | 6/6 |
+| holidays.json | 28199297d67197d153827ef093f72abe36ced5ab463748e5b18410d584d720c7 | 28199297d67197d153827ef093f72abe36ced5ab463748e5b18410d584d720c7 | - |
+| leave.csv | e1c69d3736f3517064fcff9d48ab3282dbda3f2394b3a62501aeb8bf79fb9565 | e1c69d3736f3517064fcff9d48ab3282dbda3f2394b3a62501aeb8bf79fb9565 | 12001/12001 |
+| leave.json | fb769ebb9b1aa4675b97c296003b2f11c18d0f42a5ffd65360eabb0d10a21dcf | fb769ebb9b1aa4675b97c296003b2f11c18d0f42a5ffd65360eabb0d10a21dcf | - |
+| lifecycle_events.csv | b2ac77789e8505ddd234cfca6b63620510cbc9d4f32f3bb9aefa7f0a5bba88e0 | b2ac77789e8505ddd234cfca6b63620510cbc9d4f32f3bb9aefa7f0a5bba88e0 | 19620/19620 |
+| lifecycle_events.json | 1d3d636fb589efdaf48eeb9e95799f9607e51601944e217b579a0690df3c62e3 | 1d3d636fb589efdaf48eeb9e95799f9607e51601944e217b579a0690df3c62e3 | - |
+| manifest.json | c79fd8241f2bb70ccb04d4de3bd5895e5cda7a5fdb6c282706d69483298f0776 | c79fd8241f2bb70ccb04d4de3bd5895e5cda7a5fdb6c282706d69483298f0776 | - |
+| metrics.json | 696964ee0200c9f47ee537d8aea6f4aefd0de432231ca94a089758a84ebc678a | 696964ee0200c9f47ee537d8aea6f4aefd0de432231ca94a089758a84ebc678a | - |
+| proficiency_scale.csv | 27f5db839505a2ac7d13362e70b6a530157958baa84a987c939f180b38d74221 | 27f5db839505a2ac7d13362e70b6a530157958baa84a987c939f180b38d74221 | 5/5 |
+| proficiency_scale.json | 4db213c4d0a2ac1959d64f520c8eeb0f5ae1b4f7a2dc5c6dfd792848b58e242c | 4db213c4d0a2ac1959d64f520c8eeb0f5ae1b4f7a2dc5c6dfd792848b58e242c | - |
+| projects.csv | e7dd97b39c0a09e8be9d74fdc41fad7c4f478b810d8c607bf30117d90413225b | e7dd97b39c0a09e8be9d74fdc41fad7c4f478b810d8c607bf30117d90413225b | 500/500 |
+| projects.json | d9940e1a509ff47fb56df0df4e8c94f0392486c1ab130794c477d52d5e7eb735 | d9940e1a509ff47fb56df0df4e8c94f0392486c1ab130794c477d52d5e7eb735 | - |
+| role_skills.csv | 0f637b732016376c3a22d0da7ed524b89ca990c4a0a384778445cd95da3208e5 | 0f637b732016376c3a22d0da7ed524b89ca990c4a0a384778445cd95da3208e5 | 191/191 |
+| role_skills.json | c4f08257281474da69d261e01afc6925b0d86dd8a75107228818fc7b1635fca3 | c4f08257281474da69d261e01afc6925b0d86dd8a75107228818fc7b1635fca3 | - |
+| roles.csv | 8b13b2267412a6e3d622d48548175b11030f297269dcf98f67d576f4fda1c71b | 8b13b2267412a6e3d622d48548175b11030f297269dcf98f67d576f4fda1c71b | 40/40 |
+| roles.json | d495f704a6caa55db151278bc8c7db884e694fda1da3b4ed84db7b4eebfec918 | d495f704a6caa55db151278bc8c7db884e694fda1da3b4ed84db7b4eebfec918 | - |
+| schema.sql | 5d97ad27e8c17545694ed18a1ae1b9957d40c6d2563695d9e6d0788c59e940b1 | 5d97ad27e8c17545694ed18a1ae1b9957d40c6d2563695d9e6d0788c59e940b1 | - |
+| seed.sql | 69f7713b579c63b3a55b611aa17a5661d61094a8deb4e2986c6db2ddc1a38da0 | 69f7713b579c63b3a55b611aa17a5661d61094a8deb4e2986c6db2ddc1a38da0 | - |
+| skills.csv | 4183c1b7d8ca1be88087d9f0609b309df7ff7ed7621fa464e5746e0e49a2b0ea | 4183c1b7d8ca1be88087d9f0609b309df7ff7ed7621fa464e5746e0e49a2b0ea | 300/300 |
+| skills.json | 46baae039234910926f14bbec8a1d3f9f94f538727a3793ad6a4328eacb28a0f | 46baae039234910926f14bbec8a1d3f9f94f538727a3793ad6a4328eacb28a0f | - |
+| supply.csv | 071e854af7421c009e3944271e5c059295641445e41da24794a4f79477f051b6 | 071e854af7421c009e3944271e5c059295641445e41da24794a4f79477f051b6 | 4389/4389 |
+| supply.json | 0b94680b8ed5fe61fb7fe93450fc4caebc1f23068dfebe0c3d5e707b2923b678 | 0b94680b8ed5fe61fb7fe93450fc4caebc1f23068dfebe0c3d5e707b2923b678 | - |
+| training.csv | 7aff9151e06d3334b744ebc8189ed8e5913df6b6b76ce5bafd88eb0206a4c865 | 7aff9151e06d3334b744ebc8189ed8e5913df6b6b76ce5bafd88eb0206a4c865 | 251/251 |
+| training.json | 6f8e1866293f15713de71f215d74ba875dce4593a774dec6a8a398f3b36374da | 6f8e1866293f15713de71f215d74ba875dce4593a774dec6a8a398f3b36374da | - |
+| utilization.csv | f4a6f97cffad5560055b88a9c40b6fd9bae97ed8b952992bba4b09638ed17830 | f4a6f97cffad5560055b88a9c40b6fd9bae97ed8b952992bba4b09638ed17830 | 265000/265000 |
+| utilization.json | 620366d8a03ac2008694d7eac9d7f3472c5c7873ecfb05e0450926abdd8a8066 | 620366d8a03ac2008694d7eac9d7f3472c5c7873ecfb05e0450926abdd8a8066 | - |
+| validation_report.json | 74bb3e023149e04900509ce22fd90fbe0e1881730539704b5aaa200fae7d2b39 | 74bb3e023149e04900509ce22fd90fbe0e1881730539704b5aaa200fae7d2b39 | - |
+
+### Prior-run portability, hygiene, and remaining gaps (before item 3)
 
 **Python-version command:** isolated `uv run --python 3.11.15 --locked wdf generate --scale starter --seed 20261022 --out output/portability-py311`, repeated with `3.14.7` in a separate `UV_PROJECT_ENVIRONMENT`. Reusing the active `.venv` for the first attempt failed with Windows `Access is denied`; the isolated retry completed successfully.
 
@@ -583,11 +656,39 @@ Python versions: 3.11.15 / 3.14.7; identical artifact hash maps: True (47/47)
 
 **Fix commits:** performance fix `2dbdbfb`; audit/source statement/starter refresh `8a90a7f`; fresh-clone and closure evidence are recorded in the following audit commit.
 
+## K. Final verification and item 1–3 before/after
+
+The following checks were run after item 3 (`449296d`).
+
+- `uv run wdf generate --scale full --seed 20261022 --out output/full`, sampled every 250 ms: `Generated 48 artifacts`; `Validation: PASS`; wall time `101.609` seconds; peak process-tree working set `827.4 MiB`.
+- `uv run wdf validate --input output/full`: `PASS; errors=0; warnings=2`.
+- `uv run python tools/independent_check.py output/full`: `RESULT: PASS (10 independent checks)`; capacity reconciled for 53 weeks; utilization recomputed for 265,000 employee-weeks; 1,000 gap rows recomputed; 1,200 role forecasts reconciled with 20,238 project forecasts; fresh SQLite foreign-key check passed.
+- `uv run wdf detect --input output/full` and `uv run wdf evaluate --input output/full`; seed `20261024` was independently generated in memory and evaluated. Across seeds `20261022/23/24`, each issue type had zero FP and FN. `over-utilized=450`, all 450 overlapped type-(a) affected utilization IDs; `high-band=6,091`, with zero overlap against type-(a) IDs.
+- `uv run wdf forecast --input output/full`: role and project forecasts completed for 10 future weeks. Full-scale backtests at both levels are in section F and `docs/VALIDATION_SUMMARY.md`.
+- `uv run wdf repro --scale full --seed 20261022 --out output/full-repro`: `Reproducibility: PASS (47 files)`; all A/B hashes and CSV row counts matched; 40 files changed for seed `20261023`; both logical database hashes were `c6cd2cf1a0d93bb7403f979e5198222c4f7b702036bc576d10dff029cd7986e5`. Section J lists all 47 hash pairs and each CSV row count.
+- `uv run pytest --cov=wdf --cov-report=term-missing`: `33 passed`, total coverage `92%`, CLI coverage `55%`; three warnings (two Click deprecations, one SQLite ResourceWarning). `uv run ruff check wdf tests tools`: all checks passed. `uv lock --check`: 27 packages resolved.
+- `uv run python tools/check_docs.py output/full`: 19 tables/127 Pydantic fields, manifest checksums and 50-file inventory passed. `git diff --check` passed.
+
+| Item | Before | After |
+|---|---|---|
+| 1 — project-level forecast | No project/role/week output | `forecast_project.csv` has 20,238 full-scale rows reconciled to 1,200 role/week rows; independent check passed. |
+| 2 — validation warnings | Starter warnings: 11 duplicate Approved lines; 6 currency/expiry mismatches | Full scale: 121 duplicates and 173 mismatches; exact messages are `121 approved demand business-key duplicate(s), surfaced for anomaly detection` and `173 employee skill currency flag(s) disagree with expiry and are detector cases`; zero errors. |
+| 3 — utilization risk | 450 over-utilized employee-weeks, all linked to injected type (a); starter baseline had 411 legal high-band weeks and no high-band action | 450 over-utilized weeks (450 type-(a), 0 baseline-only); 6,091 legal high-band weeks and 6,091 traceable `UTIL_HIGH_BAND_REVIEW` actions; no high-band row overlapped type-(a) IDs. |
+
+Final GapAction counts: 8,242 total — Contract 450, Hire 199, Reallocate 6,541, Reverify 146, Train 906. Utilization rules: `UTIL_HIGH_BAND_REVIEW` 6,091; `UTIL_OVER_AVAILABLE` 450; `UTIL_CONTRACT_OVER_THRESHOLD` 450. Role-level pipeline realization adjustment wins WAPE at all horizons; project-level pipeline adjusted wins at 4 weeks, while pipeline realization adjustment wins at 8 and 12 weeks. The uncalibrated pipeline remains negatively biased.
+
+**Fresh-clone quickstart:** cloned the item-3 commit to a new temporary directory and followed README Quickstart verbatim. Python `3.11.15`; `uv sync --locked` installed 27 packages; generation reported 48 artifacts and PASS; validation had zero errors/two expected warnings; forecast completed for 10 weeks; detection found 23 anomalies; evaluation completed for seeds `20261022/23`; `FRESH_CLONE_QUICKSTART=PASS`.
+
+**Final hygiene:** 102 tracked files totaling 26,606,860 bytes (25.37 MiB); only `output/starter/seed.sql` exceeded 5 MiB (9,848,084 bytes). All 47 hashed full-scale artifacts scanned had no wall-clock timestamp strings or absolute paths. Python `3.14.7`, NumPy `2.3.3`, and pandas `3.0.0` are recorded in the repro report. GNU Make and hosted GitHub Actions remain unverified on this Windows environment.
+
+**Verdict:** PASS for final full-scale data checks, forecasting, three-seed detector evaluation, reproducibility, tests, lint, lockfile, docs, and fresh-clone quickstart. Make and hosted CI remain unverified.
+
+**Fix commits:** project forecast `3fdf9f4`; warning documentation `9ce00ac`; utilization risk `449296d`; final verification is committed separately.
+
 ## Final known gaps
 
 | Gap | Evidence/status |
 |---|---|
-| Forecast output is role/week, not project/role/week | `wdf/forecast.py` does not retain `project_id`; project-level demand forecasting is incomplete. |
 | Stale-skill injection uses an expired skill incorrectly marked `Current` | No separate stale-proficiency value is modeled. |
 | One Active allocation remains on a Cancelled project | Deliberate exception fixture, not a production cancellation policy. |
 | Public GitHub push is unverified | This local audit did not push to or verify a public repository. |

@@ -9,7 +9,7 @@
 - The stale-skill anomaly is an expired skill incorrectly marked `Current`; it does not model a separate stale proficiency value.
 - A deliberate exception fixture leaves one Active allocation on a Cancelled project to demonstrate lifecycle exception handling. It is not a production cancellation policy.
 - In the audited full run, 8,001 of 265,000 employee-weeks (3.019%) had zero availability. Leave covers 80.020% of employees, is modeled across all months with July and December peaks, and only six fixed holidays are included.
-- Full-scale generation and validation took 87.16 seconds with a sampled peak process-tree working set of 739.9 MiB on the local Windows/Python 3.14.7 environment. Other platforms and machines were not benchmarked, and sub-250-ms memory peaks may be missed.
+- Full-scale generation and validation took 101.609 seconds with a sampled peak process-tree working set of 827.4 MiB on the local Windows/Python 3.14.7 environment. Other platforms and machines were not benchmarked, and sub-250-ms memory peaks may be missed.
 - NumPy `Generator` stream output is guaranteed only under the pinned NumPy version. Starter artifact hashes matched under Python 3.11.15 and 3.14.7; the manifest's runtime-version field itself is expected to differ.
 - Hash evidence covers canonical CSV/JSON/SQL files and a logical SQLite dump, not raw SQLite file bytes.
 - The test suite measured 92% overall coverage; CLI coverage was 55%, with a `CliRunner` smoke test for `generate`. The README command sequence was separately checked in a fresh clone.

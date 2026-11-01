@@ -29,26 +29,26 @@ Run `uv run pytest --cov=wdf --cov-report=term-missing`, `uv run wdf validate --
 
 These are real results from seed `20261022` (held-out seed `20261023`):
 
-- Rows: 300 employees, 60 skills, 30 projects, 567 demand lines, 457 allocations, 15,900 availability rows, 15,900 utilization rows, 514 gap rows, and 325 gap actions.
+- Rows: 300 employees, 60 skills, 30 projects, 567 demand lines, 457 allocations, 15,900 availability rows, 15,900 utilization rows, 514 gap rows, and 579 gap actions.
 - Validation: **PASS**, 0 errors; 11 approved demand duplicates and 6 injected skill currency mismatches were reported as expected anomaly findings.
 - Exact starter validation warnings: `11 approved demand business-key duplicate(s), surfaced for anomaly detection`; `6 employee skill currency flag(s) disagree with expiry and are detector cases`. These are intentional injected anomaly fixtures (duplicate Approved demand and stale-skill/current-flag mismatch), not structural validation failures.
 - Detector P/R/F1: **1.000 / 1.000 / 1.000** for each of the four issue types on both seeds.
-- Full-scale generation and validation: **87.16 seconds**, with a sampled process-tree peak working set of **739.9 MiB** on the local Windows/Python 3.14.7 environment.
-- Reproducibility: **PASS**; 46 canonical CSV/JSON/SQL files and the logical SQLite dump matched for repeated seed `20261022`; seed `20261023` changed 39 file hashes.
+- Full-scale generation and validation: **101.609 seconds**, with a sampled process-tree peak working set of **827.4 MiB** on the local Windows/Python 3.14.7 environment.
+- Reproducibility: **PASS**; 47 canonical CSV/JSON/SQL files and the logical SQLite dump matched for repeated seed `20261022`; seed `20261023` changed 40 file hashes.
 
 Starter rolling-origin backtest (36/32/28 origins for 4/8/12 weeks; WAPE lower is better, bias is signed relative error):
 
 | Method | Horizon | WAPE | Bias |
 |---|---:|---:|---:|
-| 4-week moving average | 4 | 1.5472 | -0.0287 |
-| 4-week moving average | 8 | 1.5363 | -0.0495 |
-| 4-week moving average | 12 | 1.5115 | -0.0692 |
-| Pipeline adjusted | 4 | 0.3873 | -0.3873 |
-| Pipeline adjusted | 8 | 0.5263 | -0.5263 |
-| Pipeline adjusted | 12 | 0.6341 | -0.6341 |
-| Pipeline realization adjusted | 4 | 0.3852 | -0.0335 |
-| Pipeline realization adjusted | 8 | 0.4937 | -0.2561 |
-| Pipeline realization adjusted | 12 | 0.5986 | -0.4307 |
+| 4-week moving average | 4 | 1.54722625 | -0.02871761 |
+| 4-week moving average | 8 | 1.53629666 | -0.04952360 |
+| 4-week moving average | 12 | 1.51146390 | -0.06915606 |
+| Pipeline adjusted | 4 | 0.38732809 | -0.38732809 |
+| Pipeline adjusted | 8 | 0.52632881 | -0.52632881 |
+| Pipeline adjusted | 12 | 0.63408723 | -0.63408723 |
+| Pipeline realization adjusted | 4 | 0.38518927 | -0.03346620 |
+| Pipeline realization adjusted | 8 | 0.49365089 | -0.25614278 |
+| Pipeline realization adjusted | 12 | 0.59857961 | -0.43066711 |
 
 Forecast metrics and per-issue seed-specific scores are in [output/starter/metrics.json](output/starter/metrics.json); the row-level validation counts are in [output/starter/validation_report.json](output/starter/validation_report.json). On this starter sample, pipeline realization adjustment wins WAPE at all three horizons; it remains negatively biased. In the full-scale backtest it also wins WAPE at all horizons, but underforecasts at 8 and 12 weeks. These are synthetic-data results, not a general forecast benchmark.
 
@@ -56,17 +56,31 @@ Starter project/role/week backtest (same rolling origins; WAPE lower is better):
 
 | Method | Horizon | WAPE | Bias |
 |---|---:|---:|---:|
-| 4-week moving average | 4 | 1.9247 | -0.0287 |
-| 4-week moving average | 8 | 1.9132 | -0.0495 |
-| 4-week moving average | 12 | 1.8970 | -0.0692 |
-| Pipeline adjusted | 4 | 0.3873 | -0.3873 |
-| Pipeline adjusted | 8 | 0.5263 | -0.5263 |
-| Pipeline adjusted | 12 | 0.6341 | -0.6341 |
-| Pipeline realization adjusted | 4 | 0.4118 | -0.0335 |
-| Pipeline realization adjusted | 8 | 0.5222 | -0.2561 |
-| Pipeline realization adjusted | 12 | 0.6214 | -0.4307 |
+| 4-week moving average | 4 | 1.92469908 | -0.02872118 |
+| 4-week moving average | 8 | 1.91321131 | -0.04952759 |
+| 4-week moving average | 12 | 1.89696901 | -0.06915782 |
+| Pipeline adjusted | 4 | 0.38732895 | -0.38732895 |
+| Pipeline adjusted | 8 | 0.52632965 | -0.52632965 |
+| Pipeline adjusted | 12 | 0.63408772 | -0.63408772 |
+| Pipeline realization adjusted | 4 | 0.41179253 | -0.03346475 |
+| Pipeline realization adjusted | 8 | 0.52216769 | -0.25614225 |
+| Pipeline realization adjusted | 12 | 0.62142750 | -0.43066720 |
 
 Project-level WAPE is higher for the moving-average method because demand must be assigned to projects from their historical role mix. The realization-adjusted pipeline has lower project-level WAPE at 4 and 8 weeks than at 12 weeks; the role-level and project-level method winners need not be the same.
+
+Full-scale project/role/week backtest (36/32/28 origins):
+
+| Method | Horizon | WAPE | Bias |
+|---|---:|---:|---:|
+| 4-week moving average | 4 | 1.85634063 | -0.11000170 |
+| 4-week moving average | 8 | 1.80812723 | -0.16911561 |
+| 4-week moving average | 12 | 1.75412930 | -0.22819106 |
+| Pipeline adjusted | 4 | 0.37434853 | -0.37434853 |
+| Pipeline adjusted | 8 | 0.52768210 | -0.52768210 |
+| Pipeline adjusted | 12 | 0.65303907 | -0.65303907 |
+| Pipeline realization adjusted | 4 | 0.38780579 | 0.00672645 |
+| Pipeline realization adjusted | 8 | 0.49934238 | -0.24277502 |
+| Pipeline realization adjusted | 12 | 0.61643032 | -0.44600495 |
 
 ## Data documentation
 

@@ -19,7 +19,7 @@ Both generated scales passed validation with zero structural errors. The two war
 | Availability | 15,900 | 265,000 |
 | Utilization | 15,900 | 265,000 |
 | GapAnalysis | 514 | 4,389 |
-| GapAction | 325 | 2,151 |
+| GapAction | 579 | 8,242 |
 
 The full independent stdlib checker passed PK/FK/enums/IDs/dates, 53-week capacity reconciliation, 265,000 utilization rows, 1,000 stratified gap recomputations, lifecycle state, injected duplicate-label agreement, and a fresh SQLite `PRAGMA foreign_key_check`.
 
@@ -78,9 +78,25 @@ Rolling-origin backtests use 36, 32, and 28 origins at the 4-, 8-, and 12-week h
 
 Pipeline realization adjustment has the lowest full-scale WAPE at each horizon. It is nearly unbiased at four weeks but underforecasts at eight and twelve weeks. No-look-ahead tests passed for the origin-specific realization ratio.
 
+### Full project/role/week
+
+| Method | Horizon (weeks) | WAPE | Bias |
+|---|---:|---:|---:|
+| 4-week moving average | 4 | 1.85634063 | -0.11000170 |
+| 4-week moving average | 8 | 1.80812723 | -0.16911561 |
+| 4-week moving average | 12 | 1.75412930 | -0.22819106 |
+| Pipeline adjusted | 4 | 0.37434853 | -0.37434853 |
+| Pipeline adjusted | 8 | 0.52768210 | -0.52768210 |
+| Pipeline adjusted | 12 | 0.65303907 | -0.65303907 |
+| Pipeline realization adjusted | 4 | 0.38780579 | 0.00672645 |
+| Pipeline realization adjusted | 8 | 0.49934238 | -0.24277502 |
+| Pipeline realization adjusted | 12 | 0.61643032 | -0.44600495 |
+
+At project/role/week level, pipeline adjusted wins at four weeks; pipeline realization adjusted wins at eight and twelve weeks. The forecasts reconcile to the role-level output, but project attribution increases moving-average WAPE.
+
 ## Reproducibility and scale
 
-- Current full-scale repro: **PASS**, 46 canonical artifacts, same-seed hashes and CSV row counts identical, logical SQLite dump SHA-256 identical, and 39 artifacts changed for seed `20261023`.
-- Full generation plus validation: **87.16 seconds**, sampled peak process-tree working set **739.9 MiB** on Windows/Python 3.14.7.
+- Current full-scale repro: **PASS**, 47 canonical artifacts, same-seed hashes and CSV row counts identical, logical SQLite dump SHA-256 identical, and 40 artifacts changed for seed `20261023`.
+- Full generation plus validation: **101.609 seconds**, sampled peak process-tree working set **827.4 MiB** on Windows/Python 3.14.7.
 - Starter manifest file hashes matched under Python 3.11.15 and 3.14.7; the top-level runtime version in the manifest is expected to differ.
 - GNU Make was not installed locally; direct commands passed. Remote CI was not run and is not claimed.
