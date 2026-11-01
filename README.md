@@ -5,10 +5,10 @@ Deterministic synthetic workforce planning data, source validation, rule-based a
 ## Quickstart
 
 1. Install Python 3.11+.
-2. Run `uv sync --extra dev` (or `python -m pip install -e ".[dev]"`).
-3. Generate data: `wdf generate --scale starter --seed 20261022 --out output/starter`.
-4. Validate: `wdf validate --input output/starter`.
-5. Run `wdf forecast --input output/starter`, `wdf detect --input output/starter`, or `wdf evaluate --input output/starter`.
+2. Run `uv sync --locked --extra dev` (or `python -m pip install -e ".[dev]"`).
+3. Generate data: `uv run wdf generate --scale starter --seed 20261022 --out output/starter`.
+4. Validate: `uv run wdf validate --input output/starter`.
+5. Run `uv run wdf forecast --input output/starter`, `uv run wdf detect --input output/starter`, or `uv run wdf evaluate --input output/starter`.
 
 The starter scale is 300 employees, 60 skills, and 30 projects. The full scale is 5,000 employees, 300 skills, and 500 projects. Output includes a CSV and JSON per table, schema/seed SQL, SQLite database, and a manifest. `uv.lock` pins the full dependency graph; `requirements-lock.txt` pins runtime and development tools.
 

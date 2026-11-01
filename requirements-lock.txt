@@ -40,6 +40,7 @@ rich==15.0.0
     # via typer
 ruff==0.12.3
     # via workforce-demand-forecaster
+setuptools==80.9.0
 shellingham==1.5.4
     # via typer
 typer==0.16.0
