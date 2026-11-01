@@ -241,6 +241,7 @@ def run_forecast(path: Path) -> dict:
 
 
 def run_repro(output: Path, scale: str, seed: int) -> dict:
+    import hashlib
     import platform
     import tempfile
 
@@ -251,11 +252,19 @@ def run_repro(output: Path, scale: str, seed: int) -> dict:
     with tempfile.TemporaryDirectory(prefix="wdf-repro-a-", dir=output) as temp_a:
         with tempfile.TemporaryDirectory(prefix="wdf-repro-b-", dir=output) as temp_b:
             path_a, path_b = Path(temp_a), Path(temp_b)
-            run_generate(path_a, scale, seed, include_heldout=False)
-            run_generate(path_b, scale, seed, include_heldout=False)
+            manifest_a = run_generate(path_a, scale, seed, include_heldout=False)["manifest"]
+            manifest_b = run_generate(path_b, scale, seed, include_heldout=False)["manifest"]
             hashes_a, hashes_b = canonical_file_hashes(path_a), canonical_file_hashes(path_b)
             dump_a = logical_database_dump(path_a / "workforce.db")
             dump_b = logical_database_dump(path_b / "workforce.db")
+            row_counts_a = {
+                entry["file"]: entry["rows"] for entry in manifest_a["files"]
+                if entry["file"].endswith(".csv")
+            }
+            row_counts_b = {
+                entry["file"]: entry["rows"] for entry in manifest_b["files"]
+                if entry["file"].endswith(".csv")
+            }
 
     with tempfile.TemporaryDirectory(prefix="wdf-repro-seed-", dir=output) as temp_seed:
         seed_path = Path(temp_seed)
@@ -264,11 +273,30 @@ def run_repro(output: Path, scale: str, seed: int) -> dict:
 
     same = hashes_a == hashes_b and dump_a == dump_b
     different = hashes_a != hashes_different_seed
+    same_rows = row_counts_a == row_counts_b
     report = {
-        "status": "PASS" if same and different else "FAIL",
+        "status": "PASS" if same and different and same_rows else "FAIL",
         "same_seed_hashes_match": hashes_a == hashes_b,
         "same_seed_logical_database_match": dump_a == dump_b,
+        "same_seed_logical_database_sha256": {
+            "run_a": hashlib.sha256(dump_a.encode("utf-8")).hexdigest(),
+            "run_b": hashlib.sha256(dump_b.encode("utf-8")).hexdigest(),
+        },
+        "same_seed_file_sha256": {
+            name: {"run_a": hashes_a[name], "run_b": hashes_b[name]}
+            for name in sorted(hashes_a.keys() | hashes_b.keys())
+        },
+        "same_seed_row_counts_match": same_rows,
+        "same_seed_csv_row_counts": {
+            name: {"run_a": row_counts_a.get(name), "run_b": row_counts_b.get(name)}
+            for name in sorted(row_counts_a.keys() | row_counts_b.keys())
+        },
         "different_seed_hashes_differ": different,
+        "different_seed_sha256": hashes_different_seed,
+        "different_seed_changed_files": sorted(
+            name for name in hashes_a.keys() | hashes_different_seed.keys()
+            if hashes_a.get(name) != hashes_different_seed.get(name)
+        ),
         "file_count": len(hashes_a),
         "sha256": hashes_a,
         "python_version": platform.python_version(),

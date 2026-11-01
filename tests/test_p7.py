@@ -25,4 +25,9 @@ def test_repro_report_checks_same_and_different_seed_outputs(tmp_path):
     report = run_repro(tmp_path, "starter", 71)
     assert report["status"] == "PASS"
     assert report["same_seed_logical_database_match"]
+    assert report["same_seed_row_counts_match"]
+    assert all(
+        values["run_a"] == values["run_b"]
+        for values in report["same_seed_file_sha256"].values()
+    )
     assert report["different_seed_hashes_differ"]
