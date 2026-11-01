@@ -5,7 +5,7 @@ This matrix maps every nonblank line in `docs/PROBLEM.md` to implementation and 
 | Problem line(s) | Requirement | Implementation | Evidence / status |
 |---|---|---|---|
 | 1–2 | Read and satisfy the complete source statement | This complete line-referenced matrix | All substantive lines 4–55 are mapped below; gaps are explicit. |
-| 4–5 | Forecast demand by role/project; identify skill gaps, utilization risks, and hiring/training options | `wdf/forecast.py`, `wdf/derived.py`, `wdf/models.py`, `wdf/exports.py` | Role/week forecast metrics, gap/action records, rules, assumptions, and trace IDs are generated. Project-level forecast dimension remains a known gap. |
+| 4–5 | Forecast demand by role/project; identify skill gaps, utilization risks, and hiring/training options | `wdf/forecast.py`, `wdf/derived.py`, `wdf/exports.py`, `wdf/validate.py`, `tools/independent_check.py` | `forecast.csv` and `forecast_project.csv` include role/week and project/role/week forecasts; rolling-origin metrics and no-look-ahead tests cover both levels. Project sums reconcile to role forecasts in both validators. Gap/action records retain rules, assumptions, and trace IDs. |
 | 7–8 | Working end-to-end solution with related entities, conditional rules, exception paths, traceability, and measurable output | `wdf/models.py`, `wdf/derived.py`, `wdf/pipeline.py`, `wdf/evaluate.py` | Pydantic entities and conditional actions; failed-training fallback and budget escalation; detector and forecast metrics. |
 | 10–11 | Employee/candidate, manager, HR partner, IT/operations partner, system administrator | `wdf/derived.py` actor rules; `wdf/models.py` | Action owners are enum-validated; `tests/test_p3.py`. |
 | 13 | Workflow ordering and rules | `wdf/masters.py`, `wdf/transactions.py`, `wdf/derived.py` | Generation builds masters before transactions, then derives capacity, utilization, gaps, and actions; `tests/test_p1.py`–`tests/test_p3.py`. |
@@ -41,7 +41,6 @@ This matrix maps every nonblank line in `docs/PROBLEM.md` to implementation and 
 
 ## Known gaps
 
-- Lines 5 and 8 request role/project forecasting. Forecast output is currently role/week, without `project_id`.
 - Lines 31 and 42 describe stale proficiency treated as current. The implemented case is an expired skill incorrectly marked `Current`; no separate stale-proficiency value is modeled.
 - Line 54's public GitHub push was not performed or verified.
 - The cancellation exception intentionally retains one Active allocation on a Cancelled project; this is a fixture, not a production cancellation policy.

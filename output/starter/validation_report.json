@@ -4,6 +4,7 @@
     "capacity_weeks_reconciled": 53,
     "derived_tables_recomputed": true,
     "employee_skill_currency_flag_mismatches": 6,
+    "forecast_role_rows_reconciled": 1200,
     "foreign_key_relationships_checked": 27,
     "lifecycle_entities_reconciled": 1370,
     "primary_key_tables": 17,

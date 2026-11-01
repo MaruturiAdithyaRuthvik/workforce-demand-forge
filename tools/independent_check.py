@@ -85,6 +85,7 @@ ID_PATTERNS = {
 }
 AS_OF = datetime.date(2026, 10, 22)
 EPSILON = 0.00011
+FORECAST_EPSILON = 0.00000001
 
 
 def fail(message):
@@ -352,6 +353,43 @@ def main(root):
     if duplicate_ids != truth_ids:
         fail("Approved business-key duplicates differ from injected double-count labels")
     print("PASS approved-demand duplicate groups match injected labels: {}".format(len(duplicate_ids)))
+
+    role_forecasts = read_csv(root, "forecast")
+    project_forecasts = read_csv(root, "forecast_project")
+    role_forecast_by_key = {}
+    for row in role_forecasts:
+        key = (row["iso_week"], row["role_id"], row["method"])
+        if key in role_forecast_by_key:
+            fail("Duplicate role forecast key: " + repr(key))
+        role_forecast_by_key[key] = number(row, "forecast_demand_fte")
+    project_ids = {row["project_id"] for row in data["projects"]}
+    project_forecast_totals = {}
+    project_forecast_keys = set()
+    for row in project_forecasts:
+        project_key = (
+            row["project_id"], row["iso_week"], row["role_id"], row["method"]
+        )
+        if project_key in project_forecast_keys:
+            fail("Duplicate project forecast key: " + repr(project_key))
+        project_forecast_keys.add(project_key)
+        if row["project_id"] not in project_ids:
+            fail("Project forecast references missing Project " + row["project_id"])
+        role_key = (row["iso_week"], row["role_id"], row["method"])
+        project_forecast_totals[role_key] = (
+            project_forecast_totals.get(role_key, 0.0)
+            + number(row, "predicted_fte")
+        )
+    if set(project_forecast_totals) - set(role_forecast_by_key):
+        fail("Project forecast contains keys without a role forecast")
+    for key, role_total in role_forecast_by_key.items():
+        project_total = project_forecast_totals.get(key, 0.0)
+        if abs(role_total - project_total) > FORECAST_EPSILON:
+            fail("Project forecast does not reconcile to role forecast at " + repr(key))
+    print(
+        "PASS project/role forecast reconciliation: {} role forecast rows, {} project rows".format(
+            len(role_forecast_by_key), len(project_forecasts)
+        )
+    )
 
     connection = sqlite3.connect(":memory:")
     try:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 from collections import defaultdict
 from datetime import date, timedelta
 from pathlib import Path
@@ -24,7 +25,9 @@ SOURCE_TABLES = {
 DERIVED_TABLES = {"availability", "utilization", "supply", "gap_analysis", "gap_actions"}
 
 
-def build_data(scale: str, seed: int) -> tuple[dict, list[dict], dict, list[dict], dict, dict]:
+def build_data(
+    scale: str, seed: int
+) -> tuple[dict, list[dict], dict, list[dict], list[dict], dict, dict]:
     settings = load_settings()
     sizes = load_scale(scale)
     sources = generate_sources(seed, **sizes.model_dump())
@@ -32,11 +35,16 @@ def build_data(scale: str, seed: int) -> tuple[dict, list[dict], dict, list[dict
     _ensure_failed_training_fixture(sources, settings.thresholds.model_dump())
     derived = compute_derived(sources, settings.thresholds.model_dump())
     _attach_derived_trace_ids(sources, ground_truth, derived)
-    forecast_rows, forecast_metrics = forecast_data(sources, settings.forecast["confidence"], settings.as_of)
+    forecast_rows, project_forecast_rows, forecast_metrics = forecast_data(
+        sources, settings.forecast["confidence"], settings.as_of
+    )
     detections = detect_anomalies(sources)
     evaluation = evaluate_detections(detections, ground_truth)
-    validation = validate_data(sources, derived, settings.thresholds.model_dump())
-    return sources, ground_truth, derived, forecast_rows, {
+    validation = validate_data(
+        sources, derived, settings.thresholds.model_dump(),
+        forecast_rows, project_forecast_rows,
+    )
+    return sources, ground_truth, derived, forecast_rows, project_forecast_rows, {
         "forecast": forecast_metrics,
         "evaluation": {"seed": seed, **evaluation},
         "detection_count": len(detections),
@@ -134,7 +142,10 @@ def _ensure_failed_training_fixture(sources: dict[str, list[dict]], thresholds: 
 
 
 def run_generate(output: Path, scale: str, seed: int, include_heldout: bool = True) -> dict:
-    sources, ground_truth, derived, forecast_rows, metrics, validation = build_data(scale, seed)
+    (
+        sources, ground_truth, derived, forecast_rows, project_forecast_rows,
+        metrics, validation,
+    ) = build_data(scale, seed)
     if include_heldout:
         heldout_seed = seed + 1
         heldout_sources = generate_sources(heldout_seed, **load_scale(scale).model_dump())
@@ -151,7 +162,8 @@ def run_generate(output: Path, scale: str, seed: int, include_heldout: bool = Tr
             "seed": heldout_seed, **heldout_evaluation,
         }
     manifest = write_exports(
-        output, sources, derived, ground_truth, forecast_rows, metrics, validation,
+        output, sources, derived, ground_truth, forecast_rows,
+        project_forecast_rows, metrics, validation,
         seed, scale, f"wdf generate --scale {scale} --seed {seed}",
     )
     return {"manifest": manifest, "metrics": metrics, "validation": validation}
@@ -187,7 +199,14 @@ def read_output(path: Path) -> tuple[dict[str, list[dict]], dict[str, list[dict]
 def run_validation(path: Path) -> dict:
     sources, derived, _truth = read_output(path)
     settings = load_settings()
-    report = validate_data(sources, derived, settings.thresholds.model_dump())
+    with (path / "forecast.csv").open(encoding="utf-8", newline="") as stream:
+        forecast_rows = list(csv.DictReader(stream))
+    with (path / "forecast_project.csv").open(encoding="utf-8", newline="") as stream:
+        project_forecast_rows = list(csv.DictReader(stream))
+    report = validate_data(
+        sources, derived, settings.thresholds.model_dump(),
+        forecast_rows, project_forecast_rows,
+    )
     from wdf.exports import canonical_json
 
     (path / "validation_report.json").write_text(canonical_json(report), encoding="utf-8", newline="\n")
@@ -239,10 +258,13 @@ def run_forecast(path: Path) -> dict:
 
     sources, _derived, _truth = read_output(path)
     settings = load_settings()
-    rows, metrics = forecast_data(sources, settings.forecast["confidence"], settings.as_of)
+    rows, project_rows, metrics = forecast_data(
+        sources, settings.forecast["confidence"], settings.as_of
+    )
     from wdf.exports import _write_rows_csv, canonical_json
 
     _write_rows_csv(path / "forecast.csv", rows)
+    _write_rows_csv(path / "forecast_project.csv", project_rows)
     metrics_path = path / "metrics.json"
     current = json.loads(metrics_path.read_text(encoding="utf-8")) if metrics_path.exists() else {}
     current["forecast"] = metrics

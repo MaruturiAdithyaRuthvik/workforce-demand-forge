@@ -63,10 +63,62 @@ def _transition_allowed(entity_type: str, previous: str | None, current: str) ->
     return current in transitions.get(entity_type, {}).get(previous, set())
 
 
+def validate_forecast_reconciliation(
+    forecast_rows: list[dict], project_forecast_rows: list[dict]
+) -> tuple[list[str], int]:
+    errors = []
+    role_totals: dict[tuple[str, str, str], float] = {}
+    project_totals: dict[tuple[str, str, str], float] = defaultdict(float)
+    role_keys = set()
+    project_keys = set()
+
+    for row in forecast_rows:
+        key = (row["iso_week"], row["role_id"], row["method"])
+        if key in role_keys:
+            errors.append(f"duplicate role forecast key: {key}")
+        role_keys.add(key)
+        try:
+            value = float(row["forecast_demand_fte"])
+        except (KeyError, TypeError, ValueError):
+            errors.append(f"invalid role forecast value for {key}")
+            continue
+        if value < 0:
+            errors.append(f"negative role forecast value for {key}")
+        role_totals[key] = value
+
+    for row in project_forecast_rows:
+        group_key = (row["iso_week"], row["role_id"], row["method"])
+        key = (row["project_id"], *group_key)
+        if key in project_keys:
+            errors.append(f"duplicate project forecast key: {key}")
+        project_keys.add(key)
+        try:
+            value = float(row["predicted_fte"])
+        except (KeyError, TypeError, ValueError):
+            errors.append(f"invalid project forecast value for {key}")
+            continue
+        if value < 0:
+            errors.append(f"negative project forecast value for {key}")
+        project_totals[group_key] += value
+
+    for key in project_totals.keys() - role_totals.keys():
+        errors.append(f"project forecast has no matching role forecast: {key}")
+    for key, role_total in role_totals.items():
+        project_total = project_totals.get(key, 0.0)
+        if abs(role_total - project_total) > 0.00001:
+            errors.append(
+                f"project forecast does not reconcile to role forecast for {key}: "
+                f"{project_total:.5f} != {role_total:.5f}"
+            )
+    return errors, len(role_totals)
+
+
 def validate_data(
     sources: dict[str, list[dict]],
     derived: dict[str, list[dict]] | None = None,
     thresholds: dict[str, Any] | None = None,
+    forecast_rows: list[dict] | None = None,
+    project_forecast_rows: list[dict] | None = None,
 ) -> dict:
     settings = load_settings()
     errors: list[str] = []
@@ -102,6 +154,21 @@ def validate_data(
         errors.append("employees.fte contains a value outside the supported FTE set")
     checks["primary_key_tables"] = len(primary_keys)
     checks["row_counts"] = {name: len(rows) for name, rows in sorted(tables.items())}
+    if forecast_rows is not None or project_forecast_rows is not None:
+        if forecast_rows is None or project_forecast_rows is None:
+            errors.append("role and project forecast exports must both be provided")
+        else:
+            forecast_errors, reconciled_rows = validate_forecast_reconciliation(
+                forecast_rows, project_forecast_rows
+            )
+            errors.extend(forecast_errors)
+            known_projects = {row["project_id"] for row in sources["projects"]}
+            if any(
+                row["project_id"] not in known_projects
+                for row in project_forecast_rows
+            ):
+                errors.append("project forecast references an unknown Project")
+            checks["forecast_role_rows_reconciled"] = reconciled_rows
 
     def fk(source: str, field: str, target: str, target_field: str) -> None:
         available = {row.get(target_field) for row in tables.get(target, [])}

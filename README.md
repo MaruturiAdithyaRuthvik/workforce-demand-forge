@@ -10,7 +10,7 @@ Deterministic synthetic workforce planning data, source validation, rule-based a
 4. Validate: `uv run wdf validate --input output/starter`.
 5. Run `uv run wdf forecast --input output/starter`, `uv run wdf detect --input output/starter`, or `uv run wdf evaluate --input output/starter`.
 
-The starter scale is 300 employees, 60 skills, and 30 projects. The full scale is 5,000 employees, 300 skills, and 500 projects. Output includes a CSV and JSON per table, schema/seed SQL, SQLite database, and a manifest. `uv.lock` pins the full dependency graph; `requirements-lock.txt` pins runtime and development tools.
+The starter scale is 300 employees, 60 skills, and 30 projects. The full scale is 5,000 employees, 300 skills, and 500 projects. Output includes a CSV and JSON per table, role-level `forecast.csv`, project/role/week `forecast_project.csv`, schema/seed SQL, SQLite database, and a manifest. Project forecasts use only demand visible at each origin and reconcile to the role-level totals. `uv.lock` pins the full dependency graph; `requirements-lock.txt` pins runtime and development tools.
 
 ## Layout
 
@@ -50,6 +50,22 @@ Starter rolling-origin backtest (36/32/28 origins for 4/8/12 weeks; WAPE lower i
 | Pipeline realization adjusted | 12 | 0.5986 | -0.4307 |
 
 Forecast metrics and per-issue seed-specific scores are in [output/starter/metrics.json](output/starter/metrics.json); the row-level validation counts are in [output/starter/validation_report.json](output/starter/validation_report.json). On this starter sample, pipeline realization adjustment wins WAPE at all three horizons; it remains negatively biased. In the full-scale backtest it also wins WAPE at all horizons, but underforecasts at 8 and 12 weeks. These are synthetic-data results, not a general forecast benchmark.
+
+Starter project/role/week backtest (same rolling origins; WAPE lower is better):
+
+| Method | Horizon | WAPE | Bias |
+|---|---:|---:|---:|
+| 4-week moving average | 4 | 1.9247 | -0.0287 |
+| 4-week moving average | 8 | 1.9132 | -0.0495 |
+| 4-week moving average | 12 | 1.8970 | -0.0692 |
+| Pipeline adjusted | 4 | 0.3873 | -0.3873 |
+| Pipeline adjusted | 8 | 0.5263 | -0.5263 |
+| Pipeline adjusted | 12 | 0.6341 | -0.6341 |
+| Pipeline realization adjusted | 4 | 0.4118 | -0.0335 |
+| Pipeline realization adjusted | 8 | 0.5222 | -0.2561 |
+| Pipeline realization adjusted | 12 | 0.6214 | -0.4307 |
+
+Project-level WAPE is higher for the moving-average method because demand must be assigned to projects from their historical role mix. The realization-adjusted pipeline has lower project-level WAPE at 4 and 8 weeks than at 12 weeks; the role-level and project-level method winners need not be the same.
 
 ## Data documentation
 

@@ -22,7 +22,9 @@ def test_traceability_and_architecture_docs_exist():
 
 
 def test_training_failure_fallback_and_headcount_escalation_exist():
-    sources, _truth, derived, _forecast, _metrics, validation = build_data("starter", 20261022)
+    sources, _truth, derived, _forecast, _project_forecast, _metrics, validation = build_data(
+        "starter", 20261022
+    )
     failed_training = [
         row for row in sources["training"] if row["status"] == "Failed"
     ]

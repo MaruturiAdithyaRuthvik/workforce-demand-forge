@@ -13,10 +13,13 @@ ROOT = Path(__file__).resolve().parents[1]
 def check_dictionary():
     path = ROOT / "docs" / "DATA_DICTIONARY.md"
     text = path.read_text(encoding="utf-8")
-    sections = re.split(r"(?m)^## `([^`]+)`\s*$", text)
+    sections = re.split(r"(?m)^## (.+?)\s*$", text)
     documented = {}
     for index in range(1, len(sections), 2):
-        table, content = sections[index], sections[index + 1]
+        heading, content = sections[index], sections[index + 1]
+        if not (heading.startswith("`") and heading.endswith("`")):
+            continue
+        table = heading[1:-1]
         documented[table] = {
             field for field in re.findall(
                 r"(?m)^\|\s*([A-Za-z_][A-Za-z0-9_]*)\s*\|", content

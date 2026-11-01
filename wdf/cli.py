@@ -51,7 +51,10 @@ def evaluate(input: Path = typer.Option(Path("output/starter"), help="Generated 
 @app.command()
 def forecast(input: Path = typer.Option(Path("output/starter"), help="Generated dataset directory.")) -> None:
     result = run_forecast(input)
-    typer.echo(f"Forecast complete for {result['forecast_weeks']} future ISO weeks")
+    typer.echo(
+        f"Role and project/role forecast complete for "
+        f"{result['forecast_weeks']} future ISO weeks"
+    )
 
 
 @app.command()

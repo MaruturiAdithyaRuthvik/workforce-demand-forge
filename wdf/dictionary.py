@@ -40,4 +40,20 @@ def render_data_dictionary() -> str:
             ]
             lines.append("| " + " | ".join(value.replace("|", "\\|") for value in cells) + " |")
         lines.append("")
+    lines.extend([
+        "## Forecast outputs (derived CSVs, not SQLite tables)",
+        "",
+        "`forecast.csv` is keyed by `(iso_week, role_id, method)`. `forecast_project.csv` is keyed by `(project_id, role_id, iso_week, method)`. For each role/week/method, the sum of project `predicted_fte` reconciles to role-level `forecast_demand_fte` in `forecast.csv`. Backtest metrics for both levels are stored in `metrics.json`.",
+        "",
+        "| Field | Type | Required | Allowed values | Units | Uniqueness | Validation |",
+        "|---|---|---|---|---|---|---|",
+        "| project_id | string | yes | — | none | part of composite key | references a Project. |",
+        "| role_id | string | yes | — | none | part of composite key | references a Role. |",
+        "| iso_week | string | yes | — | ISO week | part of composite key | valid 2026 ISO week. |",
+        "| method | string | yes | `moving_average_4w`, `pipeline_adjusted`, `pipeline_realization_adjusted` | none | part of composite key | one of the three backtested forecast methods. |",
+        "| predicted_fte | number | yes | — | FTE | not unique | non-negative; project sums reconcile to the role-level forecast. |",
+        "",
+        "Role-level `forecast.csv` uses `role_id`, `iso_week`, and `method`, with `forecast_demand_fte` as its non-negative FTE value and `(iso_week, role_id, method)` as its key.",
+        "",
+    ])
     return "\n".join(lines).rstrip() + "\n"

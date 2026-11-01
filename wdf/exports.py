@@ -215,6 +215,7 @@ def write_exports(
     derived: dict[str, list[dict]],
     ground_truth: list[dict],
     forecast_rows: list[dict],
+    project_forecast_rows: list[dict],
     metrics: dict,
     validation_report: dict,
     seed: int,
@@ -250,6 +251,7 @@ def write_exports(
     _write_rows_csv(gt_path / "ground_truth.csv", gt_sorted)
     (gt_path / "ground_truth.json").write_text(canonical_json(gt_sorted), encoding="utf-8", newline="\n")
     _write_rows_csv(output / "forecast.csv", forecast_rows)
+    _write_rows_csv(output / "forecast_project.csv", project_forecast_rows)
     (output / "metrics.json").write_text(canonical_json(metrics), encoding="utf-8", newline="\n")
     (output / "validation_report.json").write_text(canonical_json(validation_report), encoding="utf-8", newline="\n")
     (output / "SOURCE_MANIFEST.md").write_text(

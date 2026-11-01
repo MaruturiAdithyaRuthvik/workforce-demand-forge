@@ -31,6 +31,8 @@ erDiagram
 
 Every `Availability` and `Utilization` row is effective for one employee-week. Allocation, leave, project, training, and lifecycle records carry effective dates. `LifecycleEvent` is append-only and polymorphically references Employee, Project, Allocation, Training, or DemandLine; current state is the final event in effective-date order. SQL cannot express that polymorphic relation as a single foreign key, so the validator checks its referential and state consistency.
 
+Forecasts are derived CSV outputs rather than SQLite entities: `forecast.csv` is keyed by role/week/method, and `forecast_project.csv` adds Project to that key. Project-level rows are allocated using only historical or origin-visible project demand; their FTE totals reconcile to the corresponding role-level forecast. `metrics.json` reports rolling-origin scores at both levels.
+
 ```mermaid
 stateDiagram-v2
   [*] --> Planned
