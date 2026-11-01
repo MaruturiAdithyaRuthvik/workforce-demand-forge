@@ -1,8 +1,11 @@
+import shutil
+
 from wdf.anomalies import inject_anomalies
 from wdf.config import load_settings
 from wdf.derived import compute_derived
 from wdf.detect import detect_anomalies
 from wdf.evaluate import evaluate_detections
+from wdf.pipeline import run_detection, run_generate
 from wdf.transactions import generate_sources
 from wdf.validate import validate_data
 
@@ -66,3 +69,13 @@ def test_hard_negative_shared_pool_overlap_is_not_detected():
         if row["issue_type"] in {"ALLOC_EXCEEDS_AVAILABILITY", "OVERLAPPING_PROJECT_ASSIGNMENT"}
     }
     assert all(row["allocation_id"] not in detection_ids for row in valid_overlap)
+
+
+def test_detection_runs_without_ground_truth(tmp_path):
+    run_generate(tmp_path, "starter", 20261022, include_heldout=False)
+    shutil.rmtree(tmp_path / "ground_truth")
+
+    detections = run_detection(tmp_path)
+
+    assert detections
+    assert (tmp_path / "detections.json").is_file()

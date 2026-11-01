@@ -146,16 +146,28 @@ def run_generate(output: Path, scale: str, seed: int, include_heldout: bool = Tr
     return {"manifest": manifest, "metrics": metrics, "validation": validation}
 
 
-def read_output(path: Path) -> tuple[dict[str, list[dict]], dict[str, list[dict]], list[dict]]:
+def read_source_tables(path: Path) -> dict[str, list[dict]]:
     import json
 
-    sources, derived = {}, {}
-    for table in sorted(SOURCE_TABLES | DERIVED_TABLES):
+    sources = {}
+    for table in sorted(SOURCE_TABLES):
         table_path = path / f"{table}.json"
         if not table_path.is_file():
             raise FileNotFoundError(f"Required table export not found: {table_path}")
-        rows = json.loads(table_path.read_text(encoding="utf-8"))
-        (sources if table in SOURCE_TABLES else derived)[table] = rows
+        sources[table] = json.loads(table_path.read_text(encoding="utf-8"))
+    return sources
+
+
+def read_output(path: Path) -> tuple[dict[str, list[dict]], dict[str, list[dict]], list[dict]]:
+    import json
+
+    sources = read_source_tables(path)
+    derived = {}
+    for table in sorted(DERIVED_TABLES):
+        table_path = path / f"{table}.json"
+        if not table_path.is_file():
+            raise FileNotFoundError(f"Required table export not found: {table_path}")
+        derived[table] = json.loads(table_path.read_text(encoding="utf-8"))
     truth_path = path / "ground_truth" / "ground_truth.json"
     ground_truth = json.loads(truth_path.read_text(encoding="utf-8"))
     return sources, derived, ground_truth
@@ -173,7 +185,7 @@ def run_validation(path: Path) -> dict:
 
 
 def run_detection(path: Path) -> list[dict]:
-    sources, _derived, _truth = read_output(path)
+    sources = read_source_tables(path)
     detections = detect_anomalies(sources)
     from wdf.exports import canonical_json
 
