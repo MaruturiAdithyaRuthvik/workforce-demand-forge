@@ -68,3 +68,46 @@ def test_leave_covers_all_months_has_seasonality_and_creates_full_weeks_off():
         derived["availability"]
     )
     assert 0.02 <= zero_share <= 0.04
+
+
+def test_project_demand_profiles_shape_fte_without_removing_zero_demand_weeks():
+    sources = generate_sources(61, employees=150, skills=36, projects=80, roles=8)
+    projects = sources["projects"]
+    assert {row["demand_profile"] for row in projects} == {"ramp_up", "steady", "ramp_down"}
+    lines_by_project = defaultdict(list)
+    for row in sources["demand_lines"]:
+        if row["status"] == "Approved":
+            lines_by_project[row["project_id"]].append(row)
+
+    averages = {}
+    for profile in ("ramp_up", "steady", "ramp_down"):
+        candidates = [
+            row for row in projects
+            if row["demand_profile"] == profile
+            and (date.fromisoformat(row["end_date"]) - date.fromisoformat(row["start_date"])).days >= 180
+        ]
+        project = max(
+            candidates,
+            key=lambda row: date.fromisoformat(row["end_date"]) - date.fromisoformat(row["start_date"]),
+        )
+        start = date.fromisoformat(project["start_date"])
+        duration = (date.fromisoformat(project["end_date"]) - start).days
+        thirds = [[], [], []]
+        for line in lines_by_project[project["project_id"]]:
+            week = int(line["iso_week"][-2:])
+            week_start = date.fromisocalendar(2026, week, 1)
+            third = min(2, max(0, 3 * (week_start - start).days // max(duration, 1)))
+            thirds[third].append(line["required_fte"])
+        assert all(third for third in thirds)
+        averages[profile] = [sum(third) / len(third) for third in thirds]
+
+    assert averages["ramp_up"][0] < averages["ramp_up"][2]
+    assert averages["ramp_down"][0] > averages["ramp_down"][2]
+    assert any(row["status"] == "Superseded" for row in sources["demand_lines"])
+    assert any(row["status"] == "Approved" and row["supersedes_line_id"]
+               for row in sources["demand_lines"])
+    possible_project_weeks = sum(
+        (date.fromisoformat(project["end_date"]) - date.fromisoformat(project["start_date"])).days // 7 + 1
+        for project in projects
+    )
+    assert len(sources["demand_plans"]) < possible_project_weeks

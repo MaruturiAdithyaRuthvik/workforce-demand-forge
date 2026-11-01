@@ -57,6 +57,7 @@ ENUMS = {
     ("employee_skills", "currency_flag"): ["Current", "Stale"],
     ("projects", "priority"): ["Low", "Medium", "High", "Critical"],
     ("projects", "staffing_model"): ["Shared-Pool", "Dedicated-Team"],
+    ("projects", "demand_profile"): ["ramp_up", "steady", "ramp_down"],
     ("projects", "status"): ["Planned", "Active", "Completed", "Cancelled"],
     ("demand_lines", "source"): ["PlanTool", "ResourceRequest"],
     ("demand_lines", "status"): ["Draft", "Approved", "Superseded"],

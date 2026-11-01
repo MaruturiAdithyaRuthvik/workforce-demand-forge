@@ -17,6 +17,14 @@ leave_realism:
   full_week_records_per_employee: 2
   short_records_per_employee: 1
   month_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.2, 2.0, 1.7, 1.0, 1.0, 1.0, 2.0]
+demand_curves:
+  zero_demand_probability: 0.22
+  profile_weights:
+    ramp_up: 0.33
+    steady: 0.34
+    ramp_down: 0.33
+  ramp_start_factor: 0.35
+  ramp_end_factor: 0.35
 forecast:
   confidence:
     Planned: 0.45

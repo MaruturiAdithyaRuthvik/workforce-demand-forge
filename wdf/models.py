@@ -65,6 +65,7 @@ class Project(Row):
     end_date: str = Field(description="units=ISO date; uniqueness=not unique; validation=on or after start_date.")
     priority: Literal["Low", "Medium", "High", "Critical"] = Field(description="units=none; uniqueness=not unique; validation=listed priority enum.")
     staffing_model: Literal["Shared-Pool", "Dedicated-Team"] = Field(description="units=none; uniqueness=not unique; validation=listed staffing model.")
+    demand_profile: Literal["ramp_up", "steady", "ramp_down"] = Field(description="units=none; uniqueness=not unique; validation=configured project demand curve.")
     status: Literal["Planned", "Active", "Completed", "Cancelled"] = Field(description="units=none; uniqueness=not unique; validation=legal project lifecycle state.")
 
 

@@ -33,6 +33,13 @@ class LeaveRealism(BaseModel):
     month_weights: list[float] = Field(min_length=12, max_length=12)
 
 
+class DemandCurves(BaseModel):
+    zero_demand_probability: float = Field(ge=0, le=1)
+    profile_weights: dict[str, float]
+    ramp_start_factor: float = Field(gt=0, le=1)
+    ramp_end_factor: float = Field(gt=0, le=1)
+
+
 class Settings(BaseModel):
     model_config = ConfigDict(extra="forbid")
     as_of: date
@@ -41,6 +48,7 @@ class Settings(BaseModel):
     thresholds: Thresholds
     allocation_realism: AllocationRealism
     leave_realism: LeaveRealism
+    demand_curves: DemandCurves
     forecast: dict[str, Any]
 
 

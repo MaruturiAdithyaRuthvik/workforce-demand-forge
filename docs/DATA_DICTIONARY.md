@@ -69,6 +69,7 @@ Generated from the Pydantic table models in `wdf/models.py`; rerun `python scrip
 | end_date | string | yes | — | ISO date | not unique | on or after start_date. |
 | priority | string | yes | Low, Medium, High, Critical | none | not unique | listed priority enum. |
 | staffing_model | string | yes | Shared-Pool, Dedicated-Team | none | not unique | listed staffing model. |
+| demand_profile | string | yes | ramp_up, steady, ramp_down | none | not unique | configured project demand curve. |
 | status | string | yes | Planned, Active, Completed, Cancelled | none | not unique | legal project lifecycle state. |
 
 ## `demand_plans`

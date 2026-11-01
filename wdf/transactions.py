@@ -49,6 +49,20 @@ def generate_sources(
 ) -> dict[str, list[dict]]:
     data = generate_masters(seed, employees, skills, projects, roles)
     demand_rng, leave_rng, alloc_rng, training_rng = (rng_for(seed, 10 + i) for i in range(4))
+    demand_config = load_settings().demand_curves
+    profile_names = ("ramp_up", "steady", "ramp_down")
+    if set(demand_config.profile_weights) != set(profile_names):
+        raise ValueError(f"Demand curve weights must define exactly: {', '.join(profile_names)}")
+    profile_weights = np.asarray(
+        [demand_config.profile_weights[name] for name in profile_names], dtype=float
+    )
+    if np.any(profile_weights < 0) or not np.any(profile_weights > 0):
+        raise ValueError("Demand curve weights must be non-negative with positive total")
+    profile_weights /= profile_weights.sum()
+    for project in data["projects"]:
+        project["demand_profile"] = str(
+            demand_rng.choice(profile_names, p=profile_weights)
+        )
     weeks = iso_weeks()
     role_skills: dict[str, list[dict]] = {}
     for row in data["role_skills"]:
@@ -66,7 +80,7 @@ def generate_sources(
             week_start = date.fromisoformat(str(week["week_start"]))
             if week_start > end or week_start + timedelta(days=6) < start:
                 continue
-            if demand_rng.random() < 0.22:
+            if demand_rng.random() < demand_config.zero_demand_probability:
                 continue
             did = demand_id(project["project_id"], str(week["iso_week"]))
             demand_headers.append({
@@ -89,6 +103,20 @@ def generate_sources(
                     continue
                 seen_keys.add((role["role_id"], skill))
                 created = max(date(2025, 1, 1), week_start - timedelta(days=int(demand_rng.integers(1, 91))))
+                progress = min(
+                    1.0,
+                    max(0.0, (week_start - start).days / max(1, (end - start).days)),
+                )
+                if project["demand_profile"] == "ramp_up":
+                    profile_factor = demand_config.ramp_start_factor + (
+                        1.0 - demand_config.ramp_start_factor
+                    ) * progress
+                elif project["demand_profile"] == "ramp_down":
+                    profile_factor = 1.0 - (
+                        1.0 - demand_config.ramp_end_factor
+                    ) * progress
+                else:
+                    profile_factor = 1.0
                 demand_lines.append({
                     "demand_line_id": entity_id("DEML", line_counter),
                     "demand_id": did,
@@ -96,7 +124,9 @@ def generate_sources(
                     "iso_week": week["iso_week"],
                     "role_id": role["role_id"],
                     "skill_id": skill,
-                    "required_fte": round(float(demand_rng.uniform(0.25, 2.0)), 4),
+                    "required_fte": round(
+                        float(demand_rng.uniform(0.25, 2.0)) * profile_factor, 4
+                    ),
                     "min_proficiency": int(bridge["min_proficiency"]) if bridge else 2,
                     "source": str(demand_rng.choice(["PlanTool", "ResourceRequest"])),
                     "created_on": created.isoformat(),

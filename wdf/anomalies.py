@@ -265,6 +265,7 @@ def inject_anomalies(
          active_project = {
              "project_id": f"PRJ-2026-{project_number:06d}", "start_date": "2026-01-05",
              "end_date": "2026-12-31", "priority": "Medium", "staffing_model": "Shared-Pool",
+             "demand_profile": "steady",
              "status": "Active",
          }
          sources["projects"].append(active_project)
