@@ -1,6 +1,6 @@
 # Validation and evaluation summary
 
-The following results were collected from a real run using starter scale, main seed `20261022`, held-out seed `20261023`, Python 3.14.7, NumPy 2.3.3, and pandas 3.0.0.
+The following results were collected from fresh starter and full runs using main seed `20261022`, held-out seed `20261023`, Python 3.14.7, NumPy 2.3.3, and pandas 3.0.0.
 
 ## Data validation
 
@@ -13,13 +13,13 @@ Selected row counts:
 | Employees | 300 |
 | Skills | 60 |
 | Projects | 30 |
-| EmployeeSkill | 2,198 |
+| EmployeeSkill | 2,127 |
 | DemandLine | 393 |
-| Allocation | 304 |
+| Allocation | 305 |
 | Availability | 15,900 |
 | Utilization | 15,900 |
 | GapAnalysis | 350 |
-| GapAction | 253 |
+| GapAction | 244 |
 | Training | 16 |
 
 ## Detection evaluation
@@ -37,20 +37,34 @@ Metrics are evaluated by exact source `record_id` and issue type. Every issue fa
 
 | Method | Horizon (weeks) | WAPE | Bias |
 |---|---:|---:|---:|
-| 4-week moving average | 4 | 1.5708 | -0.1111 |
-| 4-week moving average | 8 | 1.5192 | -0.1903 |
-| 4-week moving average | 12 | 1.4605 | -0.2887 |
-| Pipeline adjusted | 4 | 0.4391 | -0.4391 |
-| Pipeline adjusted | 8 | 0.5650 | -0.5650 |
-| Pipeline adjusted | 12 | 0.6747 | -0.6747 |
+| 4-week moving average | 4 | 1.5723 | -0.1085 |
+| 4-week moving average | 8 | 1.5266 | -0.1795 |
+| 4-week moving average | 12 | 1.4682 | -0.2786 |
+| Pipeline adjusted | 4 | 0.4303 | -0.4303 |
+| Pipeline adjusted | 8 | 0.5586 | -0.5586 |
+| Pipeline adjusted | 12 | 0.6711 | -0.6711 |
 
-Pipeline adjustment has lower WAPE in this particular synthetic run. Both methods have negative bias; the moving average is especially weak on this dataset. No claim is made that this ranking generalizes.
+On the starter sample, pipeline adjustment has lower WAPE at all three horizons. Both methods underforecast; pipeline adjustment's bias is more negative at every horizon. No claim is made that this ranking generalizes.
+
+The full-scale backtest produced a different 12-week ranking:
+
+| Method | Horizon (weeks) | WAPE | Bias |
+|---|---:|---:|---:|
+| 4-week moving average | 4 | 0.5451 | -0.0949 |
+| 4-week moving average | 8 | 0.5566 | -0.1532 |
+| 4-week moving average | 12 | 0.5629 | -0.2220 |
+| Pipeline adjusted | 4 | 0.3766 | -0.3766 |
+| Pipeline adjusted | 8 | 0.5264 | -0.5264 |
+| Pipeline adjusted | 12 | 0.6498 | -0.6498 |
+
+Pipeline adjustment wins at 4 and 8 weeks; moving average wins at 12. Pipeline adjustment is more negatively biased at each horizon.
 
 ## Reproducibility and scale
 
 - Same-seed canonical files: **PASS**, 46 CSV/JSON/SQL files matched.
 - Same-seed logical SQLite dump: **PASS**.
 - Different-seed hashes: **PASS**, seed `20261023` differs from `20261022`.
-- Full scale: **PASS**, generation and validation completed in 66.73 seconds on the recorded Windows/Python 3.14.7 environment.
+- Full scale: **PASS**, generation and validation completed in 70.50 seconds with sampled process-tree peak working set 720.1 MiB on the recorded Windows/Python 3.14.7 environment.
+- Full-scale rows: 5,000 employees; 300 skills; 500 projects; 57,595 employee skills; 6,193 demand lines; 5,025 allocations; 265,000 availability and utilization rows; 4,316 gaps; 1,939 gap actions.
 
 Detailed artifacts: `output/starter/metrics.json`, `output/starter/validation_report.json`, and `output/repro_report.json`.

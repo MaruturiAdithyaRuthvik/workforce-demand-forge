@@ -23,30 +23,30 @@ The starter scale is 300 employees, 60 skills, and 30 projects. The full scale i
 
 ## Verification
 
-Run `make test`, `make all`, and `make repro`. `wdf repro` compares repeated canonical exports and verifies that changing the seed changes hashes. The committed starter sample was generated and validated on Python 3.14.7, NumPy 2.3.3, and pandas 3.0.0.
+Run `uv run pytest`, `uv run wdf validate --input output/starter`, and `uv run wdf repro --scale starter --seed 20261022 --out output/starter-repro`. `wdf repro` compares repeated canonical exports and verifies that changing the seed changes hashes. GNU Make targets are also provided, but Make is not installed in the audited Windows environment.
 
 ## Verified starter run
 
 These are real results from seed `20261022` (held-out seed `20261023`):
 
-- Rows: 300 employees, 60 skills, 30 projects, 393 demand lines, 304 allocations, 15,900 availability rows, 15,900 utilization rows, 350 gap rows, and 253 gap actions.
+- Rows: 300 employees, 60 skills, 30 projects, 393 demand lines, 305 allocations, 15,900 availability rows, 15,900 utilization rows, 350 gap rows, and 244 gap actions.
 - Validation: **PASS**, 0 errors; 7 approved demand duplicates and 6 injected skill currency mismatches were reported as expected anomaly findings.
 - Detector P/R/F1: **1.000 / 1.000 / 1.000** for each of the four issue types on both seeds.
-- Full-scale generation and validation: **66.73 seconds** on the local Windows/Python 3.14.7 environment.
+- Full-scale generation and validation: **70.50 seconds**, with a sampled process-tree peak working set of **720.1 MiB** on the local Windows/Python 3.14.7 environment.
 - Reproducibility: **PASS**; 46 canonical CSV/JSON/SQL files and the logical SQLite dump matched for repeated seed `20261022`; seed `20261023` produced different hashes.
 
 Rolling-origin forecast WAPE (lower is better; bias is signed relative error):
 
 | Method | Horizon | WAPE | Bias |
 |---|---:|---:|---:|
-| 4-week moving average | 4 | 1.5708 | -0.1111 |
-| 4-week moving average | 8 | 1.5192 | -0.1903 |
-| 4-week moving average | 12 | 1.4605 | -0.2887 |
-| Pipeline adjusted | 4 | 0.4391 | -0.4391 |
-| Pipeline adjusted | 8 | 0.5650 | -0.5650 |
-| Pipeline adjusted | 12 | 0.6747 | -0.6747 |
+| 4-week moving average | 4 | 1.5723 | -0.1085 |
+| 4-week moving average | 8 | 1.5266 | -0.1795 |
+| 4-week moving average | 12 | 1.4682 | -0.2786 |
+| Pipeline adjusted | 4 | 0.4303 | -0.4303 |
+| Pipeline adjusted | 8 | 0.5586 | -0.5586 |
+| Pipeline adjusted | 12 | 0.6711 | -0.6711 |
 
-Forecast metrics and per-issue seed-specific scores are in [output/starter/metrics.json](output/starter/metrics.json); the row-level validation counts are in [output/starter/validation_report.json](output/starter/validation_report.json). The baseline comparison is reported honestly: pipeline adjustment was better at all three tested horizons for this synthetic sample.
+Forecast metrics and per-issue seed-specific scores are in [output/starter/metrics.json](output/starter/metrics.json); the row-level validation counts are in [output/starter/validation_report.json](output/starter/validation_report.json). On this starter sample, pipeline adjustment wins WAPE at all three horizons but is more negatively biased at each horizon. The full-scale result differs: moving average wins WAPE at 12 weeks.
 
 ## Data documentation
 
@@ -54,4 +54,4 @@ See [DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md), [ERD.md](docs/ERD.md), and [T
 
 ## Environment and limitations
 
-Python 3.11 or newer is required. Dependencies are pinned in `pyproject.toml`, `uv.lock`, and `requirements-lock.txt`. Full scale completed in 66.73 seconds in the recorded local run; runtime varies by machine. NumPy generator streams are only stable within a pinned version. All output is synthetic and should not be used for real workforce decisions.
+Python 3.11 or newer is required. Dependencies are pinned in `pyproject.toml`, `uv.lock`, and `requirements-lock.txt`. Full scale completed in 70.50 seconds with a sampled 720.1 MiB process-tree peak in the recorded local run; runtime and memory vary by machine. NumPy generator streams are only stable within a pinned version. All output is synthetic and should not be used for real workforce decisions.

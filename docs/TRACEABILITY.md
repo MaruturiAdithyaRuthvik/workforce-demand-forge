@@ -19,3 +19,10 @@
 | CSV/JSON exports, SQLite, SQL, manifest, and reproducibility hashes | `wdf/exports.py`, `wdf/pipeline.py` | `tests/test_p7.py`; `wdf repro` |
 | Data dictionary generated from Pydantic schema | `wdf/models.py`, `wdf/dictionary.py`, `scripts/update_data_dictionary.py` | `tests/test_p8.py` |
 | Recommendations include assumptions; action traceability | `wdf/derived.py`, `docs/DESIGN_DECISIONS.md` | `tests/test_p3.py` |
+
+## Known gaps
+
+- `docs/PROBLEM.md` is not present in the repository or its Git history. The rows above map the requirements represented in the available project files, but cannot certify a line-by-line mapping of the original ten steps, edge cases, and acceptance criteria. Restore the source specification before claiming complete traceability.
+- `Contract` is an allowed `GapAction` enum value but is not emitted by `compute_derived`; no standalone Contract recommendation rule is implemented.
+- Demand lines are generated with stochastic omissions and quantities; explicit project ramp-up/ramp-down demand curves are not modeled.
+- A deliberate cancellation fixture keeps one Active allocation on a Cancelled project to exercise the required exception path; it is not evidence that production cancellation processing should leave allocations open.
