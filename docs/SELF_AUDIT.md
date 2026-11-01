@@ -360,3 +360,30 @@ The source manifest and every manifest checksum were checked against generated f
 | One Active allocation remains on a Cancelled project by design | Intentional cancellation exception fixture; not a production cancellation policy |
 | CLI unit-test coverage is 0% | Python CLI smoke workflows passed in the clean clone; coverage report is 89% overall |
 | Make executable unavailable on this Windows machine | Make target exists; equivalent `uv run` command passed |
+
+## J. Follow-up review baseline (measured before changes)
+
+**Command:** `uv run python -` (stdlib calculations over `output/full/*.json`; forecast below-actual share recomputed over the existing rolling-origin forecasts using `wdf.forecast._predictions`).
+
+**Key output:**
+
+```text
+allocations_per_employee distribution (allocations: employees): {1: 4975, 2: 25}
+employees with 2+ allocations: 2/5000 = 0.040%
+employees with overlapping allocation date ranges: 24/5000 = 0.480%
+employees with >=1 leave record: 651/5000 = 13.020%
+leave starts/month: {'02': 145, '05': 161, '07': 178, '12': 167}
+inclusive leave days total=2726; average per employee=0.545
+zero-availability employee-weeks: 131/265000 = 0.049%
+GapAction counts by action_type: {'Hire': 339, 'Reallocate': 412, 'Reverify': 138, 'Train': 1050}
+GapAction counts by rule_id: {'GAP_HIRE_LARGE': 321, 'GAP_REVERIFY_SMALL': 138, 'GAP_TRAIN_MEDIUM': 1050, 'TRAIN_FAILED_FALLBACK': 18, 'UTIL_OVER_AVAILABLE': 412}
+over-utilized employee-weeks (allocated_hours > available_hours): 412; UTIL_OVER_AVAILABLE actions: 412
+forecasts below actual (moving_average_4w): 16857/29440 = 57.259%
+forecasts below actual (pipeline_adjusted): 27776/29440 = 94.348%
+```
+
+The allocation and leave metrics are below the follow-up targets. The baseline has 412 over-utilized employee-weeks and 412 utilization actions, but actions carry no week field, so exact employee-week action linkage is not auditable yet. Leave starts occur in only four months. Forecast undershoot is especially frequent for the pipeline method.
+
+**Verdict:** Baseline captured before changes; deficiencies are the targets of items 1–8.
+
+**Fix commit:** N/A (measurement only).
