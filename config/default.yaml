@@ -34,3 +34,8 @@ forecast:
     Active: 0.8
     Completed: 0.0
     Cancelled: 0.0
+  realization_ratio:
+    training_horizon_weeks: 4
+    minimum: 0.25
+    maximum: 4.0
+    default: 1.0
