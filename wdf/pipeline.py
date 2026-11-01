@@ -1,0 +1,220 @@
+from __future__ import annotations
+
+from datetime import date, timedelta
+from pathlib import Path
+from typing import Any
+
+from wdf.anomalies import inject_anomalies
+from wdf.config import load_scale, load_settings
+from wdf.derived import compute_derived
+from wdf.detect import detect_anomalies
+from wdf.evaluate import evaluate_detections
+from wdf.exports import canonical_file_hashes, logical_database_dump, refresh_manifest, write_exports
+from wdf.forecast import forecast_data
+from wdf.transactions import generate_sources
+from wdf.validate import validate_data
+
+
+SOURCE_TABLES = {
+    "roles", "skills", "proficiency_scale", "role_skills", "employees", "employee_skills",
+    "projects", "demand_plans", "demand_lines", "leave", "holidays", "allocations",
+    "training", "lifecycle_events",
+}
+DERIVED_TABLES = {"availability", "utilization", "supply", "gap_analysis", "gap_actions"}
+
+
+def build_data(scale: str, seed: int) -> tuple[dict, list[dict], dict, list[dict], dict, dict]:
+    settings = load_settings()
+    sizes = load_scale(scale)
+    sources = generate_sources(seed, **sizes.model_dump())
+    sources, ground_truth = inject_anomalies(sources, seed)
+    derived = compute_derived(sources, settings.thresholds.model_dump())
+    _attach_derived_trace_ids(sources, ground_truth, derived)
+    forecast_rows, forecast_metrics = forecast_data(sources, settings.forecast["confidence"], settings.as_of)
+    detections = detect_anomalies(sources)
+    evaluation = evaluate_detections(detections, ground_truth)
+    validation = validate_data(sources, derived, settings.thresholds.model_dump())
+    return sources, ground_truth, derived, forecast_rows, {
+        "forecast": forecast_metrics,
+        "evaluation": {"seed": seed, **evaluation},
+        "detection_count": len(detections),
+    }, validation
+
+
+def _attach_derived_trace_ids(
+    sources: dict[str, list[dict]], ground_truth: list[dict], derived: dict[str, list[dict]]
+) -> None:
+    line_by_id = {row["demand_line_id"]: row for row in sources["demand_lines"]}
+    skill_by_id = {row["employee_skill_id"]: row for row in sources["employee_skills"]}
+    employee_by_id = {row["employee_id"]: row for row in sources["employees"]}
+    allocation_by_id = {row["allocation_id"]: row for row in sources["allocations"]}
+    for truth in ground_truth:
+        record_id = truth["record_id"]
+        affected = set()
+        if record_id in line_by_id:
+            line = line_by_id[record_id]
+            affected.update(
+                row["gap_id"] for row in derived["gap_analysis"]
+                if row["iso_week"] == line["iso_week"] and row["role_id"] == line["role_id"]
+                and row["skill_id"] == line["skill_id"]
+            )
+        elif record_id in skill_by_id:
+            skill = skill_by_id[record_id]
+            role_id = employee_by_id[skill["employee_id"]]["role_id"]
+            affected.update(
+                row["gap_id"] for row in derived["gap_analysis"]
+                if row["role_id"] == role_id and row["skill_id"] == skill["skill_id"]
+            )
+        elif record_id in allocation_by_id:
+            allocation = allocation_by_id[record_id]
+            start = date.fromisoformat(allocation["start_date"])
+            end = date.fromisoformat(allocation["end_date"])
+            affected.update(
+                row["utilization_id"] for row in derived["utilization"]
+                if row["employee_id"] == allocation["employee_id"]
+                and start <= date.fromisocalendar(2026, int(row["iso_week"][-2:]), 1) + timedelta(days=6)
+                and end >= date.fromisocalendar(2026, int(row["iso_week"][-2:]), 1)
+            )
+        truth["affected_derived_ids"] = sorted(affected)
+        if not affected:
+            truth["affected_derived_ids"] = []
+
+
+def run_generate(output: Path, scale: str, seed: int, include_heldout: bool = True) -> dict:
+    sources, ground_truth, derived, forecast_rows, metrics, validation = build_data(scale, seed)
+    if include_heldout:
+        heldout_seed = seed + 1
+        heldout_sources = generate_sources(heldout_seed, **load_scale(scale).model_dump())
+        heldout_sources, heldout_truth = inject_anomalies(heldout_sources, heldout_seed)
+        heldout_evaluation = evaluate_detections(
+            detect_anomalies(heldout_sources), heldout_truth
+        )
+        metrics["evaluation"]["held_out_seed"] = {
+            "seed": heldout_seed, **heldout_evaluation,
+        }
+    manifest = write_exports(
+        output, sources, derived, ground_truth, forecast_rows, metrics, validation,
+        seed, scale, f"wdf generate --scale {scale} --seed {seed}",
+    )
+    return {"manifest": manifest, "metrics": metrics, "validation": validation}
+
+
+def read_output(path: Path) -> tuple[dict[str, list[dict]], dict[str, list[dict]], list[dict]]:
+    import json
+
+    sources, derived = {}, {}
+    for table in sorted(SOURCE_TABLES | DERIVED_TABLES):
+        table_path = path / f"{table}.json"
+        if not table_path.is_file():
+            raise FileNotFoundError(f"Required table export not found: {table_path}")
+        rows = json.loads(table_path.read_text(encoding="utf-8"))
+        (sources if table in SOURCE_TABLES else derived)[table] = rows
+    truth_path = path / "ground_truth" / "ground_truth.json"
+    ground_truth = json.loads(truth_path.read_text(encoding="utf-8"))
+    return sources, derived, ground_truth
+
+
+def run_validation(path: Path) -> dict:
+    sources, derived, _truth = read_output(path)
+    settings = load_settings()
+    report = validate_data(sources, derived, settings.thresholds.model_dump())
+    from wdf.exports import canonical_json
+
+    (path / "validation_report.json").write_text(canonical_json(report), encoding="utf-8", newline="\n")
+    refresh_manifest(path)
+    return report
+
+
+def run_detection(path: Path) -> list[dict]:
+    sources, _derived, _truth = read_output(path)
+    detections = detect_anomalies(sources)
+    from wdf.exports import canonical_json
+
+    (path / "detections.json").write_text(canonical_json(detections), encoding="utf-8", newline="\n")
+    from wdf.exports import _write_rows_csv
+
+    _write_rows_csv(path / "detections.csv", detections)
+    refresh_manifest(path)
+    return detections
+
+
+def run_evaluation(path: Path) -> dict:
+    sources, _derived, ground_truth = read_output(path)
+    from wdf.exports import canonical_json
+
+    detections = detect_anomalies(sources)
+    main = evaluate_detections(detections, ground_truth)
+    import json
+
+    manifest = json.loads((path / "manifest.json").read_text(encoding="utf-8"))
+    heldout_seed = int(manifest["seed"]) + 1
+    heldout_sources = generate_sources(heldout_seed, **load_scale(manifest["scale"]).model_dump())
+    heldout_sources, heldout_truth = inject_anomalies(heldout_sources, heldout_seed)
+    heldout = evaluate_detections(detect_anomalies(heldout_sources), heldout_truth)
+    metrics_path = path / "metrics.json"
+    current_metrics: dict[str, Any] = json.loads(metrics_path.read_text(encoding="utf-8")) if metrics_path.exists() else {}
+    current_metrics["evaluation"] = {
+        "seed": int(manifest["seed"]), **main,
+        "held_out_seed": {"seed": heldout_seed, **heldout},
+    }
+    metrics_path.write_text(canonical_json(current_metrics), encoding="utf-8", newline="\n")
+    refresh_manifest(path)
+    return current_metrics["evaluation"]
+
+
+def run_forecast(path: Path) -> dict:
+    import json
+
+    sources, _derived, _truth = read_output(path)
+    settings = load_settings()
+    rows, metrics = forecast_data(sources, settings.forecast["confidence"], settings.as_of)
+    from wdf.exports import _write_rows_csv, canonical_json
+
+    _write_rows_csv(path / "forecast.csv", rows)
+    metrics_path = path / "metrics.json"
+    current = json.loads(metrics_path.read_text(encoding="utf-8")) if metrics_path.exists() else {}
+    current["forecast"] = metrics
+    metrics_path.write_text(canonical_json(current), encoding="utf-8", newline="\n")
+    refresh_manifest(path)
+    return metrics
+
+
+def run_repro(output: Path, scale: str, seed: int) -> dict:
+    import platform
+    import tempfile
+
+    import numpy
+    import pandas
+
+    output.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="wdf-repro-a-", dir=output) as temp_a:
+        with tempfile.TemporaryDirectory(prefix="wdf-repro-b-", dir=output) as temp_b:
+            path_a, path_b = Path(temp_a), Path(temp_b)
+            run_generate(path_a, scale, seed, include_heldout=False)
+            run_generate(path_b, scale, seed, include_heldout=False)
+            hashes_a, hashes_b = canonical_file_hashes(path_a), canonical_file_hashes(path_b)
+            dump_a = logical_database_dump(path_a / "workforce.db")
+            dump_b = logical_database_dump(path_b / "workforce.db")
+
+    with tempfile.TemporaryDirectory(prefix="wdf-repro-seed-", dir=output) as temp_seed:
+        seed_path = Path(temp_seed)
+        run_generate(seed_path, scale, seed + 1, include_heldout=False)
+        hashes_different_seed = canonical_file_hashes(seed_path)
+
+    same = hashes_a == hashes_b and dump_a == dump_b
+    different = hashes_a != hashes_different_seed
+    report = {
+        "status": "PASS" if same and different else "FAIL",
+        "same_seed_hashes_match": hashes_a == hashes_b,
+        "same_seed_logical_database_match": dump_a == dump_b,
+        "different_seed_hashes_differ": different,
+        "file_count": len(hashes_a),
+        "sha256": hashes_a,
+        "python_version": platform.python_version(),
+        "numpy_version": numpy.__version__,
+        "pandas_version": pandas.__version__,
+    }
+    from wdf.exports import canonical_json
+
+    (output / "repro_report.json").write_text(canonical_json(report), encoding="utf-8", newline="\n")
+    return report

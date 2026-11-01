@@ -149,7 +149,12 @@ def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, 
                   negative_allocation["start_date"], "Synthetic valid Shared-Pool overlap")
 
     # Fixed boundary cases are part of the valid baseline, not labeled anomalies.
-    boundary_skill = sources["employee_skills"][0]
+    allocation_basis_ids = {row["skill_basis_esk_id"] for row in sources["allocations"]}
+    boundary_skill = next(
+        row for row in sources["employee_skills"]
+        if row["employee_skill_id"] != stale["employee_skill_id"]
+        and row["employee_skill_id"] not in allocation_basis_ids
+    )
     skill = next(row for row in sources["skills"] if row["skill_id"] == boundary_skill["skill_id"])
     boundary_skill["expiry_date"] = AS_OF.isoformat()
     boundary_skill["last_verified_date"] = add_months(AS_OF, -int(skill["validity_months"])).isoformat()

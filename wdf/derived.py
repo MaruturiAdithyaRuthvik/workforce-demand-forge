@@ -192,6 +192,7 @@ def compute_derived(
             "gap_id": gap_id,
             "action_type": action_type,
             "candidate_employee_id": candidate_employee_id,
+            "candidate_skill_id": candidate_skill_id,
             "rule_id": rule_id,
             "owner_actor": actor,
             "status": status,
