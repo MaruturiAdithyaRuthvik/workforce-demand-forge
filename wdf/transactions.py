@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+from itertools import combinations
+from math import ceil
 from datetime import date, timedelta
 
 from wdf.calendar import iso_weeks
+from wdf.config import load_settings
 from wdf.ids import allocation_id, demand_id, entity_id
 from wdf.masters import generate_masters, rng_for
 
@@ -27,6 +30,12 @@ def _event(entity_type: str, entity_id_value: str, state: str, effective_date: s
         "effective_date": effective_date,
         "reason": reason,
     }
+
+
+def _project_window(project: dict) -> tuple[date, date] | None:
+    start = max(date(2026, 1, 1), date.fromisoformat(project["start_date"]))
+    end = min(date(2026, 12, 31), date.fromisoformat(project["end_date"]))
+    return (start, end) if end >= start else None
 
 
 def generate_sources(
@@ -122,6 +131,7 @@ def generate_sources(
                 "status": "Approved",
             })
 
+    allocation_targets = load_settings().allocation_realism
     allocations = []
     project_weights = alloc_rng.lognormal(mean=0.0, sigma=0.8, size=len(data["projects"]))
     project_probabilities = project_weights / project_weights.sum()
@@ -139,32 +149,132 @@ def generate_sources(
             )
         ]
     alloc_rng.shuffle(project_assignments)
-    for index, employee in enumerate(data["employees"], start=1):
-        project = data["projects"][project_assignments[index - 1]]
-        project_start = max(date(2026, 1, 5), date.fromisoformat(project["start_date"]))
-        project_end = min(date(2026, 12, 31), date.fromisoformat(project["end_date"]))
-        if project_end < project_start:
-            project_start, project_end = date(2026, 1, 5), date(2026, 12, 31)
-        span = max(1, (project_end - project_start).days)
-        start_day = project_start + timedelta(days=int(alloc_rng.integers(0, span)))
-        end_day = min(project_end, start_day + timedelta(days=int(alloc_rng.integers(21, 100))))
+
+    project_by_id = {row["project_id"]: row for row in data["projects"]}
+    shared_projects = [
+        row for row in data["projects"] if row["staffing_model"] == "Shared-Pool"
+        and _project_window(row) is not None
+    ]
+    shared_pairs = []
+    for first, second in combinations(shared_projects, 2):
+        first_window, second_window = _project_window(first), _project_window(second)
+        assert first_window is not None and second_window is not None
+        start = max(first_window[0], second_window[0])
+        end = min(first_window[1], second_window[1])
+        if (end - start).days >= 20:
+            shared_pairs.append((first, second, start, end))
+    if not shared_pairs:
+        raise ValueError("No intersecting Shared-Pool project windows support legal overlaps")
+
+    overlap_count = ceil(employees * allocation_targets.shared_overlap_employee_share)
+    required_extras = ceil(
+        employees * (allocation_targets.minimum_allocations_per_employee - 1)
+    )
+    if required_extras < overlap_count:
+        raise ValueError("Allocation target cannot meet the configured overlap employee share")
+    overlap_indices = set(
+        int(value) for value in alloc_rng.choice(employees, size=overlap_count, replace=False)
+    )
+    sequential_indices = set(
+        int(value) for value in alloc_rng.choice(
+            sorted(set(range(employees)) - overlap_indices),
+            size=required_extras - overlap_count,
+            replace=False,
+        )
+    )
+
+    def allocation_row(employee: dict, project: dict, start_day: date, end_day: date, pct: float) -> dict:
         employee_skills = [
             row for row in skills_by_employee.get(employee["employee_id"], [])
             if row["currency_flag"] == "Current"
             and date.fromisoformat(row["expiry_date"]) >= start_day
         ]
         basis = employee_skills[int(alloc_rng.integers(0, len(employee_skills)))] if employee_skills else None
-        allocations.append({
-            "allocation_id": allocation_id(index),
+        return {
+            "allocation_id": allocation_id(len(allocations) + 1),
             "employee_id": employee["employee_id"],
             "project_id": project["project_id"],
             "role_id": employee["role_id"],
             "start_date": start_day.isoformat(),
             "end_date": end_day.isoformat(),
-            "allocation_pct": round(float(alloc_rng.choice([0.25, 0.5, 0.75])), 4),
+            "allocation_pct": pct,
             "skill_basis_esk_id": basis["employee_skill_id"] if basis else None,
-            "status": "Active" if start_day <= date(2026, 12, 31) else "Proposed",
-        })
+            "status": "Active",
+        }
+
+    def random_window(project: dict) -> tuple[date, date]:
+        window = _project_window(project)
+        if window is None:
+            raise ValueError(f"Project has no 2026 allocation window: {project['project_id']}")
+        project_start, project_end = window
+        span = (project_end - project_start).days
+        start_day = project_start + timedelta(days=int(alloc_rng.integers(0, span + 1)))
+        duration = min(int(alloc_rng.integers(21, 101)), (project_end - start_day).days + 1)
+        if duration < 21:
+            start_day = max(project_start, project_end - timedelta(days=20))
+            duration = 21
+        return start_day, start_day + timedelta(days=duration - 1)
+
+    for index, employee in enumerate(data["employees"]):
+        if index in overlap_indices:
+            first, second, intersection_start, intersection_end = shared_pairs[
+                int(alloc_rng.integers(0, len(shared_pairs)))
+            ]
+            duration = min(
+                int(alloc_rng.integers(21, 101)), (intersection_end - intersection_start).days + 1
+            )
+            latest_start = intersection_end - timedelta(days=duration - 1)
+            start_day = intersection_start + timedelta(
+                days=int(alloc_rng.integers(0, (latest_start - intersection_start).days + 1))
+            )
+            end_day = start_day + timedelta(days=duration - 1)
+            allocations.append(allocation_row(employee, first, start_day, end_day, 0.5))
+            allocations.append(allocation_row(employee, second, start_day, end_day, 0.5))
+            continue
+
+        project = project_by_id[data["projects"][project_assignments[index]]["project_id"]]
+        start_day, end_day = random_window(project)
+        allocations.append(allocation_row(
+            employee, project, start_day, end_day,
+            float(alloc_rng.choice([0.25, 0.5, 0.75])),
+        ))
+
+        if index not in sequential_indices:
+            continue
+
+        candidates = []
+        for alternate in data["projects"]:
+            if alternate["project_id"] == project["project_id"]:
+                continue
+            window = _project_window(alternate)
+            if window is None:
+                continue
+            before_end = min(
+                window[1],
+                start_day - timedelta(days=start_day.weekday() + 1),
+            )
+            if (before_end - window[0]).days >= 20:
+                candidates.append((alternate, window[0], before_end))
+            end_week_monday = end_day - timedelta(days=end_day.weekday())
+            after_start = max(window[0], end_week_monday + timedelta(days=7))
+            if (window[1] - after_start).days >= 20:
+                candidates.append((alternate, after_start, window[1]))
+        if not candidates:
+            raise ValueError(
+                f"No non-overlapping sequential project window for {employee['employee_id']}"
+            )
+        alternate, period_start, period_end = candidates[
+            int(alloc_rng.integers(0, len(candidates)))
+        ]
+        duration = min(int(alloc_rng.integers(21, 101)), (period_end - period_start).days + 1)
+        latest_start = period_end - timedelta(days=duration - 1)
+        sequential_start = period_start + timedelta(
+            days=int(alloc_rng.integers(0, (latest_start - period_start).days + 1))
+        )
+        allocations.append(allocation_row(
+            employee, alternate, sequential_start, sequential_start + timedelta(days=duration - 1),
+            float(alloc_rng.choice([0.25, 0.5, 0.75])),
+        ))
 
     training = []
     for index in range(1, max(2, employees // 20) + 1):

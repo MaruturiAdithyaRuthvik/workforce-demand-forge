@@ -21,12 +21,18 @@ class Thresholds(BaseModel):
     headcount_budget: int = Field(ge=0)
 
 
+class AllocationRealism(BaseModel):
+    minimum_allocations_per_employee: float = Field(gt=1)
+    shared_overlap_employee_share: float = Field(gt=0, le=1)
+
+
 class Settings(BaseModel):
     model_config = ConfigDict(extra="forbid")
     as_of: date
     seed: int
     anomaly_rate: float = Field(ge=0, le=1)
     thresholds: Thresholds
+    allocation_realism: AllocationRealism
     forecast: dict[str, Any]
 
 

@@ -1,4 +1,5 @@
 from datetime import date
+from collections import defaultdict
 
 from wdf.calendar import iso_weeks
 from wdf.config import load_scale, load_settings
@@ -51,3 +52,39 @@ def test_skill_popularity_and_project_sizes_are_skewed():
     project_sizes = sorted(allocation_counts.values())
     assert project_sizes[-1] >= 2 * project_sizes[len(project_sizes) // 2]
     assert project_sizes[int(0.9 * (len(project_sizes) - 1))] > project_sizes[len(project_sizes) // 2]
+
+
+def test_baseline_allocations_include_legal_shared_overlaps_and_sequential_work():
+    sources = generate_sources(53, employees=150, skills=24, projects=20, roles=8)
+    projects = {row["project_id"]: row for row in sources["projects"]}
+    by_employee = defaultdict(list)
+    for allocation in sources["allocations"]:
+        by_employee[allocation["employee_id"]].append(allocation)
+
+    assert len(sources["allocations"]) >= 1.5 * len(sources["employees"])
+    overlapping_employees = set()
+    for rows in by_employee.values():
+        for index, first in enumerate(rows):
+            for second in rows[index + 1:]:
+                overlaps = (
+                    first["start_date"] <= second["end_date"]
+                    and second["start_date"] <= first["end_date"]
+                )
+                if not overlaps:
+                    continue
+                overlapping_employees.add(first["employee_id"])
+                assert projects[first["project_id"]]["staffing_model"] == "Shared-Pool"
+                assert projects[second["project_id"]]["staffing_model"] == "Shared-Pool"
+                concurrent = [
+                    row for row in rows
+                    if row["start_date"] <= min(first["end_date"], second["end_date"])
+                    and row["end_date"] >= max(first["start_date"], second["start_date"])
+                ]
+                assert sum(row["allocation_pct"] for row in concurrent) <= 1.0
+    overlap_share = len(overlapping_employees) / len(sources["employees"])
+    assert 0.15 <= overlap_share <= 0.25
+    assert sum(len(rows) >= 2 for rows in by_employee.values()) >= 0.5 * len(sources["employees"])
+    assert any(
+        len(rows) >= 2 and employee_id not in overlapping_employees
+        for employee_id, rows in by_employee.items()
+    )

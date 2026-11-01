@@ -9,6 +9,9 @@ thresholds:
   stale_rate_min: 0.12
   stale_rate_max: 0.18
   headcount_budget: 8
+allocation_realism:
+  minimum_allocations_per_employee: 1.5
+  shared_overlap_employee_share: 0.2
 forecast:
   confidence:
     Planned: 0.45

@@ -60,7 +60,31 @@ def inject_anomalies(
     ]
     if not shared_allocations:
         raise ValueError("No Shared-Pool allocation available for deterministic anomaly injection")
-    allocation_targets = select_targets(shared_allocations)
+    def overlaps(first: dict, second: dict) -> bool:
+        first_start = date.fromisoformat(first["start_date"])
+        first_end = date.fromisoformat(first["end_date"])
+        second_start = date.fromisoformat(second["start_date"])
+        second_end = date.fromisoformat(second["end_date"])
+        first_week_start = first_start - timedelta(days=first_start.weekday())
+        first_week_end = first_end - timedelta(days=first_end.weekday())
+        second_week_start = second_start - timedelta(days=second_start.weekday())
+        second_week_end = second_end - timedelta(days=second_end.weekday())
+        return (
+            first["employee_id"] == second["employee_id"]
+            and first_week_start <= second_week_end
+            and second_week_start <= first_week_end
+        )
+
+    isolated_shared = [
+        row for row in shared_allocations
+        if not any(
+            other is not row and overlaps(row, other)
+            for other in shared_allocations
+        )
+    ]
+    if not isolated_shared:
+        raise ValueError("No isolated Shared-Pool allocation available for anomaly injection")
+    allocation_targets = select_targets(isolated_shared)
     allocation_project_ids = set()
     for allocation in allocation_targets:
         previous_pct = allocation["allocation_pct"]
@@ -123,6 +147,10 @@ def inject_anomalies(
         row for row in sources["allocations"]
         if projects[row["project_id"]]["staffing_model"] == "Dedicated-Team"
         and float(row["allocation_pct"]) <= 0.75
+        and not any(
+            other is not row and overlaps(row, other)
+            for other in sources["allocations"]
+        )
     ]
     if not dedicated:
         raise ValueError("No Dedicated-Team allocation available for overlap injection")
@@ -154,10 +182,10 @@ def inject_anomalies(
 
     # Hard negative: a Shared-Pool overlap whose combined weekly percentage stays within 100%.
     hard_negative_employee = next(
-        row["employee_id"] for row in shared_allocations if float(row["allocation_pct"]) <= 0.75
+        row["employee_id"] for row in isolated_shared if float(row["allocation_pct"]) <= 0.75
     )
     hard_negative_base = next(
-        row for row in shared_allocations
+        row for row in isolated_shared
         if row["employee_id"] == hard_negative_employee and float(row["allocation_pct"]) <= 0.75
     )
     negative_allocation = {
@@ -252,6 +280,36 @@ def inject_anomalies(
          sources["allocations"].append(fallback_allocation)
          _append_event(sources, "Allocation", fallback_allocation["allocation_id"], None, "Active",
                        fallback_allocation["start_date"], "Synthetic cancellation edge-case staffing")
+    active_project_allocations = [
+        row for row in sources["allocations"]
+        if row["project_id"] == active_project["project_id"] and row["status"] == "Active"
+    ]
+    if len(active_project_allocations) < 2:
+        existing_employee_ids = {
+            row["employee_id"] for row in active_project_allocations
+        }
+        cancellation_employee = next(
+            employee for employee in sources["employees"]
+            if employee["employee_id"] not in existing_employee_ids
+        )
+        cancellation_allocation = {
+            "allocation_id": allocation_id(_next_number(
+                sources["allocations"], "allocation_id", "ALLOC"
+            )),
+            "employee_id": cancellation_employee["employee_id"],
+            "project_id": active_project["project_id"],
+            "role_id": cancellation_employee["role_id"],
+            "start_date": active_project["start_date"],
+            "end_date": active_project["end_date"],
+            "allocation_pct": 0.1,
+            "skill_basis_esk_id": None,
+            "status": "Active",
+        }
+        sources["allocations"].append(cancellation_allocation)
+        _append_event(
+            sources, "Allocation", cancellation_allocation["allocation_id"], None, "Active",
+            cancellation_allocation["start_date"], "Synthetic cancellation edge-case staffing",
+        )
     if active_project:
         start = date.fromisoformat(active_project["start_date"])
         allocation_starts = [
