@@ -127,9 +127,17 @@ def validate_data(
         ("supply", "role_id", "roles", "role_id"), ("supply", "skill_id", "skills", "skill_id"),
         ("gap_analysis", "role_id", "roles", "role_id"), ("gap_analysis", "skill_id", "skills", "skill_id"),
         ("gap_actions", "gap_id", "gap_analysis", "gap_id"),
+        ("gap_actions", "source_utilization_id", "utilization", "utilization_id"),
     ]
     for source, field, target, target_field in relationships:
         fk(source, field, target, target_field)
+    allocation_ids = {row["allocation_id"] for row in sources["allocations"]}
+    if any(
+        allocation_id not in allocation_ids
+        for action in (derived or {}).get("gap_actions", [])
+        for allocation_id in action.get("source_allocation_ids", [])
+    ):
+        errors.append("gap_actions.source_allocation_ids has invalid allocation references")
 
     demand_keys = Counter(
         (row["demand_id"], row["role_id"], row["skill_id"])

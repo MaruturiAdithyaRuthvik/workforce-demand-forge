@@ -8,7 +8,7 @@
 - Forecast pipeline adjustment has lower WAPE at 4 and 8 weeks; moving average is better at 12 weeks. Pipeline adjustment has more negative bias at all horizons, and both methods underforecast in the audited full run.
 - Zero availability occurred in 131 of 265,000 employee-weeks (0.049%). Leave is concentrated in four synthetic months (February, May, July, December), and only six fixed holidays are modeled.
 - A deliberate exception fixture leaves one Active allocation on a Cancelled project to exercise cancellation handling.
-- `docs/PROBLEM.md` is absent, so the existing traceability table cannot be verified line-by-line against the original ten-step specification. Explicit Contract recommendations and demand ramp-up/ramp-down curves are also not implemented as separate behaviors.
+- The source problem statement is needed to certify that the traceability table covers every original step, edge case, acceptance criterion, and evaluation focus.
 - Test coverage was 89% overall; CLI statements were not exercised by the Python unit tests, although the documented CLI workflows passed in a fresh clone.
 - The small starter sample's moving-average WAPE exceeds 1.0 at all three horizons; this is a property of the synthetic sample, not a general forecast benchmark.
 - Platform-specific timing varies. Hashes cover canonical exports, not SQLite file bytes.

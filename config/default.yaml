@@ -6,6 +6,9 @@ thresholds:
   medium_gap_fte: 2.0
   high_utilization: 0.9
   over_utilization: 1.0
+  contract_utilization: 1.2
+  contract_budget_cap: 750.0
+  contract_cost_per_excess_hour: 120.0
   stale_rate_min: 0.12
   stale_rate_max: 0.18
   headcount_budget: 8

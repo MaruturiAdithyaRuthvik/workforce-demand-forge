@@ -186,6 +186,8 @@ class GapAction(Row):
     action_type: Literal["Reverify", "Train", "Hire", "Reallocate", "Contract"] = Field(description="units=none; uniqueness=not unique; validation=listed action.")
     candidate_employee_id: str | None = Field(default=None, description="units=none; uniqueness=optional foreign key; validation=references Employee.")
     candidate_skill_id: str | None = Field(default=None, description="units=none; uniqueness=optional foreign key; validation=references Skill.")
+    source_utilization_id: str | None = Field(default=None, description="units=none; uniqueness=optional foreign key; validation=references Utilization.")
+    source_allocation_ids: list[str] = Field(default_factory=list, description="units=none; uniqueness=not unique; validation=source Allocation IDs.")
     rule_id: str = Field(description="units=none; uniqueness=not unique; validation=non-empty rule identifier.")
     owner_actor: Literal["Employee", "Manager", "HR Partner", "IT/Ops Partner", "System Admin"] = Field(description="units=none; uniqueness=not unique; validation=listed accountable actor.")
     status: Literal["Proposed", "Approved", "InProgress", "Done", "Rejected", "Escalated"] = Field(description="units=none; uniqueness=not unique; validation=listed action lifecycle.")

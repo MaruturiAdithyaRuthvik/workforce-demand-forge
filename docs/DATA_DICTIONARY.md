@@ -214,6 +214,8 @@ Generated from the Pydantic table models in `wdf/models.py`; rerun `python scrip
 | action_type | string | yes | Reverify, Train, Hire, Reallocate, Contract | none | not unique | listed action. |
 | candidate_employee_id | string \| null | no | — | none | optional foreign key | references Employee. |
 | candidate_skill_id | string \| null | no | — | none | optional foreign key | references Skill. |
+| source_utilization_id | string \| null | no | — | none | optional foreign key | references Utilization. |
+| source_allocation_ids | array<string> | no | — | none | not unique | source Allocation IDs. |
 | rule_id | string | yes | — | none | not unique | non-empty rule identifier. |
 | owner_actor | string | yes | Employee, Manager, HR Partner, IT/Ops Partner, System Admin | none | not unique | listed accountable actor. |
 | status | string | yes | Proposed, Approved, InProgress, Done, Rejected, Escalated | none | not unique | listed action lifecycle. |

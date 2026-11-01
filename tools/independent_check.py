@@ -45,6 +45,7 @@ FOREIGN_KEYS = {
     "gap_actions": (
         ("gap_id", "gap_analysis", "gap_id"), ("candidate_employee_id", "employees", "employee_id"),
         ("candidate_skill_id", "skills", "skill_id"),
+        ("source_utilization_id", "utilization", "utilization_id"),
     ),
 }
 ENUMS = {
@@ -128,6 +129,28 @@ def main(root):
             missing = [row[field] for row in data[source] if row[field] and row[field] not in target_values]
             if missing:
                 fail("{}.{}, missing {} reference(s)".format(source, field, len(missing)))
+    allocation_by_id = {row["allocation_id"]: row for row in data["allocations"]}
+    utilization_by_id = {row["utilization_id"]: row for row in data["utilization"]}
+    for action in data["gap_actions"]:
+        allocation_ids = parse_ids(action["source_allocation_ids"])
+        if any(allocation_id not in allocation_by_id for allocation_id in allocation_ids):
+            fail("GapAction references a missing Allocation")
+        if action["source_utilization_id"]:
+            utilization = utilization_by_id[action["source_utilization_id"]]
+            if utilization["employee_id"] != action["candidate_employee_id"]:
+                fail("GapAction employee does not match source Utilization")
+            week = utilization["iso_week"]
+            week_start = datetime.date.fromisocalendar(2026, int(week[-2:]), 1)
+            week_end = week_start + datetime.timedelta(days=6)
+            for allocation_id in allocation_ids:
+                allocation = allocation_by_id[allocation_id]
+                if (
+                    allocation["employee_id"] != utilization["employee_id"]
+                    or allocation["status"] not in {"Proposed", "Active"}
+                    or datetime.date.fromisoformat(allocation["start_date"]) > week_end
+                    or datetime.date.fromisoformat(allocation["end_date"]) < week_start
+                ):
+                    fail("GapAction source Allocation does not reconcile to source Utilization")
     entity_tables = {
         "Employee": ("employees", "employee_id"), "Project": ("projects", "project_id"),
         "Allocation": ("allocations", "allocation_id"), "Training": ("training", "training_id"),

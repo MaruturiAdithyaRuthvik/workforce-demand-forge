@@ -195,6 +195,8 @@ def compute_derived(
             "action_type": action_type,
             "candidate_employee_id": candidate_employee_id,
             "candidate_skill_id": candidate_skill_id,
+            "source_utilization_id": None,
+            "source_allocation_ids": [],
             "rule_id": rule_id,
             "owner_actor": actor,
             "status": status,
@@ -205,7 +207,18 @@ def compute_derived(
         action_counter += 1
 
     for row in utilization:
-        if row["utilization_available"] is not None and row["utilization_available"] > float(thresholds["over_utilization"]):
+        utilization_rate = row["utilization_available"]
+        if utilization_rate is not None and utilization_rate > float(thresholds["over_utilization"]):
+            week_start = date.fromisocalendar(2026, int(row["iso_week"][-2:]), 1)
+            week_end = week_start + timedelta(days=6)
+            source_allocations = sorted(
+                allocation["allocation_id"]
+                for allocation in allocations_by_employee[row["employee_id"]]
+                if allocation["status"] in {"Proposed", "Active"}
+                and date.fromisoformat(allocation["start_date"]) <= week_end
+                and date.fromisoformat(allocation["end_date"]) >= week_start
+            )
+            utilization_id = row["utilization_id"]
             actions.append({
                 "gap_action_id": entity_id("GACT", action_counter),
                 "gap_id": None,
@@ -213,13 +226,48 @@ def compute_derived(
                 "rule_id": "UTIL_OVER_AVAILABLE",
                 "candidate_employee_id": row["employee_id"],
                 "candidate_skill_id": None,
+                "source_utilization_id": utilization_id,
+                "source_allocation_ids": source_allocations,
                 "owner_actor": "Manager",
                 "status": "Proposed",
                 "lead_time_weeks": 1,
                 "estimated_cost": 0.0,
-                "assumptions": f"UTIL_OVER_AVAILABLE: utilization={row['utilization_available']:.4f} > over_utilization={thresholds['over_utilization']}.",
+                "assumptions": (
+                    f"UTIL_OVER_AVAILABLE: utilization={utilization_rate:.4f} > "
+                    f"over_utilization={thresholds['over_utilization']}; "
+                    f"utilization_id={utilization_id}; allocations={source_allocations}."
+                ),
             })
             action_counter += 1
+            if utilization_rate > float(thresholds["contract_utilization"]):
+                excess_hours = max(0.0, float(row["allocated_hours"]) - float(
+                    avail_by_key[(row["employee_id"], row["iso_week"])]["available_hours"]
+                ))
+                estimated_cost = round(
+                    excess_hours * float(thresholds["contract_cost_per_excess_hour"]), 2
+                )
+                budget_cap = float(thresholds["contract_budget_cap"])
+                actions.append({
+                    "gap_action_id": entity_id("GACT", action_counter),
+                    "gap_id": None,
+                    "action_type": "Contract",
+                    "rule_id": "UTIL_CONTRACT_OVER_THRESHOLD",
+                    "candidate_employee_id": row["employee_id"],
+                    "candidate_skill_id": None,
+                    "source_utilization_id": utilization_id,
+                    "source_allocation_ids": source_allocations,
+                    "owner_actor": "HR Partner",
+                    "status": "Escalated" if estimated_cost > budget_cap else "Proposed",
+                    "lead_time_weeks": 1,
+                    "estimated_cost": estimated_cost,
+                    "assumptions": (
+                        f"UTIL_CONTRACT_OVER_THRESHOLD: utilization={utilization_rate:.4f} > "
+                        f"contract_utilization={thresholds['contract_utilization']}; "
+                        f"utilization_id={utilization_id}; allocations={source_allocations}; "
+                        f"estimated_cost={estimated_cost:.2f}; budget_cap={budget_cap:.2f}."
+                    ),
+                })
+                action_counter += 1
 
     return {
         "availability": availability,

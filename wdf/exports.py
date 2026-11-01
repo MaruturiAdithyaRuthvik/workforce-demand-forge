@@ -46,6 +46,7 @@ FOREIGN_KEYS = {
     "gap_actions": [
         ("gap_id", "gap_analysis", "gap_id"), ("candidate_employee_id", "employees", "employee_id"),
         ("candidate_skill_id", "skills", "skill_id"),
+        ("source_utilization_id", "utilization", "utilization_id"),
     ],
 }
 
