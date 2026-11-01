@@ -354,7 +354,7 @@ docs\PROBLEM.md: True
 
 **Verdict:** PASS for schema, manifest, and line-referenced documentation checks; remaining functional/documentation gaps are explicit below.
 
-**Fix commits:** `42443cf` (checker); final audit commit (source statement and traceability map).
+**Fix commits:** `42443cf` (checker); `8a90a7f` (source statement and traceability map).
 
 ## Remaining known gaps
 
@@ -481,7 +481,7 @@ Forecasts below actual, recomputed from rolling-origin predictions using data av
 
 The original baseline command reported the moving-average and pipeline shares aggregated across horizons as 16,857/29,440 (57.259%) and 27,776/29,440 (94.348%); the table above reports each final method/horizon separately. The realization-adjusted method reduces undershooting, but does not eliminate it at longer horizons.
 
-**Final rerun commands:** `uv run wdf validate --input output/full`; `uv run python tools/independent_check.py output/full`; `uv run wdf forecast --input output/full`; `uv run wdf detect --input output/full`; `uv run wdf evaluate --input output/full`; `uv run python tools/check_docs.py output/starter`; `uv run python tools/check_docs.py output/full`; `uv run ruff check wdf tests tools`; `uv run pytest --cov=wdf --cov-report=term-missing`; `uv lock --check`.
+**Final rerun commands:** `uv run wdf validate --input output/full`; `uv run python tools/independent_check.py output/full`; `uv run wdf forecast --input output/full`; `uv run wdf detect --input output/full`; `uv run wdf evaluate --input output/full`; repeat `uv run wdf generate --scale full --seed 20261023 --out output/heldout-full-20261023`, `uv run wdf detect --input output/heldout-full-20261023`, and `uv run wdf evaluate --input output/heldout-full-20261023`, then repeat with seed `20261024`; `uv run python tools/check_docs.py output/starter`; `uv run python tools/check_docs.py output/full`; `uv run ruff check wdf tests tools`; `uv run pytest --cov=wdf --cov-report=term-missing`; `uv lock --check`.
 
 **Key output:**
 
@@ -491,13 +491,15 @@ Independent audit: PASS (10 checks); 53 weeks; 265000 utilization rows; 1000 gap
 Forecast complete for 10 future ISO weeks
 Detected 404 anomalies
 Evaluation completed for seed 20261022 and held-out seed 20261023
+Held-out full seed 20261023: Generated 47 artifacts; Validation: PASS; Detected 400 anomalies
+Held-out full seed 20261024: Generated 47 artifacts; Validation: PASS; Detected 417 anomalies
 Docs: PASS; 19 tables, 126 Pydantic fields; manifest inventory 49 files (starter and full)
 Ruff: All checks passed!
 32 passed; total coverage 92%; CLI coverage 55%
 uv lock --check: Resolved 27 packages
 ```
 
-The three-seed full-scale detector results, near-miss counts, exception paths, and no-look-ahead test results are recorded in sections D–F. The final rerun of main-seed detection/evaluation completed; the held-out 20261024 metrics are from the separate full-scale held-out run recorded in section E.
+The three-seed full-scale detector results, near-miss counts, exception paths, and no-look-ahead test results are recorded in sections D–F. The per-issue results were recomputed from all three full-scale outputs: all four issue types had zero FP/FN for seeds 20261022, 20261023, and 20261024; type-(d)-as-type-(a) detections and unlabeled detections were both zero for each seed.
 
 ### Full-scale reproducibility hashes and row counts
 
@@ -566,11 +568,20 @@ Python versions: 3.11.15 / 3.14.7; identical artifact hash maps: True (47/47)
 
 `uv lock --check` resolved 27 exact package versions; `requirements-lock.txt` has 26 exact dependency pins, with the only uv.lock-only entry being the local project itself. The starter-hash comparison passed across the two tested Python versions. The current content scan over `output/full` found no absolute paths or wall-clock timestamp strings. Secret/contact scans found no credential patterns, email addresses, or phone numbers; no tracked `.env`, key, or certificate files were found. `rg -n '52' wdf tests tools` found only the explicit `"2026W52"` boundary test in `tests/test_p5.py`; `rg -n 'TODO|FIXME' wdf tests tools` and `rg -n 'print\\(' wdf` found no matches. Other fixed evaluation horizons (4/8/12 weeks) are prescribed backtest values; generator rates and weekly hours are read from `config/default.yaml`.
 
-**Fresh-clone quickstart:** pending final commit and literal README execution; results will be added below. Make is not installed locally, and remote GitHub Actions was not run, so neither the Make target nor hosted CI is claimed as passing.
+**Fresh-clone command:** `git clone --quiet --no-hardlinks . $clone`; from the clone, run `uv sync --locked`, then each command in README Quickstart verbatim:
+`uv run wdf generate --scale starter --seed 20261022 --out output/starter`;
+`uv run wdf validate --input output/starter`;
+`uv run wdf forecast --input output/starter`;
+`uv run wdf detect --input output/starter`;
+`uv run wdf evaluate --input output/starter`.
 
-**Final verdict:** PASS for final data checks, tests, lint, dependency lock, docs, and full-scale repro. Fresh-clone verification and final hygiene inventory remain to be recorded after committing this documentation and `docs/PROBLEM.md`.
+**Fresh-clone output:** clone commit `8a90a7f`; Python `3.11.15`; `uv sync --locked` installed 27 locked packages; generation produced 47 artifacts and passed validation; explicit validation reported `errors=0; warnings=2`; forecast completed for 10 weeks; detection found 23 anomalies; evaluation completed for seed `20261022` and held-out seed `20261023`; `FRESH_CLONE_QUICKSTART=PASS`. Regenerating the committed sample marked its runtime-specific `manifest.json` and binary `workforce.db` modified; the manifest's `python_version` changed from `3.14.7` to `3.11.15`. `SOURCE_MANIFEST.md` was also marked modified but had no text diff (Git reported a line-ending warning). No source files changed in the clone. This is an expected generated-output difference, not a quickstart failure.
 
-**Fix commits:** performance fix `2dbdbfb`; item 9 audit/documentation commit to be recorded after commit.
+**Final hygiene command output:** `git ls-files` counted 101 tracked files totaling 24,810,530 bytes (23.66 MiB); the only tracked file over 5 MiB was `output/starter/seed.sql` (8.85 MiB). `Get-Command make` found no command; remote GitHub Actions was not run, so neither the Make target nor hosted CI is claimed as passing.
+
+**Final verdict:** PASS for final data checks, three-seed full evaluation, tests, lint, dependency lock, docs, full-scale repro, cross-version starter hashes, and the literal fresh-clone quickstart. Make and hosted CI remain unverified.
+
+**Fix commits:** performance fix `2dbdbfb`; audit/source statement/starter refresh `8a90a7f`; fresh-clone and closure evidence are recorded in the following audit commit.
 
 ## Final known gaps
 
