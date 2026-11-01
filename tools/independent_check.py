@@ -243,7 +243,7 @@ def main(root):
     gap_rows = data["gap_analysis"]
     if len(gap_rows) < 1000:
         fail("Need at least 1,000 gap rows to satisfy the independent sample threshold")
-    sample = gap_rows[:1000]
+    sample = [gap_rows[(index * len(gap_rows)) // 1000] for index in range(1000)]
     for gap in sample:
         key = (gap["iso_week"], gap["role_id"], gap["skill_id"])
         source_lines = lines_by_key.get(key, [])
@@ -273,7 +273,7 @@ def main(root):
         eligible_ids = {row["employee_skill_id"] for row in eligible}
         if set(supporting) != eligible_ids:
             fail("Gap supporting-skill trace mismatch at " + gap["gap_id"])
-    print("PASS demand/supply/gap recompute and traces for {} sampled gaps".format(len(sample)))
+    print("PASS demand/supply/gap recompute and traces for {} stratified gaps".format(len(sample)))
 
     current_state = {}
     for event in data["lifecycle_events"]:
