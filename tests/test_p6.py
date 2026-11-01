@@ -5,7 +5,7 @@ from wdf.config import load_settings
 from wdf.derived import compute_derived
 from wdf.detect import detect_anomalies
 from wdf.evaluate import evaluate_detections
-from wdf.pipeline import run_detection, run_generate
+from wdf.pipeline import _attach_derived_trace_ids, run_detection, run_generate
 from wdf.transactions import generate_sources
 from wdf.validate import validate_data
 
@@ -79,3 +79,64 @@ def test_detection_runs_without_ground_truth(tmp_path):
 
     assert detections
     assert (tmp_path / "detections.json").is_file()
+
+
+def test_derived_trace_ids_match_line_skill_and_allocation_records():
+    sources = {
+        "demand_lines": [{
+            "demand_line_id": "DEML-000001", "iso_week": "2026W01",
+            "role_id": "ROLE-0001", "skill_id": "SKL-000001",
+        }],
+        "employee_skills": [{
+            "employee_skill_id": "ESK-000001", "employee_id": "EMP-000001",
+            "skill_id": "SKL-000001",
+        }],
+        "employees": [{"employee_id": "EMP-000001", "role_id": "ROLE-0001"}],
+        "allocations": [{
+            "allocation_id": "ALLOC-2026-000001", "employee_id": "EMP-000001",
+            "start_date": "2026-01-01", "end_date": "2026-01-07",
+        }],
+    }
+    ground_truth = [
+        {"record_id": "DEML-000001"},
+        {"record_id": "ESK-000001"},
+        {"record_id": "ALLOC-2026-000001"},
+    ]
+    derived = {
+        "gap_analysis": [
+            {
+                "gap_id": "GAP-1", "iso_week": "2026W01",
+                "role_id": "ROLE-0001", "skill_id": "SKL-000001",
+            },
+            {
+                "gap_id": "GAP-2", "iso_week": "2026W02",
+                "role_id": "ROLE-0001", "skill_id": "SKL-000001",
+            },
+            {
+                "gap_id": "GAP-3", "iso_week": "2026W01",
+                "role_id": "ROLE-0001", "skill_id": "SKL-000002",
+            },
+        ],
+        "utilization": [
+            {
+                "utilization_id": "UTL-EMP1-2026W01",
+                "employee_id": "EMP-000001", "iso_week": "2026W01",
+            },
+            {
+                "utilization_id": "UTL-EMP1-2026W02",
+                "employee_id": "EMP-000001", "iso_week": "2026W02",
+            },
+            {
+                "utilization_id": "UTL-EMP2-2026W01",
+                "employee_id": "EMP-000002", "iso_week": "2026W01",
+            },
+        ],
+    }
+
+    _attach_derived_trace_ids(sources, ground_truth, derived)
+
+    assert [row["affected_derived_ids"] for row in ground_truth] == [
+        ["GAP-1"],
+        ["GAP-1", "GAP-2"],
+        ["UTL-EMP1-2026W01", "UTL-EMP1-2026W02"],
+    ]

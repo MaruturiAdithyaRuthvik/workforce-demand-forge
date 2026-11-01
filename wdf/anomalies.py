@@ -64,15 +64,25 @@ def inject_anomalies(
     ]
     if not shared_allocations:
         raise ValueError("No Shared-Pool allocation available for deterministic anomaly injection")
+
+    allocations_by_employee: dict[str, list[dict]] = {}
+    for allocation in sources["allocations"]:
+        allocations_by_employee.setdefault(allocation["employee_id"], []).append(allocation)
+    shared_by_employee: dict[str, list[dict]] = {}
+    for allocation in shared_allocations:
+        shared_by_employee.setdefault(allocation["employee_id"], []).append(allocation)
+    allocation_week_windows: dict[str, tuple[date, date]] = {}
+    for allocation in sources["allocations"]:
+        start = date.fromisoformat(allocation["start_date"])
+        end = date.fromisoformat(allocation["end_date"])
+        allocation_week_windows[allocation["allocation_id"]] = (
+            start - timedelta(days=start.weekday()),
+            end - timedelta(days=end.weekday()),
+        )
+
     def overlaps(first: dict, second: dict) -> bool:
-        first_start = date.fromisoformat(first["start_date"])
-        first_end = date.fromisoformat(first["end_date"])
-        second_start = date.fromisoformat(second["start_date"])
-        second_end = date.fromisoformat(second["end_date"])
-        first_week_start = first_start - timedelta(days=first_start.weekday())
-        first_week_end = first_end - timedelta(days=first_end.weekday())
-        second_week_start = second_start - timedelta(days=second_start.weekday())
-        second_week_end = second_end - timedelta(days=second_end.weekday())
+        first_week_start, first_week_end = allocation_week_windows[first["allocation_id"]]
+        second_week_start, second_week_end = allocation_week_windows[second["allocation_id"]]
         return (
             first["employee_id"] == second["employee_id"]
             and first_week_start <= second_week_end
@@ -83,7 +93,7 @@ def inject_anomalies(
         row for row in shared_allocations
         if not any(
             other is not row and overlaps(row, other)
-            for other in shared_allocations
+            for other in shared_by_employee[row["employee_id"]]
         )
     ]
     if not isolated_shared:
@@ -173,7 +183,7 @@ def inject_anomalies(
         and float(row["allocation_pct"]) <= anomaly_config.dedicated_allocation_max_percentage
         and not any(
             other is not row and overlaps(row, other)
-            for other in sources["allocations"]
+            for other in allocations_by_employee[row["employee_id"]]
         )
     ]
     if not dedicated:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import defaultdict
 from itertools import combinations
 from math import ceil
 from datetime import date, timedelta
@@ -253,19 +254,22 @@ def generate_sources(
         raise ValueError("Leave month weights must all be positive")
     month_probabilities = month_weights / month_weights.sum()
     leave_rows = []
+    leave_rows_by_employee: dict[str, list[dict]] = defaultdict(list)
 
     def leave_month() -> int:
         return int(leave_rng.choice(np.arange(1, 13), p=month_probabilities))
 
     def append_leave(employee: dict, start_day: date, length: int) -> None:
-        leave_rows.append({
+        row = {
             "leave_id": entity_id("LEAVE", len(leave_rows) + 1),
             "employee_id": employee["employee_id"],
             "start_date": start_day.isoformat(),
             "end_date": (start_day + timedelta(days=length - 1)).isoformat(),
             "leave_type": str(leave_rng.choice(["Annual", "Sick", "Care", "Other"])),
             "status": "Approved",
-        })
+        }
+        leave_rows.append(row)
+        leave_rows_by_employee[employee["employee_id"]].append(row)
 
     for employee_index, employee in enumerate(data["employees"]):
         if employee_index not in leave_employee_indices:
@@ -297,7 +301,7 @@ def generate_sources(
                 if not any(
                     start_day <= date.fromisoformat(row["end_date"])
                     and date.fromisoformat(row["start_date"]) <= start_day + timedelta(days=length - 1)
-                    for row in leave_rows if row["employee_id"] == employee["employee_id"]
+                    for row in leave_rows_by_employee[employee["employee_id"]]
                 ):
                     break
             else:

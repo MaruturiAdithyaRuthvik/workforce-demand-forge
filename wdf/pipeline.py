@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import defaultdict
 from datetime import date, timedelta
 from pathlib import Path
 from typing import Any
@@ -49,31 +50,41 @@ def _attach_derived_trace_ids(
     skill_by_id = {row["employee_skill_id"]: row for row in sources["employee_skills"]}
     employee_by_id = {row["employee_id"]: row for row in sources["employees"]}
     allocation_by_id = {row["allocation_id"]: row for row in sources["allocations"]}
+    gap_ids_by_key = {
+        (row["iso_week"], row["role_id"], row["skill_id"]): row["gap_id"]
+        for row in derived["gap_analysis"]
+    }
+    gap_ids_by_role_skill: dict[tuple[str, str], list[str]] = defaultdict(list)
+    for row in derived["gap_analysis"]:
+        gap_ids_by_role_skill[(row["role_id"], row["skill_id"])].append(row["gap_id"])
+    utilization_by_employee: dict[str, list[dict]] = defaultdict(list)
+    for row in derived["utilization"]:
+        utilization_by_employee[row["employee_id"]].append(row)
+
     for truth in ground_truth:
         record_id = truth["record_id"]
         affected = set()
         if record_id in line_by_id:
             line = line_by_id[record_id]
-            affected.update(
-                row["gap_id"] for row in derived["gap_analysis"]
-                if row["iso_week"] == line["iso_week"] and row["role_id"] == line["role_id"]
-                and row["skill_id"] == line["skill_id"]
+            gap_id = gap_ids_by_key.get(
+                (line["iso_week"], line["role_id"], line["skill_id"])
             )
+            if gap_id is not None:
+                affected.add(gap_id)
         elif record_id in skill_by_id:
             skill = skill_by_id[record_id]
             role_id = employee_by_id[skill["employee_id"]]["role_id"]
-            affected.update(
-                row["gap_id"] for row in derived["gap_analysis"]
-                if row["role_id"] == role_id and row["skill_id"] == skill["skill_id"]
-            )
+            affected.update(gap_ids_by_role_skill.get((role_id, skill["skill_id"]), ()))
         elif record_id in allocation_by_id:
             allocation = allocation_by_id[record_id]
             start = date.fromisoformat(allocation["start_date"])
             end = date.fromisoformat(allocation["end_date"])
             affected.update(
-                row["utilization_id"] for row in derived["utilization"]
-                if row["employee_id"] == allocation["employee_id"]
-                and start <= date.fromisocalendar(2026, int(row["iso_week"][-2:]), 1) + timedelta(days=6)
+                row["utilization_id"]
+                for row in utilization_by_employee.get(allocation["employee_id"], ())
+                if start <= date.fromisocalendar(
+                    2026, int(row["iso_week"][-2:]), 1
+                ) + timedelta(days=6)
                 and end >= date.fromisocalendar(2026, int(row["iso_week"][-2:]), 1)
             )
         truth["affected_derived_ids"] = sorted(affected)
