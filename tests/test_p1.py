@@ -3,6 +3,7 @@ from datetime import date
 from wdf.calendar import iso_weeks
 from wdf.config import load_scale, load_settings
 from wdf.masters import generate_masters
+from wdf.transactions import generate_sources
 
 
 def test_fixed_calendar_has_iso_week_53():
@@ -34,3 +35,19 @@ def test_baseline_skill_currency_is_expiry_derived_and_stale_rate_is_in_range():
         assert (row["currency_flag"] == "Current") == (date.fromisoformat(row["expiry_date"]) >= as_of)
     stale_rate = sum(row["currency_flag"] == "Stale" for row in data["employee_skills"]) / len(data["employee_skills"])
     assert 0.12 <= stale_rate <= 0.18
+
+
+def test_skill_popularity_and_project_sizes_are_skewed():
+    sources = generate_sources(20261022, employees=1200, skills=120, projects=100, roles=12)
+    skill_counts = {}
+    for row in sources["employee_skills"]:
+        skill_counts[row["skill_id"]] = skill_counts.get(row["skill_id"], 0) + 1
+    popularity = sorted(skill_counts.get(row["skill_id"], 0) for row in sources["skills"])
+    assert popularity[-1] >= 3 * popularity[len(popularity) // 2]
+
+    allocation_counts = {row["project_id"]: 0 for row in sources["projects"]}
+    for row in sources["allocations"]:
+        allocation_counts[row["project_id"]] += 1
+    project_sizes = sorted(allocation_counts.values())
+    assert project_sizes[-1] >= 2 * project_sizes[len(project_sizes) // 2]
+    assert project_sizes[int(0.9 * (len(project_sizes) - 1))] > project_sizes[len(project_sizes) // 2]

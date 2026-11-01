@@ -77,10 +77,14 @@ def generate_masters(seed: int, employees: int, skills: int, projects: int, role
         })
 
     employee_skill_rows = []
+    skill_weights = np.power(np.arange(1, skills + 1, dtype=float), -0.9)
+    skill_weights /= skill_weights.sum()
+    skill_probabilities = np.empty(skills, dtype=float)
+    skill_probabilities[esk_rng.permutation(skills)] = skill_weights
     esk_index = 1
     for employee in employee_rows:
         count = min(skills, max(2, int(esk_rng.zipf(1.7))))
-        selected = esk_rng.choice(skills, size=count, replace=False)
+        selected = esk_rng.choice(skills, size=count, replace=False, p=skill_probabilities)
         for skill_index in sorted(int(value) for value in selected):
             skill = skill_rows[skill_index]
             is_stale = bool(esk_rng.random() < 0.15)

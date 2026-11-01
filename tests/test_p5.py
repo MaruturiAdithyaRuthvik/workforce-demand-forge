@@ -27,6 +27,13 @@ def test_required_boundary_fixtures_are_in_sources():
     assert iso_weeks()[-1]["iso_week"] == "2026W53"
     assert any(row["status"] == "Cancelled" for row in sources["projects"])
     assert any(row["status"] == "Cancelled" for row in sources["allocations"])
+    cancelled_projects = {
+        row["project_id"] for row in sources["projects"] if row["status"] == "Cancelled"
+    }
+    assert any(
+        row["project_id"] in cancelled_projects and row["status"] in {"Active", "Proposed"}
+        for row in sources["allocations"]
+    )
     derived = compute_derived(sources, load_settings().thresholds.model_dump())
     assert any(row["available_hours"] == 0 for row in derived["availability"])
     full_utilization = [

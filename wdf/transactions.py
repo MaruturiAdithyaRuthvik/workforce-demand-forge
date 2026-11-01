@@ -123,8 +123,24 @@ def generate_sources(
             })
 
     allocations = []
+    project_weights = alloc_rng.lognormal(mean=0.0, sigma=0.8, size=len(data["projects"]))
+    project_probabilities = project_weights / project_weights.sum()
+    if employees >= projects:
+        project_assignments = list(range(projects))
+        project_assignments.extend(
+            int(value) for value in alloc_rng.choice(
+                projects, size=employees - projects, replace=True, p=project_probabilities
+            )
+        )
+    else:
+        project_assignments = [
+            int(value) for value in alloc_rng.choice(
+                projects, size=employees, replace=True, p=project_probabilities
+            )
+        ]
+    alloc_rng.shuffle(project_assignments)
     for index, employee in enumerate(data["employees"], start=1):
-        project = data["projects"][(index - 1) % len(data["projects"])]
+        project = data["projects"][project_assignments[index - 1]]
         project_start = max(date(2026, 1, 5), date.fromisoformat(project["start_date"]))
         project_end = min(date(2026, 12, 31), date.fromisoformat(project["end_date"]))
         if project_end < project_start:

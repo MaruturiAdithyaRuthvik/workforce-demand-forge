@@ -260,12 +260,18 @@ def inject_anomalies(
         ]
         cancellation_day = max(start, max(allocation_starts))
         cancellation_date = cancellation_day.isoformat()
+        preserved_allocation = next(
+            row for row in sources["allocations"]
+            if row["project_id"] == active_project["project_id"] and row["status"] == "Active"
+        )
         prior_project_state = active_project["status"]
         active_project["status"] = "Cancelled"
         _append_event(sources, "Project", active_project["project_id"], prior_project_state, "Cancelled",
                       cancellation_date, "Synthetic mid-flight cancellation")
         for alloc in sources["allocations"]:
             if alloc["project_id"] == active_project["project_id"] and alloc["status"] == "Active":
+                if alloc["allocation_id"] == preserved_allocation["allocation_id"]:
+                    continue
                 previous = alloc["status"]
                 alloc["status"] = "Cancelled"
                 if alloc["start_date"] <= cancellation_date:
