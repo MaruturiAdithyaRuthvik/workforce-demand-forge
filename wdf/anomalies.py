@@ -1,0 +1,216 @@
+from __future__ import annotations
+
+from copy import deepcopy
+from datetime import date, timedelta
+
+from wdf.calendar import AS_OF, add_months
+from wdf.ids import entity_id
+
+
+def _next_number(rows: list[dict], key: str, prefix: str) -> int:
+    return max((int(row[key].split("-")[-1]) for row in rows), default=0) + 1
+
+
+def _append_event(
+    sources: dict[str, list[dict]],
+    entity_type: str,
+    entity_id_value: str,
+    from_state: str,
+    to_state: str,
+    effective_date: str,
+    reason: str,
+) -> None:
+    events = sources["lifecycle_events"]
+    events.append({
+        "event_id": "",
+        "entity_type": entity_type,
+        "entity_id": entity_id_value,
+        "from_state": from_state,
+        "to_state": to_state,
+        "effective_date": effective_date,
+        "reason": reason,
+    })
+    events.sort(key=lambda event: (event["entity_type"], event["entity_id"], event["effective_date"]))
+    for index, event in enumerate(events, start=1):
+        event["event_id"] = entity_id("EVT", index)
+
+
+def inject_anomalies(data: dict[str, list[dict]], seed: int) -> tuple[dict[str, list[dict]], list[dict]]:
+    sources = deepcopy(data)
+    truth = []
+    projects = {row["project_id"]: row for row in sources["projects"]}
+
+    shared_allocations = [
+        row for row in sources["allocations"]
+        if projects[row["project_id"]]["staffing_model"] == "Shared-Pool"
+    ]
+    if not shared_allocations:
+        raise ValueError("No Shared-Pool allocation available for deterministic anomaly injection")
+    allocation = shared_allocations[(seed % len(shared_allocations))]
+    previous_pct = allocation["allocation_pct"]
+    allocation["allocation_pct"] = 1.25
+    truth.append({
+        "record_id": "GT-000001", "entity": "Allocation",
+        "issue_type": "ALLOC_EXCEEDS_AVAILABILITY", "issue_subtype": None,
+        "injected_field": "allocation_pct", "original_value": previous_pct,
+        "injected_value": 1.25, "expected_detection_rule": "ALLOC_WEEKLY_PCT_GT_1",
+        "expected_decision": "Reallocate", "affected_derived_ids": [],
+    })
+
+    stale_skills = [
+        row for row in sources["employee_skills"]
+        if date.fromisoformat(row["expiry_date"]) < AS_OF and row["currency_flag"] == "Stale"
+    ]
+    if not stale_skills:
+        raise ValueError("No stale employee skill available for deterministic anomaly injection")
+    stale = stale_skills[seed % len(stale_skills)]
+    prior_flag = stale["currency_flag"]
+    stale["currency_flag"] = "Current"
+    truth.append({
+        "record_id": "GT-000002", "entity": "EmployeeSkill",
+        "issue_type": "STALE_SKILL_TREATED_CURRENT", "issue_subtype": "FLAG_WRONG",
+        "injected_field": "currency_flag", "original_value": prior_flag,
+        "injected_value": "Current", "expected_detection_rule": "SKILL_FLAG_EXPIRY_MISMATCH",
+        "expected_decision": "Reverify", "affected_derived_ids": [],
+    })
+
+    approved = [row for row in sources["demand_lines"] if row["status"] == "Approved"]
+    if not approved:
+        raise ValueError("No approved demand line available for duplicate injection")
+    duplicate = dict(approved[seed % len(approved)])
+    duplicate["demand_line_id"] = entity_id(
+        "DEML", _next_number(sources["demand_lines"], "demand_line_id", "DEML")
+    )
+    duplicate["source"] = "ResourceRequest"
+    duplicate["supersedes_line_id"] = None
+    sources["demand_lines"].append(duplicate)
+    sources["lifecycle_events"].append({
+        "event_id": entity_id("EVT", _next_number(sources["lifecycle_events"], "event_id", "EVT")),
+        "entity_type": "DemandLine", "entity_id": duplicate["demand_line_id"],
+        "from_state": None, "to_state": "Approved", "effective_date": duplicate["created_on"],
+        "reason": "Synthetic duplicate demand request",
+    })
+    truth.append({
+        "record_id": "GT-000003", "entity": "DemandLine",
+        "issue_type": "DEMAND_DOUBLE_COUNTED", "issue_subtype": None,
+        "injected_field": "demand_line_id", "original_value": None,
+        "injected_value": duplicate["demand_line_id"], "expected_detection_rule": "DEMAND_APPROVED_BUSINESS_KEY_DUPLICATE",
+        "expected_decision": "System Admin correction", "affected_derived_ids": [],
+    })
+
+    dedicated = [
+        row for row in sources["allocations"]
+        if projects[row["project_id"]]["staffing_model"] == "Dedicated-Team"
+        and float(row["allocation_pct"]) <= 0.75
+    ]
+    if not dedicated:
+        raise ValueError("No Dedicated-Team allocation available for overlap injection")
+    primary = dedicated[seed % len(dedicated)]
+    alternate_project = next(row for row in sources["projects"] if row["project_id"] != primary["project_id"])
+    new_allocation = {
+        **primary,
+        "allocation_id": entity_id("ALLOC", _next_number(sources["allocations"], "allocation_id", "ALLOC")),
+        "project_id": alternate_project["project_id"],
+        "allocation_pct": 0.1,
+        "skill_basis_esk_id": None,
+    }
+    sources["allocations"].append(new_allocation)
+    sources["lifecycle_events"].append({
+        "event_id": entity_id("EVT", _next_number(sources["lifecycle_events"], "event_id", "EVT")),
+        "entity_type": "Allocation", "entity_id": new_allocation["allocation_id"],
+        "from_state": None, "to_state": "Active", "effective_date": new_allocation["start_date"],
+        "reason": "Synthetic overlapping project assignment",
+    })
+    truth.append({
+        "record_id": "GT-000004", "entity": "Allocation",
+        "issue_type": "OVERLAPPING_PROJECT_ASSIGNMENT", "issue_subtype": None,
+        "injected_field": "project_id", "original_value": primary["project_id"],
+        "injected_value": alternate_project["project_id"], "expected_detection_rule": "DEDICATED_ASSIGNMENT_OVERLAP",
+        "expected_decision": "Reallocate", "affected_derived_ids": [],
+    })
+
+    # Hard negative: a Shared-Pool overlap whose combined weekly percentage stays within 100%.
+    hard_negative_employee = next(
+        row["employee_id"] for row in shared_allocations if float(row["allocation_pct"]) <= 0.75
+    )
+    hard_negative_base = next(
+        row for row in shared_allocations
+        if row["employee_id"] == hard_negative_employee and float(row["allocation_pct"]) <= 0.75
+    )
+    negative_allocation = {
+        **hard_negative_base,
+        "allocation_id": entity_id("ALLOC", _next_number(sources["allocations"], "allocation_id", "ALLOC")),
+        "project_id": next(row["project_id"] for row in sources["projects"] if row["project_id"] != hard_negative_base["project_id"]),
+        "allocation_pct": min(0.1, 1.0 - float(hard_negative_base["allocation_pct"])),
+        "skill_basis_esk_id": None,
+    }
+    sources["allocations"].append(negative_allocation)
+    _append_event(sources, "Allocation", negative_allocation["allocation_id"], None, "Active",
+                  negative_allocation["start_date"], "Synthetic valid Shared-Pool overlap")
+
+    # Fixed boundary cases are part of the valid baseline, not labeled anomalies.
+    boundary_skill = sources["employee_skills"][0]
+    skill = next(row for row in sources["skills"] if row["skill_id"] == boundary_skill["skill_id"])
+    boundary_skill["expiry_date"] = AS_OF.isoformat()
+    boundary_skill["last_verified_date"] = add_months(AS_OF, -int(skill["validity_months"])).isoformat()
+    boundary_skill["currency_flag"] = "Current"
+
+    employee = sources["employees"][0]
+    leave_start = date.fromisocalendar(2026, 20, 1)
+    sources["leave"].append({
+        "leave_id": entity_id("LEAVE", _next_number(sources["leave"], "leave_id", "LEAVE")),
+        "employee_id": employee["employee_id"], "start_date": leave_start.isoformat(),
+        "end_date": (leave_start + timedelta(days=4)).isoformat(),
+        "leave_type": "Annual", "status": "Approved",
+    })
+
+    boundary_week = date.fromisocalendar(2026, 52, 1)
+    part_timer = next(
+        row for row in sources["employees"]
+        if row["fte"] < 1 and not any(
+            allocation["employee_id"] == row["employee_id"]
+            and date.fromisoformat(allocation["start_date"]) <= boundary_week + timedelta(days=6)
+            and date.fromisoformat(allocation["end_date"]) >= boundary_week
+            for allocation in sources["allocations"]
+        )
+    )
+    project = next(row for row in sources["projects"] if row["staffing_model"] == "Shared-Pool")
+    boundary_allocation = {
+        "allocation_id": entity_id("ALLOC", _next_number(sources["allocations"], "allocation_id", "ALLOC")),
+        "employee_id": part_timer["employee_id"], "project_id": project["project_id"],
+        "role_id": part_timer["role_id"], "start_date": boundary_week.isoformat(),
+        "end_date": (boundary_week + timedelta(days=6)).isoformat(), "allocation_pct": 1.0,
+        "skill_basis_esk_id": None, "status": "Active",
+    }
+    sources["allocations"].append(boundary_allocation)
+    _append_event(sources, "Allocation", boundary_allocation["allocation_id"], None, "Active",
+                  boundary_allocation["start_date"], "Synthetic full-time-equivalent boundary")
+
+    active_project = next(
+        (row for row in sources["projects"] if row["status"] == "Active"
+         and any(alloc["project_id"] == row["project_id"] for alloc in sources["allocations"])),
+        None,
+    )
+    if active_project:
+        start = date.fromisoformat(active_project["start_date"])
+        end = date.fromisoformat(active_project["end_date"])
+        cancellation_day = start + timedelta(days=min(30, max(1, (end - start).days // 2)))
+        cancellation_date = cancellation_day.isoformat()
+        prior_project_state = active_project["status"]
+        active_project["status"] = "Cancelled"
+        _append_event(sources, "Project", active_project["project_id"], prior_project_state, "Cancelled",
+                      cancellation_date, "Synthetic mid-flight cancellation")
+        for alloc in sources["allocations"]:
+            if alloc["project_id"] == active_project["project_id"] and alloc["status"] == "Active":
+                previous = alloc["status"]
+                alloc["status"] = "Cancelled"
+                if alloc["start_date"] <= cancellation_date:
+                    alloc["end_date"] = min(alloc["end_date"], cancellation_date)
+                _append_event(sources, "Allocation", alloc["allocation_id"], previous, "Cancelled",
+                              cancellation_date, "Closed after project cancellation")
+
+    sources["demand_lines"].sort(key=lambda row: row["demand_line_id"])
+    sources["allocations"].sort(key=lambda row: row["allocation_id"])
+    sources["lifecycle_events"].sort(key=lambda row: (row["event_id"]))
+    truth.sort(key=lambda row: row["record_id"])
+    return sources, truth
