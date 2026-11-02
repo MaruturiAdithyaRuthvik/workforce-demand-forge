@@ -5,6 +5,7 @@ from pathlib import Path
 import typer
 
 from wdf.config import load_settings
+from wdf.dashboard_export import export_dashboard
 from wdf.pipeline import run_detection, run_evaluation, run_forecast, run_generate, run_repro, run_validation
 
 
@@ -68,6 +69,19 @@ def repro(
     typer.echo(f"Reproducibility: {report['status']} ({report['file_count']} files)")
     if report["status"] != "PASS":
         raise typer.Exit(code=1)
+
+
+@app.command("export-dashboard")
+def export_dashboard_command(
+    input: Path = typer.Option(Path("output/starter"), help="Generated dataset directory."),
+) -> None:
+    report = export_dashboard(input)
+    typer.echo(
+        f"Exported {len(report['files'])} aggregated dashboard files "
+        f"({report['bytes']} bytes) to dashboard/public/data"
+    )
+    for name, digest in report["sha256"].items():
+        typer.echo(f"{name}: {digest}")
 
 
 if __name__ == "__main__":

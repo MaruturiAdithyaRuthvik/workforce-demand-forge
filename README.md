@@ -86,6 +86,10 @@ Full-scale project/role/week backtest (36/32/28 origins):
 
 See [DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md), [ERD.md](docs/ERD.md), and [TRACEABILITY.md](docs/TRACEABILITY.md).
 
+## Optional analytics dashboard
+
+The Python generator, validator, detector, and forecasting commands do not require Node.js. To create a static dashboard snapshot, first generate a dataset, then run `uv run wdf export-dashboard --input output/starter` (or `output/full`). This writes only aggregated `analytics.json` and a separate `evaluation.json` into `dashboard/public/data`; it never writes to `output/`. The general analytics file contains no ground-truth labels. Only the Anomalies page requests the evaluation-only file. Combined JSON output is capped below 5 MB.
+
 ## Environment and limitations
 
 Python 3.11 or newer is required. Dependencies are pinned in `pyproject.toml`, `uv.lock`, and `requirements-lock.txt`. Full-scale runtime and memory vary by machine; see the verified run above for the current audit measurement. NumPy generator streams are only stable within a pinned version. All output is synthetic and should not be used for real workforce decisions.
