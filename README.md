@@ -1,98 +1,89 @@
-# Workforce Demand Forecaster
+# Workforce Demand Forge
 
-Deterministic synthetic workforce planning data, source validation, rule-based anomaly detection, rule-based recommendations, and weekly demand forecasting. This is primarily a command-line project with an optional read-only static dashboard.
+A synthetic data generator for workforce planning, plus everything that checks it. It builds 5,000 employees with skills, 500 projects, weekly demand by role, leave and allocations. From those it works out capacity, utilization, skill gaps and suggested actions (hire, train, re-verify, reallocate, contract). It also plants four kinds of data problems on purpose, writes the answers to a separate file, and has a detector that finds the problems without ever reading that file.
 
-## Quickstart
+Built for the YottaFlex AI candidate project. The brief is in [docs/PROBLEM.md](docs/PROBLEM.md).
 
-1. Install Python 3.11+.
-2. Run `uv sync --locked` (this installs the default development dependency group used by `make test`).
-3. Generate data: `uv run wdf generate --scale starter --seed 20261022 --out output/starter`.
-4. Validate: `uv run wdf validate --input output/starter`.
-5. Run `uv run wdf forecast --input output/starter`, `uv run wdf detect --input output/starter`, or `uv run wdf evaluate --input output/starter`.
+## Run it
 
-The starter scale is 300 employees, 60 skills, and 30 projects. The full scale is 5,000 employees, 300 skills, and 500 projects. Output includes a CSV and JSON per table, role-level `forecast.csv`, project/role/week `forecast_project.csv`, schema/seed SQL, SQLite database, and a manifest. Project forecasts use only demand visible at each origin and reconcile to the role-level totals. Utilization is classified into config-driven risk bands, including a legal 0.9–1.0 high-utilization band with traceable review actions that are distinct from anomaly detection. `uv.lock` pins the full dependency graph; `requirements-lock.txt` pins runtime and development tools.
+You need Python 3.11+ and [uv](https://docs.astral.sh/uv/) (`pip install uv`).
 
-## Layout
+```
+uv sync --locked
+uv run wdf generate --scale starter --seed 20261022 --out output/starter
+uv run wdf validate --input output/starter
+uv run wdf detect --input output/starter
+uv run wdf evaluate --input output/starter
+uv run wdf forecast --input output/starter
+```
 
-- `wdf/`: generator, validators, detectors, forecast, evaluation, and CLI.
-- `config/`: fixed calendar, generation distributions and rates, work hours, thresholds, and scale settings.
-- `tests/`: deterministic and behavioral checks.
-- `output/starter/`: committed starter sample output.
+`generate` clears its output folder, so run `detect` after it to recreate the detection files.
 
-`2026` has 53 ISO weeks; W53 begins 2026-12-28. Weeks through W43 are history, and later weeks form the forecast horizon. See [DESIGN_DECISIONS.md](docs/DESIGN_DECISIONS.md), [ASSUMPTIONS.md](docs/ASSUMPTIONS.md), and [LIMITATIONS.md](docs/LIMITATIONS.md).
+Starter scale is 300 employees. For the full 5,000, use `--scale full --out output/full`. On my Windows machine (Python 3.14) that took about 100 seconds and 830 MiB of memory.
 
-## Verification
+## What you get
 
-Run `uv run pytest --cov=wdf --cov-report=term-missing`, `uv run wdf validate --input output/starter`, and `uv run wdf repro --scale starter --seed 20261022 --out output/starter-repro`. `wdf repro` compares repeated canonical exports and verifies that changing the seed changes hashes. GNU Make targets are also provided, but Make is not installed in the audited Windows environment.
+CSV and JSON for each of 19 tables (the 10 from the brief plus bridge, leave, event and derived tables), `schema.sql` and `seed.sql`, a SQLite database, a manifest with checksums, role-level and project-level forecasts, and the ground truth in its own `ground_truth/` folder. At full scale that is 57,595 employee-skill rows, 7,535 allocations, 265,000 employee-weeks of availability, 4,389 skill gaps and 8,242 suggested actions.
 
-## Verified starter run
+## How the data is built
 
-These are real results from seed `20261022` (held-out seed `20261023`):
+1. Master tables first: roles, skills, employees, projects.
+2. Transactions on top of valid parent IDs: skills held by each person, demand, leave, allocations, training.
+3. Anomalies are planted in the source tables only.
+4. Everything derived (availability, utilization, supply, gaps, actions) is calculated afterwards from those sources, so it always reconciles with them.
 
-- Rows: 300 employees, 60 skills, 30 projects, 567 demand lines, 457 allocations, 15,900 availability rows, 15,900 utilization rows, 514 gap rows, and 579 gap actions.
-- Validation: **PASS**, 0 errors; 11 approved demand duplicates and 6 injected skill currency mismatches were reported as expected anomaly findings.
-- Exact starter validation warnings: `11 approved demand business-key duplicate(s), surfaced for anomaly detection`; `6 employee skill currency flag(s) disagree with expiry and are detector cases`. These are intentional injected anomaly fixtures (duplicate Approved demand and stale-skill/current-flag mismatch), not structural validation failures.
-- Detector P/R/F1: **1.000 / 1.000 / 1.000** for each of the four issue types on both seeds.
-- Full-scale generation and validation: **101.609 seconds**, with a sampled process-tree peak working set of **827.4 MiB** on the local Windows/Python 3.14.7 environment.
-- Reproducibility: **PASS**; 47 canonical CSV/JSON/SQL files and the logical SQLite dump matched for repeated seed `20261022`; seed `20261023` changed 40 file hashes.
+Each skill gap lists the demand lines and the qualified people it came from. Each suggested action names a rule, an owner and the thresholds it used.
 
-Starter rolling-origin backtest (36/32/28 origins for 4/8/12 weeks; WAPE lower is better, bias is signed relative error):
+## The four planted problems
 
-| Method | Horizon | WAPE | Bias |
+| Problem | What it looks like |
+|---|---|
+| Allocation exceeds availability | One person's allocations add up to more than 100% of that week's available hours |
+| Stale skill treated as current | The source flag says Current, but the expiry date has passed |
+| Demand double-counted | Two approved demand lines for the same project, role, skill and week |
+| Overlapping project assignment | Someone on a dedicated-team project is also allocated somewhere else |
+
+About 2% of eligible rows get each problem (404 at full scale). The data also contains legal look-alikes the detector must leave alone: allocations that add up to exactly 100%, expiry dates exactly on the as-of date, adjacent but non-overlapping allocations, and superseded demand revisions.
+
+## How I checked it
+
+- 35 tests and a clean `ruff` run.
+- `tools/independent_check.py` is a second checker written with only the standard library. It imports nothing from the project and recomputes capacity, utilization and gaps from the exported files.
+- Generating twice with the same seed gives identical hashes for every file. A different seed changes them. Starter hashes were the same on Python 3.11 and 3.14. Run `uv run wdf repro --scale starter --seed 20261022 --out output/starter-repro` to see it.
+- The detector scores 1.000 precision and recall on three seeds. That is a weak claim: the detector and the planted problems follow the same rules. It shows the logic is consistent, not that it would work on real HR data.
+- [docs/TRACEABILITY.md](docs/TRACEABILITY.md) maps each line of the brief to the file or test that covers it. [docs/SELF_AUDIT.md](docs/SELF_AUDIT.md) has the commands and output behind the numbers here.
+
+## Forecast
+
+Role-level demand forecasts at full scale, scored by WAPE (lower is better):
+
+| Method | 4 weeks | 8 weeks | 12 weeks |
 |---|---:|---:|---:|
-| 4-week moving average | 4 | 1.54722625 | -0.02871761 |
-| 4-week moving average | 8 | 1.53629666 | -0.04952360 |
-| 4-week moving average | 12 | 1.51146390 | -0.06915606 |
-| Pipeline adjusted | 4 | 0.38732809 | -0.38732809 |
-| Pipeline adjusted | 8 | 0.52632881 | -0.52632881 |
-| Pipeline adjusted | 12 | 0.63408723 | -0.63408723 |
-| Pipeline realization adjusted | 4 | 0.38518927 | -0.03346620 |
-| Pipeline realization adjusted | 8 | 0.49365089 | -0.25614278 |
-| Pipeline realization adjusted | 12 | 0.59857961 | -0.43066711 |
+| 4-week moving average | 0.578 | 0.570 | 0.574 |
+| Pipeline adjusted | 0.374 | 0.528 | 0.653 |
+| Pipeline, calibrated on past data | 0.253 | 0.378 | 0.531 |
 
-Forecast metrics and per-issue seed-specific scores are in [output/starter/metrics.json](output/starter/metrics.json); the row-level validation counts are in [output/starter/validation_report.json](output/starter/validation_report.json). On this starter sample, pipeline realization adjustment wins WAPE at all three horizons; it remains negatively biased. In the full-scale backtest it also wins WAPE at all horizons, but underforecasts at 8 and 12 weeks. These are synthetic-data results, not a general forecast benchmark.
+The calibrated method wins at every horizon, but every method under-forecasts at longer ranges. At project level the moving average is poor (WAPE around 1.8) because project demand comes and goes. Backtests only use data that existed at each forecast date, and a test checks that. More detail is in [docs/VALIDATION_SUMMARY.md](docs/VALIDATION_SUMMARY.md).
 
-Starter project/role/week backtest (same rolling origins; WAPE lower is better):
+## Choices worth explaining
 
-| Method | Horizon | WAPE | Bias |
-|---|---:|---:|---:|
-| 4-week moving average | 4 | 1.92469908 | -0.02872118 |
-| 4-week moving average | 8 | 1.91321131 | -0.04952759 |
-| 4-week moving average | 12 | 1.89696901 | -0.06915782 |
-| Pipeline adjusted | 4 | 0.38732895 | -0.38732895 |
-| Pipeline adjusted | 8 | 0.52632965 | -0.52632965 |
-| Pipeline adjusted | 12 | 0.63408772 | -0.63408772 |
-| Pipeline realization adjusted | 4 | 0.41179253 | -0.03346475 |
-| Pipeline realization adjusted | 8 | 0.52216769 | -0.25614225 |
-| Pipeline realization adjusted | 12 | 0.62142750 | -0.43066720 |
+- **Demand is a header plus lines.** The brief's ID `DEM-<project>-2026W01` is one per project and week, but demand is per role and skill, so the lines hang off the header. This is the one deliberate deviation from the brief.
+- **The stale flag is stored apart from the expiry date.** That is the only way a skill can be "stale but treated current".
+- **Allocation percent is of that week's available hours.** Leave and part-time work shrink the hours, so 100% always means "all the hours this person has".
+- **2026 has 53 ISO weeks.** W53 starts on 2026-12-28, so nothing is hardcoded to 52.
+- **Two validation warnings are expected.** They report the duplicate demand lines and the flag mismatches that I planted.
 
-Project-level WAPE is higher for the moving-average method because demand must be assigned to projects from their historical role mix. The realization-adjusted pipeline has lower project-level WAPE at 4 and 8 weeks than at 12 weeks; the role-level and project-level method winners need not be the same.
+## Dashboard
 
-Full-scale project/role/week backtest (36/32/28 origins):
+Optional. The Python side does not need Node.
 
-| Method | Horizon | WAPE | Bias |
-|---|---:|---:|---:|
-| 4-week moving average | 4 | 1.85634063 | -0.11000170 |
-| 4-week moving average | 8 | 1.80812723 | -0.16911561 |
-| 4-week moving average | 12 | 1.75412930 | -0.22819106 |
-| Pipeline adjusted | 4 | 0.37434853 | -0.37434853 |
-| Pipeline adjusted | 8 | 0.52768210 | -0.52768210 |
-| Pipeline adjusted | 12 | 0.65303907 | -0.65303907 |
-| Pipeline realization adjusted | 4 | 0.38780579 | 0.00672645 |
-| Pipeline realization adjusted | 8 | 0.49934238 | -0.24277502 |
-| Pipeline realization adjusted | 12 | 0.61643032 | -0.44600495 |
+```
+uv run wdf export-dashboard --input output/starter
+npm ci --prefix dashboard
+npm run dev --prefix dashboard
+```
 
-## Data documentation
-
-See [DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md), [ERD.md](docs/ERD.md), and [TRACEABILITY.md](docs/TRACEABILITY.md).
-
-## Optional analytics dashboard
-
-The Python generator, validator, detector, and forecasting commands do not require Node.js. To create a static dashboard snapshot, first generate a dataset, then run `uv run wdf export-dashboard --input output/starter` (or `output/full`). This writes only aggregated `analytics.json` and a separate `evaluation.json` into `dashboard/public/data`; it never writes to `output/`. The general analytics file contains no ground-truth labels. Only the Anomalies page requests the evaluation-only file. Combined JSON output is capped below 5 MB.
-
-To build the static dashboard, install Node.js 20.19+ or 22.12+, then run `npm ci --prefix dashboard` and `npm run build --prefix dashboard`. For local development, run `uv run wdf export-dashboard --input output/starter` and `npm run dev --prefix dashboard`. GNU Make users can run `make dashboard` to export the starter aggregates and build, or `make dashboard-dev` to export and start Vite. The dashboard is optional and has no backend or runtime network dependency.
-
-The interface includes overview, demand and forecast, skill gaps, decisions, and anomaly/data-health views. URL query parameters preserve the selected view and forecast filters. Evaluation metrics are explicitly labeled and loaded only when the Anomalies page is opened. Geist fonts are self-hosted; no font CDN is used.
+You need Node 20.19+ or 22.12+. It is a read-only static site with five pages: overview, demand and forecast, skill gaps, decisions, and anomalies and data health. Click a gap in the heatmap to trace it back to its demand lines and suggested actions. Ground truth is only loaded on the anomalies page and is labelled as evaluation data. Geist fonts are bundled, so nothing is fetched from the internet.
 
 ![Dashboard overview](docs/img/dashboard-overview.png)
 
@@ -100,6 +91,31 @@ The interface includes overview, demand and forecast, skill gaps, decisions, and
 
 ![Anomaly and data health](docs/img/dashboard-data-health.png)
 
-## Environment and limitations
+## Limitations
 
-Python 3.11 or newer is required. Dependencies are pinned in `pyproject.toml`, `uv.lock`, and `requirements-lock.txt`. Full-scale runtime and memory vary by machine; see the verified run above for the current audit measurement. NumPy generator streams are only stable within a pinned version. All output is synthetic and should not be used for real workforce decisions.
+- Everything is synthetic. Do not use it for real workforce decisions.
+- Detector scores come from planted rules (see above).
+- The "stale skill" problem has one variant: an expired skill flagged Current.
+- One active allocation stays on a cancelled project on purpose, to test that exception.
+- The skill-gap heatmap needs sideways scrolling to show all 53 weeks, and its shortage colours are pale.
+- `npm audit` reports 11 moderate findings in development tools and none in production dependencies.
+- GNU Make was not available on my Windows machine, so I ran the equivalent `uv run` commands. The Makefile and the GitHub Actions workflow are there as a convenience, and the commands above are the ones I tested.
+- NumPy's random streams are only guaranteed stable for a pinned version, so the versions are pinned.
+
+## Where things are
+
+- `wdf/`: generator, validators, detector, forecast, CLI
+- `config/`: calendar, rates, thresholds, scales
+- `tests/` and `tools/`: tests and the independent checker
+- `docs/`: data dictionary, ERD, assumptions, design decisions, traceability, audit
+- `dashboard/`: the optional dashboard
+- `output/starter/`: committed sample output
+
+## AI use
+
+Most of the code was written by AI coding agents from prompts that I drafted with an AI chat assistant. [docs/AI_USAGE.md](docs/AI_USAGE.md) says what I checked myself, and [docs/PROMPTS.md](docs/PROMPTS.md) has the prompts.
+
+https://github.com/user-attachments/assets/48046c21-c117-4409-9fd3-9609f435dca0
+
+
+
