@@ -204,3 +204,36 @@ Report how many over-utilized employee-weeks come from baseline data versus inje
 4. FINAL VERIFICATION (run once, show output)
 Full-scale generate with timing, validate, tools/independent_check.py, detect + evaluate on the main seed, forecast (both levels), repro at full scale, pytest with coverage, ruff, uv lock --check, one fresh-clone quickstart. Run the 3-seed detector evaluation only if generation code changed in item 3. Update README numbers to match fresh output. Add section K to docs/SELF_AUDIT.md (short, with before/after for items 1-3). Update docs/TRACEABILITY.md. Commit, then create git tag v1-core.
 
+### 6. Dashboard
+
+CONTEXT
+The core generator passes all checks and is tagged v1-core. Build a read-only analytics dashboard in /dashboard. It is optional for reviewers: the Python core must still run without Node. Do NOT change core behavior or any hashed output. Add only one new command, `wdf export-dashboard`, which writes aggregated JSON (< 5 MB total, deterministic) to dashboard/public/data, never into output/. Never ship raw tables. Only the Anomalies page may read ground truth, labelled "evaluation only".
+
+STACK
+Vite + React + TypeScript (strict), Tailwind, shadcn/ui + Radix primitives, Recharts (heavily restyled), TanStack Table, cmdk, lucide-react. Geist Sans and Geist Mono self-hosted through npm (no CDN). Static build, no backend, no runtime network calls. Font stack: Geist, -apple-system, BlinkMacSystemFont, system-ui, sans-serif.
+
+SOURCES AND LICENSES
+Base everything on shadcn/ui. You may borrow a few components from 21st.dev ONLY if the component page shows an MIT or Apache-2.0 license (skip "unknown"). Never commit a 21st API key. Record every external component in docs/SOURCE_MANIFEST.md: name, author, URL, license, retrieval date, modifications.
+
+PAGES (five)
+1 Overview: five large figures (open gaps, candidate actions, over-utilized weeks, anomalies found, data-health status), one hero chart of demand vs supply with an As-of marker, and a short "what needs attention" list.
+2 Demand and forecast: role and project selectors, actuals solid, forecast dashed, method switch (moving average / pipeline / realization-adjusted), backtest WAPE and bias shown beside the chart.
+3 Skill gaps: role family x week heatmap. Clicking a cell opens a side sheet that traces it: gap -> demand lines -> supporting skills -> candidate actions with owner, rule ID and assumptions text.
+4 Decisions: candidate actions queue grouped by owner (Manager, HR Partner, IT/Ops, Admin), status, escalations, filter by rule.
+5 Anomalies and data health: per-type precision/recall/F1 (evaluation only), near-miss counts, validation checks, reproducibility proof (hash match, seed, versions).
+
+DESIGN SYSTEM (premium, minimal, quiet)
+- Principle: restraint. Whitespace and typography do the work. Every element earns its place.
+- Light: page #F5F5F7, surface #FFFFFF, text #1D1D1F, secondary #6E6E73, hairline rgba(0,0,0,0.08). Dark: page #0B0B0C, surface #141416, text #F5F5F7, secondary #A1A1A6, hairline rgba(255,255,255,0.08). ONE accent: ink blue #24407A (light) / #8FB0FF (dark). Status colors only for status and desaturated: danger #B42318, warning #B54708, success #067647.
+- Type: Geist Sans, weights 400 and 500 only (display figures 300). Hero figures 48-56px, tracking -0.03em, tabular numerals. Page title 28px. Body 14px/1.6. Labels 13px secondary, sentence case. IDs and numbers in Geist Mono 12-13px.
+- Layout: 8px grid, max width 1200px, 24px page margins, 48px between sections, 12-column grid. Cards are white surface, 14px radius, 1px hairline, NO shadows (shadow only on popovers and the side sheet).
+- Figures are not boxed KPI cards: large numerals separated by hairlines, small secondary label above.
+- Components: segmented control for method and range, ghost and outline buttons (one near-black filled button per view at most), underline tabs, command palette (Ctrl/Cmd+K), side sheet for traces, tooltips with tabular numerals, compact tables (44px rows, hairline separators, no zebra, sticky header).
+- Charts: no legend boxes, direct end-of-line labels, hairline baseline only (no grid), forecast dashed, As-of marker as a thin vertical rule with a small label. Heatmap uses one hue ramp for shortage and a pale neutral for surplus, with a legend.
+- Motion: 180ms cubic-bezier(0.2, 0, 0, 1) for fades and hovers, side sheet 240ms, chart line draws in once (600ms). Honor prefers-reduced-motion.
+- Details: visible focus ring (2px accent, 2px offset), WCAG AA contrast, keyboard navigable, URL-synced filters, skeleton loading, designed empty and error states, light and dark themes following the system setting with a manual toggle.
+- Forbidden: gradients, glow, glassmorphism (one translucent sticky top bar is allowed), emoji, colored icon bubbles, rainbow chart palettes, centered hero banners, "Welcome back" copy, trend-arrow KPI cards, drop shadows on cards.
+- Copy: sentence case, plain words, no "seamless", "unlock", "simply", no exclamation marks.
+
+QUALITY
+tsc strict, eslint clean, no unused dependencies, `npm run build` works from a clean clone. Add `make dashboard` (export + npm ci + build) and `make dashboard-dev`. Add a README section with screenshots saved in docs/img. Commit after each phase.
