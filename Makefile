@@ -1,4 +1,4 @@
-.PHONY: setup starter full validate test repro independent-check docs-check all clean
+.PHONY: setup starter full validate test repro independent-check docs-check dashboard dashboard-dev all clean
 
 setup:
 	uv sync --locked
@@ -23,6 +23,16 @@ independent-check: full
 
 docs-check:
 	uv run python tools/check_docs.py output/full
+
+dashboard:
+	uv run wdf export-dashboard --input output/starter
+	npm ci --prefix dashboard
+	npm run build --prefix dashboard
+
+dashboard-dev:
+	uv run wdf export-dashboard --input output/starter
+	npm ci --prefix dashboard
+	npm run dev --prefix dashboard -- --host 127.0.0.1
 
 all: test starter validate forecast detect evaluate
 

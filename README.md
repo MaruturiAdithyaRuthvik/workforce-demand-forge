@@ -1,6 +1,6 @@
 # Workforce Demand Forecaster
 
-Deterministic synthetic workforce planning data, source validation, rule-based anomaly detection, rule-based recommendations, and weekly demand forecasting. This is a command-line project, not a web application.
+Deterministic synthetic workforce planning data, source validation, rule-based anomaly detection, rule-based recommendations, and weekly demand forecasting. This is primarily a command-line project with an optional read-only static dashboard.
 
 ## Quickstart
 
@@ -89,6 +89,16 @@ See [DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md), [ERD.md](docs/ERD.md), and [T
 ## Optional analytics dashboard
 
 The Python generator, validator, detector, and forecasting commands do not require Node.js. To create a static dashboard snapshot, first generate a dataset, then run `uv run wdf export-dashboard --input output/starter` (or `output/full`). This writes only aggregated `analytics.json` and a separate `evaluation.json` into `dashboard/public/data`; it never writes to `output/`. The general analytics file contains no ground-truth labels. Only the Anomalies page requests the evaluation-only file. Combined JSON output is capped below 5 MB.
+
+To build the static dashboard, install Node.js 20.19+ or 22.12+, then run `npm ci --prefix dashboard` and `npm run build --prefix dashboard`. For local development, run `uv run wdf export-dashboard --input output/starter` and `npm run dev --prefix dashboard`. GNU Make users can run `make dashboard` to export the starter aggregates and build, or `make dashboard-dev` to export and start Vite. The dashboard is optional and has no backend or runtime network dependency.
+
+The interface includes overview, demand and forecast, skill gaps, decisions, and anomaly/data-health views. URL query parameters preserve the selected view and forecast filters. Evaluation metrics are explicitly labeled and loaded only when the Anomalies page is opened. Geist fonts are self-hosted; no font CDN is used.
+
+![Dashboard overview](docs/img/dashboard-overview.png)
+
+![Skill gap heatmap](docs/img/dashboard-skill-gaps.png)
+
+![Anomaly and data health](docs/img/dashboard-data-health.png)
 
 ## Environment and limitations
 
